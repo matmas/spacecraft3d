@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=13 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_juifg"]
 [ext_resource type="Script" path="res://player.gd" id="2_22t7c"]
-[ext_resource type="Script" path="res://fps_monitor.gd" id="3_r1vdv"]
+[ext_resource type="Script" path="res://builder.gd" id="3_k4bm3"]
+[ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
+[ext_resource type="Script" path="res://fps_monitor.gd" id="6_b2lfh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,23 +41,35 @@ environment = SubResource("Environment_20bue")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
 size = Vector3(10, 0.1, 10)
 material = SubResource("StandardMaterial3D_f4hqk")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_eogwy")
 
 [node name="Player" type="CharacterBody3D" parent="."]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("2_22t7c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_mixqx")
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
+[node name="Neck" type="Node3D" parent="Player"]
+
+[node name="PhysicsInterpolation" type="Node3D" parent="Player/Neck"]
+script = ExtResource("3_urk0v")
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck/PhysicsInterpolation"]
+
+[node name="Builder" type="RayCast3D" parent="Player/Neck/PhysicsInterpolation/Camera3D"]
+target_position = Vector3(0, 0, -100)
+script = ExtResource("3_k4bm3")
 
 [node name="FPSMonitor" type="Label" parent="."]
 anchors_preset = 1
@@ -67,4 +81,18 @@ grow_horizontal = 0
 text = "0 FPS"
 label_settings = SubResource("LabelSettings_04lwv")
 horizontal_alignment = 2
-script = ExtResource("3_r1vdv")
+script = ExtResource("6_b2lfh")
+
+[node name="Platform" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
+mass = 1000.0
+can_sleep = false
+constant_force = Vector3(5000, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_eogwy")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Platform"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+size = Vector3(10, 0.1, 10)
+material = SubResource("StandardMaterial3D_f4hqk")
