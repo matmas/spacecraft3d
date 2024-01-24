@@ -3,14 +3,14 @@ extends RayCast3D
 var floor_scene := preload("res://pieces/floor.tscn")
 var floor_instance := floor_scene.instantiate()
 
-func _ready() -> void:
-	get_first_rigid_body_3d_or_last_node_3d_ancestor(self).add_child.call_deferred(floor_instance)
-
-
-func _process(_delta: float) -> void:
-	force_raycast_update()
-	var point := get_collision_point()
-	floor_instance.global_position = point
+#func _ready() -> void:
+	#get_first_rigid_body_3d_or_last_node_3d_ancestor(self).add_child.call_deferred(floor_instance)
+#
+#
+#func _process(_delta: float) -> void:
+	#force_raycast_update()
+	#var point := get_collision_point()
+	#floor_instance.global_position = point
 
 
 func get_first_rigid_body_3d_or_last_node_3d_ancestor(node: Node3D) -> Node3D:
