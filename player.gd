@@ -26,12 +26,13 @@ func _process(delta: float) -> void:
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var global_direction := transform.basis * Vector3(move_direction.x, 0, move_direction.y)
 
-	if global_direction:
-		velocity.x = global_direction.x * SPEED
-		velocity.z = global_direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if is_on_floor():
+		if global_direction:
+			velocity.x = global_direction.x * SPEED
+			velocity.z = global_direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 
