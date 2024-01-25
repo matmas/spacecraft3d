@@ -19,22 +19,21 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var global_direction := transform.basis * Vector3(move_direction.x, 0, move_direction.y)
 
 	if is_on_floor():
 		if global_direction:
-			velocity.x = global_direction.x * SPEED
-			velocity.z = global_direction.z * SPEED
+			velocity = Vector3(global_direction.x * SPEED, 0, global_direction.z * SPEED)
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+			velocity = velocity.move_toward(Vector3.ZERO, SPEED)
+
+		# Handle jump.
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = JUMP_VELOCITY
 
 	move_and_slide()
+
 
 	# Get the input direction and handle the looking around.
 	var look_dir := Input.get_vector("look_left", "look_right", "look_up", "look_down")
