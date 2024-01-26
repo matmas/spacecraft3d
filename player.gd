@@ -20,6 +20,16 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var delta := get_physics_process_delta_time()
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 
+	# Align with gravity
+	if not state.total_gravity.is_zero_approx():
+		var upright_vector := -state.total_gravity.normalized()
+		var target_basis := Basis(
+			upright_vector.cross(-upright_vector.cross(state.transform.basis.x)),
+			upright_vector,
+			upright_vector.cross(-upright_vector.cross(state.transform.basis.z))
+		).orthonormalized()
+		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, delta * SPEED))
+
 	var is_on_floor := false
 	var floor_velocity := Vector3.ZERO
 	for i in range(max_contacts_reported):
@@ -28,14 +38,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			if shape_owner_get_owner(state.get_contact_local_shape(i)) == feet_collision_shape:
 				is_on_floor = true
 				floor_velocity = state.get_contact_collider_velocity_at_position(i)
-				if not state.total_gravity.is_zero_approx():
-					var upright_vector := -state.total_gravity.normalized()
-					var target_basis := Basis(
-						upright_vector.cross(-upright_vector.cross(state.transform.basis.x)),
-						upright_vector,
-						upright_vector.cross(-upright_vector.cross(state.transform.basis.z))
-					).orthonormalized()
-					state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, delta * SPEED))
 				break
 
 	if is_on_floor:

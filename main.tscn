@@ -82,6 +82,7 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+mass = 75.0
 script = ExtResource("2_kxfww")
 
 [node name="FeetCollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -118,7 +119,7 @@ script = ExtResource("4_4u8ha")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
 physics_material_override = SubResource("PhysicsMaterial_y2a1a")
 linear_velocity = Vector3(5, 0, 0)
-angular_velocity = Vector3(0.0872665, 0, 0)
+angular_velocity = Vector3(0.174533, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_eogwy")
@@ -144,6 +145,7 @@ shape = SubResource("BoxShape3D_add4j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11)
 collision_layer = 2
 collision_mask = 3
+mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_72if5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
