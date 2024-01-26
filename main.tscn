@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=20 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="Script" path="res://player.gd" id="2_kxfww"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="Script" path="res://builder.gd" id="3_y0n5b"]
 [ext_resource type="Script" path="res://fps_monitor.gd" id="4_4u8ha"]
+[ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -117,6 +118,7 @@ script = ExtResource("4_4u8ha")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
 physics_material_override = SubResource("PhysicsMaterial_y2a1a")
 linear_velocity = Vector3(5, 0, 0)
+angular_velocity = Vector3(0.0872665, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_eogwy")
@@ -132,6 +134,7 @@ material = SubResource("StandardMaterial3D_f4hqk")
 [node name="Area3D" type="Area3D" parent="Platform"]
 collision_mask = 3
 gravity_space_override = 1
+script = ExtResource("6_nceua")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
