@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=19 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="Script" path="res://player.gd" id="2_kxfww"]
@@ -27,6 +27,9 @@ size = Vector3(10, 0.1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_add4j"]
 size = Vector3(9, 9, 9)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0j365"]
+radius = 0.1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mixqx"]
 
@@ -80,11 +83,12 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("2_kxfww")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_mixqx")
+[node name="FeetCollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("SphereShape3D_0j365")
 
-[node name="GroundTest" type="RayCast3D" parent="Player"]
-target_position = Vector3(0, -1.05, 0)
+[node name="BodyCollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_mixqx")
 
 [node name="Neck" type="Node3D" parent="Player"]
 

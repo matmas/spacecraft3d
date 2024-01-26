@@ -1,8 +1,8 @@
 extends RigidBody3D
 
-@onready var ground_test: RayCast3D = $GroundTest
 @onready var camera := get_viewport().get_camera_3d()
 @onready var neck: Node3D = $Neck
+@onready var feet_collision_shape := $FeetCollisionShape3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -12,15 +12,24 @@ const JOYSTICK_SENSITIVITY = 2.00
 var look_direction_change = Vector2()
 
 
+func _ready() -> void:
+	max_contacts_reported = 10
+
+
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var global_direction := transform.basis * Vector3(move_direction.x, 0, move_direction.y)
 
-	if is_on_floor():
-		var platform_velocity := Vector3.ZERO
-		if ground_test.get_collider() is RigidBody3D:
-			platform_velocity = ground_test.get_collider().linear_velocity
+	var is_contact_with_platform := false
+	var platform_velocity := Vector3.ZERO
+	for i in range(max_contacts_reported):
+		var is_contact := i < state.get_contact_count()
+		if is_contact:
+			if shape_owner_get_owner(state.get_contact_local_shape(i)) == feet_collision_shape:
+				is_contact_with_platform = true
+				platform_velocity = state.get_contact_collider_velocity_at_position(i)
 
+	if is_contact_with_platform:
 		state.linear_velocity.x = platform_velocity.x + global_direction.x * SPEED
 		state.linear_velocity.z = platform_velocity.z + global_direction.z * SPEED
 
@@ -32,11 +41,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	neck.rotate_x(-look_direction_change.y)
 	neck.rotation.x = clampf(neck.rotation.x, TAU * -0.25, TAU * 0.25)
 	look_direction_change = Vector2.ZERO
-
-
-
-func is_on_floor():
-	return ground_test.is_colliding()
 
 
 func _process(delta: float) -> void:
