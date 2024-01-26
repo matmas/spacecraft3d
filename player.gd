@@ -40,7 +40,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if is_on_floor:
 		var upward_velocity := 0.0
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_pressed("jump"):
 			upward_velocity = JUMP_VELOCITY
 		state.linear_velocity = floor_velocity + transform.basis * Vector3(move_direction.x * SPEED, upward_velocity, move_direction.y * SPEED)
 
