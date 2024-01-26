@@ -20,18 +20,19 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var global_direction := transform.basis * Vector3(move_direction.x, 0, move_direction.y)
 
-	var is_contact_with_platform := false
-	var platform_velocity := Vector3.ZERO
+	var is_on_floor := false
+	var floor_velocity := Vector3.ZERO
 	for i in range(max_contacts_reported):
 		var is_contact := i < state.get_contact_count()
 		if is_contact:
 			if shape_owner_get_owner(state.get_contact_local_shape(i)) == feet_collision_shape:
-				is_contact_with_platform = true
-				platform_velocity = state.get_contact_collider_velocity_at_position(i)
+				is_on_floor = true
+				floor_velocity = state.get_contact_collider_velocity_at_position(i)
+				break
 
-	if is_contact_with_platform:
-		state.linear_velocity.x = platform_velocity.x + global_direction.x * SPEED
-		state.linear_velocity.z = platform_velocity.z + global_direction.z * SPEED
+	if is_on_floor:
+		state.linear_velocity.x = floor_velocity.x + global_direction.x * SPEED
+		state.linear_velocity.z = floor_velocity.z + global_direction.z * SPEED
 
 		# Handle jump.
 		if Input.is_action_just_pressed("jump"):
