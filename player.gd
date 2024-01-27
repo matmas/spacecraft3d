@@ -4,8 +4,9 @@ extends RigidBody3D
 @onready var neck: Node3D = $Neck
 @onready var feet_collision_shape := $FeetCollisionShape3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const WALK_SPEED = 2.5
+const SPRINT_SPEED = 6.0
+const JUMP_SPEED = 4.5
 const MOUSE_SENSITIVITY = 0.002
 const JOYSTICK_SENSITIVITY = 2.00
 
@@ -14,21 +15,22 @@ var look_direction_change = Vector2()
 
 func _ready() -> void:
 	max_contacts_reported = 10
+	can_sleep = false
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var delta := get_physics_process_delta_time()
-	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 
-	# Align with gravity
-	if not state.total_gravity.is_zero_approx():
-		var upright_vector := -state.total_gravity.normalized()
-		var target_basis := Basis(
-			upright_vector.cross(-upright_vector.cross(state.transform.basis.x)),
-			upright_vector,
-			upright_vector.cross(-upright_vector.cross(state.transform.basis.z))
-		).orthonormalized()
-		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, delta * SPEED))
+	# Align with gravity when touching something
+	if state.get_contact_count() > 0:
+		if not state.total_gravity.is_zero_approx():
+			var upright_vector := -state.total_gravity.normalized()
+			var target_basis := Basis(
+				upright_vector.cross(-upright_vector.cross(state.transform.basis.x)),
+				upright_vector,
+				upright_vector.cross(-upright_vector.cross(state.transform.basis.z))
+			).orthonormalized()
+			state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, delta))
 
 	var is_on_floor := false
 	var floor_velocity := Vector3.ZERO
@@ -40,11 +42,17 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				floor_velocity = state.get_contact_collider_velocity_at_position(i)
 				break
 
+	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+
 	if is_on_floor:
-		var upward_velocity := 0.0
+		var upward_speed := 0.0
 		if Input.is_action_pressed("jump"):
-			upward_velocity = JUMP_VELOCITY
-		state.linear_velocity = floor_velocity + transform.basis * Vector3(move_direction.x * SPEED, upward_velocity, move_direction.y * SPEED)
+			upward_speed = JUMP_SPEED
+
+		var speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+		var movement_velocity := transform.basis * Vector3(move_direction.x * speed, upward_speed, move_direction.y * speed)
+		if movement_velocity or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right") or Input.is_action_just_released("move_forward") or Input.is_action_just_released("move_backward"):
+			state.linear_velocity = floor_velocity + movement_velocity
 
 	state.transform.basis = state.transform.rotated_local(Vector3.UP, -look_direction_change.x).basis # rotate_y(-direction.x)
 	neck.rotate_x(-look_direction_change.y)
