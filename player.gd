@@ -30,7 +30,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				upright_vector,
 				upright_vector.cross(-upright_vector.cross(state.transform.basis.z))
 			).orthonormalized()
-			state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, delta))
+			state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, 10.0 * delta))
 
 	var is_on_floor := false
 	var floor_velocity := Vector3.ZERO
@@ -45,16 +45,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var move_direction := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 
 	if is_on_floor:
-		var upward_speed := 0.0
-		if Input.is_action_pressed("jump"):
-			upward_speed = JUMP_SPEED
-
-		var speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
-		var movement_velocity := transform.basis * Vector3(move_direction.x * speed, upward_speed, move_direction.y * speed)
+		var upward_speed := JUMP_SPEED if Input.is_action_pressed("jump") else 0.0
+		var lateral_speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+		var movement_velocity := transform.basis * Vector3(move_direction.x * lateral_speed, upward_speed, move_direction.y * lateral_speed)
 		if movement_velocity or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right") or Input.is_action_just_released("move_forward") or Input.is_action_just_released("move_backward"):
 			state.linear_velocity = floor_velocity + movement_velocity
 
-	state.transform.basis = state.transform.rotated_local(Vector3.UP, -look_direction_change.x).basis # rotate_y(-direction.x)
+	state.transform.basis = state.transform.rotated_local(Vector3.UP, -look_direction_change.x).basis
 	neck.rotate_x(-look_direction_change.y)
 	neck.rotation.x = clampf(neck.rotation.x, TAU * -0.25, TAU * 0.25)
 	look_direction_change = Vector2.ZERO
