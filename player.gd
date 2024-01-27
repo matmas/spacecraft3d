@@ -10,7 +10,7 @@ const JUMP_SPEED = 4.5
 const MOUSE_SENSITIVITY = 0.002
 const JOYSTICK_SENSITIVITY = 2.00
 
-var look_direction_change = Vector2()
+var look_direction_change := Vector2()
 
 
 func _ready() -> void:
@@ -46,7 +46,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if is_on_floor:
 		var upward_speed := JUMP_SPEED if Input.is_action_pressed("jump") else 0.0
-		var lateral_speed = SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
+		var lateral_speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else WALK_SPEED
 		var movement_velocity := transform.basis * Vector3(move_direction.x * lateral_speed, upward_speed, move_direction.y * lateral_speed)
 		if movement_velocity or Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right") or Input.is_action_just_released("move_forward") or Input.is_action_just_released("move_backward"):
 			state.linear_velocity = floor_velocity + movement_velocity
