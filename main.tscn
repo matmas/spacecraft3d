@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=17 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
-[ext_resource type="Script" path="res://player.gd" id="2_kxfww"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
-[ext_resource type="Script" path="res://builder.gd" id="3_y0n5b"]
 [ext_resource type="Script" path="res://fps_monitor.gd" id="4_4u8ha"]
+[ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
@@ -28,11 +27,6 @@ size = Vector3(10, 0.1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_add4j"]
 size = Vector3(9, 9, 9)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_0j365"]
-radius = 0.4
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mixqx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04lwv"]
 line_spacing = 0.0
@@ -75,33 +69,6 @@ gravity_space_override = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
 shape = SubResource("BoxShape3D_add4j")
-
-[node name="Player" type="RigidBody3D" parent="."]
-collision_layer = 2
-collision_mask = 3
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-mass = 75.0
-script = ExtResource("2_kxfww")
-
-[node name="FeetCollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
-shape = SubResource("SphereShape3D_0j365")
-
-[node name="BodyCollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_mixqx")
-
-[node name="Neck" type="Node3D" parent="Player"]
-
-[node name="PhysicsInterpolation" type="Node3D" parent="Player/Neck"]
-script = ExtResource("3_urk0v")
-
-[node name="Camera3D" type="Camera3D" parent="Player/Neck/PhysicsInterpolation"]
-
-[node name="Builder" type="RayCast3D" parent="Player/Neck/PhysicsInterpolation/Camera3D"]
-target_position = Vector3(0, 0, -100)
-script = ExtResource("3_y0n5b")
 
 [node name="FPSMonitor" type="Label" parent="."]
 anchors_preset = 1
@@ -157,3 +124,5 @@ script = ExtResource("3_urk0v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/PhysicsInterpolation"]
 mesh = SubResource("BoxMesh_sjdch")
 skeleton = NodePath("../..")
+
+[node name="Player" parent="." instance=ExtResource("5_u4j58")]

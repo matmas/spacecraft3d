@@ -1,7 +1,8 @@
 extends RigidBody3D
+class_name Player
 
 @onready var camera := get_viewport().get_camera_3d()
-@onready var neck: Node3D = $Neck
+@onready var neck := $Neck as Node3D
 @onready var feet_collision_shape := $FeetCollisionShape3D
 
 const WALK_SPEED = 2.5

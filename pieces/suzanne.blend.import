@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://vpxc7wk376dh"
-path="res://.godot/imported/floor.blend-d6bd37349973c1cd50fc87ef26ecdddb.scn"
+uid="uid://cj1rahx2642pd"
+path="res://.godot/imported/suzanne.blend-0d4201f90591c52dd1533388a18211c6.scn"
 
 [deps]
 
-source_file="res://pieces/floor.blend"
-dest_files=["res://.godot/imported/floor.blend-d6bd37349973c1cd50fc87ef26ecdddb.scn"]
+source_file="res://pieces/suzanne.blend"
+dest_files=["res://.godot/imported/suzanne.blend-0d4201f90591c52dd1533388a18211c6.scn"]
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="RigidBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
