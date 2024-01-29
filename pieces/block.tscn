@@ -11,6 +11,7 @@ material = SubResource("StandardMaterial3D_l8wvv")
 [sub_resource type="BoxShape3D" id="BoxShape3D_k74e4"]
 
 [node name="Block" type="RigidBody3D"]
+mass = 100.0
 script = ExtResource("1_pe2jf")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
