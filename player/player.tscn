@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ca748"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="2_1m1lt"]
-[ext_resource type="Script" path="res://player/builder.gd" id="3_528ch"]
+[ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="3_suw0p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0j365"]
 radius = 0.4
@@ -32,6 +32,4 @@ script = ExtResource("2_1m1lt")
 
 [node name="Camera3D" type="Camera3D" parent="Neck/PhysicsInterpolation"]
 
-[node name="Builder" type="RayCast3D" parent="Neck/PhysicsInterpolation"]
-target_position = Vector3(0, 0, -100)
-script = ExtResource("3_528ch")
+[node name="Builder" parent="." instance=ExtResource("3_suw0p")]

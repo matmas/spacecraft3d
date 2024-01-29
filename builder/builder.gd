@@ -1,37 +1,38 @@
-extends RayCast3D
+extends Node3D
 
 var block_scenes: Array[PackedScene] = [
 	preload("res://pieces/block.tscn"),
 	preload("res://pieces/suzanne.tscn"),
 	preload("res://pieces/halfblock.tscn"),
 ]
+@onready var camera := get_viewport().get_camera_3d()
+@onready var ray_cast := $RayCast as RayCast3D
+
 var block_instance: Block
 
-@onready var player := owner as Player
-@onready var camera := get_viewport().get_camera_3d()
-
 func _ready() -> void:
+	ray_cast.reparent(camera)
 	prepare_block()
 
 
 func prepare_block() -> void:
 	var new_block_instance := block_scenes[0].instantiate() as Block
 	new_block_instance.hide()  # corrent position is set later in _process()
-	player.add_child.call_deferred(new_block_instance)
+	add_child.call_deferred(new_block_instance)
 	await new_block_instance.ready
 	block_instance = new_block_instance
 
 
 func _process(_delta: float) -> void:
 	if block_instance:
-		force_raycast_update()
-		if is_colliding():
-			var point := get_collision_point()
-			var normal := get_collision_normal()
+		ray_cast.force_raycast_update()
+		if ray_cast.is_colliding():
+			var point := ray_cast.get_collision_point()
+			var normal := ray_cast.get_collision_normal()
 			block_instance.global_basis = Basis(
-				normal.cross(-normal.cross(player.global_basis.x)),
+				normal.cross(-normal.cross(global_basis.x)),
 				normal,
-				normal.cross(-normal.cross(player.global_basis.z))
+				normal.cross(-normal.cross(global_basis.z))
 			).orthonormalized()
 			block_instance.global_position = point + normal * 0.001
 			block_instance.show()
@@ -42,10 +43,10 @@ func _process(_delta: float) -> void:
 				if Input.is_action_just_pressed("fire"):
 					block_instance.add_physics_interpolation()
 					block_instance.set_ghost(false)
-					if get_collider() is RigidBody3D:
-						block_instance.linear_velocity = get_collider().linear_velocity
+					if ray_cast.get_collider() is RigidBody3D:
+						block_instance.linear_velocity = ray_cast.get_collider().linear_velocity
 					prepare_block()
 		else:
-			block_instance.global_basis = player.global_basis
+			block_instance.global_basis = global_basis
 			block_instance.global_position = camera.global_position - camera.global_basis.z * 3.0
 			block_instance.set_ghost_color(Color.RED)

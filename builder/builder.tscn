@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d12guuxlcbu6a"]
+
+[ext_resource type="Script" path="res://builder/builder.gd" id="1_4rti8"]
+
+[node name="Builder" type="Node3D"]
+script = ExtResource("1_4rti8")
+
+[node name="RayCast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)

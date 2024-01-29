@@ -13,7 +13,6 @@ const JOYSTICK_SENSITIVITY = 2.00
 
 var look_direction_change := Vector2()
 
-
 func _ready() -> void:
 	max_contacts_reported = 10
 	can_sleep = false
