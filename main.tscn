@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=16 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
+[ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
-[ext_resource type="Script" path="res://fps_monitor.gd" id="4_4u8ha"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
 
@@ -27,11 +27,6 @@ size = Vector3(10, 0.1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_add4j"]
 size = Vector3(9, 9, 9)
-
-[sub_resource type="LabelSettings" id="LabelSettings_04lwv"]
-line_spacing = 0.0
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y2a1a"]
 rough = true
@@ -70,17 +65,7 @@ gravity_space_override = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
 shape = SubResource("BoxShape3D_add4j")
 
-[node name="FPSMonitor" type="Label" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -41.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "0 FPS"
-label_settings = SubResource("LabelSettings_04lwv")
-horizontal_alignment = 2
-script = ExtResource("4_4u8ha")
+[node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 
 [node name="Platform" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
