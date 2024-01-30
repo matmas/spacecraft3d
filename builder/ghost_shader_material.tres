@@ -5,3 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_kigqu")
+shader_parameter/color = Color(1, 1, 1, 1)

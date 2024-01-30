@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=17 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
+[ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
@@ -111,3 +112,5 @@ mesh = SubResource("BoxMesh_sjdch")
 skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("5_u4j58")]
+
+[node name="Crosshair" parent="." instance=ExtResource("6_e7f5j")]
