@@ -1,8 +1,8 @@
 extends Node3D
 
 var block_scenes: Array[PackedScene] = [
-	preload("res://pieces/block.tscn"),
 	preload("res://pieces/suzanne.tscn"),
+	preload("res://pieces/block.tscn"),
 	preload("res://pieces/halfblock.tscn"),
 ]
 @onready var camera := get_viewport().get_camera_3d()

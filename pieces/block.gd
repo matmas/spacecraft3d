@@ -2,6 +2,8 @@ extends RigidBody3D
 class_name Block
 
 @onready var mesh := $Mesh as MeshInstance3D
+@onready var ghost_material := preload("res://builder/ghost_shader_material.tres")
+
 var is_ghost := false
 
 func _init() -> void:
@@ -12,11 +14,7 @@ func _init() -> void:
 func set_ghost(ghost: bool) -> void:
 	is_ghost = ghost
 	if is_ghost:
-		var material := StandardMaterial3D.new()
-		material.cull_mode = BaseMaterial3D.CULL_DISABLED
-		material.blend_mode = BaseMaterial3D.BLEND_MODE_ADD  # Does not cast shadows
-		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		mesh.material_override = material
+		mesh.material_override = ghost_material
 		collision_layer = 0
 		max_contacts_reported = 1
 	else:
@@ -28,7 +26,7 @@ func set_ghost(ghost: bool) -> void:
 func set_ghost_color(color: Color) -> void:
 	if not is_ghost:
 		set_ghost(true)
-	mesh.material_override.albedo_color = color * 0.5
+	ghost_material.set_shader_parameter("color", color)
 
 
 func is_colliding() -> bool:
