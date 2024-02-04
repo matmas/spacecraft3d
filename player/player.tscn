@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc7sh3g7mh7vs"]
+[gd_scene load_steps=7 format=3 uid="uid://bc7sh3g7mh7vs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ca748"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="2_1m1lt"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="3_suw0p"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y21s"]
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jw8gk"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_0j365"]
 radius = 0.4
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mixqx"]
 
 [node name="Player" type="RigidBody3D"]
 collision_layer = 2
@@ -15,17 +18,24 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 75.0
+mass = 80.0
 script = ExtResource("1_ca748")
 
-[node name="FeetCollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
-shape = SubResource("SphereShape3D_0j365")
-
 [node name="BodyCollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_mixqx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CapsuleShape3D_5y21s")
+
+[node name="CrouchedBodyCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_jw8gk")
+disabled = true
+
+[node name="FeetCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("SphereShape3D_0j365")
+disabled = true
 
 [node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 
 [node name="PhysicsInterpolation" type="Node3D" parent="Neck"]
 script = ExtResource("2_1m1lt")
