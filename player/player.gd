@@ -83,20 +83,15 @@ func _input(event: InputEvent) -> void:
 func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 	if state.total_gravity:
 		var upright_vector := -state.total_gravity.normalized()
-		var target_basis := _orthonormalize_yzx(Basis(
+		var target_basis := Basis(
 			upright_vector.cross(state.transform.basis.z),
 			upright_vector,
 			state.transform.basis.z
-		))
+		).orthonormalized()
 		var delta := get_physics_process_delta_time()
 		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, ALIGN_SPEED * delta)).orthonormalized()
 		if upright_vector.dot(state.transform.basis.y) < 0.0:
 			_set_crouched(true)
-
-
-func _orthonormalize_yzx(b: Basis) -> Basis:
-	var bb := Basis(b.y, b.z, b.x).orthonormalized()
-	return Basis(bb.z, bb.x, bb.y)
 
 
 func _set_crouched(crouched: bool) -> void:
