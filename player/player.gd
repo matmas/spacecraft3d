@@ -18,6 +18,7 @@ const CROUCHED_HEAD_POSITION_Y = 0.4
 
 var look_direction_change := Vector2()
 var target_head_position_y := UPRIGHT_HEAD_POSITION_Y
+var previous_total_gravity := Vector3()
 
 func _ready() -> void:
 	max_contacts_reported = 1
@@ -25,11 +26,12 @@ func _ready() -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	var total_gravity := state.total_gravity if state.total_gravity else previous_total_gravity
 	var delta := get_physics_process_delta_time()
 	var floor_info := _get_floor_info()
 	var move_direction := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward").normalized()
 
-	if state.total_gravity:
+	if total_gravity:
 		if floor_info:
 			_set_crouched(Input.is_action_pressed(&"crouch"))
 			var upward_speed := JUMP_SPEED if Input.is_action_pressed(&"jump") else 0.0
@@ -37,8 +39,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var movement_velocity := transform.basis * Vector3(move_direction.x * lateral_speed, upward_speed, move_direction.y * lateral_speed)
 			if movement_velocity or Input.is_action_just_released(&"move_left") or Input.is_action_just_released(&"move_right") or Input.is_action_just_released(&"move_forward") or Input.is_action_just_released(&"move_backward"):
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
-		else:
-			_set_crouched(false)
 		head.rotate_x(-look_direction_change.y)
 		head.rotation.x = clampf(head.rotation.x, TAU * -0.25, TAU * 0.25)
 	else:
@@ -58,6 +58,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	if state.get_contact_count() > 0:
 		_align_with_gravity(state)
+	previous_total_gravity = state.total_gravity
 
 
 func _process(delta: float) -> void:
@@ -89,7 +90,7 @@ func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 		))
 		var delta := get_physics_process_delta_time()
 		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, ALIGN_SPEED * delta)).orthonormalized()
-		if upright_vector.dot(state.transform.basis.y) < 0.5:
+		if upright_vector.dot(state.transform.basis.y) < 0.0:
 			_set_crouched(true)
 
 
