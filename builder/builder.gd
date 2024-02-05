@@ -30,10 +30,11 @@ func _process(_delta: float) -> void:
 			var point := ray_cast.get_collision_point()
 			var normal := ray_cast.get_collision_normal()
 			block_instance.global_basis = Basis(
-				normal.cross(-normal.cross(global_basis.x)),
+				normal.cross(global_basis.z),
 				normal,
-				normal.cross(-normal.cross(global_basis.z))
+				global_basis.z
 			).orthonormalized()
+
 			block_instance.global_position = point + normal * 0.001
 			block_instance.show()
 			if block_instance.is_colliding():
