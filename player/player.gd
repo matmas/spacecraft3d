@@ -42,6 +42,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		head.rotate_x(-look_direction_change.y)
 		head.rotation.x = clampf(head.rotation.x, TAU * -0.25, TAU * 0.25)
 	else:
+		var head_rotation_reset_diff := head.rotation.x - lerpf(head.rotation.x, 0.0, 1 - pow(0.1, 1.0 * delta))
+		head.rotation.x -= head_rotation_reset_diff
+		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, head_rotation_reset_diff).basis
+
 		_set_crouched(false)
 		var linear_acceleration_direction := Vector3(
 			Input.get_axis(&"move_left", &"move_right"),
