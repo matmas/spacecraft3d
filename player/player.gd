@@ -2,10 +2,10 @@ extends RigidBody3D
 class_name Player
 
 @onready var camera := get_viewport().get_camera_3d()
-@onready var neck := $Neck as Node3D
-@onready var feet_collision_shape := $FeetCollisionShape3D as CollisionShape3D
-@onready var body_collision_shape := $BodyCollisionShape3D as CollisionShape3D
-@onready var crouched_body_collision_shape := $CrouchedBodyCollisionShape3D as CollisionShape3D
+@onready var head := $Head as Node3D
+@onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
+@onready var upright_collision_shape := $UprightCollisionShape as CollisionShape3D
+@onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
 
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 6.0
@@ -13,11 +13,11 @@ const JUMP_SPEED = 4.5
 const ALIGN_SPEED = 2.0
 const MOUSE_SENSITIVITY = 0.002
 const JOYSTICK_SENSITIVITY = 2.00
-const UPRIGHT_NECK_POSITION_Y = 1.2
-const CROUCHED_NECK_POSITION_Y = 0.4
+const UPRIGHT_HEAD_POSITION_Y = 1.2
+const CROUCHED_HEAD_POSITION_Y = 0.4
 
 var look_direction_change := Vector2()
-var target_neck_position_y := UPRIGHT_NECK_POSITION_Y
+var target_head_position_y := UPRIGHT_HEAD_POSITION_Y
 
 func _ready() -> void:
 	max_contacts_reported = 1
@@ -27,8 +27,7 @@ func _ready() -> void:
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var delta := get_physics_process_delta_time()
 	var floor_info := _get_floor_info()
-	var move_direction := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
-	print(state.total_gravity)
+	var move_direction := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward").normalized()
 
 	if state.total_gravity:
 		if floor_info:
@@ -40,8 +39,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
 		else:
 			_set_crouched(false)
-		neck.rotate_x(-look_direction_change.y)
-		neck.rotation.x = clampf(neck.rotation.x, TAU * -0.25, TAU * 0.25)
+		head.rotate_x(-look_direction_change.y)
+		head.rotation.x = clampf(head.rotation.x, TAU * -0.25, TAU * 0.25)
 	else:
 		_set_crouched(false)
 		var linear_acceleration_direction := Vector3(
@@ -66,7 +65,7 @@ func _process(delta: float) -> void:
 	var look_dir := Input.get_vector("look_left", "look_right", "look_up", "look_down")
 	look_direction_change += look_dir * delta * JOYSTICK_SENSITIVITY
 
-	neck.position.y = lerpf(neck.position.y, target_neck_position_y, 1 - pow(0.1, delta * 5.0))
+	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, delta * 5.0))
 
 
 func _input(event: InputEvent) -> void:
@@ -102,15 +101,17 @@ func _orthonormalize_yzx(b: Basis) -> Basis:
 func _set_crouched(crouched: bool) -> void:
 	if not crouched and not _can_stand_up():
 		return
-	body_collision_shape.set_deferred(&"disabled", crouched)
-	crouched_body_collision_shape.set_deferred(&"disabled", not crouched)
-	target_neck_position_y = UPRIGHT_NECK_POSITION_Y if not crouched else CROUCHED_NECK_POSITION_Y
+	if upright_collision_shape.disabled != crouched:
+		upright_collision_shape.set_deferred(&"disabled", crouched)
+	if crouched_collision_shape.disabled != not crouched:
+		crouched_collision_shape.set_deferred(&"disabled", not crouched)
+	target_head_position_y = UPRIGHT_HEAD_POSITION_Y if not crouched else CROUCHED_HEAD_POSITION_Y
 
 
 func _can_stand_up() -> bool:
 	var params := PhysicsShapeQueryParameters3D.new()
-	params.shape = body_collision_shape.shape
-	params.transform = body_collision_shape.global_transform
+	params.shape = upright_collision_shape.shape
+	params.transform = upright_collision_shape.global_transform
 	params.exclude = [self]
 	params.margin = -0.05
 	var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
