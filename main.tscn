@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=21 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="PackedScene" uid="uid://dwr14vm1f8puw" path="res://directional_light/directional_light.tscn" id="1_o12pc"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
+[ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,6 +54,14 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 
 [node name="MotionParticles" parent="." instance=ExtResource("2_apmyu")]
 
+[node name="Player" parent="." instance=ExtResource("5_u4j58")]
+
+[node name="Builder" parent="." instance=ExtResource("9_40lip")]
+
+[node name="Crosshair" parent="." instance=ExtResource("6_e7f5j")]
+
+[node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)
 
@@ -70,8 +79,6 @@ gravity_space_override = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
 shape = SubResource("BoxShape3D_add4j")
-
-[node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 
 [node name="Platform" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
@@ -115,10 +122,6 @@ script = ExtResource("3_urk0v")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Box/PhysicsInterpolation"]
 mesh = SubResource("BoxMesh_sjdch")
 skeleton = NodePath("../..")
-
-[node name="Player" parent="." instance=ExtResource("5_u4j58")]
-
-[node name="Crosshair" parent="." instance=ExtResource("6_e7f5j")]
 
 [node name="Obstacle" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.462343, 3.24253)
