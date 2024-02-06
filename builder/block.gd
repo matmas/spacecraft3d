@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name Block
 
 @onready var mesh := $Mesh as MeshInstance3D
-@onready var ghost_material := preload("res://builder/ghost_shader_material.tres")
+@onready var ghost_material := preload("ghost_shader_material.tres")
 
 var is_ghost := false
 
