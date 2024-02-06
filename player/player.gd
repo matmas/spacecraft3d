@@ -1,14 +1,15 @@
 extends RigidBody3D
 class_name Player
 
-@onready var camera := get_viewport().get_camera_3d()
-@onready var head := $Head as Node3D
-@onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
 @onready var upright_collision_shape := $UprightCollisionShape as CollisionShape3D
 @onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
+@onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
+@onready var head := $Head as Node3D
+@onready var camera := get_viewport().get_camera_3d()
 
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 6.0
+const CROUCHED_SPEED = 1.5
 const JUMP_SPEED = 4.5
 const ALIGN_SPEED = 2.0
 const MOUSE_SENSITIVITY = 0.002
@@ -16,10 +17,11 @@ const JOYSTICK_SENSITIVITY = 2.00
 const UPRIGHT_HEAD_POSITION_Y = 1.2
 const CROUCHED_HEAD_POSITION_Y = 0.4
 const HEAD_ROTATION_TRANSFER_SPEED = 1.0
+const HEAD_POSITION_ANIMATION_SPEED = 5.0
 
 var look_direction_change := Vector2()
-var target_head_position_y := UPRIGHT_HEAD_POSITION_Y
 var previous_total_gravity := Vector3()
+var target_head_position_y := UPRIGHT_HEAD_POSITION_Y
 
 func _ready() -> void:
 	max_contacts_reported = 1
@@ -27,6 +29,7 @@ func _ready() -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	# Ignore one physics frame of zero gravity caused by disabling collision shape
 	var total_gravity := state.total_gravity if state.total_gravity else previous_total_gravity
 	var delta := get_physics_process_delta_time()
 	var floor_info := _get_floor_info()
@@ -36,8 +39,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		if floor_info:
 			_set_crouched(Input.is_action_pressed(&"crouch"))
 			var upward_speed := JUMP_SPEED if Input.is_action_pressed(&"jump") else 0.0
-			var lateral_speed := SPRINT_SPEED if Input.is_action_pressed(&"sprint") else WALK_SPEED
-			var movement_velocity := transform.basis * Vector3(move_direction.x * lateral_speed, upward_speed, move_direction.y * lateral_speed)
+			var horizontal_speed := SPRINT_SPEED if Input.is_action_pressed(&"sprint") else WALK_SPEED
+			horizontal_speed = horizontal_speed if not Input.is_action_pressed(&"crouch") else CROUCHED_SPEED
+			var movement_velocity := transform.basis * Vector3(move_direction.x * horizontal_speed, upward_speed, move_direction.y * horizontal_speed)
 			if movement_velocity or Input.is_action_just_released(&"move_left") or Input.is_action_just_released(&"move_right") or Input.is_action_just_released(&"move_forward") or Input.is_action_just_released(&"move_backward"):
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
 		head.rotate_x(-look_direction_change.y)
@@ -68,10 +72,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func _process(delta: float) -> void:
 	# Get the input direction and handle the looking around.
-	var look_dir := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	var look_dir := Input.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
 	look_direction_change += look_dir * delta * JOYSTICK_SENSITIVITY
 
-	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, delta * 5.0))
+	# Animate head position
+	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, HEAD_POSITION_ANIMATION_SPEED * delta))
 
 
 func _input(event: InputEvent) -> void:
@@ -114,7 +119,7 @@ func _can_stand_up() -> bool:
 	params.shape = upright_collision_shape.shape
 	params.transform = upright_collision_shape.global_transform
 	params.exclude = [self]
-	params.margin = -0.05
+	params.margin = -0.05  # Ignore touching objects
 	var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
 	return contact_points.is_empty()
 
