@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func prepare_block() -> void:
 	var new_block_instance := block_scenes[0].instantiate() as Block
-	new_block_instance.hide()  # corrent position is set later in _process()
+	new_block_instance.hide()  # correct position is set later in _process()
 	add_child.call_deferred(new_block_instance)
 	await new_block_instance.ready
 	block_instance = new_block_instance
