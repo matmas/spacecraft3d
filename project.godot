@@ -19,6 +19,10 @@ config/icon="res://icon.png"
 
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 
+[editor]
+
+movie_writer/movie_file="export/movie.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg")
