@@ -6,6 +6,7 @@ static var actions_used := {}
 func _ready() -> void:
 	process_priority = 1  # run after scripts using input functions
 
+
 static func is_action_pressed(action: StringName, exact_match: bool = false) -> bool:
 	actions_used[action] = true
 	return Input.is_action_pressed(action, exact_match)
