@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="PackedScene" uid="uid://dwr14vm1f8puw" path="res://directional_light/directional_light.tscn" id="1_o12pc"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
+[ext_resource type="Script" path="res://main.gd" id="1_xo60i"]
 [ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
+[ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
@@ -45,6 +47,7 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho7vk"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_xo60i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
@@ -59,6 +62,8 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 [node name="Builder" parent="Player" instance=ExtResource("9_40lip")]
 
 [node name="Crosshair" parent="." instance=ExtResource("6_e7f5j")]
+
+[node name="InputHints" parent="." instance=ExtResource("6_84uns")]
 
 [node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 

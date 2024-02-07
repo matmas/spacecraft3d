@@ -1,0 +1,308 @@
+[gd_scene load_steps=18 format=3 uid="uid://c1lhiinaixtyf"]
+
+[ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="1_ng57h"]
+[ext_resource type="Script" path="res://input_hints/only_controller_label.gd" id="3_3hx2n"]
+[ext_resource type="Script" path="res://input_hints/only_keyboard_mouse_texture_rect.gd" id="3_s6bnh"]
+
+[sub_resource type="Texture2D" id="Texture2D_c78ax"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_up"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_mm0bf"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_down"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_nm8qj"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "jump"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_6x0rk"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "crouch"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_aov27"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "sprint"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_ouqho"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_forward"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_rocxy"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_left"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_ri0n1"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_backward"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_ti6ge"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "move_right"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_0jnrc"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "look_up"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_4wise"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "place_block"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_fyvqb"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "roll_left"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_mswts"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_ng57h")
+path = "roll_right"
+show_mode = 0
+force_type = 0
+
+[node name="InputHints" type="Node"]
+script = ExtResource("1_isslh")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -212.0
+offset_right = 392.0
+grow_vertical = 0
+alignment = 2
+
+[node name="move_up" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/move_up"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_c78ax")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/move_up"]
+layout_mode = 2
+text = "move up"
+
+[node name="move_down" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/move_down"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_mm0bf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/move_down"]
+layout_mode = 2
+text = "move down"
+
+[node name="jump" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/jump"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_nm8qj")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/jump"]
+layout_mode = 2
+text = "jump"
+
+[node name="crouch" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/crouch"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_6x0rk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/crouch"]
+layout_mode = 2
+text = "crouch"
+
+[node name="sprint" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/sprint"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_aov27")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/sprint"]
+layout_mode = 2
+text = "sprint"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="move_forward" type="HBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="move_forward" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/move_forward"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_ouqho")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="move_left" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/move_forward"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_rocxy")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_s6bnh")
+
+[node name="move_backward" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/move_forward"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_ri0n1")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_s6bnh")
+
+[node name="move_right" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/move_forward"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_ti6ge")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_s6bnh")
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/move_forward"]
+layout_mode = 2
+text = "movement"
+
+[node name="look_up" type="HBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/look_up"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_0jnrc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/look_up"]
+layout_mode = 2
+text = "look
+"
+script = ExtResource("3_3hx2n")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -104.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="place_block" type="HBoxContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="Control/VBoxContainer2/place_block"]
+layout_mode = 2
+text = "place block
+"
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer2/place_block"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_4wise")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="roll_left" type="HBoxContainer" parent="Control/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="Control/VBoxContainer2/roll_left"]
+layout_mode = 2
+text = "roll"
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer2/roll_left"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_fyvqb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="roll_right" type="TextureRect" parent="Control/VBoxContainer2/roll_left"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = SubResource("Texture2D_mswts")
+expand_mode = 1
+stretch_mode = 5

@@ -33,16 +33,16 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var total_gravity := state.total_gravity if state.total_gravity else previous_total_gravity
 	var delta := get_physics_process_delta_time()
 	var floor_info := _get_floor_info()
-	var move_direction := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
 
 	if total_gravity:
 		if floor_info:
-			_set_crouched(Input.is_action_pressed(&"crouch"))
-			var upward_speed := JUMP_SPEED if Input.is_action_pressed(&"jump") else 0.0
-			var horizontal_speed := SPRINT_SPEED if Input.is_action_pressed(&"sprint") else WALK_SPEED
-			horizontal_speed = horizontal_speed if not Input.is_action_pressed(&"crouch") else CROUCHED_SPEED
+			_set_crouched(InputHints.is_action_pressed(&"crouch"))
+			var move_direction := InputHints.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
+			var upward_speed := JUMP_SPEED if InputHints.is_action_pressed(&"jump") else 0.0
+			var horizontal_speed := SPRINT_SPEED if InputHints.is_action_pressed(&"sprint") else WALK_SPEED
+			horizontal_speed = horizontal_speed if not InputHints.is_action_pressed(&"crouch") else CROUCHED_SPEED
 			var movement_velocity := transform.basis * Vector3(move_direction.x * horizontal_speed, upward_speed, move_direction.y * horizontal_speed)
-			if movement_velocity or Input.is_action_just_released(&"move_left") or Input.is_action_just_released(&"move_right") or Input.is_action_just_released(&"move_forward") or Input.is_action_just_released(&"move_backward"):
+			if movement_velocity or InputHints.is_action_just_released(&"move_left") or InputHints.is_action_just_released(&"move_right") or InputHints.is_action_just_released(&"move_forward") or InputHints.is_action_just_released(&"move_backward"):
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
 		head.rotate_x(-look_direction_change.y)
 		head.rotation.x = clampf(head.rotation.x, TAU * -0.25, TAU * 0.25)
@@ -53,14 +53,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 		_set_crouched(false)
 		var linear_acceleration_direction := Vector3(
-			Input.get_axis(&"move_left", &"move_right"),
-			Input.get_axis(&"move_down", &"move_up"),
-			Input.get_axis(&"move_forward", &"move_backward"),
+			InputHints.get_axis(&"move_left", &"move_right"),
+			InputHints.get_axis(&"move_down", &"move_up"),
+			InputHints.get_axis(&"move_forward", &"move_backward"),
 		).normalized()
 		var linear_acceleration := linear_acceleration_direction * 1000.0
 		state.apply_central_force(state.transform.basis * linear_acceleration)
 		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, -look_direction_change.y).basis
-		state.transform.basis = state.transform.rotated_local(Vector3.FORWARD, Input.get_axis(&"roll_left", &"roll_right") * delta).basis
+		state.transform.basis = state.transform.rotated_local(Vector3.FORWARD, InputHints.get_axis(&"roll_left", &"roll_right") * delta).basis
 
 	state.transform.basis = state.transform.rotated_local(Vector3.UP, -look_direction_change.x).basis
 	look_direction_change = Vector2.ZERO
@@ -72,7 +72,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func _process(delta: float) -> void:
 	# Get the input direction and handle the looking around.
-	var look_dir := Input.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
+	var look_dir := InputHints.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
 	look_direction_change += look_dir * delta * JOYSTICK_SENSITIVITY
 
 	# Animate head position

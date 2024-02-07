@@ -40,7 +40,7 @@ func _process(_delta: float) -> void:
 				block_instance.set_ghost_color(Color.YELLOW)
 			else:
 				block_instance.set_ghost_color(Color.GREEN)
-				if Input.is_action_just_pressed("fire"):
+				if InputHints.is_action_just_pressed(&"place_block"):
 					block_instance.add_physics_interpolation()
 					block_instance.set_ghost(false)
 					if ray_cast.get_collider() is RigidBody3D:
