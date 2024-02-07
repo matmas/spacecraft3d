@@ -1,6 +1,5 @@
 [gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
 
-[ext_resource type="PackedScene" uid="uid://dwr14vm1f8puw" path="res://directional_light/directional_light.tscn" id="1_o12pc"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="Script" path="res://main.gd" id="1_xo60i"]
 [ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
+[ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
@@ -52,8 +52,9 @@ script = ExtResource("1_xo60i")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
 
-[node name="DirectionalLight" parent="." instance=ExtResource("1_o12pc")]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="MotionParticles" parent="." instance=ExtResource("2_apmyu")]
 
@@ -64,6 +65,9 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 [node name="Crosshair" parent="." instance=ExtResource("6_e7f5j")]
 
 [node name="InputHints" parent="." instance=ExtResource("6_84uns")]
+
+[node name="LensFlare" parent="." node_paths=PackedStringArray("directional_light") instance=ExtResource("7_k38yw")]
+directional_light = NodePath("../DirectionalLight3D")
 
 [node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 
@@ -78,7 +82,7 @@ material = SubResource("StandardMaterial3D_f4hqk")
 shape = SubResource("BoxShape3D_eogwy")
 
 [node name="Area3D" type="Area3D" parent="StaticBody3D"]
-collision_mask = 3
+collision_mask = 7
 gravity_space_override = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D"]
@@ -103,7 +107,7 @@ size = Vector3(10, 0.1, 10)
 material = SubResource("StandardMaterial3D_f4hqk")
 
 [node name="Area3D" type="Area3D" parent="Platform"]
-collision_mask = 3
+collision_mask = 7
 gravity_space_override = 1
 script = ExtResource("6_nceua")
 
@@ -114,7 +118,7 @@ shape = SubResource("BoxShape3D_add4j")
 [node name="Box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_72if5")
 

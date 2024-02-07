@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpu5koohrrphw"]
+
+[ext_resource type="Shader" path="res://lens_flare/lens_flare.gdshader" id="1_g2244"]
+[ext_resource type="Script" path="res://lens_flare/lens_flare.gd" id="2_aysj0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dyc6w"]
+shader = ExtResource("1_g2244")
+shader_parameter/sun_position = Vector2(0, 0)
+shader_parameter/tint = Vector3(1.4, 1.2, 1)
+shader_parameter/visibility = 1.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhgmt"]
+
+[node name="LensFlare" type="TextureRect"]
+material = SubResource("ShaderMaterial_dyc6w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_xhgmt")
+script = ExtResource("2_aysj0")

@@ -19,7 +19,7 @@ func set_ghost(ghost: bool) -> void:
 		max_contacts_reported = 1
 	else:
 		mesh.material_override = null
-		collision_layer = 2
+		collision_layer = 0b10
 		max_contacts_reported = 0
 
 
