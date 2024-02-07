@@ -1,7 +1,11 @@
+@tool
 extends TextureRect
 class_name LensFlare
 
-@export var directional_light: DirectionalLight3D
+@export var directional_light: DirectionalLight3D:
+	set(value):
+		directional_light = value
+		update_configuration_warnings()
 @export_flags_3d_physics var raycast_collision_mask = 0b11111111_11111111_11111111_11111111
 
 @onready var camera := get_viewport().get_camera_3d()
@@ -21,7 +25,7 @@ func get_light_apparent_global_position() -> Vector3:
 
 
 func _process(delta: float) -> void:
-	if not directional_light or not camera:
+	if not directional_light or Engine.is_editor_hint():
 		return
 	visible = not camera.is_position_behind(get_light_apparent_global_position())
 	if visible:
@@ -31,7 +35,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not directional_light or not camera:
+	if not directional_light or Engine.is_editor_hint():
 		return
 	var space_state = camera.get_world_3d().direct_space_state
 	var params := PhysicsRayQueryParameters3D.new()
@@ -41,3 +45,10 @@ func _physics_process(_delta: float) -> void:
 	params.collision_mask = raycast_collision_mask
 	var result := space_state.intersect_ray(params)
 	target_visibility = 0.0 if result else 1.0
+
+
+func _get_configuration_warnings():
+	if not directional_light:
+		return ["Must have directional light assigned."]
+	else:
+		return []
