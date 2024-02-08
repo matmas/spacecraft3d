@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dupaa78gme8l8"]
+
+[ext_resource type="Script" path="res://inputmap_editor/row.gd" id="1_pv38f"]
+[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="2_0ujvy"]
+[ext_resource type="PackedScene" uid="uid://bj47d0mnmbnc8" path="res://inputmap_editor/remap_button.tscn" id="2_gij6r"]
+
+[sub_resource type="Texture2D" id="Texture2D_fblk0"]
+resource_local_to_scene = true
+resource_name = ""
+script = ExtResource("2_0ujvy")
+path = "joypad/a"
+show_mode = 0
+force_type = 0
+
+[sub_resource type="Texture2D" id="Texture2D_epwjv"]
+resource_local_to_scene = true
+resource_name = ""
+script = ExtResource("2_0ujvy")
+path = "joypad/a"
+show_mode = 0
+force_type = 0
+
+[node name="Row" type="HBoxContainer"]
+script = ExtResource("1_pv38f")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "action"
+vertical_alignment = 1
+
+[node name="KBMButton" parent="." instance=ExtResource("2_gij6r")]
+layout_mode = 2
+icon = SubResource("Texture2D_fblk0")
+
+[node name="ControllerButton" parent="." instance=ExtResource("2_gij6r")]
+layout_mode = 2
+icon = SubResource("Texture2D_epwjv")
+is_controller_button = true

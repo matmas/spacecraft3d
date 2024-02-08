@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ControllerSettings" load_steps=2 format=3 uid="uid://dolsrvh5w47et"]
+[gd_resource type="Resource" script_class="ControllerSettings" load_steps=3 format=3 uid="uid://dolsrvh5w47et"]
 
 [ext_resource type="Script" path="res://addons/controller_icons/Settings.gd" id="1"]
+[ext_resource type="Script" path="res://controller_icons_extra/mapper.gd" id="1_0g8we"]
 
 [resource]
 script = ExtResource("1")
@@ -8,4 +9,5 @@ joypad_fallback = 9
 joypad_deadzone = 0.5
 allow_mouse_remap = true
 mouse_min_movement = 200
-custom_asset_dir = ""
+custom_asset_dir = "res://controller_icons_extra/assets"
+custom_mapper = ExtResource("1_0g8we")
