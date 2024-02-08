@@ -2,6 +2,7 @@ extends Label
 
 
 func _ready() -> void:
+	_input_type_changed(ControllerIcons._last_input_type)
 	ControllerIcons.input_type_changed.connect(_input_type_changed)
 
 

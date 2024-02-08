@@ -32,9 +32,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Ignore one physics frame of zero gravity caused by disabling collision shape
 	var total_gravity := state.total_gravity if state.total_gravity else previous_total_gravity
 	var delta := get_physics_process_delta_time()
-	var floor_info := _get_floor_info()
 
 	if total_gravity:
+		var floor_info := _get_floor_info()
 		if floor_info:
 			_set_crouched(InputHints.is_action_pressed(&"crouch"))
 			var move_direction := InputHints.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
