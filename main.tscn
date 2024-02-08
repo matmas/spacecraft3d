@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=22 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
-[ext_resource type="Script" path="res://main.gd" id="1_xo60i"]
 [ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
@@ -47,7 +46,6 @@ rough = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho7vk"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_xo60i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
