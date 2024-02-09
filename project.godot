@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 HidpiScalingAutoload="*res://hidpi_scaling/hidpi_scaling_autoload.gd"
 ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload.gd"
+JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 
 [editor]
 
