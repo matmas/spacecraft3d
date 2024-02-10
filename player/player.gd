@@ -39,8 +39,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			_set_crouched(InputHints.is_action_pressed(&"crouch"))
 			var move_direction := InputHints.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
 			var upward_speed := JUMP_SPEED if InputHints.is_action_pressed(&"jump") else 0.0
-			var horizontal_speed := SPRINT_SPEED if InputHints.is_action_pressed(&"sprint") else WALK_SPEED
-			horizontal_speed = horizontal_speed if not InputHints.is_action_pressed(&"crouch") else CROUCHED_SPEED
+			var horizontal_speed := (
+				SPRINT_SPEED if InputHints.is_action_pressed(&"sprint") else WALK_SPEED
+			) if not InputHints.is_action_pressed(&"crouch") else CROUCHED_SPEED
 			var movement_velocity := transform.basis * Vector3(move_direction.x * horizontal_speed, upward_speed, move_direction.y * horizontal_speed)
 			if movement_velocity or InputHints.is_action_just_released(&"move_left") or InputHints.is_action_just_released(&"move_right") or InputHints.is_action_just_released(&"move_forward") or InputHints.is_action_just_released(&"move_backward"):
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
