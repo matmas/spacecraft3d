@@ -33,6 +33,9 @@ func _input(event: InputEvent) -> void:
 				repeating_event.pressed = true
 				delay_timer.start()
 				repeat_timer.stop()
+			else:
+				if repeating_event and repeating_event.is_action(action, true):
+					_cancel_echo()
 			return
 
 	# Joysticks moving close to 0 should not cancel echo
@@ -48,8 +51,9 @@ func _cancel_echo() -> void:
 
 func _on_delay_timer_timeout() -> void:
 	if repeating_event:
-		_echo_held_button()
-		repeat_timer.start()
+		if Input.is_action_pressed(repeating_event.action):
+			_echo_held_button()
+			repeat_timer.start()
 
 
 func _on_repeat_timer_timeout() -> void:
