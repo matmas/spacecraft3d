@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bor6va50hbvwq"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_lf3s8"]
-[ext_resource type="Script" path="res://main_menu/game_name.gd" id="2_k36iy"]
+[ext_resource type="Script" path="res://main_menu/game_name_label.gd" id="2_k36iy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebjug"]
 font_size = 32
@@ -29,7 +29,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameName" type="Label" parent="VBoxContainer"]
+[node name="GameNameLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Application name"
