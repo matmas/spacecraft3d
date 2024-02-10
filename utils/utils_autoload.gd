@@ -17,7 +17,7 @@ func remove_all_children(node: Node) -> void:
 		child.queue_free()
 
 
-func get_error_message(error: Error) -> String:
+func error_message(error: Error) -> String:
 	match error:
 		FAILED:
 			return "Failed."
