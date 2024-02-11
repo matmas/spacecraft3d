@@ -11,19 +11,19 @@ config_version=5
 [application]
 
 config/name="spacecraft3d"
-run/main_scene="res://main.tscn"
+run/main_scene="res://main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
-ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 HidpiScalingAutoload="*res://hidpi_scaling/hidpi_scaling_autoload.gd"
 ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload.gd"
 JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
 ControllerIconsExtra="*res://controller_icons_extra/controller_icons_extra_autoload.gd"
 InputmapPersistence="*res://inputmap_editor/inputmap_persistence_autoload.gd"
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 
 [editor]
 
