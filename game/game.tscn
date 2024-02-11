@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
-[ext_resource type="Script" path="res://area_gravity.gd" id="6_nceua"]
+[ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
 

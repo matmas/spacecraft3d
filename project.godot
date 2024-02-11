@@ -33,6 +33,13 @@ movie_writer/movie_file="export/movie.avi"
 
 enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://game/": "red",
+"res://main_menu/": "green"
+}
+
 [input]
 
 ui_accept={
