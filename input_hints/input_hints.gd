@@ -1,10 +1,12 @@
-extends Control
+extends Node
 class_name InputHints
 
 static var _actions_used := {}
 
 func _ready() -> void:
 	process_priority = 1  # run after scripts using input functions
+
+	_refresh()
 
 	# Running scene alone for debugging purposes?
 	if get_parent() == get_tree().root:
@@ -42,17 +44,21 @@ static func get_vector(negative_x: StringName, positive_x: StringName, negative_
 
 
 func _physics_process(_delta: float) -> void:
+	_refresh()
+
+
+func _refresh() -> void:
 	for action in InputMap.get_actions():
 		if not _actions_used.has(action):
 			_actions_used[action] = false
 
-	_update_children_recursivaly(self)
+	_update_visibility_recursivaly(self)
 	_actions_used.clear()
 
 
-func _update_children_recursivaly(node: Node):
+func _update_visibility_recursivaly(node: Node):
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
 			node.visible = _actions_used[node.name]
 	for child in node.get_children():
-		_update_children_recursivaly(child)
+		_update_visibility_recursivaly(child)

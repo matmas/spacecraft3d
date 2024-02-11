@@ -80,14 +80,8 @@ func _process(delta: float) -> void:
 	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, HEAD_POSITION_ANIMATION_SPEED * delta))
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-	if event.is_action_pressed(&"ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
 		look_direction_change += event.relative * MOUSE_SENSITIVITY
 
 

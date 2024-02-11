@@ -5,7 +5,8 @@
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_jwmx1"]
 [ext_resource type="PackedScene" uid="uid://dupaa78gme8l8" path="res://inputmap_editor/row.tscn" id="2_knmj4"]
 
-[node name="ControlsRemapping" type="Control"]
+[node name="InputMapEditor" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bor6va50hbvwq"]
+[gd_scene load_steps=7 format=3 uid="uid://bor6va50hbvwq"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_lf3s8"]
-[ext_resource type="Script" path="res://main_menu/game_name_label.gd" id="2_k36iy"]
+[ext_resource type="Script" path="res://main_menu/title_label.gd" id="2_k36iy"]
 [ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="3_nv1py"]
+[ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
 [ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://inputmap_editor/inputmap_editor.tscn" id="4_pwpsn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebjug"]
@@ -17,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lf3s8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="List" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,7 +32,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameNameLabel" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="List"]
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 text = "Application name"
@@ -40,24 +41,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_k36iy")
 
-[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="NewGame" type="Button" parent="VBoxContainer/Buttons"]
+[node name="NewGame" parent="List" instance=ExtResource("3_nv1py")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "New Game"
+text = "New game"
+scene = ExtResource("4_c713w")
 
-[node name="Controls" parent="VBoxContainer/Buttons" instance=ExtResource("3_nv1py")]
+[node name="Controls" parent="List" instance=ExtResource("3_nv1py")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Controls"
 scene = ExtResource("4_pwpsn")
 
-[node name="Quit" type="Button" parent="VBoxContainer/Buttons"]
+[node name="Quit" type="Button" parent="List"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="List/Quit" to="." method="_on_quit_pressed"]

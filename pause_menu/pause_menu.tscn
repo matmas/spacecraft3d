@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp0grfbhhar2"]
+
+[ext_resource type="Script" path="res://pause_menu/pause_menu.gd" id="1_fw410"]
+[ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="1_q5owr"]
+[ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://inputmap_editor/inputmap_editor.tscn" id="2_6ai8k"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fw410")
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GamePaused" type="Label" parent="List"]
+layout_mode = 2
+text = "Game paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="List"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Controls" parent="List" instance=ExtResource("1_q5owr")]
+layout_mode = 2
+text = "Controls
+"
+scene = ExtResource("2_6ai8k")
+
+[connection signal="pressed" from="List/Resume" to="." method="_on_resume_pressed"]

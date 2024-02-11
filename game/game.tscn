@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
+[ext_resource type="PackedScene" uid="uid://cp0grfbhhar2" path="res://pause_menu/pause_menu.tscn" id="6_sgym3"]
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
 
@@ -45,7 +46,7 @@ rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho7vk"]
 
-[node name="Main" type="Node3D"]
+[node name="Game" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
@@ -67,6 +68,8 @@ shadow_enabled = true
 [node name="LensFlare" parent="." node_paths=PackedStringArray("directional_light") instance=ExtResource("7_k38yw")]
 directional_light = NodePath("../DirectionalLight3D")
 raycast_collision_mask = 4294967291
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_sgym3")]
 
 [node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 

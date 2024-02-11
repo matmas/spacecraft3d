@@ -10,6 +10,8 @@ var repeat_timer := Timer.new()
 var repeating_event: InputEventAction = null
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS  # For use in menus when game is paused
+
 	delay_timer.wait_time = DELAY_SEC
 	delay_timer.one_shot = true
 	delay_timer.timeout.connect(_on_delay_timer_timeout)

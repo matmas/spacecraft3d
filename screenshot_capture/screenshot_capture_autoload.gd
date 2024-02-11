@@ -1,5 +1,8 @@
 extends Node
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS  # Allow screenshots also when game is paused
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"capture_screenshot") and OS.is_userfs_persistent():

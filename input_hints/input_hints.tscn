@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=18 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="1_ng57h"]
@@ -109,25 +109,11 @@ path = "roll_right"
 show_mode = 0
 force_type = 0
 
-[sub_resource type="Texture2D" id="Texture2D_u3afm"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "main_menu"
-show_mode = 0
-force_type = 0
-
-[node name="InputHints" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="InputHints" type="Node"]
+process_mode = 3
 script = ExtResource("1_isslh")
 
 [node name="LeftControls" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -262,7 +248,6 @@ text = "look
 script = ExtResource("3_3hx2n")
 
 [node name="RightControls" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -307,17 +292,3 @@ layout_mode = 2
 texture = SubResource("Texture2D_mswts")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="main_menu" type="HBoxContainer" parent="RightControls"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/main_menu"]
-layout_mode = 2
-text = "main menu"
-
-[node name="TextureRect" type="TextureRect" parent="RightControls/main_menu"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture = SubResource("Texture2D_u3afm")
-expand_mode = 1
