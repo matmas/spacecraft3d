@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bor6va50hbvwq"]
+[gd_scene load_steps=6 format=3 uid="uid://bor6va50hbvwq"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_lf3s8"]
 [ext_resource type="Script" path="res://main_menu/game_name_label.gd" id="2_k36iy"]
+[ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="3_nv1py"]
+[ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://inputmap_editor/inputmap_editor.tscn" id="4_pwpsn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ebjug"]
 font_size = 32
@@ -46,10 +48,11 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "New Game"
 
-[node name="Controls" type="Button" parent="VBoxContainer/Buttons"]
+[node name="Controls" parent="VBoxContainer/Buttons" instance=ExtResource("3_nv1py")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Controls"
+scene = ExtResource("4_pwpsn")
 
 [node name="Quit" type="Button" parent="VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(0, 50)
@@ -57,5 +60,4 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Buttons/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Buttons/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

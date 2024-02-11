@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsw5h18lsmyoy"]
+
+[ext_resource type="Script" path="res://scene_buttons/scene_button.gd" id="1_8vmnk"]
+
+[node name="SceneButton" type="Button"]
+text = "Go to scene"
+script = ExtResource("1_8vmnk")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
