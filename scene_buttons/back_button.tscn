@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene_buttons/back_button.gd" id="1_44nc2"]
 
 [node name="BackButton" type="Button"]
-text = "Back"
+text = "〈 Back"
 script = ExtResource("1_44nc2")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
