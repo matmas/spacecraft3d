@@ -24,6 +24,7 @@ Utils="*res://utils/utils_autoload.gd"
 ControllerIconsExtra="*res://controller_icons_extra/controller_icons_extra_autoload.gd"
 InputmapPersistence="*res://inputmap_editor/inputmap_persistence_autoload.gd"
 ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+InputMonitor="*res://input_monitor/input_monitor_autoload.gd"
 
 [editor]
 

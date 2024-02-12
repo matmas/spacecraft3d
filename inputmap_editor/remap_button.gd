@@ -11,12 +11,12 @@ var _is_capturing := false
 var _saved_mouse_position := Vector2()
 
 func _ready() -> void:
-	_on_input_type_changed(ControllerIcons._last_input_type)
-	ControllerIcons.input_type_changed.connect(_on_input_type_changed)
+	_on_input_type_changed(InputMonitor.last_input_type)
+	InputMonitor.input_type_changed.connect(_on_input_type_changed)
 
 
 func _on_input_type_changed(input_type) -> void:
-	disabled = (input_type == ControllerIcons.InputType.KEYBOARD_MOUSE) == is_controller_button
+	disabled = (input_type == InputMonitor.InputType.KEYBOARD_MOUSE) == is_controller_button
 
 
 func _display_current():
