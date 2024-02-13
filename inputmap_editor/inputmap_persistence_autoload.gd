@@ -5,12 +5,13 @@ const SECTION = "inputmap"
 const KEY = "actions"
 
 var config := ConfigFile.new()
+var actions := {}
 
 func _ready() -> void:
-	load_inputmap()
+	_load()
 
 
-func load_inputmap() -> void:
+func _load() -> void:
 	if not FileAccess.file_exists(INPUTMAP_PATH):
 		return
 
@@ -27,12 +28,17 @@ func load_inputmap() -> void:
 			InputMap.action_erase_events(action)
 			for event in dict[action]:
 				InputMap.action_add_event(action, event)
+			actions[action] = true
 
 
-func save_inputmap() -> void:
+func add_action(action: StringName) -> void:
+	actions[action] = true
+
+
+func save() -> void:
 	var dict := {}
 
-	for action in InputMap.get_actions():
+	for action in actions:
 		dict[action] = InputMap.action_get_events(action)
 
 	config.set_value(SECTION, KEY, dict)
@@ -45,6 +51,8 @@ func save_inputmap() -> void:
 
 func reset_to_default() -> void:
 	InputMap.load_from_project_settings()
+	actions.clear()
+
 	if FileAccess.file_exists(INPUTMAP_PATH):
 		var error := DirAccess.remove_absolute(INPUTMAP_PATH)
 		if error:

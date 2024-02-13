@@ -68,7 +68,8 @@ func _remap_action_to(event: InputEvent) -> void:
 	if current_event:
 		InputMap.action_erase_event(action, current_event)
 	InputMap.action_add_event(action, event)
-	InputmapPersistence.save_inputmap()
+	InputmapPersistence.add_action(action)
+	InputmapPersistence.save()
 	ControllerIcons.refresh()
 
 
@@ -96,5 +97,6 @@ func _clear_mapping() -> void:
 	var current_event := _get_event()
 	if current_event:
 		InputMap.action_erase_event(action, current_event)
-	InputmapPersistence.save_inputmap()
+	InputmapPersistence.add_action(action)
+	InputmapPersistence.save()
 	ControllerIcons.refresh()
