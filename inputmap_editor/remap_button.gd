@@ -28,10 +28,10 @@ func _display_current():
 func _get_event() -> InputEvent:
 	for event in InputMap.action_get_events(action):
 		if is_controller_button:
-			if _is_controller_event(event):
+			if _is_joypad_event(event):
 				return event
 		else:
-			if _is_kbm_event(event):
+			if _is_key_or_mouse_event(event):
 				return event
 	return null
 
@@ -53,7 +53,7 @@ func _on_toggled(toggled_on: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if _is_capturing:
 		if event.is_pressed():
-			if is_controller_button == _is_controller_event(event) and not event.is_action(&"ui_cancel"):
+			if is_controller_button == _is_joypad_event(event) and not event.is_action(&"ui_cancel"):
 				_remap_action_to(event)
 			get_viewport().set_input_as_handled()
 			button_pressed = false
@@ -69,14 +69,15 @@ func _remap_action_to(event: InputEvent) -> void:
 		InputMap.action_erase_event(action, current_event)
 	InputMap.action_add_event(action, event)
 	InputmapPersistence.save_inputmap()
+	ControllerIcons.refresh()
 
 
-func _is_controller_event(event: InputEvent) -> bool:
+func _is_joypad_event(event: InputEvent) -> bool:
 	return event is InputEventJoypadButton or event is InputEventJoypadMotion
 
 
-func _is_kbm_event(event: InputEvent) -> bool:
-	return event is InputEventKey or event is InputEventMouse or event is InputEventMouseMotion or event is InputEventMouseButton
+func _is_key_or_mouse_event(event: InputEvent) -> bool:
+	return event is InputEventKey or event is InputEventMouse
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -96,3 +97,4 @@ func _clear_mapping() -> void:
 	if current_event:
 		InputMap.action_erase_event(action, current_event)
 	InputmapPersistence.save_inputmap()
+	ControllerIcons.refresh()
