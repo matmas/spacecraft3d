@@ -6,7 +6,9 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause_menu"):
-		_set_paused(not get_tree().paused)
+		# Prevent unpausing when nested menus are still open
+		if not get_tree().paused or get_tree().paused and visible:
+			_set_paused(not get_tree().paused)
 
 
 func _on_resume_pressed() -> void:
