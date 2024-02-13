@@ -91,8 +91,7 @@ func _add_row(action: StringName) -> void:
 
 
 func _on_reset_pressed() -> void:
-	InputMap.load_from_project_settings()
-	InputmapPersistence.save_inputmap()
+	InputmapPersistence.reset_to_default()
 	for child in list.get_children():
 		if child is InputmapEditorRow:
 			(child as InputmapEditorRow).refresh()
