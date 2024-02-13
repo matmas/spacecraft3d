@@ -21,3 +21,9 @@ func _set_paused(paused: bool) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED
 	if visible:
 		Utils.grab_focus_first_button(self)
+
+
+func _on_quit_to_main_menu_pressed() -> void:
+	get_tree().paused = false
+	owner.get_parent().remove_child(owner)
+	owner.queue_free()

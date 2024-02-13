@@ -44,4 +44,9 @@ text = "Controls
 "
 scene = ExtResource("2_6ai8k")
 
+[node name="QuitToMainMenu" type="Button" parent="List"]
+layout_mode = 2
+text = "Quit to main menu"
+
 [connection signal="pressed" from="List/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="List/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
