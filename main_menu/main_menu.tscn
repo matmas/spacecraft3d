@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bor6va50hbvwq"]
+[gd_scene load_steps=6 format=3 uid="uid://bor6va50hbvwq"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_lf3s8"]
 [ext_resource type="Script" path="res://main_menu/title_label.gd" id="2_k36iy"]
 [ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="3_nv1py"]
 [ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
 [ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://inputmap_editor/inputmap_editor.tscn" id="4_pwpsn"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ebjug"]
-font_size = 32
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,28 +30,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="List"]
-custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
+theme_type_variation = &"HeaderLarge"
 text = "Application name"
-label_settings = SubResource("LabelSettings_ebjug")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_k36iy")
 
 [node name="NewGame" parent="List" instance=ExtResource("3_nv1py")]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "New game"
 scene = ExtResource("4_c713w")
 
 [node name="Controls" parent="List" instance=ExtResource("3_nv1py")]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Controls"
 scene = ExtResource("4_pwpsn")
 
 [node name="Quit" type="Button" parent="List"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Quit"
 
