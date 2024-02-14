@@ -150,3 +150,5 @@ DefaultButton/styles/focus = SubResource("StyleBoxFlat_dse2n")
 DefaultButton/styles/hover = SubResource("StyleBoxFlat_ptwp2")
 DefaultButton/styles/normal = SubResource("StyleBoxFlat_x7emf")
 DefaultButton/styles/pressed = SubResource("StyleBoxFlat_trgfw")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3
