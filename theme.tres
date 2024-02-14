@@ -139,6 +139,11 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [resource]
+BigMarginContainer/base_type = &"MarginContainer"
+BigMarginContainer/constants/margin_bottom = 10
+BigMarginContainer/constants/margin_left = 10
+BigMarginContainer/constants/margin_right = 10
+BigMarginContainer/constants/margin_top = 10
 Button/styles/disabled = SubResource("StyleBoxFlat_ycajn")
 Button/styles/focus = SubResource("StyleBoxFlat_dtlc5")
 Button/styles/hover = SubResource("StyleBoxFlat_ystfe")
@@ -152,3 +157,7 @@ DefaultButton/styles/normal = SubResource("StyleBoxFlat_x7emf")
 DefaultButton/styles/pressed = SubResource("StyleBoxFlat_trgfw")
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 3
+MarginContainer/constants/margin_bottom = 2
+MarginContainer/constants/margin_left = 2
+MarginContainer/constants/margin_right = 2
+MarginContainer/constants/margin_top = 2

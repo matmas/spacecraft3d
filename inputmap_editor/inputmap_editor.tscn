@@ -15,8 +15,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wstc0")
 
-[node name="BackButton" parent="." instance=ExtResource("2_8qv2c")]
-layout_mode = 0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"BigMarginContainer"
+
+[node name="Navigation" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" parent="MarginContainer/Navigation" instance=ExtResource("2_8qv2c")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Reset" type="Button" parent="MarginContainer/Navigation"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "Reset to defaults"
 
 [node name="Table" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -24,17 +44,13 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_right = 310.0
+offset_left = -306.0
+offset_right = 316.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Table"]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
 
 [node name="Header" type="HBoxContainer" parent="Table/MarginContainer"]
 layout_mode = 2
@@ -68,10 +84,6 @@ script = ExtResource("2_jwmx1")
 
 [node name="MarginContainer" type="MarginContainer" parent="Table/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
 
 [node name="List" type="VBoxContainer" parent="Table/ScrollContainer/MarginContainer"]
 unique_name_in_owner = true
@@ -117,11 +129,4 @@ layout_mode = 2
 [node name="Row10" parent="Table/ScrollContainer/MarginContainer/List" instance=ExtResource("2_knmj4")]
 layout_mode = 2
 
-[node name="InputHints" type="HBoxContainer" parent="Table"]
-layout_mode = 2
-
-[node name="Reset" type="Button" parent="Table/InputHints"]
-layout_mode = 2
-text = "Reset to defaults"
-
-[connection signal="pressed" from="Table/InputHints/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MarginContainer/Navigation/Reset" to="." method="_on_reset_pressed"]
