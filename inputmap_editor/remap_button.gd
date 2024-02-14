@@ -5,7 +5,7 @@ class_name RemapButton
 var action: StringName:
 	set(value):
 		action = value
-		_display_current()
+		refresh()
 
 var _is_capturing := false
 var _saved_mouse_position := Vector2()
@@ -19,13 +19,13 @@ func _on_input_type_changed(input_type) -> void:
 	disabled = (input_type == InputMonitor.InputType.KEYBOARD_MOUSE) == is_controller_button
 
 
-func _display_current():
-	var event := _get_event()
+func refresh() -> void:
+	var event := _get_current_event()
 	icon = ControllerIconsExtra.parse_event(event) if event else null
 	text = event.as_text() if event and not icon else ""
 
 
-func _get_event() -> InputEvent:
+func _get_current_event() -> InputEvent:
 	for event in InputMap.action_get_events(action):
 		if is_controller_button:
 			if _is_joypad_event(event):
@@ -47,7 +47,7 @@ func _on_toggled(toggled_on: bool) -> void:
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().warp_mouse(_saved_mouse_position)
-		_display_current()
+		refresh()
 
 
 func _input(event: InputEvent) -> void:
@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _remap_action_to(event: InputEvent) -> void:
-	var current_event := _get_event()
+	var current_event := _get_current_event()
 	if current_event:
 		InputMap.action_erase_event(action, current_event)
 	InputMap.action_add_event(action, event)
@@ -90,11 +90,11 @@ func _on_gui_input(event: InputEvent) -> void:
 				if event.is_released():
 					if Rect2(Vector2(), size).has_point(event.position):
 						_clear_mapping()
-						_display_current()
+						refresh()
 
 
 func _clear_mapping() -> void:
-	var current_event := _get_event()
+	var current_event := _get_current_event()
 	if current_event:
 		InputMap.action_erase_event(action, current_event)
 	InputmapPersistence.add_action(action)

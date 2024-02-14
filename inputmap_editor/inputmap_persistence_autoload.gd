@@ -32,7 +32,10 @@ func _load() -> void:
 
 
 func add_action(action: StringName) -> void:
-	actions[action] = true
+	if action in InputMap.get_actions():
+		actions[action] = true
+	else:
+		printerr("Invalid action '%s'" % action)
 
 
 func save() -> void:

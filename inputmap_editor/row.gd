@@ -15,5 +15,5 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	kbm_button.action = action
-	controller_button.action = action
+	kbm_button.refresh()
+	controller_button.refresh()
