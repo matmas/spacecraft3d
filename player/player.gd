@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		look_direction_change += event.relative * MOUSE_SENSITIVITY
+		look_direction_change += event.relative * MOUSE_SENSITIVITY * get_window().content_scale_factor
 
 
 func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
