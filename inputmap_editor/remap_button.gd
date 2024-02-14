@@ -53,8 +53,10 @@ func _on_toggled(toggled_on: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if _is_capturing:
 		if event.is_pressed():
-			if is_controller_button == _is_joypad_event(event) and not event.is_action(&"ui_cancel"):
-				_remap_action_to(event)
+			if is_controller_button == _is_joypad_event(event):
+				# Allow remap cancelling with keyboard but not with joypad
+				if not event.is_action(&"ui_cancel") or _is_joypad_event(event):
+					_remap_action_to(event)
 			get_viewport().set_input_as_handled()
 			button_pressed = false
 			grab_focus()
