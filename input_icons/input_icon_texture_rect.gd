@@ -1,6 +1,6 @@
 @tool
-extends KeyIconRect
-class_name InputEventRect
+extends KeyIconTextureRect
+class_name InputEventTextureRect
 
 @export var input_event: InputEvent:
 	set(value):

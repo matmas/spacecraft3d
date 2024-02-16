@@ -36,7 +36,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
-KeyIconRect/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
-KeyIconRect/fonts/font = SubResource("FontVariation_monon")
-KeyIconRect/styles/keycap = SubResource("StyleBoxFlat_l8lnq")
-KeyIconRect/styles/outline = SubResource("StyleBoxFlat_0iur8")
+KeyIconTextureRect/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
+KeyIconTextureRect/fonts/font = SubResource("FontVariation_monon")
+KeyIconTextureRect/styles/keycap = SubResource("StyleBoxFlat_l8lnq")
+KeyIconTextureRect/styles/outline = SubResource("StyleBoxFlat_0iur8")

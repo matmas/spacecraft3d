@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbkao08s2lxd2"]
 
-[ext_resource type="Script" path="res://input_icons/key_icon_rect.gd" id="1_dpnn1"]
+[ext_resource type="Script" path="res://input_icons/key_icon_texture_rect.gd" id="1_dpnn1"]
 [ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="1_he1sp"]
 [ext_resource type="Script" path="res://input_icons/key_icon_button.gd" id="3_ypn1t"]
-[ext_resource type="Script" path="res://input_icons/input_icon_rect.gd" id="4_lania"]
-[ext_resource type="Script" path="res://input_icons/input_action_rect.gd" id="5_bvfjw"]
+[ext_resource type="Script" path="res://input_icons/input_icon_texture_rect.gd" id="4_lania"]
+[ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="5_bvfjw"]
 
 [sub_resource type="InputEventMouseButton" id="InputEventMouseButton_l18ai"]
 button_index = 5
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="KeyIconRect" type="TextureRect" parent="."]
+[node name="KeyIconTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 35.0
 offset_top = 34.0
@@ -26,17 +26,17 @@ offset_bottom = 134.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("1_dpnn1")
 
-[node name="InputEventRect" type="TextureRect" parent="."]
+[node name="InputEventTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 141.0
 offset_top = 213.0
-offset_right = 242.0
-offset_bottom = 310.0
+offset_right = 241.0
+offset_bottom = 313.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("4_lania")
 input_event = SubResource("InputEventMouseButton_l18ai")
 
-[node name="InputActionRect" type="TextureRect" parent="."]
+[node name="InputActionTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 270.0
 offset_top = 44.0

@@ -1,8 +1,8 @@
 @tool
 extends TextureRect
-class_name KeyIconRect
+class_name KeyIconTextureRect
 
-func get_class_name() -> StringName: return &"KeyIconRect"
+func get_class_name() -> StringName: return &"KeyIconTextureRect"
 
 const THEME = preload("key_icon_theme.tres")
 

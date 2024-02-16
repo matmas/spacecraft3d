@@ -1,6 +1,6 @@
 @tool
-extends InputEventRect
-class_name InputActionRect
+extends InputEventTextureRect
+class_name InputActionTextureRect
 
 @export var action_name: StringName = "":
 	set(value):

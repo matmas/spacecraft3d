@@ -7,12 +7,12 @@ class_name InputActionButton
 		action_name = value
 		input_action_rect.action_name = value
 
-@export var show_mode := InputActionRect.ShowMode.ANY:
+@export var show_mode := InputActionTextureRect.ShowMode.ANY:
 	set(value):
 		show_mode = value
 		input_action_rect.show_mode = value
 
-@export var force_mode := InputActionRect.ForceMode.DISABLED:
+@export var force_mode := InputActionTextureRect.ForceMode.DISABLED:
 	set(value):
 		force_mode = value
 		input_action_rect.force_mode = value
@@ -23,7 +23,7 @@ class_name InputActionButton
 		viewport.size = value
 		input_action_rect.size = value
 
-var input_action_rect := InputActionRect.new()
+var input_action_rect := InputActionTextureRect.new()
 var viewport := SubViewport.new()
 
 func _init() -> void:
