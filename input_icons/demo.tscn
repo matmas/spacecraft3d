@@ -6,10 +6,8 @@
 [ext_resource type="Script" path="res://input_icons/input_icon_rect.gd" id="4_lania"]
 [ext_resource type="Script" path="res://input_icons/input_action_rect.gd" id="5_bvfjw"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_uk4mk"]
-device = -1
-physical_keycode = 65
-unicode = 97
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_l18ai"]
+button_index = 4
 
 [node name="Demo" type="Control"]
 layout_mode = 3
@@ -30,30 +28,30 @@ script = ExtResource("1_dpnn1")
 
 [node name="InputEventRect" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 121.0
-offset_top = 224.0
-offset_right = 222.0
-offset_bottom = 321.0
+offset_left = 141.0
+offset_top = 213.0
+offset_right = 242.0
+offset_bottom = 310.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("4_lania")
-input_event = SubResource("InputEventKey_uk4mk")
+input_event = SubResource("InputEventMouseButton_l18ai")
 
 [node name="InputActionRect" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 319.0
-offset_top = 258.0
-offset_right = 419.0
-offset_bottom = 358.0
+offset_left = 270.0
+offset_top = 44.0
+offset_right = 370.0
+offset_bottom = 144.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("5_bvfjw")
 action_name = &"ui_focus_next"
 
 [node name="InputActionButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 168.0
-offset_top = 26.0
-offset_right = 345.0
-offset_bottom = 146.0
+offset_left = 415.0
+offset_top = 31.0
+offset_right = 592.0
+offset_bottom = 151.0
 text = "button"
 script = ExtResource("3_ypn1t")
 action_name = &"move_forward"
