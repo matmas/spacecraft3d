@@ -6,14 +6,6 @@ func get_class_name() -> StringName: return &"KeyIconRect"
 
 const THEME = preload("key_icon_theme.tres")
 
-#@export var action: StringName
-#@export var show_mode: ShowMode
-#@export var force_mode: ForceMode
-#
-#enum ShowMode { ANY, KEYBOARD_AND_MOUSE, JOYPAD }
-#enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
-
-
 @export_multiline var text := " ":
 	set(value):
 		text = value
@@ -59,6 +51,9 @@ func _get_width() -> int:
 
 
 func _draw() -> void:
+	if not text:
+		return
+
 	# Determine text dimensions
 	var font := get_theme_font(&"font", get_class_name())
 	var test_font_size := 16  # font_size will be calculated dynamically later

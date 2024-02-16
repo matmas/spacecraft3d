@@ -1,6 +1,21 @@
 @tool
 extends Button
-class_name KeyIconButton
+class_name InputActionButton
+
+@export var action_name: StringName = "":
+	set(value):
+		action_name = value
+		input_action_rect.action_name = value
+
+@export var show_mode := InputActionRect.ShowMode.ANY:
+	set(value):
+		show_mode = value
+		input_action_rect.show_mode = value
+
+@export var force_mode := InputActionRect.ForceMode.DISABLED:
+	set(value):
+		force_mode = value
+		input_action_rect.force_mode = value
 
 @export var icon_size := Vector2(100, 100):
 	set(value):
@@ -8,12 +23,7 @@ class_name KeyIconButton
 		viewport.size = value
 		input_action_rect.size = value
 
-@export_multiline var icon_text := "A":
-	set(value):
-		icon_text = value
-		input_action_rect.text = value
-
-var input_action_rect := KeyIconRect.new()
+var input_action_rect := InputActionRect.new()
 var viewport := SubViewport.new()
 
 func _init() -> void:
