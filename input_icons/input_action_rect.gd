@@ -8,10 +8,16 @@ class_name InputActionRect
 		_update_input_event()
 
 enum ShowMode { ANY, KEYBOARD_AND_MOUSE, JOYPAD }
-@export var show_mode := ShowMode.ANY
+@export var show_mode := ShowMode.ANY:
+	set(value):
+		show_mode = value
+		_update_input_event()
 
 enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
-@export var force_mode := ForceMode.DISABLED
+@export var force_mode := ForceMode.DISABLED:
+	set(value):
+		force_mode = value
+		_update_input_event()
 
 
 func _ready() -> void:
@@ -35,6 +41,12 @@ func _update_input_event() -> void:
 
 
 func _get_input_event_for_display() -> InputEvent:
+	if show_mode == ShowMode.KEYBOARD_AND_MOUSE \
+			and InputMonitor.current_input_type != InputMonitor.InputType.KEYBOARD_AND_MOUSE \
+			or show_mode == ShowMode.JOYPAD \
+			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD:
+		return null
+
 	for event in InputUtils.inputmap_get_events(action_name):
 		match event.get_class():
 			"InputEventKey", "InputEventMouseButton":

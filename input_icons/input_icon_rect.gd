@@ -27,4 +27,4 @@ func _update_text() -> void:
 					)
 				text = OS.get_keycode_string(keycode)
 	else:
-		text = " "
+		text = ""
