@@ -1,4 +1,5 @@
-extends TextureRect
+@tool
+extends InputActionTextureRect
 
 
 func _ready() -> void:

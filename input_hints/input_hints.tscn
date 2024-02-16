@@ -1,113 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
-[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="1_ng57h"]
 [ext_resource type="Script" path="res://input_hints/only_controller_label.gd" id="3_3hx2n"]
-[ext_resource type="Script" path="res://input_hints/only_keyboard_mouse_texture_rect.gd" id="3_s6bnh"]
-
-[sub_resource type="Texture2D" id="Texture2D_c78ax"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_up"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_mm0bf"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_down"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_nm8qj"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "jump"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_6x0rk"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "crouch"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_aov27"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "sprint"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_ouqho"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_forward"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_rocxy"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_left"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_ri0n1"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_backward"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_ti6ge"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "move_right"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_0jnrc"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "look_up"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_4wise"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "place_block"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_fyvqb"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "roll_left"
-show_mode = 0
-force_type = 0
-
-[sub_resource type="Texture2D" id="Texture2D_mswts"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("1_ng57h")
-path = "roll_right"
-show_mode = 0
-force_type = 0
+[ext_resource type="Script" path="res://input_hints/only_keyboard_mouse_input_action_texture_rect.gd" id="3_s6bnh"]
+[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="5_mck50"]
+[ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
 [node name="InputHints" type="Node"]
 process_mode = 3
@@ -124,12 +21,11 @@ alignment = 2
 [node name="move_up" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/move_up"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_up"]
 layout_mode = 2
-texture = SubResource("Texture2D_c78ax")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"move_up"
 
 [node name="Label" type="Label" parent="LeftControls/move_up"]
 layout_mode = 2
@@ -138,12 +34,11 @@ text = "move up"
 [node name="move_down" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/move_down"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_down"]
 layout_mode = 2
-texture = SubResource("Texture2D_mm0bf")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"move_down"
 
 [node name="Label" type="Label" parent="LeftControls/move_down"]
 layout_mode = 2
@@ -152,11 +47,11 @@ text = "move down"
 [node name="jump" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/jump"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/jump"]
 layout_mode = 2
-texture = SubResource("Texture2D_nm8qj")
-expand_mode = 1
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"jump"
 
 [node name="Label" type="Label" parent="LeftControls/jump"]
 layout_mode = 2
@@ -165,12 +60,11 @@ text = "jump"
 [node name="crouch" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/crouch"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/crouch"]
 layout_mode = 2
-texture = SubResource("Texture2D_6x0rk")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"crouch"
 
 [node name="Label" type="Label" parent="LeftControls/crouch"]
 layout_mode = 2
@@ -179,12 +73,11 @@ text = "crouch"
 [node name="sprint" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/sprint"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/sprint"]
 layout_mode = 2
-texture = SubResource("Texture2D_aov27")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"sprint"
 
 [node name="Label" type="Label" parent="LeftControls/sprint"]
 layout_mode = 2
@@ -197,35 +90,28 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_ouqho")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"move_forward"
 
 [node name="move_left" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_rocxy")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
 script = ExtResource("3_s6bnh")
+action_name = &"move_left"
 
 [node name="move_backward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_ri0n1")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
 script = ExtResource("3_s6bnh")
+action_name = &"move_backward"
 
 [node name="move_right" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_ti6ge")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
 script = ExtResource("3_s6bnh")
+action_name = &"move_right"
 
 [node name="Label" type="Label" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
@@ -234,12 +120,11 @@ text = "movement"
 [node name="look_up" type="HBoxContainer" parent="LeftControls/MovementAndLook"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="LeftControls/MovementAndLook/look_up"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/MovementAndLook/look_up"]
 layout_mode = 2
-texture = SubResource("Texture2D_0jnrc")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"look_up"
 
 [node name="Label" type="Label" parent="LeftControls/MovementAndLook/look_up"]
 layout_mode = 2
@@ -248,11 +133,15 @@ text = "look
 script = ExtResource("3_3hx2n")
 
 [node name="RightControls" type="VBoxContainer" parent="."]
-anchors_preset = 15
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -141.0
+offset_top = -104.0
+grow_horizontal = 0
+grow_vertical = 0
 alignment = 2
 
 [node name="place_block" type="HBoxContainer" parent="RightControls"]
@@ -264,12 +153,11 @@ layout_mode = 2
 text = "place block
 "
 
-[node name="TextureRect" type="TextureRect" parent="RightControls/place_block"]
-custom_minimum_size = Vector2(50, 50)
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
 layout_mode = 2
-texture = SubResource("Texture2D_4wise")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"place_block"
 
 [node name="roll_left" type="HBoxContainer" parent="RightControls"]
 layout_mode = 2
@@ -280,15 +168,13 @@ layout_mode = 2
 text = "roll"
 
 [node name="roll_left" type="TextureRect" parent="RightControls/roll_left"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_fyvqb")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"roll_left"
 
 [node name="roll_right" type="TextureRect" parent="RightControls/roll_left"]
-custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = SubResource("Texture2D_mswts")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("5_mck50")
+script = ExtResource("6_kuhb4")
+action_name = &"roll_right"

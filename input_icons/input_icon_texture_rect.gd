@@ -7,19 +7,28 @@ class_name InputEventTextureRect
 		input_event = value
 		_update_text()
 
+
+func _init() -> void:
+	super._init()
+	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
+
 func _draw() -> void:
 	if not texture:
+		# Use KeyIconTextureRect._draw() as a fallback when we don't have texture
 		super._draw()
+
+
+func _validate_property(property: Dictionary) -> void:
+	super._validate_property(property)
+	if property.name in ["text", "texture", "expand_mode", "stretch_mode"]:
+		# Don't persist or show property in the editor
+		property.usage = PROPERTY_USAGE_NONE
 
 
 func _set_texture(relative_path_without_extension: String) -> void:
 	texture = ResourceLoader.load("res://input_icons/icons/%s.png" % relative_path_without_extension)
-
-
-func _validate_property(property: Dictionary) -> void:
-	if property.name in ["text", "texture"]:
-		# Don't persist or show property in the editor
-		property.usage = PROPERTY_USAGE_NONE
 
 
 func _update_text() -> void:

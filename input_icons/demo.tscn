@@ -21,37 +21,38 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 35.0
 offset_top = 34.0
-offset_right = 135.0
-offset_bottom = 134.0
+offset_right = 85.0
+offset_bottom = 84.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("1_dpnn1")
+text = "Space"
 
 [node name="InputEventTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 141.0
-offset_top = 213.0
-offset_right = 241.0
-offset_bottom = 313.0
+offset_left = 107.0
+offset_top = 40.0
+offset_right = 157.0
+offset_bottom = 90.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("4_lania")
 input_event = SubResource("InputEventMouseButton_l18ai")
 
 [node name="InputActionTextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 270.0
-offset_top = 44.0
-offset_right = 370.0
-offset_bottom = 144.0
+offset_left = 187.0
+offset_top = 40.0
+offset_right = 237.0
+offset_bottom = 90.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("5_bvfjw")
 action_name = &"ui_focus_next"
 
 [node name="InputActionButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 415.0
-offset_top = 31.0
-offset_right = 592.0
-offset_bottom = 151.0
+offset_left = 310.0
+offset_top = 28.0
+offset_right = 437.0
+offset_bottom = 98.0
 text = "button"
 script = ExtResource("3_ypn1t")
 action_name = &"move_forward"

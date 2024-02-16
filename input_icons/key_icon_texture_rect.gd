@@ -6,10 +6,15 @@ func get_class_name() -> StringName: return &"KeyIconTextureRect"
 
 const THEME = preload("key_icon_theme.tres")
 
-@export_multiline var text := " ":
+@export_multiline var text := "":
 	set(value):
 		text = value
 		queue_redraw()
+
+@export var minimum_size := Vector2(50, 50):
+	set(value):
+		minimum_size = value
+		custom_minimum_size = value
 
 enum HorizontalAlignment { LEFT, CENTER, RIGHT }
 @export var horizontal_alignment := HorizontalAlignment.CENTER:
@@ -38,8 +43,16 @@ enum VerticalAlignment { TOP, CENTER, BOTTOM }
 		allow_text_to_affect_margin = value
 		queue_redraw()
 
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "custom_minimum_size":
+		# Don't persist or show property in the editor
+		property.usage = PROPERTY_USAGE_NONE
+
+
 func _init() -> void:
 	theme = THEME
+	custom_minimum_size = minimum_size
 
 
 func _get_height() -> int:
@@ -70,9 +83,6 @@ func _draw() -> void:
 			-rect.size.x * margin_proportion * 0.5 / x_ratio,
 			-rect.size.y * margin_proportion * 0.5 * y_ratio,
 		)
-
-	#if maxf(test_text_dimensions.x, test_text_dimensions.y) == 23:
-		#rect = Rect2(14, 14, _get_width() - 2 * 14, _get_height() - 2 * 14)
 
 	# Draw outline
 	var outline_stylebox := get_theme_stylebox(&"outline", get_class_name()) as StyleBoxFlat

@@ -17,7 +17,7 @@ class_name InputActionButton
 		force_mode = value
 		input_action_rect.force_mode = value
 
-@export var icon_size := Vector2(100, 100):
+@export var icon_size := Vector2(50, 50):
 	set(value):
 		icon_size = value
 		viewport.size = value
