@@ -21,3 +21,67 @@ theme_type_variation = &"BigMarginContainer"
 
 [node name="BackButton" parent="MarginContainer" instance=ExtResource("1_uy4mk")]
 layout_mode = 2
+
+[node name="Table" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Table"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Table"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="UIScalingLabel" type="Label" parent="Table"]
+layout_mode = 2
+text = "UI scaling"
+
+[node name="UIScalingSlider" type="HSlider" parent="Table"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 2.0
+step = 0.25
+value = 1.0
+
+[node name="VSyncLabel" type="Label" parent="Table"]
+layout_mode = 2
+text = "VSync"
+
+[node name="Empty" type="Label" parent="Table"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Table"]
+layout_mode = 2
+text = "Fullscreen/Windowed"
+
+[node name="Empty2" type="Label" parent="Table"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Table"]
+layout_mode = 2
+text = "Monitor number"
+
+[node name="Empty3" type="Label" parent="Table"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Table"]
+layout_mode = 2
+text = "FOV"
+
+[node name="Empty4" type="Label" parent="Table"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[connection signal="drag_ended" from="Table/UIScalingSlider" to="." method="_on_ui_scaling_slider_drag_ended"]
