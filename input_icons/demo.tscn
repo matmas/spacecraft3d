@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://input_icons/input_action_rect.gd" id="5_bvfjw"]
 
 [sub_resource type="InputEventMouseButton" id="InputEventMouseButton_l18ai"]
-button_index = 4
+button_index = 5
 
 [node name="Demo" type="Control"]
 layout_mode = 3
@@ -17,8 +17,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="KeyIconRect" type="Control" parent="."]
-anchors_preset = 0
+[node name="KeyIconRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 35.0
 offset_top = 34.0
 offset_right = 135.0
@@ -26,8 +26,8 @@ offset_bottom = 134.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("1_dpnn1")
 
-[node name="InputEventRect" type="Control" parent="."]
-anchors_preset = 0
+[node name="InputEventRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 141.0
 offset_top = 213.0
 offset_right = 242.0
@@ -36,8 +36,8 @@ theme = ExtResource("1_he1sp")
 script = ExtResource("4_lania")
 input_event = SubResource("InputEventMouseButton_l18ai")
 
-[node name="InputActionRect" type="Control" parent="."]
-anchors_preset = 0
+[node name="InputActionRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 270.0
 offset_top = 44.0
 offset_right = 370.0

@@ -7,21 +7,17 @@ class_name InputEventRect
 		input_event = value
 		_update_text()
 
-var _texture: Texture
-
 func _draw() -> void:
-	if _texture:
-		draw_texture(_texture, Vector2())
-	else:
+	if not texture:
 		super._draw()
 
 
 func _set_texture(relative_path_without_extension: String) -> void:
-	_texture = ResourceLoader.load("res://input_icons/icons/%s.png" % relative_path_without_extension)
+	texture = ResourceLoader.load("res://input_icons/icons/%s.png" % relative_path_without_extension)
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == "text":
+	if property.name in ["text", "texture"]:
 		# Don't persist or show property in the editor
 		property.usage = PROPERTY_USAGE_NONE
 
@@ -37,7 +33,7 @@ func _update_text() -> void:
 						event.physical_keycode
 					)
 				text = OS.get_keycode_string(keycode)
-				_texture = null
+				texture = null
 			"InputEventMouseButton":
 				var event := input_event as InputEventMouseButton
 				match event.button_index:

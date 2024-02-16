@@ -1,5 +1,5 @@
 @tool
-extends Control
+extends TextureRect
 class_name KeyIconRect
 
 func get_class_name() -> StringName: return &"KeyIconRect"

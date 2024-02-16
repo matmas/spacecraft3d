@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=20 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="1_ng57h"]
 [ext_resource type="Script" path="res://input_hints/only_controller_label.gd" id="3_3hx2n"]
+[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="3_ng46v"]
 [ext_resource type="Script" path="res://input_hints/only_keyboard_mouse_texture_rect.gd" id="3_s6bnh"]
+[ext_resource type="Script" path="res://input_icons/input_action_rect.gd" id="4_8osh6"]
 
 [sub_resource type="Texture2D" id="Texture2D_c78ax"]
 resource_local_to_scene = false
@@ -130,6 +132,13 @@ layout_mode = 2
 texture = SubResource("Texture2D_c78ax")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="InputActionRect" type="Control" parent="LeftControls/move_up"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme = ExtResource("3_ng46v")
+script = ExtResource("4_8osh6")
+action_name = &"place_block"
 
 [node name="Label" type="Label" parent="LeftControls/move_up"]
 layout_mode = 2
