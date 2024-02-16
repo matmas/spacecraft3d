@@ -1,10 +1,10 @@
 @tool
 extends Control
-class_name FallbackIconRect
+class_name KeyIconRect
 
-const THEME = preload("res://input_icons/theme.tres")
+func get_class_name() -> StringName: return &"KeyIconRect"
 
-func get_class_name() -> StringName: return &"FallbackIconRect"
+const THEME = preload("key_icon_theme.tres")
 
 #@export var action: StringName
 #@export var show_mode: ShowMode

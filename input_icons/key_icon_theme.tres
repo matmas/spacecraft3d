@@ -36,7 +36,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
-FallbackIconRect/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
-FallbackIconRect/fonts/font = SubResource("FontVariation_monon")
-FallbackIconRect/styles/keycap = SubResource("StyleBoxFlat_l8lnq")
-FallbackIconRect/styles/outline = SubResource("StyleBoxFlat_0iur8")
+KeyIconRect/colors/font_color = Color(0.803922, 0.803922, 0.803922, 1)
+KeyIconRect/fonts/font = SubResource("FontVariation_monon")
+KeyIconRect/styles/keycap = SubResource("StyleBoxFlat_l8lnq")
+KeyIconRect/styles/outline = SubResource("StyleBoxFlat_0iur8")

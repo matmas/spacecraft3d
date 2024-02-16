@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cbkao08s2lxd2"]
 
-[ext_resource type="Script" path="res://input_icons/fallback_icon_rect.gd" id="1_dpnn1"]
-[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/theme.tres" id="1_he1sp"]
-[ext_resource type="Script" path="res://input_icons/fallback_icon_button.gd" id="3_ypn1t"]
+[ext_resource type="Script" path="res://input_icons/key_icon_rect.gd" id="1_dpnn1"]
+[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="1_he1sp"]
+[ext_resource type="Script" path="res://input_icons/key_icon_button.gd" id="3_ypn1t"]
 [ext_resource type="Script" path="res://input_icons/input_icon_rect.gd" id="4_lania"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_uk4mk"]
@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FallbackIconRect" type="Control" parent="."]
+[node name="KeyIconRect" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 35.0
 offset_top = 34.0
@@ -27,7 +27,7 @@ offset_bottom = 134.0
 theme = ExtResource("1_he1sp")
 script = ExtResource("1_dpnn1")
 
-[node name="FallbackIconButton" type="Button" parent="."]
+[node name="KeyIconButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 168.0
 offset_top = 26.0

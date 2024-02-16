@@ -1,6 +1,6 @@
 @tool
 extends Button
-class_name FallbackIconButton
+class_name KeyIconButton
 
 @export var icon_size := Vector2(100, 100):
 	set(value):
@@ -13,9 +13,8 @@ class_name FallbackIconButton
 		icon_text = value
 		input_action_rect.text = value
 
+var input_action_rect := KeyIconRect.new()
 var viewport := SubViewport.new()
-var input_action_rect := FallbackIconRect.new()
-
 
 func _init() -> void:
 	viewport.size = icon_size
