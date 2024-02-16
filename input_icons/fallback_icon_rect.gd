@@ -1,8 +1,10 @@
 @tool
 extends Control
-class_name InputActionRect
+class_name FallbackIconRect
 
-func get_class_name() -> StringName: return &"InputActionRect"
+const THEME = preload("res://input_icons/theme.tres")
+
+func get_class_name() -> StringName: return &"FallbackIconRect"
 
 #@export var action: StringName
 #@export var show_mode: ShowMode
@@ -11,7 +13,8 @@ func get_class_name() -> StringName: return &"InputActionRect"
 #enum ShowMode { ANY, KEYBOARD_AND_MOUSE, JOYPAD }
 #enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
 
-@export_multiline var text := "A":
+
+@export_multiline var text := " ":
 	set(value):
 		text = value
 		queue_redraw()
@@ -43,9 +46,8 @@ enum VerticalAlignment { TOP, CENTER, BOTTOM }
 		allow_text_to_affect_margin = value
 		queue_redraw()
 
-
 func _init() -> void:
-	theme = preload("res://input_icons/theme.tres")
+	theme = THEME
 
 
 func _get_height() -> int:
