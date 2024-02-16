@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnu7ouj5kw015"]
+
+[ext_resource type="Script" path="res://display_menu/display_menu.gd" id="1_dkiso"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_uy4mk"]
+
+[node name="DisplayMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dkiso")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 4.0
+theme_type_variation = &"BigMarginContainer"
+
+[node name="BackButton" parent="MarginContainer" instance=ExtResource("1_uy4mk")]
+layout_mode = 2

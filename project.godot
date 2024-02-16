@@ -37,8 +37,11 @@ enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://display_menu/": "green",
 "res://game/": "red",
+"res://inputmap_editor/": "green",
 "res://main_menu/": "green",
+"res://options_menu/": "green",
 "res://pause_menu/": "green",
 "res://player/": "red"
 }

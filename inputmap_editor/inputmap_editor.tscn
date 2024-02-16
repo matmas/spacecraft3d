@@ -15,29 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wstc0")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"BigMarginContainer"
-
-[node name="Navigation" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="BackButton" parent="MarginContainer/Navigation" instance=ExtResource("2_8qv2c")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Reset" type="Button" parent="MarginContainer/Navigation"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 8
-text = "Reset to defaults"
-
 [node name="Table" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
@@ -129,4 +106,34 @@ layout_mode = 2
 [node name="Row10" parent="Table/ScrollContainer/MarginContainer/List" instance=ExtResource("2_knmj4")]
 layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/Navigation/Reset" to="." method="_on_reset_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 98.0
+offset_bottom = 66.0
+theme_type_variation = &"BigMarginContainer"
+
+[node name="BackButton" parent="MarginContainer" instance=ExtResource("2_8qv2c")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -47.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"BigMarginContainer"
+
+[node name="Reset" type="Button" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "Reset to defaults"
+
+[connection signal="pressed" from="MarginContainer2/Reset" to="." method="_on_reset_pressed"]
