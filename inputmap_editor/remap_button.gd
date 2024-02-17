@@ -1,11 +1,15 @@
-extends Button
+@tool
+extends InputActionButton
 class_name RemapButton
 
-@export var is_controller_button: bool = false
+@export var is_controller_button: bool = false:
+	set(value):
+		is_controller_button = value
+
 var action: StringName:
 	set(value):
 		action = value
-		refresh()
+		action_name = value
 
 var _is_capturing := false
 var _saved_mouse_position := Vector2()
@@ -20,9 +24,7 @@ func _on_input_type_changed(input_type) -> void:
 
 
 func refresh() -> void:
-	var event := _get_current_event()
-	icon = ControllerIconsExtra.parse_event(event) if event else null
-	text = event.as_text() if event and not icon else ""
+	input_action_rect._update_input_event()
 
 
 func _get_current_event() -> InputEvent:
@@ -39,15 +41,16 @@ func _get_current_event() -> InputEvent:
 func _on_toggled(toggled_on: bool) -> void:
 	_is_capturing = toggled_on
 	if toggled_on:
+		action_name = &""  # Hide icon
 		text = "..."
-		icon = null
 		release_focus()
 		_saved_mouse_position = get_viewport().get_mouse_position()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().warp_mouse(_saved_mouse_position)
-		refresh()
+		text = ""
+		action_name = action  # Show icon
 
 
 func _input(event: InputEvent) -> void:
@@ -72,7 +75,6 @@ func _remap_action_to(event: InputEvent) -> void:
 	InputMap.action_add_event(action, event)
 	InputmapPersistence.add_action(action)
 	InputmapPersistence.save()
-	ControllerIcons.refresh()
 
 
 func _is_joypad_event(event: InputEvent) -> bool:
@@ -101,4 +103,3 @@ func _clear_mapping() -> void:
 		InputMap.action_erase_event(action, current_event)
 	InputmapPersistence.add_action(action)
 	InputmapPersistence.save()
-	ControllerIcons.refresh()

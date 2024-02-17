@@ -1,21 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj47d0mnmbnc8"]
+[gd_scene load_steps=2 format=3 uid="uid://bj47d0mnmbnc8"]
 
 [ext_resource type="Script" path="res://inputmap_editor/remap_button.gd" id="1_8fbh4"]
-[ext_resource type="Script" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="1_opory"]
-
-[sub_resource type="Texture2D" id="Texture2D_7fxsj"]
-resource_local_to_scene = true
-resource_name = ""
-script = ExtResource("1_opory")
-path = "joypad/a"
-show_mode = 0
-force_type = 0
 
 [node name="RemapButton" type="Button"]
 custom_minimum_size = Vector2(200, 50)
 theme_type_variation = &"DefaultButton"
 toggle_mode = true
-icon = SubResource("Texture2D_7fxsj")
 text_overrun_behavior = 3
 icon_alignment = 1
 expand_icon = true

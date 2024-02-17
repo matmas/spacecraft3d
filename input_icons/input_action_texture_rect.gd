@@ -19,6 +19,10 @@ enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
 		force_mode = value
 		_update_input_event()
 
+@export var ignore_joypad_direction := false:
+	set(value):
+		ignore_joypad_direction = value
+		_update_input_event()
 
 func _init() -> void:
 	super._init()
@@ -38,6 +42,11 @@ func _validate_property(property: Dictionary) -> void:
 
 func _update_input_event() -> void:
 	input_event = _get_input_event_for_display()
+
+	if ignore_joypad_direction and input_event is InputEventJoypadMotion:
+		var event := input_event as InputEventJoypadMotion
+		input_event = InputEventJoypadMotion.new()  # Modifying existing instance would interfere with gameplay
+		input_event.axis = event.axis  # Ignore event.axis_value
 	queue_redraw()
 
 

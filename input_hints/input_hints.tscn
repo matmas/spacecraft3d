@@ -94,6 +94,7 @@ layout_mode = 2
 theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
+ignore_joypad_direction = true
 
 [node name="move_left" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
@@ -125,6 +126,7 @@ layout_mode = 2
 theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"look_up"
+ignore_joypad_direction = true
 
 [node name="Label" type="Label" parent="LeftControls/MovementAndLook/look_up"]
 layout_mode = 2
