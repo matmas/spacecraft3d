@@ -56,8 +56,38 @@ func _update_text() -> void:
 						_set_texture("keyboard", "arrow_right")
 					KEY_BACKSPACE:
 						_set_texture("keyboard", "backspace")
+					KEY_ENTER:
+						_set_texture("keyboard", "enter")
+					KEY_COMMA:
+						texture = null; text = ","
+					KEY_PERIOD:
+						texture = null; text = "."
+					KEY_SLASH:
+						texture = null; text = "/"
 					KEY_BACKSLASH:
 						texture = null; text = "\\"
+					KEY_QUOTELEFT:
+						texture = null; text = "`"
+					KEY_APOSTROPHE:
+						texture = null; text = "'"
+					KEY_SEMICOLON:
+						texture = null; text = ";"
+					KEY_BRACKETLEFT:
+						texture = null; text = "["
+					KEY_BRACKETRIGHT:
+						texture = null; text = "]"
+					KEY_MINUS:
+						texture = null; text = "-"
+					KEY_EQUAL:
+						texture = null; text = "="
+					KEY_INSERT:
+						texture = null; text = "Ins"
+					KEY_DELETE:
+						texture = null; text = "Del"
+					KEY_PAGEUP:
+						texture = null; text = "Pg\nUp"
+					KEY_PAGEDOWN:
+						texture = null; text = "Pg\nDn"
 					_:
 						texture = null; text = OS.get_keycode_string(keycode)
 			"InputEventMouseButton":
