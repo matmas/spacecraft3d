@@ -38,15 +38,28 @@ func _update_text() -> void:
 				elif event.key_label:
 					keycode = event.key_label
 				elif event.physical_keycode:
-					# Display key labels from the current keyboard layout, e.g. AZERTY if supported
+					# Display key codes from the current keyboard layout, e.g. AZERTY if supported
 					if DisplayServer.get_name() in ["X11", "macOS", "Windows"]:
 						keycode = DisplayServer.keyboard_get_keycode_from_physical(
 							event.physical_keycode
 						)
 					else:
 						keycode = event.physical_keycode
-				text = OS.get_keycode_string(keycode)
-				texture = null
+				match keycode:
+					KEY_UP:
+						_set_texture("keyboard", "arrow_up")
+					KEY_LEFT:
+						_set_texture("keyboard", "arrow_left")
+					KEY_DOWN:
+						_set_texture("keyboard", "arrow_down")
+					KEY_RIGHT:
+						_set_texture("keyboard", "arrow_right")
+					KEY_BACKSPACE:
+						_set_texture("keyboard", "backspace")
+					KEY_BACKSLASH:
+						texture = null; text = "\\"
+					_:
+						texture = null; text = OS.get_keycode_string(keycode)
 			"InputEventMouseButton":
 				var event := input_event as InputEventMouseButton
 				match event.button_index:

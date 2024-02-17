@@ -95,4 +95,3 @@ func _on_reset_pressed() -> void:
 	for child in list.get_children():
 		if child is InputmapEditorRow:
 			(child as InputmapEditorRow).refresh()
-	ControllerIcons.refresh()

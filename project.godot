@@ -21,19 +21,13 @@ HidpiScalingAutoload="*res://hidpi_scaling/hidpi_scaling_autoload.gd"
 ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload.gd"
 JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
-ControllerIconsExtra="*res://controller_icons_extra/controller_icons_extra_autoload.gd"
 InputmapPersistence="*res://inputmap_editor/inputmap_persistence_autoload.gd"
-ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 InputMonitor="*res://input_monitor/input_monitor_autoload.gd"
 InputUtils="*res://input_icons/input_utils_autoload.gd"
 
 [editor]
 
 movie_writer/movie_file="export/movie.avi"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/controller_icons/plugin.cfg")
 
 [file_customization]
 

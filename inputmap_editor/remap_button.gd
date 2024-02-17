@@ -1,4 +1,3 @@
-@tool
 extends InputActionButton
 class_name RemapButton
 

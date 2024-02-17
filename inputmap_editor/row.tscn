@@ -18,6 +18,5 @@ force_mode = 1
 
 [node name="ControllerButton" parent="." instance=ExtResource("2_gij6r")]
 layout_mode = 2
-disabled = true
 is_controller_button = true
 force_mode = 2
