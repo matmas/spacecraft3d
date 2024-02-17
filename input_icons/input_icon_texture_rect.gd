@@ -163,7 +163,6 @@ func _get_joypad_name() -> String:
 	# { "vendor_id": 1118, "product_id": 2834, "raw_name": "Microsoft Xbox Series S|X Controller" }
 	# Xbox Series Controller on Linux via Bluetooth:
 	# { "vendor_id": 1118, "product_id": 654, "raw_name": "Xbox Wireless Controller" }
-	#print(Input.get_joy_info(0))
 
 	for device in Input.get_connected_joypads():
 		if Input.is_joy_known(device):

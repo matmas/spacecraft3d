@@ -23,3 +23,9 @@ func inputmap_get_events(action: StringName) -> Array[InputEvent]:
 	# We still need to fall back to InputMap.action_get_events()
 	# since project.godot doesn't contain actions that were not changed
 	return InputMap.action_get_events(action)
+
+
+func _ready() -> void:
+	print("Number of connected joypads: ", Input.get_connected_joypads().size())
+	for device in Input.get_connected_joypads():
+		print(Input.get_joy_info(device), "" if Input.is_joy_known(device) else " (unknown)")
