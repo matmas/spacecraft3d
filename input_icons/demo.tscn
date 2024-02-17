@@ -8,7 +8,7 @@
 
 [sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_52ixp"]
 axis = 1
-axis_value = -1.0
+axis_value = 1.0
 
 [node name="Demo" type="Control"]
 layout_mode = 3
@@ -56,4 +56,4 @@ offset_right = 415.0
 offset_bottom = 101.0
 text = "button"
 script = ExtResource("3_ypn1t")
-action_name = &"move_forward"
+action_name = &"look_up"

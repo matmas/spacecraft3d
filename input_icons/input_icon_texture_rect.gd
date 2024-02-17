@@ -61,6 +61,7 @@ func _update_text() -> void:
 					MOUSE_BUTTON_XBUTTON2:  # Extra mouse button 2. This is sometimes present, usually to the sides of the mouse.
 						_set_texture("mouse", "thumb_button_2")
 					_:
+						printerr("Unknown mouse button ", event.button_index)
 						texture = null; text = ""
 			"InputEventJoypadButton":
 				var event := input_event as InputEventJoypadButton
@@ -76,7 +77,7 @@ func _update_text() -> void:
 					JOY_BUTTON_BACK:
 						_set_texture(_get_joypad_name(), "back")
 					JOY_BUTTON_GUIDE:
-						texture = null; text = "Guide"
+						texture = null; text = "Home"
 					JOY_BUTTON_START:
 						_set_texture(_get_joypad_name(), "start")
 					JOY_BUTTON_LEFT_STICK:
@@ -108,6 +109,7 @@ func _update_text() -> void:
 					JOY_BUTTON_TOUCHPAD:
 						_set_texture(_get_joypad_name(), "touchpad")
 					_:
+						printerr("Unknown joypad button ", event.button_index)
 						texture = null; text = ""
 			"InputEventJoypadMotion":
 				var event := input_event as InputEventJoypadMotion
@@ -137,9 +139,10 @@ func _update_text() -> void:
 					JOY_AXIS_RIGHT_X, JOY_AXIS_RIGHT_Y when event.axis_value == 0:
 						_set_texture(_get_joypad_name(), "right_stick")
 					_:
+						printerr("Unknown joypad axis ", event.axis)
 						texture = null; text = ""
 	else:
-		text = ""
+		texture = null; text = ""
 	queue_redraw()
 
 
@@ -149,10 +152,22 @@ func _set_texture(folder: String, filename: String, extension: String = "png") -
 	if FileAccess.file_exists(path):
 		texture = ResourceLoader.load(path)
 	else:
+		printerr("Missing icon ", path)
 		texture = null; text = ""
 
 
 func _get_joypad_name() -> String:
-	#print(Input.get_joy_info(1))
-	#print(Input.get_joy_name(1))
+	# Wooting One keyboard on Linux:
+	# { "vendor_id": 1003, "product_id": 65281, "raw_name": "Wooting One (Legacy)" }
+	# Xbox Series Controller on Linux via USB:
+	# { "vendor_id": 1118, "product_id": 2834, "raw_name": "Microsoft Xbox Series S|X Controller" }
+	# Xbox Series Controller on Linux via Bluetooth:
+	# { "vendor_id": 1118, "product_id": 654, "raw_name": "Xbox Wireless Controller" }
+	#print(Input.get_joy_info(0))
+
+	for device in Input.get_connected_joypads():
+		if Input.is_joy_known(device):
+			var joy_name := Input.get_joy_name(device)
+			if joy_name.contains("Xbox"):
+				return "xbox_series"
 	return "xbox_series"
