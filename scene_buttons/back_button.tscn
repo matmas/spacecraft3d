@@ -10,7 +10,7 @@ events = [SubResource("InputEventAction_3uhot")]
 
 [node name="BackButton" type="Button"]
 shortcut = SubResource("Shortcut_c743h")
-text = "〈 Back"
+text = "Back"
 script = ExtResource("1_44nc2")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
