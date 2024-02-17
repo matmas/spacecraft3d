@@ -108,25 +108,25 @@ func _update_text() -> void:
 					KEY_KP_ADD:
 						_set_texture("keyboard", "kp_plus")
 					KEY_KP_0:
-						texture = null; text = "0"
+						texture = null; text = "0\nIns"
 					KEY_KP_1:
-						texture = null; text = "1"
+						texture = null; text = "1\nEnd"
 					KEY_KP_2:
-						texture = null; text = "2"
+						texture = null; text = "2\n↓"
 					KEY_KP_3:
-						texture = null; text = "3"
+						texture = null; text = "3\nPgDn"
 					KEY_KP_4:
-						texture = null; text = "4"
+						texture = null; text = "4\n←"
 					KEY_KP_5:
-						texture = null; text = "5"
+						texture = null; text = "5\n."
 					KEY_KP_6:
-						texture = null; text = "6"
+						texture = null; text = "6\n→"
 					KEY_KP_7:
-						texture = null; text = "7"
+						texture = null; text = "7\nHome"
 					KEY_KP_8:
-						texture = null; text = "8"
+						texture = null; text = "8\n↑"
 					KEY_KP_9:
-						texture = null; text = "9"
+						texture = null; text = "9\nPgUp"
 					KEY_VOLUMEDOWN:
 						texture = null; text = "Vol-"
 					KEY_VOLUMEMUTE:
