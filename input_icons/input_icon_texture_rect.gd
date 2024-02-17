@@ -33,10 +33,13 @@ func _update_text() -> void:
 			"InputEventKey":
 				var event := input_event as InputEventKey
 				var keycode := event.keycode
-				if event.physical_keycode:
+
+				# Display key labels from the current keyboard layout, e.g. AZERTY if supported
+				if event.physical_keycode and DisplayServer.get_name() in ["X11", "macOS", "Windows"]:
 					keycode = DisplayServer.keyboard_get_keycode_from_physical(
 						event.physical_keycode
 					)
+
 				text = OS.get_keycode_string(keycode)
 				texture = null
 			"InputEventMouseButton":
@@ -149,11 +152,13 @@ func _update_text() -> void:
 func _set_texture(folder: String, filename: String, extension: String = "png") -> void:
 	var base_path := "res://input_icons/icons"
 	var path := "%s/%s/%s.%s" % [base_path, folder, filename, extension]
-	if FileAccess.file_exists(path):
-		texture = ResourceLoader.load(path)
-	else:
-		printerr("Missing icon ", path)
-		texture = null; text = ""
+	texture = ResourceLoader.load(path)
+	if not texture:
+		if ResourceLoader.exists(path):
+			printerr("Failed loading ", path)
+		else:
+			printerr("Missing icon ", path)
+		text = ""
 
 
 func _get_joypad_name() -> String:
