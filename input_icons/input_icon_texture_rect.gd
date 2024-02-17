@@ -96,6 +96,8 @@ func _update_text() -> void:
 						texture = null; text = "/"
 					KEY_KP_MULTIPLY:
 						texture = null; text = "*"
+					KEY_KP_PERIOD:
+						texture = null; text = "."
 					KEY_KP_0:
 						texture = null; text = "0"
 					KEY_KP_1:
