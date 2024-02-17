@@ -26,6 +26,5 @@ func inputmap_get_events(action: StringName) -> Array[InputEvent]:
 
 
 func _ready() -> void:
-	print("Number of connected joypads: ", Input.get_connected_joypads().size())
 	for device in Input.get_connected_joypads():
 		print(Input.get_joy_info(device), "" if Input.is_joy_known(device) else " (unknown)")
