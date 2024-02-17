@@ -8,11 +8,6 @@ func _ready() -> void:
 
 	_refresh()
 
-	# Running scene alone for debugging purposes?
-	if get_parent() == get_tree().root:
-		set_process(false)
-		set_physics_process(false)
-
 
 static func is_action_pressed(action: StringName, exact_match: bool = false) -> bool:
 	_actions_used[action] = true
@@ -59,6 +54,7 @@ func _refresh() -> void:
 func _update_visibility_recursivaly(node: Node):
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
-			node.visible = _actions_used[node.name]
+			node.visible = _actions_used[node.name] \
+				or get_parent() == get_tree().root  # Show everything when running only this scene
 	for child in node.get_children():
 		_update_visibility_recursivaly(child)

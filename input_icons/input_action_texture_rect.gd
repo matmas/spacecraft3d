@@ -20,7 +20,8 @@ enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
 		_update_input_event()
 
 
-func _ready() -> void:
+func _init() -> void:
+	super._init()
 	InputMonitor.input_type_changed.connect(_on_input_type_changed)
 
 
