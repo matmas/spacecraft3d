@@ -88,6 +88,44 @@ func _update_text() -> void:
 						texture = null; text = "Pg\nUp"
 					KEY_PAGEDOWN:
 						texture = null; text = "Pg\nDn"
+					KEY_KP_ENTER:
+						_set_texture("keyboard", "kp_enter")
+					KEY_KP_ADD:
+						_set_texture("keyboard", "kp_plus")
+					KEY_KP_DIVIDE:
+						texture = null; text = "/"
+					KEY_KP_MULTIPLY:
+						texture = null; text = "*"
+					KEY_KP_0:
+						texture = null; text = "0"
+					KEY_KP_1:
+						texture = null; text = "1"
+					KEY_KP_2:
+						texture = null; text = "2"
+					KEY_KP_3:
+						texture = null; text = "3"
+					KEY_KP_4:
+						texture = null; text = "4"
+					KEY_KP_5:
+						texture = null; text = "5"
+					KEY_KP_6:
+						texture = null; text = "6"
+					KEY_KP_7:
+						texture = null; text = "7"
+					KEY_KP_8:
+						texture = null; text = "8"
+					KEY_KP_9:
+						texture = null; text = "9"
+					KEY_NUMLOCK:
+						texture = null; text = "Num\nLock"
+					KEY_KP_SUBTRACT:
+						_set_texture("keyboard", "kp_minus")
+					KEY_SCROLLLOCK:
+						texture = null; text = "Scroll\nLock"
+					KEY_CAPSLOCK:
+						texture = null; text = "Caps\nLock"
+					KEY_ESCAPE:
+						texture = null; text = "Esc"
 					_:
 						texture = null; text = OS.get_keycode_string(keycode)
 			"InputEventMouseButton":
