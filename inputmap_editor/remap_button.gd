@@ -94,6 +94,9 @@ func _on_gui_input(event: InputEvent) -> void:
 					if Rect2(Vector2(), size).has_point(event.position):
 						_clear_mapping()
 						refresh()
+		if event.is_action_pressed(&"ui_text_delete"):
+			_clear_mapping()
+			refresh()
 
 
 func _clear_mapping() -> void:
