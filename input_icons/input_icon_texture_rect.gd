@@ -82,6 +82,14 @@ func _update_text() -> void:
 						texture = null; text = "Pg\nUp"
 					KEY_PAGEDOWN:
 						texture = null; text = "Pg\nDn"
+					KEY_META:
+						match OS.get_name():
+							"macOS":
+								_set_texture("keyboard", "cmd")
+							"Windows":
+								_set_texture("keyboard", "windows")
+							_:
+								texture = null; text = "Meta"
 					KEY_CAPSLOCK:
 						texture = null; text = "Caps\nLock"
 					KEY_NUMLOCK:
