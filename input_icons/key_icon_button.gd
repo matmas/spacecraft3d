@@ -2,10 +2,19 @@
 extends Button
 class_name InputActionButton
 
+var input_action_rect := InputActionTextureRect.new()
+var viewport := SubViewport.new()
+
 @export var action_name: StringName = "":
 	set(value):
 		action_name = value
 		input_action_rect.action_name = value
+
+## Convert physical keycodes (US QWERTY) to ones in the active keyboard layout, e.g. AZERTY if supported by DisplayServer
+@export var convert_physical_keycodes := false:
+	set(value):
+		convert_physical_keycodes = value
+		input_action_rect.convert_physical_keycodes = value
 
 @export var show_mode := InputActionTextureRect.ShowMode.ANY:
 	set(value):
@@ -17,14 +26,16 @@ class_name InputActionButton
 		force_mode = value
 		input_action_rect.force_mode = value
 
+@export var ignore_joypad_direction := false:
+	set(value):
+		ignore_joypad_direction = value
+		input_action_rect.ignore_joypad_direction = value
+
 @export var icon_size := Vector2(50, 50):
 	set(value):
 		icon_size = value
 		viewport.size = value
 		input_action_rect.size = value
-
-var input_action_rect := InputActionTextureRect.new()
-var viewport := SubViewport.new()
 
 func _init() -> void:
 	viewport.size = icon_size

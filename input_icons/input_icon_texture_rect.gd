@@ -7,6 +7,11 @@ class_name InputEventTextureRect
 		input_event = value
 		_update_text()
 
+## Convert physical keycodes (US QWERTY) to ones in the active keyboard layout, e.g. AZERTY if supported by DisplayServer
+@export var convert_physical_keycodes := false:
+	set(value):
+		convert_physical_keycodes = value
+		_update_text()
 
 func _init() -> void:
 	super._init()
@@ -33,71 +38,66 @@ func _update_text() -> void:
 			"InputEventKey":
 				var event := input_event as InputEventKey
 				var keycode: Key
-				if event.keycode:
-					keycode = event.keycode
-				elif event.key_label:
-					keycode = event.key_label
-				elif event.physical_keycode:
-					# Display key codes from the current keyboard layout, e.g. AZERTY if supported
-					if DisplayServer.get_name() in ["X11", "macOS", "Windows"]:
+
+				if event.physical_keycode:
+					if convert_physical_keycodes and DisplayServer.get_name() in ["X11", "macOS", "Windows"]:
 						keycode = DisplayServer.keyboard_get_keycode_from_physical(
 							event.physical_keycode
 						)
 					else:
 						keycode = event.physical_keycode
+				elif event.keycode:
+					keycode = event.keycode
+				elif event.key_label:
+					keycode = event.key_label
+
 				match keycode:
-					KEY_UP:
-						_set_texture("keyboard", "arrow_up")
-					KEY_LEFT:
-						_set_texture("keyboard", "arrow_left")
-					KEY_DOWN:
-						_set_texture("keyboard", "arrow_down")
-					KEY_RIGHT:
-						_set_texture("keyboard", "arrow_right")
+					KEY_NONE:
+						texture = null; text = ""
+					KEY_SPECIAL:
+						texture = null; text = " "
+					KEY_ESCAPE:
+						texture = null; text = "Esc"
 					KEY_BACKSPACE:
 						_set_texture("keyboard", "backspace")
 					KEY_ENTER:
 						_set_texture("keyboard", "enter")
-					KEY_COMMA:
-						texture = null; text = ","
-					KEY_PERIOD:
-						texture = null; text = "."
-					KEY_SLASH:
-						texture = null; text = "/"
-					KEY_BACKSLASH:
-						texture = null; text = "\\"
-					KEY_QUOTELEFT:
-						texture = null; text = "`"
-					KEY_APOSTROPHE:
-						texture = null; text = "'"
-					KEY_SEMICOLON:
-						texture = null; text = ";"
-					KEY_BRACKETLEFT:
-						texture = null; text = "["
-					KEY_BRACKETRIGHT:
-						texture = null; text = "]"
-					KEY_MINUS:
-						texture = null; text = "-"
-					KEY_EQUAL:
-						texture = null; text = "="
+					KEY_KP_ENTER:
+						_set_texture("keyboard", "kp_enter")
 					KEY_INSERT:
 						texture = null; text = "Ins"
 					KEY_DELETE:
 						texture = null; text = "Del"
+					KEY_PRINT:
+						texture = null; text = "PrtScr"
+					KEY_LEFT:
+						_set_texture("keyboard", "arrow_left")
+					KEY_UP:
+						_set_texture("keyboard", "arrow_up")
+					KEY_RIGHT:
+						_set_texture("keyboard", "arrow_right")
+					KEY_DOWN:
+						_set_texture("keyboard", "arrow_down")
 					KEY_PAGEUP:
 						texture = null; text = "Pg\nUp"
 					KEY_PAGEDOWN:
 						texture = null; text = "Pg\nDn"
-					KEY_KP_ENTER:
-						_set_texture("keyboard", "kp_enter")
-					KEY_KP_ADD:
-						_set_texture("keyboard", "kp_plus")
-					KEY_KP_DIVIDE:
-						texture = null; text = "/"
+					KEY_CAPSLOCK:
+						texture = null; text = "Caps\nLock"
+					KEY_NUMLOCK:
+						texture = null; text = "Num\nLock"
+					KEY_SCROLLLOCK:
+						texture = null; text = "Scroll\nLock"
 					KEY_KP_MULTIPLY:
 						texture = null; text = "*"
+					KEY_KP_DIVIDE:
+						texture = null; text = "/"
+					KEY_KP_SUBTRACT:
+						_set_texture("keyboard", "kp_minus")
 					KEY_KP_PERIOD:
 						texture = null; text = "."
+					KEY_KP_ADD:
+						_set_texture("keyboard", "kp_plus")
 					KEY_KP_0:
 						texture = null; text = "0"
 					KEY_KP_1:
@@ -118,16 +118,104 @@ func _update_text() -> void:
 						texture = null; text = "8"
 					KEY_KP_9:
 						texture = null; text = "9"
-					KEY_NUMLOCK:
-						texture = null; text = "Num\nLock"
-					KEY_KP_SUBTRACT:
-						_set_texture("keyboard", "kp_minus")
-					KEY_SCROLLLOCK:
-						texture = null; text = "Scroll\nLock"
-					KEY_CAPSLOCK:
-						texture = null; text = "Caps\nLock"
-					KEY_ESCAPE:
-						texture = null; text = "Esc"
+					KEY_VOLUMEDOWN:
+						texture = null; text = "Vol-"
+					KEY_VOLUMEMUTE:
+						texture = null; text = "Mute"
+					KEY_VOLUMEUP:
+						texture = null; text = "Vol+"
+					KEY_MEDIAPLAY:
+						texture = null; text = "Play"
+					KEY_MEDIASTOP:
+						texture = null; text = "Stop"
+					KEY_MEDIAPREVIOUS:
+						texture = null; text = "Prev"
+					KEY_MEDIANEXT:
+						texture = null; text = "Next"
+					KEY_MEDIARECORD:
+						texture = null; text = "Rec"
+					KEY_FAVORITES:
+						texture = null; text = "Fav"
+					KEY_OPENURL:
+						texture = null; text = "URL"
+					KEY_LAUNCHMAIL:
+						texture = null; text = "Mail"
+					KEY_LAUNCHMEDIA:
+						texture = null; text = "Media"
+					KEY_KEYBOARD:
+						texture = null; text = "Keyboard"
+					KEY_JIS_EISU:
+						texture = null; text = "英数"
+					KEY_JIS_KANA:
+						texture = null; text = "かな"
+					KEY_EXCLAM:
+						texture = null; text = "!"
+					KEY_QUOTEDBL:
+						texture = null; text = "\""
+					KEY_NUMBERSIGN:
+						texture = null; text = "#"
+					KEY_DOLLAR:
+						texture = null; text = "$"
+					KEY_PERCENT:
+						texture = null; text = "%"
+					KEY_AMPERSAND:
+						texture = null; text = "&"
+					KEY_APOSTROPHE:
+						texture = null; text = "'"
+					KEY_PARENLEFT:
+						texture = null; text = "("
+					KEY_PARENRIGHT:
+						texture = null; text = ")"
+					KEY_ASTERISK:
+						texture = null; text = "*"
+					KEY_PLUS:
+						texture = null; text = "+"
+					KEY_COMMA:
+						texture = null; text = ","
+					KEY_MINUS:
+						texture = null; text = "-"
+					KEY_PERIOD:
+						texture = null; text = "."
+					KEY_SLASH:
+						texture = null; text = "/"
+					KEY_COLON:
+						texture = null; text = ":"
+					KEY_SEMICOLON:
+						texture = null; text = ";"
+					KEY_LESS:
+						texture = null; text = "<"
+					KEY_EQUAL:
+						texture = null; text = "="
+					KEY_GREATER:
+						texture = null; text = ">"
+					KEY_QUESTION:
+						texture = null; text = "?"
+					KEY_AT:
+						texture = null; text = "@"
+					KEY_BRACKETLEFT:
+						texture = null; text = "["
+					KEY_BACKSLASH:
+						texture = null; text = "\\"
+					KEY_BRACKETRIGHT:
+						texture = null; text = "]"
+					KEY_ASCIICIRCUM:
+						texture = null; text = "^"
+					KEY_UNDERSCORE:
+						texture = null; text = "_"
+					KEY_QUOTELEFT:
+						texture = null; text = "`"
+					KEY_BRACELEFT:
+						texture = null; text = "{"
+					KEY_BAR:
+						texture = null; text = "|"
+					KEY_BRACERIGHT:
+						texture = null; text = "}"
+					KEY_ASCIITILDE:
+						texture = null; text = "~"
+					KEY_YEN:
+						texture = null; text = "¥"
+					KEY_SECTION:
+						texture = null; text = "§"
 					_:
 						texture = null; text = OS.get_keycode_string(keycode)
 			"InputEventMouseButton":
