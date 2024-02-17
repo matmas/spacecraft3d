@@ -27,7 +27,7 @@ func _draw() -> void:
 
 func _validate_property(property: Dictionary) -> void:
 	super._validate_property(property)
-	if property.name in ["text", "texture", "expand_mode", "stretch_mode"]:
+	if property.name in ["text", "texture", "expand_mode", "stretch_mode", "horizontal_alignment"]:
 		# Don't persist or show property in the editor
 		property.usage = PROPERTY_USAGE_NONE
 
@@ -51,6 +51,7 @@ func _update_text() -> void:
 				elif event.key_label:
 					keycode = event.key_label
 
+				horizontal_alignment = HorizontalAlignment.CENTER
 				match keycode:
 					KEY_NONE:
 						texture = null; text = ""
@@ -79,9 +80,9 @@ func _update_text() -> void:
 					KEY_DOWN:
 						_set_texture("keyboard", "arrow_down")
 					KEY_PAGEUP:
-						texture = null; text = "Pg\nUp"
+						texture = null; text = "Page\nUp"; horizontal_alignment = HorizontalAlignment.LEFT
 					KEY_PAGEDOWN:
-						texture = null; text = "Pg\nDn"
+						texture = null; text = "Page\nDown"; horizontal_alignment = HorizontalAlignment.LEFT
 					KEY_META:
 						match OS.get_name():
 							"macOS":
@@ -91,11 +92,11 @@ func _update_text() -> void:
 							_:
 								texture = null; text = "Meta"
 					KEY_CAPSLOCK:
-						texture = null; text = "Caps\nLock"
+						texture = null; text = "Caps\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
 					KEY_NUMLOCK:
-						texture = null; text = "Num\nLock"
+						texture = null; text = "Num\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
 					KEY_SCROLLLOCK:
-						texture = null; text = "Scroll\nLock"
+						texture = null; text = "Scroll\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
 					KEY_KP_MULTIPLY:
 						texture = null; text = "*"
 					KEY_KP_DIVIDE:
