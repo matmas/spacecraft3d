@@ -51,14 +51,13 @@ func _update_text() -> void:
 				elif event.key_label:
 					keycode = event.key_label
 
-				horizontal_alignment = HorizontalAlignment.CENTER
 				match keycode:
 					KEY_NONE:
-						texture = null; text = ""
+						_set_text("")
 					KEY_SPECIAL:
-						texture = null; text = " "
+						_set_text(" ")
 					KEY_ESCAPE:
-						texture = null; text = "Esc"
+						_set_text("Esc")
 					KEY_BACKSPACE:
 						_set_texture("keyboard", "backspace")
 					KEY_ENTER:
@@ -66,11 +65,11 @@ func _update_text() -> void:
 					KEY_KP_ENTER:
 						_set_texture("keyboard", "kp_enter")
 					KEY_INSERT:
-						texture = null; text = "Ins"
+						_set_text("Ins")
 					KEY_DELETE:
-						texture = null; text = "Del"
+						_set_text("Del")
 					KEY_PRINT:
-						texture = null; text = "PrtScr"
+						_set_text("PrtScr")
 					KEY_LEFT:
 						_set_texture("keyboard", "arrow_left")
 					KEY_UP:
@@ -80,9 +79,9 @@ func _update_text() -> void:
 					KEY_DOWN:
 						_set_texture("keyboard", "arrow_down")
 					KEY_PAGEUP:
-						texture = null; text = "Page\nUp"; horizontal_alignment = HorizontalAlignment.LEFT
+						_set_text("Page\nUp", HorizontalAlignment.LEFT)
 					KEY_PAGEDOWN:
-						texture = null; text = "Page\nDown"; horizontal_alignment = HorizontalAlignment.LEFT
+						_set_text("Page\nDown", HorizontalAlignment.LEFT)
 					KEY_META:
 						match OS.get_name():
 							"macOS":
@@ -90,143 +89,143 @@ func _update_text() -> void:
 							"Windows":
 								_set_texture("keyboard", "windows")
 							_:
-								texture = null; text = "Meta"
+								_set_text("Meta")
 					KEY_CAPSLOCK:
-						texture = null; text = "Caps\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
+						_set_text("Caps\nLock", HorizontalAlignment.LEFT)
 					KEY_NUMLOCK:
-						texture = null; text = "Num\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
+						_set_text("Num\nLock", HorizontalAlignment.LEFT)
 					KEY_SCROLLLOCK:
-						texture = null; text = "Scroll\nLock"; horizontal_alignment = HorizontalAlignment.LEFT
+						_set_text("Scroll\nLock", HorizontalAlignment.LEFT)
 					KEY_KP_MULTIPLY:
-						texture = null; text = "*"
+						_set_text("*")
 					KEY_KP_DIVIDE:
-						texture = null; text = "/"
+						_set_text("/")
 					KEY_KP_SUBTRACT:
 						_set_texture("keyboard", "kp_minus")
 					KEY_KP_PERIOD:
-						texture = null; text = "."
+						_set_text(".")
 					KEY_KP_ADD:
 						_set_texture("keyboard", "kp_plus")
 					KEY_KP_0:
-						texture = null; text = "0\nIns"
+						_set_text("0\nIns")
 					KEY_KP_1:
-						texture = null; text = "1\nEnd"
+						_set_text("1\nEnd")
 					KEY_KP_2:
-						texture = null; text = "2\n↓"
+						_set_text("2\n↓")
 					KEY_KP_3:
-						texture = null; text = "3\nPgDn"
+						_set_text("3\nPgDn")
 					KEY_KP_4:
-						texture = null; text = "4\n←"
+						_set_text("4\n←")
 					KEY_KP_5:
-						texture = null; text = "5\n."
+						_set_text("5\n.")
 					KEY_KP_6:
-						texture = null; text = "6\n→"
+						_set_text("6\n→")
 					KEY_KP_7:
-						texture = null; text = "7\nHome"
+						_set_text("7\nHome")
 					KEY_KP_8:
-						texture = null; text = "8\n↑"
+						_set_text("8\n↑")
 					KEY_KP_9:
-						texture = null; text = "9\nPgUp"
+						_set_text("9\nPgUp")
 					KEY_VOLUMEDOWN:
-						texture = null; text = "Vol-"
+						_set_text("Vol-")
 					KEY_VOLUMEMUTE:
-						texture = null; text = "Mute"
+						_set_text("Mute")
 					KEY_VOLUMEUP:
-						texture = null; text = "Vol+"
+						_set_text("Vol+")
 					KEY_MEDIAPLAY:
-						texture = null; text = "Play"
+						_set_text("Play")
 					KEY_MEDIASTOP:
-						texture = null; text = "Stop"
+						_set_text("Stop")
 					KEY_MEDIAPREVIOUS:
-						texture = null; text = "Prev"
+						_set_text("Prev")
 					KEY_MEDIANEXT:
-						texture = null; text = "Next"
+						_set_text("Next")
 					KEY_MEDIARECORD:
-						texture = null; text = "Rec"
+						_set_text("Rec")
 					KEY_FAVORITES:
-						texture = null; text = "Fav"
+						_set_text("Fav")
 					KEY_OPENURL:
-						texture = null; text = "URL"
+						_set_text("URL")
 					KEY_LAUNCHMAIL:
-						texture = null; text = "Mail"
+						_set_text("Mail")
 					KEY_LAUNCHMEDIA:
-						texture = null; text = "Media"
+						_set_text("Media")
 					KEY_KEYBOARD:
-						texture = null; text = "Keyboard"
+						_set_text("Keyboard")
 					KEY_JIS_EISU:
-						texture = null; text = "英数"
+						_set_text("英数")
 					KEY_JIS_KANA:
-						texture = null; text = "かな"
+						_set_text("かな")
 					KEY_EXCLAM:
-						texture = null; text = "!"
+						_set_text("!")
 					KEY_QUOTEDBL:
-						texture = null; text = "\""
+						_set_text("\"")
 					KEY_NUMBERSIGN:
-						texture = null; text = "#"
+						_set_text("#")
 					KEY_DOLLAR:
-						texture = null; text = "$"
+						_set_text("$")
 					KEY_PERCENT:
-						texture = null; text = "%"
+						_set_text("%")
 					KEY_AMPERSAND:
-						texture = null; text = "&"
+						_set_text("&")
 					KEY_APOSTROPHE:
-						texture = null; text = "'"
+						_set_text("'")
 					KEY_PARENLEFT:
-						texture = null; text = "("
+						_set_text("(")
 					KEY_PARENRIGHT:
-						texture = null; text = ")"
+						_set_text(")")
 					KEY_ASTERISK:
-						texture = null; text = "*"
+						_set_text("*")
 					KEY_PLUS:
-						texture = null; text = "+"
+						_set_text("+")
 					KEY_COMMA:
-						texture = null; text = ","
+						_set_text(",")
 					KEY_MINUS:
-						texture = null; text = "-"
+						_set_text("-")
 					KEY_PERIOD:
-						texture = null; text = "."
+						_set_text(".")
 					KEY_SLASH:
-						texture = null; text = "/"
+						_set_text("/")
 					KEY_COLON:
-						texture = null; text = ":"
+						_set_text(":")
 					KEY_SEMICOLON:
-						texture = null; text = ";"
+						_set_text(";")
 					KEY_LESS:
-						texture = null; text = "<"
+						_set_text("<")
 					KEY_EQUAL:
-						texture = null; text = "="
+						_set_text("=")
 					KEY_GREATER:
-						texture = null; text = ">"
+						_set_text(">")
 					KEY_QUESTION:
-						texture = null; text = "?"
+						_set_text("?")
 					KEY_AT:
-						texture = null; text = "@"
+						_set_text("@")
 					KEY_BRACKETLEFT:
-						texture = null; text = "["
+						_set_text("[")
 					KEY_BACKSLASH:
-						texture = null; text = "\\"
+						_set_text("\\")
 					KEY_BRACKETRIGHT:
-						texture = null; text = "]"
+						_set_text("]")
 					KEY_ASCIICIRCUM:
-						texture = null; text = "^"
+						_set_text("^")
 					KEY_UNDERSCORE:
-						texture = null; text = "_"
+						_set_text("_")
 					KEY_QUOTELEFT:
-						texture = null; text = "`"
+						_set_text("`")
 					KEY_BRACELEFT:
-						texture = null; text = "{"
+						_set_text("{")
 					KEY_BAR:
-						texture = null; text = "|"
+						_set_text("|")
 					KEY_BRACERIGHT:
-						texture = null; text = "}"
+						_set_text("}")
 					KEY_ASCIITILDE:
-						texture = null; text = "~"
+						_set_text("~")
 					KEY_YEN:
-						texture = null; text = "¥"
+						_set_text("¥")
 					KEY_SECTION:
-						texture = null; text = "§"
+						_set_text("§")
 					_:
-						texture = null; text = OS.get_keycode_string(keycode)
+						_set_text(OS.get_keycode_string(keycode))
 			"InputEventMouseButton":
 				var event := input_event as InputEventMouseButton
 				match event.button_index:
@@ -250,7 +249,7 @@ func _update_text() -> void:
 						_set_texture("mouse", "thumb_button_2")
 					_:
 						printerr("Unknown mouse button ", event.button_index)
-						texture = null; text = ""
+						_set_text("")
 			"InputEventJoypadButton":
 				var event := input_event as InputEventJoypadButton
 				match event.button_index:
@@ -269,9 +268,9 @@ func _update_text() -> void:
 							"steam", "steam_deck", "switch", "joy_con":
 								_set_texture(_get_joypad_name(), "home")
 							"ps3", "ps4", "ps5":
-								texture = null; text = "PS"
+								_set_text("PS")
 							_:
-								texture = null; text = "Home"
+								_set_text("Home")
 					JOY_BUTTON_START:
 						_set_texture(_get_joypad_name(), "start")
 					JOY_BUTTON_LEFT_STICK:
@@ -297,30 +296,30 @@ func _update_text() -> void:
 							"steam_deck", "steam":
 								_set_texture(_get_joypad_name(), "paddle1")
 							_:
-								texture = null; text = "Paddle 1"
+								_set_text("Paddle 1")
 					JOY_BUTTON_PADDLE2:
 						match _get_joypad_name():
 							"steam_deck", "steam":
 								_set_texture(_get_joypad_name(), "paddle2")
 							_:
-								texture = null; text = "Paddle 2"
+								_set_text("Paddle 2")
 					JOY_BUTTON_PADDLE3:
 						match _get_joypad_name():
 							"steam_deck":
 								_set_texture(_get_joypad_name(), "paddle3")
 							_:
-								texture = null; text = "Paddle 3"
+								_set_text("Paddle 3")
 					JOY_BUTTON_PADDLE4:
 						match _get_joypad_name():
 							"steam_deck":
 								_set_texture(_get_joypad_name(), "paddle4")
 							_:
-								texture = null; text = "Paddle 4"
+								_set_text("Paddle 4")
 					JOY_BUTTON_TOUCHPAD:
 						_set_texture(_get_joypad_name(), "touchpad")
 					_:
 						printerr("Unknown joypad button ", event.button_index)
-						texture = null; text = ""
+						_set_text("")
 			"InputEventJoypadMotion":
 				var event := input_event as InputEventJoypadMotion
 				match event.axis:
@@ -350,10 +349,16 @@ func _update_text() -> void:
 						_set_texture(_get_joypad_name(), "right_stick")
 					_:
 						printerr("Unknown joypad axis ", event.axis)
-						texture = null; text = ""
+						_set_text("")
 	else:
-		texture = null; text = ""
+		_set_text("")
 	queue_redraw()
+
+
+func _set_text(value: String, _horizontal_alignment := HorizontalAlignment.CENTER) -> void:
+	texture = null
+	text = value
+	horizontal_alignment = _horizontal_alignment
 
 
 func _set_texture(folder: String, filename: String, extension: String = "png") -> void:
