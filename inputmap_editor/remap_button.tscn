@@ -10,6 +10,7 @@ text_overrun_behavior = 3
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_8fbh4")
+action_name = &"jump"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]

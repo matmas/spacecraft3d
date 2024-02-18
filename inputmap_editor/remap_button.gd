@@ -1,3 +1,4 @@
+@tool
 extends InputActionButton
 class_name RemapButton
 
@@ -12,6 +13,13 @@ var action: StringName:
 
 var _is_capturing := false
 var _saved_mouse_position := Vector2()
+
+func _validate_property(property: Dictionary) -> void:
+	super._validate_property(property)
+	if property.name == "disabled":
+		# Don't persist or show property in the editor
+		property.usage = PROPERTY_USAGE_NONE
+
 
 func _ready() -> void:
 	_on_input_type_changed(InputMonitor.current_input_type)
