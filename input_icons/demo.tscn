@@ -28,4 +28,4 @@ offset_right = 225.0
 offset_bottom = 110.0
 text = "test"
 script = ExtResource("3_q23xs")
-action_name = &"ui_focus_next"
+action_name = &"move_forward"
