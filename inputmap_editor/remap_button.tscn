@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://inputmap_editor/remap_button.gd" id="1_8fbh4"]
 
 [node name="RemapButton" type="Button"]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 58.0
 theme_type_variation = &"DefaultButton"
 toggle_mode = true
-text_overrun_behavior = 3
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("1_8fbh4")
 action_name = &"jump"
 
