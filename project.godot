@@ -22,8 +22,7 @@ ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload
 JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
 InputmapPersistence="*res://inputmap_editor/inputmap_persistence_autoload.gd"
-InputMonitor="*res://input_monitor/input_monitor_autoload.gd"
-InputUtils="*res://input_icons/input_utils_autoload.gd"
+InputMonitor="*res://input_icons/input_monitor_autoload.gd"
 
 [editor]
 

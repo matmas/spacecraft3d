@@ -57,7 +57,7 @@ func _get_input_event_for_display() -> InputEvent:
 			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD:
 		return null
 
-	for event in InputUtils.inputmap_get_events(action_name):
+	for event in _inputmap_get_events(action_name):
 		match event.get_class():
 			"InputEventKey", "InputEventMouseButton":
 				if force_mode:
@@ -74,3 +74,17 @@ func _get_input_event_for_display() -> InputEvent:
 					if InputMonitor.current_input_type == InputMonitor.InputType.JOYPAD:
 						return event
 	return null
+
+
+func _inputmap_get_events(action: StringName) -> Array[InputEvent]:
+	# Inside the editor InputMap.action_get_events() doesn't return custom events in ProjectSettings
+	if Engine.is_editor_hint():
+		var action_setting = ProjectSettings.get_setting("input/%s" % action)
+		if action_setting:
+			var typed_array: Array[InputEvent] = []
+			typed_array.assign(action_setting["events"])
+			return typed_array
+		else:
+			return []
+	else:
+		return InputMap.action_get_events(action)
