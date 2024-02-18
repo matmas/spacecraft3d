@@ -263,9 +263,15 @@ func _update_text() -> void:
 					JOY_BUTTON_Y:
 						_set_texture(_get_joypad_name(), "y")
 					JOY_BUTTON_BACK:
-						_set_texture(_get_joypad_name(), "back")
+						_set_texture(_get_joypad_name(), "select")
 					JOY_BUTTON_GUIDE:
-						texture = null; text = "Home"
+						match _get_joypad_name():
+							"steam", "steam_deck", "switch", "joy_con":
+								_set_texture(_get_joypad_name(), "home")
+							"ps3", "ps4", "ps5":
+								texture = null; text = "PS"
+							_:
+								texture = null; text = "Home"
 					JOY_BUTTON_START:
 						_set_texture(_get_joypad_name(), "start")
 					JOY_BUTTON_LEFT_STICK:
@@ -287,13 +293,29 @@ func _update_text() -> void:
 					JOY_BUTTON_MISC1:
 						_set_texture(_get_joypad_name(), "misc")
 					JOY_BUTTON_PADDLE1:
-						texture = null; text = "Paddle 1"
+						match _get_joypad_name():
+							"steam_deck", "steam":
+								_set_texture(_get_joypad_name(), "paddle1")
+							_:
+								texture = null; text = "Paddle 1"
 					JOY_BUTTON_PADDLE2:
-						texture = null; text = "Paddle 2"
+						match _get_joypad_name():
+							"steam_deck", "steam":
+								_set_texture(_get_joypad_name(), "paddle2")
+							_:
+								texture = null; text = "Paddle 2"
 					JOY_BUTTON_PADDLE3:
-						texture = null; text = "Paddle 3"
+						match _get_joypad_name():
+							"steam_deck":
+								_set_texture(_get_joypad_name(), "paddle3")
+							_:
+								texture = null; text = "Paddle 3"
 					JOY_BUTTON_PADDLE4:
-						texture = null; text = "Paddle 4"
+						match _get_joypad_name():
+							"steam_deck":
+								_set_texture(_get_joypad_name(), "paddle4")
+							_:
+								texture = null; text = "Paddle 4"
 					JOY_BUTTON_TOUCHPAD:
 						_set_texture(_get_joypad_name(), "touchpad")
 					_:
@@ -347,16 +369,27 @@ func _set_texture(folder: String, filename: String, extension: String = "png") -
 
 
 func _get_joypad_name() -> String:
-	# Wooting One keyboard on Linux:
-	# { "vendor_id": 1003, "product_id": 65281, "raw_name": "Wooting One (Legacy)" }
-	# Xbox Series Controller on Linux via USB:
-	# { "vendor_id": 1118, "product_id": 2834, "raw_name": "Microsoft Xbox Series S|X Controller" }
-	# Xbox Series Controller on Linux via Bluetooth:
-	# { "vendor_id": 1118, "product_id": 654, "raw_name": "Xbox Wireless Controller" }
-
 	for device in Input.get_connected_joypads():
 		if Input.is_joy_known(device):
 			var joy_name := Input.get_joy_name(device)
-			if joy_name.contains("Xbox"):
+			if "PS3 Controller" in joy_name:
+				return "ps3"
+			elif "PS4 Controller" in joy_name:
+				return "ps4"
+			elif "PS5 Controller" in joy_name:
+				return "ps5"
+			elif "Xbox 360 Controller" in joy_name:
+				return "xbox_360"
+			elif "Xbox One" in joy_name or "X-Box One" in joy_name or "Xbox Wireless Controller" in joy_name:
+				return "xbox_one"
+			elif "Xbox Series" in joy_name:
 				return "xbox_series"
+			elif "Switch Controller" in joy_name or "Switch Pro Controller" in joy_name:
+				return "switch"
+			elif "Joy-Con" in joy_name:
+				return "joy_con"
+			elif "Steam Controller" in joy_name:
+				return "steam"
+			elif "Steam Deck" in joy_name or "Steam Virtual Gamepad" in joy_name:
+				return "steam_deck"
 	return "xbox_series"
