@@ -74,9 +74,9 @@ func _draw() -> void:
 
 	# Calculate key size
 	var rect := Rect2(0, 0, _get_width(), _get_height())
-	var x_ratio := clampf(test_text_dimensions.aspect(), 1.0, 10.0) if allow_text_to_affect_margin else 1.0
-	var y_ratio := clampf(test_text_dimensions.aspect(), 1.0, 1.8) if allow_text_to_affect_margin else 1.0
 	if add_margin:
+		var x_ratio := clampf(test_text_dimensions.aspect(), 1.0, 10.0) if allow_text_to_affect_margin else 1.0
+		var y_ratio := clampf(test_text_dimensions.aspect(), 1.0, 1.6) if allow_text_to_affect_margin else 1.0
 		rect = rect.grow_individual(
 			-rect.size.x * margin_proportion * 0.5 / x_ratio,
 			-rect.size.y * margin_proportion * 0.5 * y_ratio,

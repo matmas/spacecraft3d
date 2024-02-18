@@ -48,7 +48,7 @@ text = "KeyIconTextureRect"
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("2_lmof7")
-text = ":)"
+text = "any text :)"
 
 [node name="KeyIconTextureRectDescription" type="Label" parent="GridContainer"]
 layout_mode = 2
