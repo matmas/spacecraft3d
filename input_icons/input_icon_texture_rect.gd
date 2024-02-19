@@ -352,6 +352,7 @@ func _update_text() -> void:
 						_set_text("")
 	else:
 		_set_text("")
+	visibility = bool(text or texture)
 	queue_redraw()
 
 
@@ -365,12 +366,12 @@ func _set_texture(folder: String, filename: String, extension: String = "png") -
 	var base_path := "res://input_icons/icons"
 	var path := "%s/%s/%s.%s" % [base_path, folder, filename, extension]
 	texture = ResourceLoader.load(path)
+	text = ""
 	if not texture:
 		if ResourceLoader.exists(path):
 			printerr("Failed loading ", path)
 		else:
 			printerr("Missing icon ", path)
-		text = ""
 
 
 func _get_joypad_name() -> String:

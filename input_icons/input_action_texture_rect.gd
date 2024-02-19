@@ -2,7 +2,7 @@
 extends InputEventTextureRect
 class_name InputActionTextureRect
 
-@export var action_name: StringName = "":
+@export var action_name: StringName = &"":
 	set(value):
 		action_name = value
 		_update_input_event()

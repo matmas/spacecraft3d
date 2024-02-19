@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://input_hints/only_controller_label.gd" id="3_3hx2n"]
-[ext_resource type="Script" path="res://input_hints/only_keyboard_mouse_input_action_texture_rect.gd" id="3_s6bnh"]
 [ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="5_mck50"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
@@ -88,6 +87,7 @@ layout_mode = 2
 
 [node name="move_forward" type="HBoxContainer" parent="LeftControls/MovementAndLook"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
@@ -99,24 +99,27 @@ ignore_joypad_direction = true
 [node name="move_left" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
 theme = ExtResource("5_mck50")
-script = ExtResource("3_s6bnh")
+script = ExtResource("6_kuhb4")
 action_name = &"move_left"
+visibility_mode = 1
 
 [node name="move_backward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
 theme = ExtResource("5_mck50")
-script = ExtResource("3_s6bnh")
+script = ExtResource("6_kuhb4")
 action_name = &"move_backward"
+visibility_mode = 1
 
 [node name="move_right" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
 theme = ExtResource("5_mck50")
-script = ExtResource("3_s6bnh")
+script = ExtResource("6_kuhb4")
 action_name = &"move_right"
+visibility_mode = 1
 
 [node name="Label" type="Label" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
-text = "movement"
+text = " movement"
 
 [node name="look_up" type="HBoxContainer" parent="LeftControls/MovementAndLook"]
 layout_mode = 2

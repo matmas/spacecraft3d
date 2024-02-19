@@ -5,7 +5,7 @@ class_name InputActionButton
 var input_action_rect := InputActionTextureRect.new()
 var viewport := SubViewport.new()
 
-@export var action_name: StringName = "":
+@export var action_name: StringName = &"":
 	set(value):
 		action_name = value
 		input_action_rect.action_name = value

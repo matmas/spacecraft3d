@@ -11,10 +11,10 @@ const THEME = preload("key_icon_theme.tres")
 		text = value
 		queue_redraw()
 
-@export var minimum_size := Vector2(50, 50):
+@export var minimum_size := Vector2(50, 50):  # This property is here so we can set a different default value to custom_minimum_size
 	set(value):
 		minimum_size = value
-		custom_minimum_size = value
+		_update_custom_minimum_size()
 
 enum HorizontalAlignment { LEFT, CENTER, RIGHT }
 @export var horizontal_alignment := HorizontalAlignment.CENTER:
@@ -43,6 +43,19 @@ enum VerticalAlignment { TOP, CENTER, BOTTOM }
 		allow_text_to_affect_margin = value
 		queue_redraw()
 
+# Alternative to set_visible(), prevents changing scene file when running in editor as @tool
+var visibility := true:
+	set(value):
+		visibility = value
+		_update_custom_minimum_size()
+
+
+func _update_custom_minimum_size() -> void:
+	if visibility:
+		custom_minimum_size = minimum_size
+	else:
+		custom_minimum_size = Vector2.ZERO
+
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "custom_minimum_size":
@@ -52,7 +65,7 @@ func _validate_property(property: Dictionary) -> void:
 
 func _init() -> void:
 	theme = THEME
-	custom_minimum_size = minimum_size
+	_update_custom_minimum_size()
 
 
 func _get_height() -> int:
@@ -64,7 +77,7 @@ func _get_width() -> int:
 
 
 func _draw() -> void:
-	if not text:
+	if not (text and visibility and size.x >= custom_minimum_size.x and size.y >= custom_minimum_size.y):
 		return
 
 	# Determine text dimensions
