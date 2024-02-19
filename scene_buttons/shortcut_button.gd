@@ -1,5 +1,8 @@
+@tool
 extends InputActionButton
 class_name ShortcutButton
+## Button that sets icon based on shortcut property automatically.
+## Works with InputEventAction type events only.
 
 
 func _ready() -> void:
