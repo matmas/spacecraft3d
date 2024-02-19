@@ -7,21 +7,29 @@ class_name InputActionTextureRect
 		action_name = value
 		_update_input_event()
 
-enum ShowMode { ANY, KEYBOARD_AND_MOUSE, JOYPAD }
-@export var show_mode := ShowMode.ANY:
+enum InputTypeMode {
+	ADAPTIVE,  ## Icon that corresponds to the current input type used is shown.
+	FORCE_KEYBOARD_AND_MOUSE,  ## Keyboard or mouse icon is shown.
+	FORCE_JOYPAD,  ## Joypad icon is shown.
+}
+@export var input_type_mode := InputTypeMode.ADAPTIVE:
 	set(value):
-		show_mode = value
-		_update_input_event()
-
-enum ForceMode { DISABLED, KEYBOARD_AND_MOUSE, JOYPAD }
-@export var force_mode := ForceMode.DISABLED:
-	set(value):
-		force_mode = value
+		input_type_mode = value
 		_update_input_event()
 
 @export var ignore_joypad_direction := false:
 	set(value):
 		ignore_joypad_direction = value
+		_update_input_event()
+
+enum VisibilityMode {
+	ANY_USAGE,  ## Icon is shown regardless of the current input usage.
+	USING_KEYBOARD_AND_MOUSE,  ## Icon is shown when using keyboard or mouse only.
+	USING_JOYPAD,  ## Icon is shown when using joypad only.
+}
+@export var visibility_mode := VisibilityMode.ANY_USAGE:
+	set(value):
+		visibility_mode = value
 		_update_input_event()
 
 func _init() -> void:
@@ -51,24 +59,24 @@ func _update_input_event() -> void:
 
 
 func _get_input_event_for_display() -> InputEvent:
-	if show_mode == ShowMode.KEYBOARD_AND_MOUSE \
+	if visibility_mode == VisibilityMode.USING_KEYBOARD_AND_MOUSE \
 			and InputMonitor.current_input_type != InputMonitor.InputType.KEYBOARD_AND_MOUSE \
-			or show_mode == ShowMode.JOYPAD \
+			or visibility_mode == VisibilityMode.USING_JOYPAD \
 			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD:
 		return null
 
 	for event in _inputmap_get_events(action_name):
 		match event.get_class():
 			"InputEventKey", "InputEventMouseButton":
-				if force_mode:
-					if force_mode == ForceMode.KEYBOARD_AND_MOUSE:
+				if input_type_mode:
+					if input_type_mode == InputTypeMode.FORCE_KEYBOARD_AND_MOUSE:
 						return event
 				else:
 					if InputMonitor.current_input_type == InputMonitor.InputType.KEYBOARD_AND_MOUSE:
 						return event
 			"InputEventJoypadButton", "InputEventJoypadMotion":
-				if force_mode:
-					if force_mode == ForceMode.JOYPAD:
+				if input_type_mode:
+					if input_type_mode == InputTypeMode.FORCE_JOYPAD:
 						return event
 				else:
 					if InputMonitor.current_input_type == InputMonitor.InputType.JOYPAD:

@@ -16,20 +16,20 @@ var viewport := SubViewport.new()
 		convert_physical_keycodes = value
 		input_action_rect.convert_physical_keycodes = value
 
-@export var show_mode := InputActionTextureRect.ShowMode.ANY:
+@export var input_type_mode := InputActionTextureRect.InputTypeMode.ADAPTIVE:
 	set(value):
-		show_mode = value
-		input_action_rect.show_mode = value
-
-@export var force_mode := InputActionTextureRect.ForceMode.DISABLED:
-	set(value):
-		force_mode = value
-		input_action_rect.force_mode = value
+		input_type_mode = value
+		input_action_rect.input_type_mode = value
 
 @export var ignore_joypad_direction := false:
 	set(value):
 		ignore_joypad_direction = value
 		input_action_rect.ignore_joypad_direction = value
+
+@export var visibility_mode := InputActionTextureRect.VisibilityMode.ANY_USAGE:
+	set(value):
+		visibility_mode = value
+		input_action_rect.visibility_mode = value
 
 @export var icon_size := Vector2(50, 50):
 	set(value):
