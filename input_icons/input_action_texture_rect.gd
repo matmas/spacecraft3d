@@ -35,16 +35,8 @@ enum VisibilityMode {
 
 func _init() -> void:
 	super._init()
-	InputMonitor.input_type_changed.connect(_on_input_type_changed)
-	InputMonitor.input_map_changed.connect(_on_input_map_changed)
-
-
-func _on_input_type_changed(_input_type: InputMonitor.InputType) -> void:
-	_update_input_event()
-
-
-func _on_input_map_changed() -> void:
-	_update_input_event()
+	InputMonitor.input_type_changed.connect(func(_input_type): _update_input_event())
+	InputMonitor.input_map_changed.connect(func(): _update_input_event())
 
 
 func _validate_property(property: Dictionary) -> void:

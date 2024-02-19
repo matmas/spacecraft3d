@@ -13,6 +13,7 @@ class_name InputEventTextureRect
 		convert_physical_keycodes = value
 		_update_text()
 
+
 func _init() -> void:
 	super._init()
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
