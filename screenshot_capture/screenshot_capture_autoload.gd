@@ -1,5 +1,6 @@
 extends Node
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Allow screenshots also when game is paused
 

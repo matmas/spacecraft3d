@@ -3,6 +3,7 @@ class_name InputHints
 
 static var _actions_used := {}
 
+
 func _ready() -> void:
 	process_priority = 1  # run after scripts using input functions
 

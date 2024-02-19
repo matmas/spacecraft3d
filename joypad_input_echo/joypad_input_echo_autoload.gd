@@ -9,6 +9,7 @@ var delay_timer := Timer.new()
 var repeat_timer := Timer.new()
 var repeating_event: InputEventAction = null
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # For use in menus when game is paused
 

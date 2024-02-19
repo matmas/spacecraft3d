@@ -37,6 +37,7 @@ var viewport := SubViewport.new()
 		viewport.size = value
 		input_action_rect.size = value
 
+
 func _init() -> void:
 	viewport.size = icon_size
 	viewport.disable_3d = true

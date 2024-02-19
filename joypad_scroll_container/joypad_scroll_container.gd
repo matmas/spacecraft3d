@@ -5,6 +5,7 @@ const SCROLL_SPEED = 750
 
 var scroll_accumulator := Vector2()
 
+
 func _process(delta: float) -> void:
 	scroll_accumulator += Input.get_vector(
 		&"ui_scroll_left", &"ui_scroll_right", &"ui_scroll_up", &"ui_scroll_down"

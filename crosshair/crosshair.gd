@@ -2,6 +2,7 @@ extends Node
 
 @onready var center_dot := $CenterDot as Sprite2D
 
+
 func _ready() -> void:
 	_update_crosshair()
 	get_tree().root.size_changed.connect(_update_crosshair)

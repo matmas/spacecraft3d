@@ -13,6 +13,7 @@ enum InputType {
 
 var current_input_type: InputType
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Allow in paused game menus such as control remapping
 

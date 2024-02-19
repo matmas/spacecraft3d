@@ -23,6 +23,7 @@ var look_direction_change := Vector2()
 var previous_total_gravity := Vector3()
 var target_head_position_y := UPRIGHT_HEAD_POSITION_Y
 
+
 func _ready() -> void:
 	max_contacts_reported = 1
 	can_sleep = false

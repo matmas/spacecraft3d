@@ -8,6 +8,7 @@ var action_description: String
 @onready var kbm_button := $KBMButton as RemapButton
 @onready var controller_button := $ControllerButton as RemapButton
 
+
 func _ready() -> void:
 	label.text = action_description
 	kbm_button.action = action

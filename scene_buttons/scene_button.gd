@@ -4,6 +4,7 @@ extends Button
 
 var _original_shortcuts := {}
 
+
 func _on_pressed():
 	var scene_instance := scene.instantiate()
 	get_window().add_child(scene_instance)

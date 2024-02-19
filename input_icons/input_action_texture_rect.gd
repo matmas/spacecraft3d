@@ -32,6 +32,7 @@ enum VisibilityMode {
 		visibility_mode = value
 		_update_input_event()
 
+
 func _init() -> void:
 	super._init()
 	InputMonitor.input_type_changed.connect(_on_input_type_changed)

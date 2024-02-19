@@ -9,6 +9,7 @@ var block_scenes: Array[PackedScene] = [
 
 var block_instance: Block
 
+
 func _ready() -> void:
 	ray_cast.reparent(camera, false)
 	prepare_block()

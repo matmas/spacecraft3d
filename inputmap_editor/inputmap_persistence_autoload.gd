@@ -7,6 +7,7 @@ const KEY = "actions"
 var config := ConfigFile.new()
 var actions := {}
 
+
 func _ready() -> void:
 	_load()
 

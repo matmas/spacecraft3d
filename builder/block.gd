@@ -6,6 +6,7 @@ class_name Block
 
 var is_ghost := false
 
+
 func _init() -> void:
 	collision_layer = 0  # Do not affect physics
 	collision_mask = 0b11111111_11111111_11111111_11111111  # Scan all layers

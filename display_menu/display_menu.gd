@@ -2,6 +2,7 @@ extends Control
 
 @onready var ui_scaling_slider: HSlider = %UIScalingSlider
 
+
 func _ready() -> void:
 	Utils.grab_focus_first_button(self)
 

@@ -14,6 +14,7 @@ var action: StringName:
 var _is_capturing := false
 var _saved_mouse_position := Vector2()
 
+
 func _validate_property(property: Dictionary) -> void:
 	super._validate_property(property)
 	if property.name == "disabled":

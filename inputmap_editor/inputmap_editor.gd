@@ -54,6 +54,7 @@ var action_categories := {
 
 const SHOW_UNCATEGORIZED_ACTIONS = false
 
+
 func _ready() -> void:
 	var already_categorized_actions := {}
 	Utils.remove_all_children(list)
