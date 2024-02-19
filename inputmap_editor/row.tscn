@@ -14,9 +14,9 @@ vertical_alignment = 1
 
 [node name="KBMButton" parent="." instance=ExtResource("2_gij6r")]
 layout_mode = 2
-force_mode = 1
+input_type_mode = 1
 
 [node name="ControllerButton" parent="." instance=ExtResource("2_gij6r")]
 layout_mode = 2
 is_controller_button = true
-force_mode = 2
+input_type_mode = 2
