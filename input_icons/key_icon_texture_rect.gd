@@ -126,6 +126,7 @@ func _draw() -> void:
 		floori(test_font_size / test_text_dimensions.y * rect.size.y),
 	)
 	# Align text vertically
+	font_size = _reduce_font_size_until_it_fits(rect.size, font, text, font_size)
 	var text_dimensions := font.get_multiline_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
 	if text_dimensions.aspect() / rect.size.aspect() > 1:
 		var shrink_amount := rect.size.y - text_dimensions.y
@@ -136,7 +137,6 @@ func _draw() -> void:
 				rect = rect.grow_individual(0, -shrink_amount * 0.5, 0, -shrink_amount * 0.5)
 			VerticalAlignment.BOTTOM:
 				rect = rect.grow_individual(0, -shrink_amount, 0, 0)
-
 	draw_multiline_string(
 		font,
 		rect.position + Vector2(0, font.get_ascent(font_size)),
@@ -145,5 +145,11 @@ func _draw() -> void:
 		rect.size.x,
 		font_size,
 		-1,
-		get_theme_color("font_color", get_class_name())
+		get_theme_color("font_color", get_class_name()),
 	)
+
+func _reduce_font_size_until_it_fits(_size: Vector2, font: Font, _text: String, font_size_guess: int) -> int:
+	var text_dimensions := font.get_multiline_string_size(_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size_guess)
+	if text_dimensions.x <= _size.x and text_dimensions.y <= _size.y:
+		return font_size_guess
+	return _reduce_font_size_until_it_fits(_size, font, _text, font_size_guess - 1)
