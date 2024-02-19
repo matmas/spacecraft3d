@@ -14,7 +14,7 @@ For most games with non-remappable controls those add-ons are enough.
 Input Icons is different in the sense that it tries to support every keyboard
 key, mouse and joypad button that Godot recognizes. Instead of bundling
 hundreds of prerendered textures for keyboard keys with textual labels
-it renders them on the fly.
+it renders them on the fly which also results in more flexibility in the end.
 
 Most users of Input Icons will use InputActionTextureRect for displaying the
 currently mapped input action in UI and maybe InputActionButton which wraps
@@ -35,7 +35,6 @@ Mouse thumb button icons                                     No   No   No   Yes
 All US keyboard keys                                         No   No   Yes  Yes
 Option to show keys from the active keyboard layout          No   No   No   Yes
 Pixel art style icons                                        No   No   Yes  No
-Additional hard-coded WASD "move" action                     No   Yes  No   No
 
 CI - Controller Icons 3.0.0
 GAI - Godot Action Icon 1.5
