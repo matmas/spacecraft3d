@@ -48,14 +48,14 @@ func _refresh() -> void:
 		if not _actions_used.has(action):
 			_actions_used[action] = false
 
-	_update_visibility_recursivaly(self)
+	_update_visibility_recursively(self)
 	_actions_used.clear()
 
 
-func _update_visibility_recursivaly(node: Node):
+func _update_visibility_recursively(node: Node):
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
 			node.visible = _actions_used[node.name] \
 				or get_parent() == get_tree().root  # Show everything when running only this scene
 	for child in node.get_children():
-		_update_visibility_recursivaly(child)
+		_update_visibility_recursively(child)
