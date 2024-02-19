@@ -93,6 +93,7 @@ func _add_row(action: StringName) -> void:
 
 func _on_reset_pressed() -> void:
 	InputmapPersistence.reset_to_default()
+	InputMonitor.input_map_changed.emit()
 	for child in list.get_children():
 		if child is InputmapEditorRow:
 			(child as InputmapEditorRow).refresh()
