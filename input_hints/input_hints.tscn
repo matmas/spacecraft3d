@@ -105,7 +105,7 @@ script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
 ignore_joypad_direction = true
 visibility_mode = 1
-minimum_size = Vector2(36, 36)
+minimum_size = Vector2(25, 25)
 add_margin = false
 
 [node name="Empty2" type="Control" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
@@ -117,7 +117,7 @@ theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_left"
 visibility_mode = 1
-minimum_size = Vector2(36, 36)
+minimum_size = Vector2(25, 25)
 add_margin = false
 
 [node name="move_backward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
@@ -126,7 +126,7 @@ theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_backward"
 visibility_mode = 1
-minimum_size = Vector2(36, 36)
+minimum_size = Vector2(25, 25)
 add_margin = false
 
 [node name="move_right" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
@@ -135,7 +135,7 @@ theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_right"
 visibility_mode = 1
-minimum_size = Vector2(36, 6)
+minimum_size = Vector2(25, 25)
 add_margin = false
 
 [node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
