@@ -33,7 +33,9 @@ Controller stick icons also with directional arrows          No   Yes  Yes  Yes
 Mouse wheel icons also with directional arrows               No   Yes  Yes  Yes
 Mouse thumb button icons                                     No   No   No   Yes
 All US keyboard keys                                         No   No   Yes  Yes
+Option to show keys from the active keyboard layout          No   No   No   Yes
 Pixel art style icons                                        No   No   Yes  No
+Additional hard-coded WASD "move" action                     No   Yes  No   No
 
 CI - Controller Icons
 GAI - Godot Action Icon
