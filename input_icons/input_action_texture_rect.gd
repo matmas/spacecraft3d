@@ -55,12 +55,14 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _update_input_event() -> void:
-	input_event = _get_input_event_for_display()
+	var event = _get_input_event_for_display()
 
-	if ignore_joypad_direction and input_event is InputEventJoypadMotion:
-		var event := input_event as InputEventJoypadMotion
-		input_event = InputEventJoypadMotion.new()  # Modifying existing instance would interfere with gameplay
-		input_event.axis = event.axis  # Ignore event.axis_value
+	if ignore_joypad_direction and event is InputEventJoypadMotion:
+		var e := event as InputEventJoypadMotion
+		event = InputEventJoypadMotion.new()  # Modifying existing instance would interfere with gameplay
+		event.axis = e.axis  # Ignore event.axis_value
+
+	input_event = event
 	queue_redraw()
 
 
