@@ -37,7 +37,7 @@ Option to show keys from the active keyboard layout          No   No   No   Yes
 Pixel art style icons                                        No   No   Yes  No
 Additional hard-coded WASD "move" action                     No   Yes  No   No
 
-CI - Controller Icons
-GAI - Godot Action Icon
-GIP - Godot Input Prompts
+CI - Controller Icons 3.0.0
+GAI - Godot Action Icon 1.5
+GIP - Godot Input Prompts 2.0.1
 II - Input Icons
