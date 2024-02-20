@@ -127,7 +127,7 @@ text = "InputActionButton"
 layout_mode = 2
 text = "a button"
 script = ExtResource("5_pdd5o")
-action_name = &"ui_up"
+action_name = &"ui_select"
 
 [node name="InputActionButtonDescription" type="Label" parent="GridContainer"]
 layout_mode = 2

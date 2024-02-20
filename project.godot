@@ -33,6 +33,7 @@ movie_writer/movie_file="export/movie.avi"
 folder_colors={
 "res://display_menu/": "green",
 "res://game/": "red",
+"res://input_icons/": "blue",
 "res://inputmap_editor/": "green",
 "res://main_menu/": "green",
 "res://options_menu/": "green",

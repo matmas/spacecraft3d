@@ -37,13 +37,12 @@ var viewport := SubViewport.new()
 @export var icon_size := Vector2(50, 50):
 	set(value):
 		icon_size = value
-		input_action_rect.minimum_size = value
 		_update_viewport_size()
 
 
 func _init() -> void:
 	input_action_rect.minimum_size = icon_size
-	viewport.size = icon_size
+	_update_viewport_size()
 	viewport.disable_3d = true
 	viewport.gui_disable_input = true
 	viewport.transparent_bg = true
@@ -62,4 +61,14 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _update_viewport_size() -> void:
-	viewport.size = input_action_rect.custom_minimum_size
+	var _scale := 1.0
+	if get_window():
+		_scale = get_window().content_scale_factor
+
+	input_action_rect.minimum_size = icon_size
+	input_action_rect.scale = Vector2.ONE * _scale
+	viewport.size = input_action_rect.custom_minimum_size * _scale
+
+	if not Engine.is_editor_hint():  # Don't change scene file when running as @tool
+		# Make sure the icon stays the same size regardless of the window scaling factor
+		add_theme_constant_override("icon_max_width", int(icon_size.x))
