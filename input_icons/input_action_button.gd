@@ -39,6 +39,11 @@ var viewport := SubViewport.new()
 		icon_size = value
 		_update_viewport_size()
 
+@export var viewport_scaling := true:
+	set(value):
+		viewport_scaling = value
+		_update_viewport_size()
+
 
 func _init() -> void:
 	input_action_rect.minimum_size = icon_size
@@ -62,7 +67,7 @@ func _validate_property(property: Dictionary) -> void:
 
 func _update_viewport_size() -> void:
 	var _scale := 1.0
-	if get_window():
+	if viewport_scaling and get_window():
 		_scale = get_window().content_scale_factor
 
 	input_action_rect.minimum_size = icon_size
