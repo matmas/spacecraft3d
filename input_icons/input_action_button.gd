@@ -28,9 +28,9 @@ var viewport := SubViewport.new()
 		ignore_joypad_direction = value
 		input_action_rect.ignore_joypad_direction = value
 
-@export var visibility_mode := InputActionTextureRect.VisibilityMode.ANY_USAGE:
+@export var icon_visibility_mode := InputActionTextureRect.VisibilityMode.ANY_USAGE:
 	set(value):
-		visibility_mode = value
+		icon_visibility_mode = value
 		input_action_rect.visibility_mode = value
 		_update_viewport_size()
 
