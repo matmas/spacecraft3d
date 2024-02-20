@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1leqryjhee1w"]
+[gd_scene load_steps=16 format=3 uid="uid://b1leqryjhee1w"]
 
 [ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="1_hwhyq"]
 [ext_resource type="Script" path="res://input_icons/key_icon_texture_rect.gd" id="2_lmof7"]
@@ -16,6 +16,36 @@ button_index = 1
 
 [sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_3cvhs"]
 axis_value = -1.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_58kcg"]
+device = -1
+physical_keycode = 81
+unicode = 113
+
+[sub_resource type="InputEventKey" id="InputEventKey_bj5bp"]
+device = -1
+physical_keycode = 87
+unicode = 119
+
+[sub_resource type="InputEventKey" id="InputEventKey_0vu52"]
+device = -1
+physical_keycode = 69
+unicode = 101
+
+[sub_resource type="InputEventKey" id="InputEventKey_kljca"]
+device = -1
+physical_keycode = 82
+unicode = 114
+
+[sub_resource type="InputEventKey" id="InputEventKey_h5oul"]
+device = -1
+physical_keycode = 84
+unicode = 116
+
+[sub_resource type="InputEventKey" id="InputEventKey_1a66p"]
+device = -1
+physical_keycode = 89
+unicode = 121
 
 [node name="Demo" type="Control"]
 layout_mode = 3
@@ -140,3 +170,70 @@ action_name = &"ui_select"
 [node name="InputActionButtonDescription" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "is a Button that shows an input action (StringName)"
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "This system is currently using"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="InputEventTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_58kcg")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="InputEventTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_bj5bp")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="InputEventTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_0vu52")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="InputEventTextureRect4" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_kljca")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="InputEventTextureRect5" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_h5oul")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 5)
+add_margin = false
+
+[node name="InputEventTextureRect6" type="TextureRect" parent="GridContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("1_hwhyq")
+script = ExtResource("3_oex6b")
+input_event = SubResource("InputEventKey_1a66p")
+convert_physical_keycodes = true
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "keyboard layout"
