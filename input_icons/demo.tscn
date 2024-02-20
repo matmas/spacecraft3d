@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://input_icons/key_icon_texture_rect.gd" id="2_lmof7"]
 [ext_resource type="Script" path="res://input_icons/input_icon_texture_rect.gd" id="3_oex6b"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="4_hsbbn"]
-[ext_resource type="Script" path="res://input_icons/key_icon_button.gd" id="5_pdd5o"]
+[ext_resource type="Script" path="res://input_icons/input_action_button.gd" id="5_pdd5o"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_iw1st"]
 keycode = 4194305
