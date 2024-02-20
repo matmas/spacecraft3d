@@ -68,8 +68,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Table/ScrollContainer/MarginContainer/List"]
 layout_mode = 2
+theme_type_variation = &"CategoryHeader"
 text = "Category"
-horizontal_alignment = 2
 
 [node name="Row" parent="Table/ScrollContainer/MarginContainer/List" instance=ExtResource("2_knmj4")]
 layout_mode = 2
@@ -82,8 +82,8 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="Table/ScrollContainer/MarginContainer/List"]
 layout_mode = 2
+theme_type_variation = &"CategoryHeader"
 text = "Category"
-horizontal_alignment = 2
 
 [node name="Row4" parent="Table/ScrollContainer/MarginContainer/List" instance=ExtResource("2_knmj4")]
 layout_mode = 2

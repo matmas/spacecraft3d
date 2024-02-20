@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c2rf8oioa2jj4"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://c2rf8oioa2jj4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycajn"]
 content_margin_left = 10.0
@@ -68,6 +68,29 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_um48j"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 0.66)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssdtw"]
+content_margin_left = 20.0
+content_margin_top = 17.0
+content_margin_bottom = 18.0
+bg_color = Color(0, 0, 0, 0.0784314)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afapy"]
 content_margin_left = 4.0
@@ -149,6 +172,10 @@ Button/styles/focus = SubResource("StyleBoxFlat_dtlc5")
 Button/styles/hover = SubResource("StyleBoxFlat_ystfe")
 Button/styles/normal = SubResource("StyleBoxFlat_s57ni")
 Button/styles/pressed = SubResource("StyleBoxFlat_qcq4r")
+CategoryHeader/base_type = &"Label"
+CategoryHeader/styles/normal = SubResource("StyleBoxFlat_um48j")
+CategoryItem/base_type = &"Label"
+CategoryItem/styles/normal = SubResource("StyleBoxFlat_ssdtw")
 DefaultButton/base_type = &"Button"
 DefaultButton/styles/disabled = SubResource("StyleBoxFlat_afapy")
 DefaultButton/styles/focus = SubResource("StyleBoxFlat_dse2n")

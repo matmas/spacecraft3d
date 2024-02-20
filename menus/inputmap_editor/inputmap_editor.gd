@@ -62,7 +62,7 @@ func _ready() -> void:
 	for category in action_categories:
 		var category_label := Label.new()
 		category_label.text = category
-		category_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		category_label.theme_type_variation = &"CategoryHeader"
 		list.add_child(category_label)
 
 		for action in action_categories[category]:

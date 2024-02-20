@@ -6,9 +6,10 @@
 [node name="Row" type="HBoxContainer"]
 script = ExtResource("1_pv38f")
 
-[node name="Label" type="Label" parent="."]
+[node name="ActionLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_type_variation = &"CategoryItem"
 text = "action"
 vertical_alignment = 1
 

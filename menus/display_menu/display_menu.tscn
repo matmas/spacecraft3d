@@ -22,6 +22,11 @@ theme_type_variation = &"BigMarginContainer"
 [node name="BackButton" parent="MarginContainer" instance=ExtResource("1_uy4mk")]
 layout_mode = 2
 
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 4.0
+
 [node name="Table" type="GridContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
