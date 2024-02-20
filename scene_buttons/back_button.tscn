@@ -8,10 +8,9 @@ action = &"ui_cancel"
 [sub_resource type="Shortcut" id="Shortcut_c743h"]
 events = [SubResource("InputEventAction_3uhot")]
 
-[node name="BackButton" type="Button"]
+[node name="Back" type="Button"]
 shortcut = SubResource("Shortcut_c743h")
 text = "Back"
 script = ExtResource("1_44nc2")
-icon_visibility_mode = 2
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -52,5 +52,5 @@ offset_right = 4.0
 offset_bottom = 4.0
 theme_type_variation = &"BigMarginContainer"
 
-[node name="BackButton" parent="MarginContainer" instance=ExtResource("1_kqk81")]
+[node name="Back" parent="MarginContainer" instance=ExtResource("1_kqk81")]
 layout_mode = 2

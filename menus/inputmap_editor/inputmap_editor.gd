@@ -1,7 +1,7 @@
 extends Control
 
 @onready var list: VBoxContainer = %List
-@onready var scroll_container: ScrollContainer = $Table/ScrollContainer
+@onready var scroll_container: ScrollContainer = %ScrollContainer
 
 var action_descriptions := {
 	&"look_up": tr("Look up"),
