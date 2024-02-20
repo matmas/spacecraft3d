@@ -44,11 +44,15 @@ columns = 3
 layout_mode = 2
 text = "KeyIconTextureRect"
 
-[node name="KeyIconTextureRect" type="TextureRect" parent="GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
 layout_mode = 2
+
+[node name="KeyIconTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
 theme = ExtResource("1_hwhyq")
 script = ExtResource("2_lmof7")
-text = "any text :)"
+text = ":)"
 
 [node name="KeyIconTextureRectDescription" type="Label" parent="GridContainer"]
 layout_mode = 2
@@ -58,28 +62,28 @@ text = "is a TextureRect that shows a String"
 layout_mode = 2
 text = "InputEventTextureRect"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer"]
 layout_mode = 2
 
-[node name="InputEventTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer"]
+[node name="InputEventTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_iw1st")
 
-[node name="InputEventTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer"]
+[node name="InputEventTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventMouseButton_oibl6")
 
-[node name="InputEventTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer"]
+[node name="InputEventTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventJoypadButton_5j2e8")
 
-[node name="InputEventTextureRect4" type="TextureRect" parent="GridContainer/HBoxContainer"]
+[node name="InputEventTextureRect4" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
@@ -93,23 +97,23 @@ text = "is a TextureRect that shows an InputEvent"
 layout_mode = 2
 text = "InputActionTextureRect"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="GridContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="InputActionTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer2"]
+[node name="InputActionTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
 action_name = &"ui_up"
 
-[node name="InputActionTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer2"]
+[node name="InputActionTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
 action_name = &"ui_select"
 
-[node name="InputActionTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer2"]
+[node name="InputActionTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
 theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
@@ -123,8 +127,12 @@ text = "is a TextureRect that shows an input action (StringName)"
 layout_mode = 2
 text = "InputActionButton"
 
-[node name="InputActionButton" type="Button" parent="GridContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="GridContainer"]
 layout_mode = 2
+
+[node name="InputActionButton" type="Button" parent="GridContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 6
 text = "a button"
 script = ExtResource("5_pdd5o")
 action_name = &"ui_select"
