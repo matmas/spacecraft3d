@@ -4,7 +4,7 @@ extends Label
 func _ready() -> void:
 	z_index = -1
 	if OS.get_name() == "Android":
-		position.x = -25  # some phones have rounded corners
+		position.x -= 25  # some phones have rounded corners
 
 
 func _process(_delta: float) -> void:

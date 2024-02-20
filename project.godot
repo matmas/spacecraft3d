@@ -230,3 +230,7 @@ ui_scroll_right={
 3d/default_gravity_vector=Vector3(0, 0, 0)
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
