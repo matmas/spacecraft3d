@@ -1,6 +1,6 @@
 extends Node
 
-const INPUTMAP_PATH = "user://inputmap.cfg"
+const PATH = "user://inputmap.cfg"
 const SECTION = "inputmap"
 const KEY = "actions"
 
@@ -13,13 +13,13 @@ func _ready() -> void:
 
 
 func _load() -> void:
-	if not FileAccess.file_exists(INPUTMAP_PATH):
+	if not FileAccess.file_exists(PATH):
 		return
 
-	var error := config.load(INPUTMAP_PATH)
+	var error := config.load(PATH)
 	if error:
 		printerr("Error while loading file %s: %s" % [
-			ProjectSettings.globalize_path(INPUTMAP_PATH), Utils.error_message(error)
+			ProjectSettings.globalize_path(PATH), Utils.error_message(error)
 		])
 		return
 	var dict := config.get_value(SECTION, KEY) as Dictionary
@@ -46,20 +46,20 @@ func save() -> void:
 		dict[action] = InputMap.action_get_events(action)
 
 	config.set_value(SECTION, KEY, dict)
-	var error := config.save(INPUTMAP_PATH)
+	var error := config.save(PATH)
 	if error:
 		printerr("Error while saving file %s: %s" % [
-			ProjectSettings.globalize_path(INPUTMAP_PATH), Utils.error_message(error)
+			ProjectSettings.globalize_path(PATH), Utils.error_message(error)
 		])
 
 
-func reset_to_default() -> void:
+func reset_to_defaults() -> void:
 	InputMap.load_from_project_settings()
 	actions.clear()
 
-	if FileAccess.file_exists(INPUTMAP_PATH):
-		var error := DirAccess.remove_absolute(INPUTMAP_PATH)
+	if FileAccess.file_exists(PATH):
+		var error := DirAccess.remove_absolute(PATH)
 		if error:
 			printerr("Error while removing file %s: %s" % [
-				ProjectSettings.globalize_path(INPUTMAP_PATH), Utils.error_message(error)
+				ProjectSettings.globalize_path(PATH), Utils.error_message(error)
 			])

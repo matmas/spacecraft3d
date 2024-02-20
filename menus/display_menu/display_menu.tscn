@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnu7ouj5kw015"]
+[gd_scene load_steps=5 format=3 uid="uid://bnu7ouj5kw015"]
 
 [ext_resource type="Script" path="res://menus/display_menu/display_menu.gd" id="1_dkiso"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_uy4mk"]
+[ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
+[ext_resource type="Script" path="res://options_persistence/ui_components/option_button.gd" id="3_s47jv"]
 
 [node name="DisplayMenu" type="Control"]
 process_mode = 3
@@ -13,6 +15,144 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dkiso")
 
+[node name="Table" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Display" type="Label" parent="Table"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Display"
+horizontal_alignment = 1
+
+[node name="JoypadScrollContainer" type="ScrollContainer" parent="Table"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+script = ExtResource("2_utw8y")
+
+[node name="Body" type="MarginContainer" parent="Table/JoypadScrollContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="Table/JoypadScrollContainer/Body"]
+layout_mode = 2
+
+[node name="UserInterface" type="Label" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+theme_type_variation = &"CategoryHeader"
+text = "User interface"
+
+[node name="UIScaling" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/UIScaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "UI scaling"
+
+[node name="UIScaling" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/UIScaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "100%"
+popup/item_0/id = 0
+popup/item_1/text = "200%"
+popup/item_1/id = 1
+script = ExtResource("3_s47jv")
+key = "display"
+section = "ui_scaling"
+
+[node name="VSync" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "VSync"
+
+[node name="VSync" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 4
+selected = 0
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
+popup/item_1/text = "Disabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox"
+popup/item_3/id = 3
+script = ExtResource("3_s47jv")
+key = "display"
+section = "vsync"
+
+[node name="WindowMode" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Window mode"
+
+[node name="WindowMode" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="MonitorNumber" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/MonitorNumber"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Monitor number"
+
+[node name="MonitorNumber" type="SpinBox" parent="Table/JoypadScrollContainer/Body/List/MonitorNumber"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Camera" type="Label" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+theme_type_variation = &"CategoryHeader"
+text = "Camera"
+
+[node name="FOV" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Field of view"
+
+[node name="FOV" type="SpinBox" parent="Table/JoypadScrollContainer/Body/List/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 50.0
+alignment = 1
+suffix = "°"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 4.0
@@ -21,72 +161,3 @@ theme_type_variation = &"BigMarginContainer"
 
 [node name="Back" parent="MarginContainer" instance=ExtResource("1_uy4mk")]
 layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 4.0
-
-[node name="Table" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 2
-
-[node name="Label" type="Label" parent="Table"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="Table"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="UIScalingLabel" type="Label" parent="Table"]
-layout_mode = 2
-text = "UI scaling"
-
-[node name="UIScalingSlider" type="HSlider" parent="Table"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 1
-min_value = 1.0
-max_value = 2.0
-step = 0.25
-value = 1.0
-
-[node name="VSyncLabel" type="Label" parent="Table"]
-layout_mode = 2
-text = "VSync"
-
-[node name="Empty" type="Label" parent="Table"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="Table"]
-layout_mode = 2
-text = "Fullscreen/Windowed"
-
-[node name="Empty2" type="Label" parent="Table"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label4" type="Label" parent="Table"]
-layout_mode = 2
-text = "Monitor number"
-
-[node name="Empty3" type="Label" parent="Table"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label5" type="Label" parent="Table"]
-layout_mode = 2
-text = "FOV"
-
-[node name="Empty4" type="Label" parent="Table"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[connection signal="drag_ended" from="Table/UIScalingSlider" to="." method="_on_ui_scaling_slider_drag_ended"]
