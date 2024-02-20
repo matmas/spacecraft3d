@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj47d0mnmbnc8"]
 
-[ext_resource type="Script" path="res://inputmap_editor/remap_button.gd" id="1_8fbh4"]
+[ext_resource type="Script" path="res://menus/inputmap_editor/remap_button.gd" id="1_8fbh4"]
 
 [node name="RemapButton" type="Button"]
 custom_minimum_size = Vector2(200, 0)

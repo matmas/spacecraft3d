@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="spacecraft3d"
-run/main_scene="res://main_menu/main_menu.tscn"
+run/main_scene="res://menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
@@ -21,7 +21,7 @@ HidpiScalingAutoload="*res://hidpi_scaling/hidpi_scaling_autoload.gd"
 ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload.gd"
 JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
-InputmapPersistence="*res://inputmap_editor/inputmap_persistence_autoload.gd"
+InputmapPersistence="*res://menus/inputmap_editor/inputmap_persistence_autoload.gd"
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
 
 [editor]
@@ -31,13 +31,8 @@ movie_writer/movie_file="export/movie.avi"
 [file_customization]
 
 folder_colors={
-"res://display_menu/": "green",
 "res://game/": "red",
-"res://input_icons/": "blue",
-"res://inputmap_editor/": "green",
-"res://main_menu/": "green",
-"res://options_menu/": "green",
-"res://pause_menu/": "green",
+"res://menus/": "green",
 "res://player/": "red"
 }
 

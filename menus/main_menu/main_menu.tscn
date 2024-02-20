@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bor6va50hbvwq"]
 
-[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_lf3s8"]
-[ext_resource type="Script" path="res://main_menu/title_label.gd" id="2_k36iy"]
+[ext_resource type="Script" path="res://menus/main_menu/main_menu.gd" id="1_lf3s8"]
+[ext_resource type="Script" path="res://menus/main_menu/title_label.gd" id="2_k36iy"]
 [ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="3_nv1py"]
 [ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
-[ext_resource type="PackedScene" uid="uid://bnq3wuts8j0vn" path="res://options_menu/options_menu.tscn" id="5_qgq50"]
+[ext_resource type="PackedScene" uid="uid://bnq3wuts8j0vn" path="res://menus/options_menu/options_menu.tscn" id="5_qgq50"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
