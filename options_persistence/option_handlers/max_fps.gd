@@ -1,5 +1,7 @@
 extends OptionHandler
 
+var UNLIMITED = tr("Unlimited")
+
 
 func section() -> String:
 	return "display"
@@ -18,10 +20,10 @@ func get_value() -> Variant:
 
 
 func get_value_from_string(value: String) -> Variant:
-	if value == "Unlimited":
+	if value == UNLIMITED:
 		return 0
 	return int(value)
 
 
 func get_possible_string_values() -> Array[String]:
-	return ["Unlimited", "15", "30", "60", "75", "120", "144", "165", "240", "360", "500"]
+	return [UNLIMITED, "15", "30", "60", "75", "120", "144", "165", "240", "360", "500"]

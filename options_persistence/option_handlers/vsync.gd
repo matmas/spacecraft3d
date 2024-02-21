@@ -1,5 +1,10 @@
 extends OptionHandler
 
+var ENABLED = tr("Enabled")
+var DISABLED = tr("Disabled")
+var ADAPTIVE = tr("Adaptive")
+var MAILBOX = tr("Mailbox")
+
 
 func section() -> String:
 	return "display"
@@ -19,13 +24,13 @@ func get_value() -> Variant:
 
 func get_value_from_string(value: String) -> Variant:
 	match value:
-		"Enabled":
+		ENABLED:
 			return DisplayServer.VSYNC_ENABLED
-		"Disabled":
+		DISABLED:
 			return DisplayServer.VSYNC_DISABLED
-		"Adaptive":
+		ADAPTIVE:
 			return DisplayServer.VSYNC_ADAPTIVE
-		"Mailbox":
+		MAILBOX:
 			return DisplayServer.VSYNC_MAILBOX
 		_:
 			return null
@@ -35,8 +40,8 @@ func get_possible_string_values() -> Array[String]:
 	var possible_values: Array[String] = []
 	var current = get_value()
 
-	for value in ["Enabled", "Disabled", "Adaptive", "Mailbox"]:
-		if (value == "Mailbox" and DisplayServer.get_name() == "X11"
+	for value in [ENABLED, DISABLED, ADAPTIVE, MAILBOX]:
+		if (value == MAILBOX and DisplayServer.get_name() == "X11"
 				and RenderingServer.get_video_adapter_vendor() == "NVIDIA"
 				and OS.get_video_adapter_driver_info()[0] == "nvidia"):
 			# Prevents warning
