@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://menus/display_menu/display_menu.gd" id="1_dkiso"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_uy4mk"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
-[ext_resource type="Script" path="res://options_persistence/ui_controls/option_button.gd" id="3_c8hfs"]
+[ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="3_4k556"]
 
 [node name="DisplayMenu" type="Control"]
 process_mode = 3
@@ -57,11 +57,11 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "UI scaling"
 
-[node name="UIScaling" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/UIScaling"]
+[node name="OptionButton" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/UIScaling"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-script = ExtResource("3_c8hfs")
+script = ExtResource("3_4k556")
 key = "display"
 section = "ui_scaling"
 
@@ -74,11 +74,11 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "VSync"
 
-[node name="VSync" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/VSync"]
+[node name="OptionButton" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/VSync"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-script = ExtResource("3_c8hfs")
+script = ExtResource("3_4k556")
 key = "display"
 section = "vsync"
 
@@ -95,7 +95,7 @@ text = "Max FPS"
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-script = ExtResource("3_c8hfs")
+script = ExtResource("3_4k556")
 key = "display"
 section = "max_fps"
 
@@ -108,27 +108,30 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Window mode"
 
-[node name="WindowMode" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/WindowMode"]
+[node name="OptionButton" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/WindowMode"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-script = ExtResource("3_c8hfs")
+script = ExtResource("3_4k556")
 key = "display"
 section = "window_mode"
 
-[node name="MonitorNumber" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
+[node name="ShowFPS" type="HBoxContainer" parent="Table/JoypadScrollContainer/Body/List"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/MonitorNumber"]
+[node name="Label" type="Label" parent="Table/JoypadScrollContainer/Body/List/ShowFPS"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
-text = "Monitor number"
+text = "Show FPS"
 
-[node name="MonitorNumber" type="SpinBox" parent="Table/JoypadScrollContainer/Body/List/MonitorNumber"]
+[node name="OptionButton" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/ShowFPS"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "fps_counter"
 
 [node name="Camera" type="Label" parent="Table/JoypadScrollContainer/Body/List"]
 layout_mode = 2

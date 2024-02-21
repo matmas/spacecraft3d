@@ -23,7 +23,8 @@ JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
 InputmapPersistence="*res://menus/inputmap_editor/inputmap_persistence_autoload.gd"
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
-OptionsPersistence="*res://options_persistence/options_persistence_autoload.gd"
+GameOptions="*res://game_options/game_options_autoload.gd"
+FpsCounter="*res://fps_counter/fps_counter_autoload.tscn"
 
 [editor]
 

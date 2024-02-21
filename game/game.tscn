@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=22 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
-[ext_resource type="PackedScene" uid="uid://bov0okbi4enms" path="res://fps_monitor/fps_monitor.tscn" id="2_3hpyk"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
@@ -70,8 +69,6 @@ directional_light = NodePath("../DirectionalLight3D")
 raycast_collision_mask = 4294967291
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_sgym3")]
-
-[node name="FPSMonitor" parent="." instance=ExtResource("2_3hpyk")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)

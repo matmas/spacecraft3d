@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bov0okbi4enms"]
 
-[ext_resource type="Script" path="res://fps_monitor/fps_monitor.gd" id="1_fu203"]
+[ext_resource type="Script" path="res://fps_counter/fps_counter.gd" id="1_fu203"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04lwv"]
 line_spacing = 0.0

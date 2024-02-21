@@ -9,7 +9,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	for value in OptionsPersistence.get_handler(key, section).get_possible_string_values():
+	for value in GameOptions.get_handler(key, section).get_possible_string_values():
 		add_item(value)
 	_select_active()
 
@@ -17,12 +17,12 @@ func _ready() -> void:
 func _select_active() -> void:
 	for index in item_count:
 		var value := get_item_text(index)
-		if OptionsPersistence.get_handler(key, section).value_string_matches(value):
+		if GameOptions.get_handler(key, section).value_string_matches(value):
 			select(index)
 
 
 func _on_item_selected(index: int) -> void:
 	var value := get_item_text(index)
-	OptionsPersistence.get_handler(key, section).set_value_string(value)
-	OptionsPersistence.save()
+	GameOptions.get_handler(key, section).set_value_string(value)
+	GameOptions.save()
 	_select_active()  # If something goes wrong we revert back to previous value
