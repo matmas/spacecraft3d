@@ -39,11 +39,10 @@ func get_value_from_string(value: String) -> Variant:
 func get_possible_string_values() -> Array[String]:
 	var possible_values: Array[String] = []
 	var current = get_value()
-
 	for value in [ENABLED, DISABLED, ADAPTIVE, MAILBOX]:
 		if (value == MAILBOX and DisplayServer.get_name() == "X11"
-				and RenderingServer.get_video_adapter_vendor() == "NVIDIA"
-				and OS.get_video_adapter_driver_info()[0] == "nvidia"):
+				and RenderingServer.get_video_adapter_vendor() == "NVIDIA"):
+			# Assume OS.get_video_adapter_driver_info()[0] == "nvidia" as checking can take more than 100ms
 			# Prevents warning
 			# "The requested V-Sync mode Mailbox is not available. Falling back to V-Sync mode Enabled."
 			continue
@@ -54,3 +53,17 @@ func get_possible_string_values() -> Array[String]:
 
 	set_value(current)
 	return possible_values
+
+
+func get_string_value() -> String:
+	match get_value():
+		DisplayServer.VSYNC_ENABLED:
+			return ENABLED
+		DisplayServer.VSYNC_DISABLED:
+			return DISABLED
+		DisplayServer.VSYNC_ADAPTIVE:
+			return ADAPTIVE
+		DisplayServer.VSYNC_MAILBOX:
+			return MAILBOX
+		_:
+			return ""

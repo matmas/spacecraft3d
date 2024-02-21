@@ -25,7 +25,13 @@ func get_value_from_string(_value: String) -> Variant:
 
 
 func get_possible_string_values() -> Array[String]:
-	return []
+	printerr("Not implemented."); return []
+
+
+func get_string_value() -> String:
+	# Implementing this will postpone calling get_possible_string_values() when using OptionButton
+	# until user clicks on the button to see the options
+	return ""
 
 
 func set_value_string(value: String) -> void:

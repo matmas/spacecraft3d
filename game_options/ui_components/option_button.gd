@@ -3,15 +3,36 @@ extends OptionButton
 @export var key := ""
 @export var section := ""
 
+var _is_populated := false
+
 
 func _init() -> void:
 	item_selected.connect(_on_item_selected)
+	button_down.connect(_on_button_down)
 
 
 func _ready() -> void:
+	var current_value := GameOptions.get_handler(key, section).get_string_value()
+	if current_value:
+		add_item(current_value)
+		select(0)
+	else:
+		# get_string_value() might not be implemented so populate everything
+		_populate()
+		_select_active()
+
+
+func _on_button_down() -> void:
+	if not _is_populated:
+		_populate()
+		_select_active()
+
+
+func _populate() -> void:
+	clear()
 	for value in GameOptions.get_handler(key, section).get_possible_string_values():
 		add_item(value)
-	_select_active()
+	_is_populated = true
 
 
 func _select_active() -> void:
