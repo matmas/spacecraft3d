@@ -1,6 +1,14 @@
 extends OptionHandler
 
 
+func section() -> String:
+	return "display"
+
+
+func key() -> String:
+	return "vsync"
+
+
 func set_value(value: Variant) -> void:
 	DisplayServer.window_set_vsync_mode(value)
 

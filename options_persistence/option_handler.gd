@@ -4,6 +4,14 @@ class_name OptionHandler
 var initial_value: Variant
 
 
+func section() -> String:
+	printerr("Not implemented."); return ""
+
+
+func key() -> String:
+	printerr("Not implemented."); return ""
+
+
 func get_value() -> Variant:
 	printerr("Not implemented."); return null
 

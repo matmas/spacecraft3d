@@ -2,32 +2,28 @@ extends Node
 
 const PATH = "user://options.cfg"
 
-var _handlers := {
-	"display": {
-		"ui_scaling": preload("option_handlers/ui_scaling.gd").new(),
-		"vsync": preload("option_handlers/vsync.gd").new(),
-	}
-}
 
-func get_handler(key: String, section: String) -> OptionHandler:
-	return _handlers[key][section]
-
-
+var _option_handlers: Array[OptionHandler] = [
+	preload("option_handlers/ui_scaling.gd").new(),
+	preload("option_handlers/vsync.gd").new(),
+]
+var _option_handlers_dict := {}
 var config := ConfigFile.new()
 
 
+func get_handler(key: String, section: String) -> OptionHandler:
+	return _option_handlers_dict[key][section]
+
+
 func _init() -> void:
-	for section in _handlers:
-		for key in _handlers[section]:
-			var handler := _handlers[section][key] as OptionHandler
-			add_child(handler)
+	for handler in _option_handlers:
+		add_child(handler)
+		_option_handlers_dict.get_or_add(handler.section(), {})[handler.key()] = handler
 
 
 func _ready() -> void:
-	for section in _handlers:
-		for key in _handlers[section]:
-			var handler := _handlers[section][key] as OptionHandler
-			handler.initial_value = handler.get_value()
+	for handler in _option_handlers:
+		handler.initial_value = handler.get_value()
 	_load()
 
 
@@ -42,23 +38,18 @@ func _load() -> void:
 		])
 		return
 
-	for section in _handlers:
-		for key in _handlers[section]:
-			var handler := _handlers[section][key] as OptionHandler
-
-			if config.has_section_key(section, key):
-				handler.set_value(config.get_value(section, key))
+	for handler in _option_handlers:
+		if config.has_section_key(handler.section(), handler.key()):
+			handler.set_value(config.get_value(handler.section(), handler.key()))
 
 
 func save() -> void:
-	for section in _handlers:
-		for key in _handlers[section]:
-			var handler := _handlers[section][key] as OptionHandler
-			if handler.get_value() != handler.initial_value:
-				config.set_value(section, key, handler.get_value())
-			else:
-				if config.has_section_key(section, key):
-					config.erase_section_key(section, key)
+	for handler in _option_handlers:
+		if handler.get_value() != handler.initial_value:
+			config.set_value(handler.section(), handler.key(), handler.get_value())
+		else:
+			if config.has_section_key(handler.section(), handler.key()):
+				config.erase_section_key(handler.section(), handler.key())
 
 	var error := config.save(PATH)
 	if error:
@@ -68,10 +59,8 @@ func save() -> void:
 
 
 func reset_to_defaults() -> void:
-	for section in _handlers:
-		for key in _handlers[section]:
-			var handler := _handlers[section][key] as OptionHandler
-			handler.set_value(handler.initial_value)
+	for handler in _option_handlers:
+		handler.set_value(handler.initial_value)
 
 	if FileAccess.file_exists(PATH):
 		var error := DirAccess.remove_absolute(PATH)

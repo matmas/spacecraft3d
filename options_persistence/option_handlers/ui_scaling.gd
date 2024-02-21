@@ -1,6 +1,14 @@
 extends OptionHandler
 
 
+func section() -> String:
+	return "display"
+
+
+func key() -> String:
+	return "ui_scaling"
+
+
 func set_value(value: Variant) -> void:
 	get_tree().root.content_scale_factor = value
 
