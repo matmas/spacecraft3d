@@ -145,14 +145,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
-text = "Field of view"
+text = "Vertical FOV"
 
-[node name="FOV" type="SpinBox" parent="Table/JoypadScrollContainer/Body/List/FOV"]
+[node name="OptionButton" type="OptionButton" parent="Table/JoypadScrollContainer/Body/List/FOV"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 50.0
 alignment = 1
-suffix = "°"
+script = ExtResource("3_4k556")
+key = "display"
+section = "camera_fov"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

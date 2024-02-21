@@ -9,6 +9,7 @@ var _option_handlers: Array[OptionHandler] = [
 	preload("option_handlers/max_fps.gd").new(),
 	preload("option_handlers/window_mode.gd").new(),
 	preload("option_handlers/fps_counter.gd").new(),
+	preload("option_handlers/camera_fov.gd").new(),
 ]
 var _option_handlers_dict := {}
 var config := ConfigFile.new()
