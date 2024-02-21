@@ -8,6 +8,8 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	for value in OptionsPersistence.get_handler(key, section).get_possible_string_values():
+		add_item(value)
 	_select_active()
 
 

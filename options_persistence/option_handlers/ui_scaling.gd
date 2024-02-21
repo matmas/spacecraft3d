@@ -19,3 +19,7 @@ func get_value() -> Variant:
 
 func get_value_from_string(value: String) -> Variant:
 	return int(value.rstrip("%")) / 100.0
+
+
+func get_possible_string_values() -> Array[String]:
+	return ["100%", "150%", "200%"]

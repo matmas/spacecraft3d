@@ -21,3 +21,7 @@ func get_value_from_string(value: String) -> Variant:
 	if value == "Unlimited":
 		return 0
 	return int(value)
+
+
+func get_possible_string_values() -> Array[String]:
+	return ["Unlimited", "15", "30", "60", "75", "120", "144", "165", "240", "360", "500"]

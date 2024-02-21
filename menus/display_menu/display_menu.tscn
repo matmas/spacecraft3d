@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://menus/display_menu/display_menu.gd" id="1_dkiso"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_uy4mk"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
-[ext_resource type="Script" path="res://options_persistence/ui_components/option_button.gd" id="3_s47jv"]
+[ext_resource type="Script" path="res://options_persistence/ui_controls/option_button.gd" id="3_c8hfs"]
 
 [node name="DisplayMenu" type="Control"]
 process_mode = 3
@@ -61,13 +61,7 @@ text = "UI scaling"
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-item_count = 2
-selected = 0
-popup/item_0/text = "100%"
-popup/item_0/id = 0
-popup/item_1/text = "200%"
-popup/item_1/id = 1
-script = ExtResource("3_s47jv")
+script = ExtResource("3_c8hfs")
 key = "display"
 section = "ui_scaling"
 
@@ -84,17 +78,7 @@ text = "VSync"
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-item_count = 4
-selected = 0
-popup/item_0/text = "Enabled"
-popup/item_0/id = 0
-popup/item_1/text = "Disabled"
-popup/item_1/id = 1
-popup/item_2/text = "Adaptive"
-popup/item_2/id = 2
-popup/item_3/text = "Mailbox"
-popup/item_3/id = 3
-script = ExtResource("3_s47jv")
+script = ExtResource("3_c8hfs")
 key = "display"
 section = "vsync"
 
@@ -111,27 +95,7 @@ text = "Max FPS"
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-item_count = 9
-selected = 0
-popup/item_0/text = "Unlimited"
-popup/item_0/id = 0
-popup/item_1/text = "60"
-popup/item_1/id = 1
-popup/item_2/text = "75"
-popup/item_2/id = 2
-popup/item_3/text = "120"
-popup/item_3/id = 3
-popup/item_4/text = "144"
-popup/item_4/id = 4
-popup/item_5/text = "165"
-popup/item_5/id = 5
-popup/item_6/text = "240"
-popup/item_6/id = 6
-popup/item_7/text = "360"
-popup/item_7/id = 7
-popup/item_8/text = "500"
-popup/item_8/id = 8
-script = ExtResource("3_s47jv")
+script = ExtResource("3_c8hfs")
 key = "display"
 section = "max_fps"
 

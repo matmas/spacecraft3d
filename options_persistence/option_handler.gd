@@ -24,6 +24,10 @@ func get_value_from_string(_value: String) -> Variant:
 	printerr("Not implemented."); return null
 
 
+func get_possible_string_values() -> Array[String]:
+	return []
+
+
 func set_value_string(value: String) -> void:
 	set_value(get_value_from_string(value))
 
