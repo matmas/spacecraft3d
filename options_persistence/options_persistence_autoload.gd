@@ -6,6 +6,7 @@ const PATH = "user://options.cfg"
 var _option_handlers: Array[OptionHandler] = [
 	preload("option_handlers/ui_scaling.gd").new(),
 	preload("option_handlers/vsync.gd").new(),
+	preload("option_handlers/max_fps.gd").new(),
 ]
 var _option_handlers_dict := {}
 var config := ConfigFile.new()
