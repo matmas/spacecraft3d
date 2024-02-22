@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
 	_set_tab_visible(tab)
-	Utils.grab_focus_first_visible_button(tabs[tab_bar.current_tab])
 
 
 func _set_tab_visible(index: int) -> void:
@@ -34,3 +33,4 @@ func _input(event: InputEvent) -> void:
 		if tab_bar.current_tab != target_tab:
 			tab_bar.current_tab = target_tab
 			get_viewport().set_input_as_handled()
+			tab_bar.grab_focus()
