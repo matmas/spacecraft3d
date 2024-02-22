@@ -22,4 +22,4 @@ func get_value_from_string(value: String) -> Variant:
 
 
 func get_possible_string_values() -> Array[String]:
-	return ["25%", "50%", "100%", "200%"]
+	return ["25%", "50%", "100%"]

@@ -14,6 +14,7 @@ var _option_handlers: Array[OptionHandler] = [
 	preload("option_handlers/msaa.gd").new(),
 	preload("option_handlers/taa.gd").new(),
 	preload("option_handlers/glow.gd").new(),
+	preload("option_handlers/3d_scaling_mode.gd").new(),
 ]
 var _option_handlers_dict := {}
 var config := ConfigFile.new()

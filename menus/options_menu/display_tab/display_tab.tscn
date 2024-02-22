@@ -86,15 +86,25 @@ layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "Graphics"
 
-[node name="ResolutionScaling" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="ResolutionScale" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" parent="ScrollContainer/Body/List/ResolutionScaling" index="0"]
+[node name="Label" parent="ScrollContainer/Body/List/ResolutionScale" index="0"]
 text = "Resolution scale"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/ResolutionScaling" index="1"]
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/ResolutionScale" index="1"]
 key = "display"
 section = "3d_scale"
+
+[node name="ResolutionScalingMode" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+layout_mode = 2
+
+[node name="Label" parent="ScrollContainer/Body/List/ResolutionScalingMode" index="0"]
+text = "Upscaling mode"
+
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/ResolutionScalingMode" index="1"]
+key = "display"
+section = "3d_scaling_mode"
 
 [node name="MSAA" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
@@ -156,7 +166,8 @@ text = "Reset to defaults"
 [editable path="ScrollContainer/Body/List/MaxFPS"]
 [editable path="ScrollContainer/Body/List/WindowMode"]
 [editable path="ScrollContainer/Body/List/ShowFPS"]
-[editable path="ScrollContainer/Body/List/ResolutionScaling"]
+[editable path="ScrollContainer/Body/List/ResolutionScale"]
+[editable path="ScrollContainer/Body/List/ResolutionScalingMode"]
 [editable path="ScrollContainer/Body/List/MSAA"]
 [editable path="ScrollContainer/Body/List/TAA"]
 [editable path="ScrollContainer/Body/List/Glow"]
