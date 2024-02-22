@@ -17,9 +17,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-HidpiScalingAutoload="*res://hidpi_scaling/hidpi_scaling_autoload.gd"
-ScreenshotCaptureAutoload="*res://screenshot_capture/screenshot_capture_autoload.gd"
-JoypadInputEchoAutoload="*res://joypad_input_echo/joypad_input_echo_autoload.gd"
+HidpiScalingAutoload="res://hidpi_scaling/hidpi_scaling_autoload.gd"
+ScreenshotCaptureAutoload="res://screenshot_capture/screenshot_capture_autoload.gd"
+JoypadInputEchoAutoload="res://joypad_input_echo/joypad_input_echo_autoload.gd"
 Utils="*res://utils/utils_autoload.gd"
 InputmapPersistence="*res://menus/inputmap_editor/inputmap_persistence_autoload.gd"
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
