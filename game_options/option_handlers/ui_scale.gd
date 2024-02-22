@@ -6,7 +6,7 @@ func section() -> String:
 
 
 func key() -> String:
-	return "ui_scaling"
+	return "ui_scale"
 
 
 func set_value(value: Variant) -> void:
