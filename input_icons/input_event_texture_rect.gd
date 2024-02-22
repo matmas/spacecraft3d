@@ -13,6 +13,15 @@ class_name InputEventTextureRect
 		convert_physical_keycodes = value
 		_update_text()
 
+enum VisibilityMode {
+	SHRINK,  ## Reduces size to zero when visibility condition is not met
+	INVISIBLE,  ## Turns invisible but retains size when visibility condition is not met
+}
+@export var visibility_mode := VisibilityMode.SHRINK:
+	set(value):
+		visibility_mode = value
+		_update_text()
+
 
 func _init() -> void:
 	super._init()
@@ -353,7 +362,8 @@ func _update_text() -> void:
 						_set_text("")
 	else:
 		_set_text("")
-	visibility = bool(text or texture)
+
+	shrink = bool(not text and not texture and visibility_mode == VisibilityMode.SHRINK)
 	queue_redraw()
 
 

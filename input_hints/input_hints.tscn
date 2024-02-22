@@ -104,7 +104,7 @@ theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
 ignore_joypad_direction = true
-visibility_mode = 1
+visibility_condition = 1
 minimum_size = Vector2(25, 25)
 add_margin = false
 
@@ -116,7 +116,7 @@ layout_mode = 2
 theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_left"
-visibility_mode = 1
+visibility_condition = 1
 minimum_size = Vector2(25, 25)
 add_margin = false
 
@@ -125,7 +125,7 @@ layout_mode = 2
 theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_backward"
-visibility_mode = 1
+visibility_condition = 1
 minimum_size = Vector2(25, 25)
 add_margin = false
 
@@ -134,7 +134,7 @@ layout_mode = 2
 theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_right"
-visibility_mode = 1
+visibility_condition = 1
 minimum_size = Vector2(25, 25)
 add_margin = false
 
@@ -144,7 +144,7 @@ theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
 ignore_joypad_direction = true
-visibility_mode = 2
+visibility_condition = 2
 
 [node name="Label" type="Label" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
@@ -167,7 +167,7 @@ text = "look
 
 [node name="InputTypeVisibilityHelper" type="Node" parent="LeftControls/MovementAndLook/look_up/look"]
 script = ExtResource("4_07c5p")
-parent_visibility_mode = 2
+parent_visibility_condition = 2
 
 [node name="RightControls" type="VBoxContainer" parent="."]
 anchors_preset = 3

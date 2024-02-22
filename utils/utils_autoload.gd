@@ -1,12 +1,15 @@
 extends Node
 
 
-func grab_focus_first_button(node: Node) -> bool:
+func grab_focus_first_visible_button(node: Node) -> bool:
+	if node is CanvasItem:
+		if not (node as CanvasItem).visible:
+			return false
 	if node is Button:
 		(node as Button).grab_focus()
 		return true
 	for child in node.get_children():
-		if grab_focus_first_button(child):
+		if grab_focus_first_visible_button(child):
 			return true
 	return false
 

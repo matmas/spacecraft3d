@@ -22,14 +22,14 @@ enum InputTypeMode {
 		ignore_joypad_direction = value
 		_update_input_event()
 
-enum VisibilityMode {
+enum VisibilityCondition {
 	ANY_USAGE,  ## Icon is shown regardless of the current input usage.
 	USING_KEYBOARD_AND_MOUSE,  ## Icon is shown when using keyboard or mouse only.
 	USING_JOYPAD,  ## Icon is shown when using joypad only.
 }
-@export var visibility_mode := VisibilityMode.ANY_USAGE:
+@export var visibility_condition := VisibilityCondition.ANY_USAGE:
 	set(value):
-		visibility_mode = value
+		visibility_condition = value
 		_update_input_event()
 
 
@@ -59,9 +59,9 @@ func _update_input_event() -> void:
 
 
 func _get_input_event_for_display() -> InputEvent:
-	if visibility_mode == VisibilityMode.USING_KEYBOARD_AND_MOUSE \
+	if visibility_condition == VisibilityCondition.USING_KEYBOARD_AND_MOUSE \
 			and InputMonitor.current_input_type != InputMonitor.InputType.KEYBOARD_AND_MOUSE \
-			or visibility_mode == VisibilityMode.USING_JOYPAD \
+			or visibility_condition == VisibilityCondition.USING_JOYPAD \
 			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD:
 		return null
 

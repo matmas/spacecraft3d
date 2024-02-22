@@ -21,7 +21,7 @@ func _set_paused(paused: bool) -> void:
 	visible = paused
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED
 	if visible:
-		Utils.grab_focus_first_button(self)
+		Utils.grab_focus_first_visible_button(self)
 
 
 func _on_quit_to_main_menu_pressed() -> void:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnq3wuts8j0vn"]
+[gd_scene load_steps=7 format=3 uid="uid://bnq3wuts8j0vn"]
 
 [ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_ajcmm"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_kqk81"]
+[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="2_6r6d6"]
 [ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://menus/options_menu/controls_tab/controls_tab.tscn" id="3_kmojk"]
+[ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="3_t74me"]
 [ext_resource type="PackedScene" uid="uid://bnu7ouj5kw015" path="res://menus/options_menu/display_tab/display_tab.tscn" id="4_qxrll"]
 
 [node name="OptionsMenu" type="Control"]
@@ -32,13 +34,33 @@ theme_type_variation = &"HeaderLarge"
 text = "Options"
 horizontal_alignment = 1
 
-[node name="TabBar" type="TabBar" parent="List"]
+[node name="HBoxContainer" type="HBoxContainer" parent="List"]
+layout_mode = 2
+
+[node name="Previous" type="TextureRect" parent="List/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_6r6d6")
+script = ExtResource("3_t74me")
+action_name = &"ui_tab_prev"
+visibility_condition = 2
+visibility_mode = 1
+
+[node name="TabBar" type="TabBar" parent="List/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 tab_count = 2
 tab_alignment = 1
 tab_0/title = "Display"
 tab_1/title = "Controls"
+
+[node name="Next" type="TextureRect" parent="List/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_6r6d6")
+script = ExtResource("3_t74me")
+action_name = &"ui_tab_next"
+visibility_condition = 2
+visibility_mode = 1
 
 [node name="DisplayTab" parent="List" instance=ExtResource("4_qxrll")]
 unique_name_in_owner = true
@@ -60,4 +82,4 @@ theme_type_variation = &"BigMarginContainer"
 [node name="Back" parent="MarginContainer" instance=ExtResource("1_kqk81")]
 layout_mode = 2
 
-[connection signal="tab_changed" from="List/TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="tab_changed" from="List/HBoxContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]

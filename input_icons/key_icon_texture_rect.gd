@@ -43,18 +43,18 @@ enum VerticalAlignment { TOP, CENTER, BOTTOM }
 		allow_text_to_affect_margin = value
 		queue_redraw()
 
-# Alternative to set_visible(), prevents changing scene file when running in editor as @tool
-var visibility := true:
+# Alternative to hide()/show(), reduces size instead so it won't occupy any space
+var shrink := false:
 	set(value):
-		visibility = value
+		shrink = value
 		_update_custom_minimum_size()
 
 
 func _update_custom_minimum_size() -> void:
-	if visibility:
-		custom_minimum_size = minimum_size
-	else:
+	if shrink:
 		custom_minimum_size = Vector2.ZERO
+	else:
+		custom_minimum_size = minimum_size
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -77,7 +77,7 @@ func _get_width() -> int:
 
 
 func _draw() -> void:
-	if not (text and visibility and size.x >= custom_minimum_size.x and size.y >= custom_minimum_size.y):
+	if not (text and not shrink and size.x >= custom_minimum_size.x and size.y >= custom_minimum_size.y):
 		return
 
 	# Determine text dimensions

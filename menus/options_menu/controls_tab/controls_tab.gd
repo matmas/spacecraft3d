@@ -80,9 +80,6 @@ func _ready() -> void:
 			if not already_categorized_actions.has(action):
 				_add_row(action)
 
-	# Ensure user can navigate with controller only
-	Utils.grab_focus_first_button(self)
-
 
 func _add_row(action: StringName) -> void:
 	var row := preload("row.tscn").instantiate()
