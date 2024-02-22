@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
-[ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="3_4k556"]
+[ext_resource type="PackedScene" uid="uid://cipsfd504dpxe" path="res://menus/options_menu/display_tab/option.tscn" id="3_ohcr4"]
 
 [node name="DisplayTab" type="VBoxContainer"]
 anchors_preset = 15
@@ -31,88 +31,53 @@ layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "User interface"
 
-[node name="UIScale" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="UIScale" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/UIScale"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/UIScale" index="0"]
 text = "UI scale"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/UIScale"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/UIScale" index="1"]
 key = "display"
 section = "ui_scale"
 
-[node name="VSync" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="VSync" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/VSync"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/VSync" index="0"]
 text = "VSync"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/VSync"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/VSync" index="1"]
 key = "display"
 section = "vsync"
 
-[node name="MaxFPS" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="MaxFPS" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/MaxFPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/MaxFPS" index="0"]
 text = "Max FPS"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MaxFPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/MaxFPS" index="1"]
 key = "display"
 section = "max_fps"
 
-[node name="WindowMode" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="WindowMode" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/WindowMode"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/WindowMode" index="0"]
 text = "Window mode"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/WindowMode"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/WindowMode" index="1"]
 key = "display"
 section = "window_mode"
 
-[node name="ShowFPS" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="ShowFPS" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/ShowFPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/ShowFPS" index="0"]
 text = "Show FPS"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ShowFPS"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/ShowFPS" index="1"]
 key = "display"
 section = "fps_counter"
 
@@ -121,71 +86,43 @@ layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "Graphics"
 
-[node name="ResolutionScaling" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="ResolutionScaling" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/ResolutionScaling"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/ResolutionScaling" index="0"]
 text = "Resolution scale"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ResolutionScaling"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/ResolutionScaling" index="1"]
 key = "display"
 section = "3d_scale"
 
-[node name="MSAA" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="MSAA" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/MSAA"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/MSAA" index="0"]
 text = "MSAA"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MSAA"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/MSAA" index="1"]
 key = "display"
 section = "msaa"
 
-[node name="TAA" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="TAA" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/TAA"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/TAA" index="0"]
 text = "TAA"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/TAA"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/TAA" index="1"]
 key = "display"
 section = "taa"
 
-[node name="Glow" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="Glow" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/Glow"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/Glow" index="0"]
 text = "Glow"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/Glow"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/Glow" index="1"]
 key = "display"
 section = "glow"
 
@@ -194,20 +131,13 @@ layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "Camera"
 
-[node name="FOV" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+[node name="FOV" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/Body/List/FOV"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
+[node name="Label" parent="ScrollContainer/Body/List/FOV" index="0"]
 text = "Vertical FOV"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/FOV"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/FOV" index="1"]
 key = "display"
 section = "camera_fov"
 
@@ -220,3 +150,14 @@ size_flags_horizontal = 8
 text = "Reset to defaults"
 
 [connection signal="pressed" from="Footer/Reset" to="." method="_on_reset_pressed"]
+
+[editable path="ScrollContainer/Body/List/UIScale"]
+[editable path="ScrollContainer/Body/List/VSync"]
+[editable path="ScrollContainer/Body/List/MaxFPS"]
+[editable path="ScrollContainer/Body/List/WindowMode"]
+[editable path="ScrollContainer/Body/List/ShowFPS"]
+[editable path="ScrollContainer/Body/List/ResolutionScaling"]
+[editable path="ScrollContainer/Body/List/MSAA"]
+[editable path="ScrollContainer/Body/List/TAA"]
+[editable path="ScrollContainer/Body/List/Glow"]
+[editable path="ScrollContainer/Body/List/FOV"]
