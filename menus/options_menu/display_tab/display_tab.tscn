@@ -1,0 +1,171 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnu7ouj5kw015"]
+
+[ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
+[ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
+[ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="3_4k556"]
+
+[node name="DisplayTab" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_poj5n")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+script = ExtResource("2_utw8y")
+
+[node name="Body" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="List" type="VBoxContainer" parent="ScrollContainer/Body"]
+layout_mode = 2
+
+[node name="UserInterface" type="Label" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+theme_type_variation = &"CategoryHeader"
+text = "User interface"
+
+[node name="UIScale" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/UIScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "UI scale"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/UIScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "ui_scale"
+
+[node name="VSync" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "VSync"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/VSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "vsync"
+
+[node name="MaxFPS" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/MaxFPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Max FPS"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MaxFPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "max_fps"
+
+[node name="WindowMode" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Window mode"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/WindowMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "window_mode"
+
+[node name="ShowFPS" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/ShowFPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Show FPS"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ShowFPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "fps_counter"
+
+[node name="Graphics" type="Label" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+theme_type_variation = &"CategoryHeader"
+text = "Graphics"
+
+[node name="ResolutionScaling" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/ResolutionScaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Resolution scale"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ResolutionScaling"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "3d_scale"
+
+[node name="Camera" type="Label" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+theme_type_variation = &"CategoryHeader"
+text = "Camera"
+
+[node name="FOV" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "Vertical FOV"
+
+[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/FOV"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "camera_fov"
+
+[node name="Footer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Reset to defaults"
+
+[connection signal="pressed" from="Footer/Reset" to="." method="_on_reset_pressed"]

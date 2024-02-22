@@ -1,4 +1,5 @@
 extends OptionButton
+class_name GameOptionButton
 
 @export var key := ""
 @export var section := ""
@@ -47,3 +48,7 @@ func _on_item_selected(index: int) -> void:
 	GameOptions.get_handler(key, section).set_value_string(value)
 	GameOptions.save()
 	_select_active()  # If something goes wrong we revert back to previous value
+
+
+func refresh() -> void:
+	_select_active()

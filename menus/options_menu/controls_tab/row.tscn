@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dupaa78gme8l8"]
 
-[ext_resource type="Script" path="res://menus/options_menu/controls_tab_row.gd" id="1_0ggxf"]
-[ext_resource type="PackedScene" uid="uid://bj47d0mnmbnc8" path="res://menus/options_menu/controls_tab_remap_button.tscn" id="2_kq2cd"]
+[ext_resource type="Script" path="res://menus/options_menu/controls_tab/row.gd" id="1_0ggxf"]
+[ext_resource type="PackedScene" uid="uid://bj47d0mnmbnc8" path="res://menus/options_menu/controls_tab/remap_button.tscn" id="2_kq2cd"]
 
 [node name="Row" type="HBoxContainer"]
 anchors_preset = 15

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_ajcmm"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_kqk81"]
-[ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://menus/options_menu/controls_tab.tscn" id="3_kmojk"]
-[ext_resource type="PackedScene" uid="uid://bnu7ouj5kw015" path="res://menus/options_menu/display_tab.tscn" id="4_qxrll"]
+[ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://menus/options_menu/controls_tab/controls_tab.tscn" id="3_kmojk"]
+[ext_resource type="PackedScene" uid="uid://bnu7ouj5kw015" path="res://menus/options_menu/display_tab/display_tab.tscn" id="4_qxrll"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -43,6 +43,7 @@ tab_1/title = "Controls"
 [node name="DisplayTab" parent="List" instance=ExtResource("4_qxrll")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ControlsTab" parent="List" instance=ExtResource("3_kmojk")]
 unique_name_in_owner = true
