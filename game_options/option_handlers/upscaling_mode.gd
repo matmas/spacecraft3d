@@ -12,7 +12,7 @@ func section() -> String:
 
 
 func key() -> String:
-	return "3d_scaling_mode"
+	return "upscaling_mode"
 
 
 func set_value(value: Variant) -> void:
