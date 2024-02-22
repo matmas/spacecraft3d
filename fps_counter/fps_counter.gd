@@ -1,7 +1,5 @@
 extends Label
 
-var is_enabled := true
-
 
 func _ready() -> void:
 	z_index = -1
@@ -10,7 +8,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if is_enabled:
+	if GameOptions.get_handler("display", "fps_counter").current_value:
 		text = """\
 		{fps} FPS
 		{time_process}ms process

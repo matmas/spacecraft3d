@@ -1,5 +1,7 @@
 extends BoolOptionHandler
 
+var current_value := true
+
 
 func section() -> String:
 	return "display"
@@ -10,8 +12,8 @@ func key() -> String:
 
 
 func set_value(value: Variant) -> void:
-	FpsCounter.is_enabled = value
+	current_value = value
 
 
 func get_value() -> Variant:
-	return FpsCounter.is_enabled
+	return current_value
