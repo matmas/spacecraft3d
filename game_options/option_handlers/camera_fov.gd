@@ -1,6 +1,5 @@
 extends OptionHandler
 
-
 var current_value := 75.0
 
 

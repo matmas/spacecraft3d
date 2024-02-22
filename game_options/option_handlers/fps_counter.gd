@@ -1,7 +1,4 @@
-extends OptionHandler
-
-var ENABLED = tr("Enabled")
-var DISABLED = tr("Disabled")
+extends BoolOptionHandler
 
 
 func section() -> String:
@@ -18,17 +15,3 @@ func set_value(value: Variant) -> void:
 
 func get_value() -> Variant:
 	return FpsCounter.is_enabled
-
-
-func get_value_from_string(value: String) -> Variant:
-	match value:
-		ENABLED:
-			return true
-		DISABLED:
-			return false
-		_:
-			return null
-
-
-func get_possible_string_values() -> Array[String]:
-	return [ENABLED, DISABLED]

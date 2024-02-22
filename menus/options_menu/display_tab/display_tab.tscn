@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnu7ouj5kw015"]
+[gd_scene load_steps=5 format=3 uid="uid://bnu7ouj5kw015"]
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="3_4k556"]
+[ext_resource type="Script" path="res://game_options/ui_components/check_button.gd" id="4_frdrf"]
 
 [node name="DisplayTab" type="VBoxContainer"]
 anchors_preset = 15
@@ -108,11 +109,10 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Show FPS"
 
-[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ShowFPS"]
+[node name="GameOptionCheckButton" type="CheckButton" parent="ScrollContainer/Body/List/ShowFPS"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_4k556")
+script = ExtResource("4_frdrf")
 key = "display"
 section = "fps_counter"
 
@@ -154,6 +154,22 @@ alignment = 1
 script = ExtResource("3_4k556")
 key = "display"
 section = "msaa"
+
+[node name="TAA" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/TAA"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "TAA"
+
+[node name="GameOptionCheckButton" type="CheckButton" parent="ScrollContainer/Body/List/TAA"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_frdrf")
+key = "display"
+section = "taa"
 
 [node name="CameraCategory" type="Label" parent="ScrollContainer/Body/List"]
 layout_mode = 2
