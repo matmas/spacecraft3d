@@ -20,7 +20,7 @@ var action_descriptions := {
 	&"roll_left": tr("Roll left"),
 	&"roll_right": tr("Roll right"),
 	&"place_block": tr("Place block"),
-	&"main_menu": tr("Main menu"),
+	&"pause_menu": tr("Pause menu"),
 	&"capture_screenshot": tr("Capture screenshot"),
 }
 
@@ -49,10 +49,8 @@ var action_categories := {
 	tr("Building"): [
 		&"place_block",
 	],
-	#tr("Other"): [],
+	tr("Other"): [],
 }
-
-const SHOW_UNCATEGORIZED_ACTIONS = false
 
 
 func _ready() -> void:
@@ -72,13 +70,12 @@ func _ready() -> void:
 			_add_row(action)
 			already_categorized_actions[action] = true
 
-	if SHOW_UNCATEGORIZED_ACTIONS:
-		for action in InputMap.get_actions():
-			if action.begins_with("ui_"):
-				continue  # Skip built-in actions and actions with ui_ prefix
+	for action in InputMap.get_actions():
+		if action.begins_with("ui_"):
+			continue  # Skip built-in actions and actions with ui_ prefix
 
-			if not already_categorized_actions.has(action):
-				_add_row(action)
+		if not already_categorized_actions.has(action):
+			_add_row(action)
 
 
 func _add_row(action: StringName) -> void:
