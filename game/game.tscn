@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=23 format=3 uid="uid://cobs5t5krrlfs"]
 
+[ext_resource type="Script" path="res://game/world_environment.gd" id="1_axnvw"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
@@ -49,6 +50,7 @@ rough = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
+script = ExtResource("1_axnvw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
