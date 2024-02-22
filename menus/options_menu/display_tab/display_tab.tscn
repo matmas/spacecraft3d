@@ -26,7 +26,7 @@ size_flags_horizontal = 3
 [node name="List" type="VBoxContainer" parent="ScrollContainer/Body"]
 layout_mode = 2
 
-[node name="UserInterface" type="Label" parent="ScrollContainer/Body/List"]
+[node name="UserInterfaceCategory" type="Label" parent="ScrollContainer/Body/List"]
 layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "User interface"
@@ -40,7 +40,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "UI scale"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/UIScale"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/UIScale"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -57,7 +57,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "VSync"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/VSync"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/VSync"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -74,7 +74,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Max FPS"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MaxFPS"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MaxFPS"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -91,7 +91,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Window mode"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/WindowMode"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/WindowMode"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -108,7 +108,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Show FPS"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ShowFPS"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ShowFPS"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -116,7 +116,7 @@ script = ExtResource("3_4k556")
 key = "display"
 section = "fps_counter"
 
-[node name="Graphics" type="Label" parent="ScrollContainer/Body/List"]
+[node name="GraphicsCategory" type="Label" parent="ScrollContainer/Body/List"]
 layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "Graphics"
@@ -130,7 +130,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Resolution scale"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ResolutionScaling"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/ResolutionScaling"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
@@ -138,7 +138,24 @@ script = ExtResource("3_4k556")
 key = "display"
 section = "3d_scale"
 
-[node name="Camera" type="Label" parent="ScrollContainer/Body/List"]
+[node name="MSAA" type="HBoxContainer" parent="ScrollContainer/Body/List"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/Body/List/MSAA"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+text = "MSAA"
+
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/MSAA"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("3_4k556")
+key = "display"
+section = "msaa"
+
+[node name="CameraCategory" type="Label" parent="ScrollContainer/Body/List"]
 layout_mode = 2
 theme_type_variation = &"CategoryHeader"
 text = "Camera"
@@ -152,7 +169,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Vertical FOV"
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/Body/List/FOV"]
+[node name="GameOptionButton" type="OptionButton" parent="ScrollContainer/Body/List/FOV"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
