@@ -1,16 +1,18 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj47d0mnmbnc8"]
 
-[ext_resource type="Script" path="res://menus/inputmap_editor/remap_button.gd" id="1_8fbh4"]
+[ext_resource type="Script" path="res://menus/options_menu/controls_tab_remap_button.gd" id="1_im5fo"]
 
 [node name="RemapButton" type="Button"]
-custom_minimum_size = Vector2(200, 0)
-offset_right = 200.0
-offset_bottom = 58.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_type_variation = &"DefaultButton"
 toggle_mode = true
 icon_alignment = 1
-script = ExtResource("1_8fbh4")
-action_name = &"jump"
+script = ExtResource("1_im5fo")
+action_name = &"ui_up"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]

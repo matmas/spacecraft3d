@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 @onready var list: VBoxContainer = %List
 @onready var scroll_container: ScrollContainer = %ScrollContainer
@@ -85,7 +85,7 @@ func _ready() -> void:
 
 
 func _add_row(action: StringName) -> void:
-	var row := preload("row.tscn").instantiate()
+	var row := preload("controls_tab_row.tscn").instantiate()
 	row.action = action
 	row.action_description = action_descriptions.get(action, action)
 	list.add_child(row)
