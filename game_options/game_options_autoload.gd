@@ -13,6 +13,7 @@ var _options: Array[Option] = [
 	preload("options/int/3d_scale.gd").new(),
 	preload("options/enum/msaa.gd").new(),
 	preload("options/bool/taa.gd").new(),
+	preload("options/bool/fxaa.gd").new(),
 	preload("options/bool/glow.gd").new(),
 	preload("options/enum/upscaling_mode.gd").new(),
 	preload("options/int/fsr_sharpness.gd").new(),

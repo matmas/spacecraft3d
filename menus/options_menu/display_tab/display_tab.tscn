@@ -137,6 +137,16 @@ text = "TAA"
 key = "display"
 section = "taa"
 
+[node name="FXAA" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
+layout_mode = 2
+
+[node name="Label" parent="ScrollContainer/Body/List/FXAA" index="0"]
+text = "FXAA"
+
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/FXAA" index="1"]
+key = "display"
+section = "fxaa"
+
 [node name="Glow" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
@@ -212,6 +222,7 @@ text = "Reset to defaults"
 [editable path="ScrollContainer/Body/List/FSRSharpness"]
 [editable path="ScrollContainer/Body/List/MSAA"]
 [editable path="ScrollContainer/Body/List/TAA"]
+[editable path="ScrollContainer/Body/List/FXAA"]
 [editable path="ScrollContainer/Body/List/Glow"]
 [editable path="ScrollContainer/Body/List/LensFlare"]
 [editable path="ScrollContainer/Body/List/MotionParticles"]
