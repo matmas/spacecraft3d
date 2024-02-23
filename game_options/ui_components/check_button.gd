@@ -13,6 +13,7 @@ func _on_toggled(toggled_on: bool) -> void:
 	GameOptions.get_option(key, section).set_value(toggled_on)
 	GameOptions.save()
 	refresh()
+	GameOptions.get_option(key, section).value_changed.connect(func(_value): refresh())
 
 
 func _ready() -> void:

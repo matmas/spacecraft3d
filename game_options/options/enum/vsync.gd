@@ -16,6 +16,7 @@ func key() -> String:
 
 func set_value(value: Variant) -> void:
 	DisplayServer.window_set_vsync_mode(value)
+	value_changed.emit(value)
 
 
 func get_value() -> Variant:

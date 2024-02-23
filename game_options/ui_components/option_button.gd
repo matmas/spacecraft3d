@@ -21,6 +21,7 @@ func _ready() -> void:
 		# get_string_value() might not be implemented so populate everything
 		_populate()
 		_select_active()
+	GameOptions.get_option(key, section).value_changed.connect(func(_value): refresh())
 
 
 func _on_button_down() -> void:

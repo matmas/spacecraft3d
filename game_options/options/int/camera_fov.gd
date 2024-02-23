@@ -16,6 +16,7 @@ func set_value(value: Variant) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		camera.fov = value
+	value_changed.emit(value)
 
 
 func get_value() -> Variant:

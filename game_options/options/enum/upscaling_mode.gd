@@ -18,6 +18,7 @@ func key() -> String:
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_scaling_3d_mode(get_viewport().get_viewport_rid(), value)
 	current_value = value
+	value_changed.emit(value)
 
 
 func get_value() -> Variant:

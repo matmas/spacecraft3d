@@ -52,6 +52,9 @@ var action_categories := {
 	tr("Other"): [],
 }
 
+const non_remappable_actions := [
+	&"toggle_fullscreen"
+]
 
 func _ready() -> void:
 	var already_categorized_actions := {}
@@ -71,7 +74,7 @@ func _ready() -> void:
 			already_categorized_actions[action] = true
 
 	for action in InputMap.get_actions():
-		if action.begins_with("ui_"):
+		if action.begins_with("ui_") or action in non_remappable_actions:
 			continue  # Skip built-in actions and actions with ui_ prefix
 
 		if not already_categorized_actions.has(action):

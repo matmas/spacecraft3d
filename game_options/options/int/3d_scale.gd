@@ -11,6 +11,7 @@ func key() -> String:
 
 func set_value(value: Variant) -> void:
 	get_viewport().scaling_3d_scale = value
+	value_changed.emit(value)
 
 
 func get_value() -> Variant:

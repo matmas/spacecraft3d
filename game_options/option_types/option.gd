@@ -1,6 +1,8 @@
 extends Node
 class_name Option
 
+signal value_changed(value)
+
 var initial_value: Variant
 
 
