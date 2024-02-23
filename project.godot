@@ -26,6 +26,11 @@ InputmapPersistence="*res://menus/options_menu/controls_tab/inputmap_persistence
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
 GameOptions="*res://game_options/game_options_autoload.gd"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
 [editor]
 
 movie_writer/movie_file="export/movie.avi"
