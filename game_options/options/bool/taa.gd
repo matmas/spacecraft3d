@@ -11,6 +11,14 @@ func key() -> String:
 	return "taa"
 
 
+func display_name() -> String:
+	return tr("TAA")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_use_taa(get_viewport().get_viewport_rid(), value)
 	current_value = value

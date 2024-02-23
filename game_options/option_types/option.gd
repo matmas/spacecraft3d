@@ -14,6 +14,14 @@ func key() -> String:
 	printerr("Not implemented."); return ""
 
 
+func display_name() -> String:
+	printerr("Not implemented."); return ""
+
+
+func display_category() -> String:
+	printerr("Not implemented."); return ""
+
+
 func get_value() -> Variant:
 	printerr("Not implemented."); return null
 

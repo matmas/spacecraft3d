@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cipsfd504dpxe"]
+[gd_scene load_steps=3 format=3 uid="uid://cipsfd504dpxe"]
 
+[ext_resource type="Script" path="res://menus/options_menu/display_tab/row_with_option_button.gd" id="1_8craa"]
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="1_48vx0"]
 
 [node name="RowWithOptionButton" type="HBoxContainer"]
@@ -8,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8craa")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

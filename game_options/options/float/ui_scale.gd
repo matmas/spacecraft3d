@@ -9,6 +9,14 @@ func key() -> String:
 	return "ui_scale"
 
 
+func display_name() -> String:
+	return tr("UI scale")
+
+
+func display_category() -> String:
+	return tr("User interface")
+
+
 func set_value(value: Variant) -> void:
 	get_window().content_scale_factor = value
 	value_changed.emit(value)

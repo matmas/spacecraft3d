@@ -11,6 +11,14 @@ func key() -> String:
 	return "glow"
 
 
+func display_name() -> String:
+	return tr("Glow")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:

@@ -11,6 +11,14 @@ func key() -> String:
 	return "input_hints"
 
 
+func display_name() -> String:
+	return tr("Input hints")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	current_value = value
 	value_changed.emit(value)

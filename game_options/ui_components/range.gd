@@ -9,7 +9,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	var option := GameOptions.get_option(key, section)
+	var option := GameOptions.get_option(section, key)
 	min_value = option.get_min_value()
 	max_value = option.get_max_value()
 	step = option.get_step()
@@ -19,9 +19,9 @@ func _ready() -> void:
 
 
 func _on_value_changed(_value: float) -> void:
-	GameOptions.get_option(key, section).set_value(value)
+	GameOptions.get_option(section, key).set_value(value)
 	GameOptions.save()
 
 
 func _refresh() -> void:
-	value = GameOptions.get_option(key, section).get_value()
+	value = GameOptions.get_option(section, key).get_value()

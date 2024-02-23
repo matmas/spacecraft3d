@@ -15,6 +15,14 @@ func key() -> String:
 	return "upscaling_mode"
 
 
+func display_name() -> String:
+	return tr("Upscaling")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_scaling_3d_mode(get_viewport().get_viewport_rid(), value)
 	current_value = value

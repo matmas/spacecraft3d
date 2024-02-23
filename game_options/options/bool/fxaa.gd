@@ -11,6 +11,14 @@ func key() -> String:
 	return "fxaa"
 
 
+func display_name() -> String:
+	return tr("FXAA")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	if value:
 		RenderingServer.viewport_set_screen_space_aa(get_viewport().get_viewport_rid(), RenderingServer.VIEWPORT_SCREEN_SPACE_AA_FXAA)

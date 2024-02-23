@@ -11,6 +11,14 @@ func key() -> String:
 	return "max_fps"
 
 
+func display_name() -> String:
+	return tr("Max FPS")
+
+
+func display_category() -> String:
+	return tr("User interface")
+
+
 func set_value(value: Variant) -> void:
 	Engine.max_fps = value
 	value_changed.emit(value)

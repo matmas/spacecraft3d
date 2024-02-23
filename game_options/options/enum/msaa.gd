@@ -12,6 +12,14 @@ func key() -> String:
 	return "msaa"
 
 
+func display_name() -> String:
+	return tr("MSAA")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), value)
 	current_value = value

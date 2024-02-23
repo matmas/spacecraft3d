@@ -14,6 +14,14 @@ func key() -> String:
 	return "vsync"
 
 
+func display_name() -> String:
+	return tr("VSync")
+
+
+func display_category() -> String:
+	return tr("User interface")
+
+
 func set_value(value: Variant) -> void:
 	DisplayServer.window_set_vsync_mode(value)
 	value_changed.emit(value)

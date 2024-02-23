@@ -11,6 +11,14 @@ func key() -> String:
 	return "camera_fov"
 
 
+func display_name() -> String:
+	return tr("Vertical FOV")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	current_value = value
 	var camera := get_viewport().get_camera_3d()

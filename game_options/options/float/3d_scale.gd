@@ -9,6 +9,14 @@ func key() -> String:
 	return "3d_scale"
 
 
+func display_name() -> String:
+	return tr("3D resolution")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	get_viewport().scaling_3d_scale = value
 	value_changed.emit(value)

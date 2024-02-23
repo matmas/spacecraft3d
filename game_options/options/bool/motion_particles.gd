@@ -11,6 +11,14 @@ func key() -> String:
 	return "motion_particles"
 
 
+func display_name() -> String:
+	return tr("Motion particles")
+
+
+func display_category() -> String:
+	return tr("Graphics")
+
+
 func set_value(value: Variant) -> void:
 	current_value = value
 	value_changed.emit(value)

@@ -11,13 +11,13 @@ func _init() -> void:
 
 func _ready() -> void:
 	_refresh()
-	GameOptions.get_option(key, section).value_changed.connect(func(_value): _refresh())
+	GameOptions.get_option(section, key).value_changed.connect(func(_value): _refresh())
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	GameOptions.get_option(key, section).set_value(toggled_on)
+	GameOptions.get_option(section, key).set_value(toggled_on)
 	GameOptions.save()
 
 
 func _refresh() -> void:
-	button_pressed = GameOptions.get_option(key, section).get_value()
+	button_pressed = GameOptions.get_option(section, key).get_value()

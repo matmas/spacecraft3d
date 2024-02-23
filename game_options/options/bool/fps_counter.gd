@@ -11,6 +11,14 @@ func key() -> String:
 	return "fps_counter"
 
 
+func display_name() -> String:
+	return tr("Show FPS")
+
+
+func display_category() -> String:
+	return tr("User interface")
+
+
 func set_value(value: Variant) -> void:
 	current_value = value
 	value_changed.emit(value)
