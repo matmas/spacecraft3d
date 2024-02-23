@@ -10,11 +10,11 @@ func key() -> String:
 
 
 func set_value(value: Variant) -> void:
-	get_tree().root.content_scale_factor = value
+	get_window().content_scale_factor = value
 
 
 func get_value() -> Variant:
-	return get_tree().root.content_scale_factor
+	return get_window().content_scale_factor
 
 
 func get_value_from_string(value: String) -> Variant:
@@ -23,3 +23,8 @@ func get_value_from_string(value: String) -> Variant:
 
 func get_possible_string_values() -> Array[String]:
 	return ["100%", "150%", "200%"]
+
+
+func _ready() -> void:
+	if DisplayServer.screen_get_dpi(DisplayServer.SCREEN_OF_MAIN_WINDOW) > 120:
+		get_window().content_scale_factor = 2.0
