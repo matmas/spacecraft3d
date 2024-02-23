@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://mic25bshahx8"]
+[gd_scene load_steps=10 format=3 uid="uid://mic25bshahx8"]
 
 [ext_resource type="Shader" path="res://motion_particles/motion_particles.gdshader" id="1_5y605"]
+[ext_resource type="Script" path="res://game_options/feature.gd" id="1_xwt4v"]
 [ext_resource type="Script" path="res://motion_particles/motion_particles.gd" id="2_dryvb"]
 [ext_resource type="Texture2D" uid="uid://btt5rihg15jeh" path="res://motion_particles/particle.png" id="2_o3mn0"]
 
@@ -33,3 +34,8 @@ visibility_aabb = AABB(-10, -10, -25, 20, 20, 50)
 process_material = SubResource("ParticleProcessMaterial_clwi4")
 draw_pass_1 = SubResource("QuadMesh_gjrs2")
 script = ExtResource("2_dryvb")
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("1_xwt4v")
+section = "display"
+key = "motion_particles"

@@ -18,6 +18,7 @@ var _option_handlers: Array[OptionHandler] = [
 	preload("option_handlers/fsr_sharpness.gd").new(),
 	preload("option_handlers/lens_flare.gd").new(),
 	preload("option_handlers/motion_particles.gd").new(),
+	preload("option_handlers/input_hints.gd").new(),
 ]
 var _option_handlers_dict := {}
 var config := ConfigFile.new()

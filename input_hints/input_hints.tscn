@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
+[ext_resource type="Script" path="res://game_options/feature.gd" id="2_w37bw"]
 [ext_resource type="Script" path="res://input_icons/visibility_helper.gd" id="4_07c5p"]
 [ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="5_mck50"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
-[node name="InputHints" type="Node"]
+[node name="InputHints" type="CanvasLayer"]
 process_mode = 3
+layer = 0
 script = ExtResource("1_isslh")
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("2_w37bw")
+section = "display"
+key = "input_hints"
 
 [node name="LeftControls" type="VBoxContainer" parent="."]
 anchors_preset = 15

@@ -68,7 +68,6 @@ shadow_enabled = true
 
 [node name="LensFlare" parent="." node_paths=PackedStringArray("directional_light") instance=ExtResource("7_k38yw")]
 directional_light = NodePath("../DirectionalLight3D")
-raycast_collision_mask = 4294967291
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_sgym3")]
 

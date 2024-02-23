@@ -5,16 +5,12 @@ var previous_camera_position: Vector3
 
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		previous_camera_position = camera.global_position
 
 
 func _process(delta: float) -> void:
-	visible = GameOptions.get_handler("display", "motion_particles").current_value
-	if get_tree().paused or not visible:
-		return
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		global_transform = camera.global_transform

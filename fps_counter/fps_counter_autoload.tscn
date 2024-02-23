@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bov0okbi4enms"]
+[gd_scene load_steps=4 format=3 uid="uid://bov0okbi4enms"]
 
 [ext_resource type="Script" path="res://fps_counter/fps_counter.gd" id="1_fu203"]
+[ext_resource type="Script" path="res://game_options/feature.gd" id="2_soa3w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_04lwv"]
 line_spacing = 0.0
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="FPSMonitor" type="Label"]
+[node name="FPSCounter" type="Label"]
 process_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -19,3 +20,8 @@ text = "0 FPS"
 label_settings = SubResource("LabelSettings_04lwv")
 horizontal_alignment = 2
 script = ExtResource("1_fu203")
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("2_soa3w")
+section = "display"
+key = "fps_counter"

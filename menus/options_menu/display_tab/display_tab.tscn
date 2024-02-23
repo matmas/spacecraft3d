@@ -166,6 +166,16 @@ text = "Motion particles"
 key = "display"
 section = "motion_particles"
 
+[node name="InputHints" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+layout_mode = 2
+
+[node name="Label" parent="ScrollContainer/Body/List/InputHints" index="0"]
+text = "Input hints"
+
+[node name="GameOptionButton" parent="ScrollContainer/Body/List/InputHints" index="1"]
+key = "display"
+section = "input_hints"
+
 [node name="CameraCategory" type="Label" parent="ScrollContainer/Body/List"]
 layout_mode = 2
 theme_type_variation = &"CategoryHeader"
@@ -204,4 +214,5 @@ text = "Reset to defaults"
 [editable path="ScrollContainer/Body/List/Glow"]
 [editable path="ScrollContainer/Body/List/LensFlare"]
 [editable path="ScrollContainer/Body/List/MotionParticles"]
+[editable path="ScrollContainer/Body/List/InputHints"]
 [editable path="ScrollContainer/Body/List/FOV"]

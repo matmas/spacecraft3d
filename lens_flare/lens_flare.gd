@@ -14,18 +14,11 @@ var visibility := 0.0
 var target_visibility := 0.0
 
 
-func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
-
-
 func get_light_apparent_global_position(camera: Camera3D) -> Vector3:
 	return camera.global_position + directional_light.global_transform.basis.z * camera.far
 
 
 func _process(delta: float) -> void:
-	visible = GameOptions.get_handler("display", "lens_flare").current_value
-	if get_tree().paused or not visible:
-		return
 	var camera := get_viewport().get_camera_3d()
 	if not camera or not directional_light or Engine.is_editor_hint():
 		return
@@ -37,9 +30,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	visible = GameOptions.get_handler("display", "lens_flare").current_value
-	if get_tree().paused or not visible:
-		return
 	var camera := get_viewport().get_camera_3d()
 	if not camera or not directional_light or Engine.is_editor_hint():
 		return
