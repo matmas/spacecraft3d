@@ -20,14 +20,14 @@ func _ready() -> void:
 	else:
 		# get_string_value() might not be implemented so populate everything
 		_populate()
-		_select_active()
-	GameOptions.get_option(key, section).value_changed.connect(func(_value): refresh())
+		_refresh()
+	GameOptions.get_option(key, section).value_changed.connect(func(_value): _refresh())
 
 
 func _on_button_down() -> void:
 	if not _is_populated:
 		_populate()
-		_select_active()
+		_refresh()
 
 
 func _populate() -> void:
@@ -37,19 +37,14 @@ func _populate() -> void:
 	_is_populated = true
 
 
-func _select_active() -> void:
-	for index in item_count:
-		var value := get_item_text(index)
-		if GameOptions.get_option(key, section).value_string_matches(value):
-			select(index)
-
-
 func _on_item_selected(index: int) -> void:
 	var value := get_item_text(index)
 	GameOptions.get_option(key, section).set_value_string(value)
 	GameOptions.save()
-	_select_active()  # If something goes wrong we revert back to previous value
 
 
-func refresh() -> void:
-	_select_active()
+func _refresh() -> void:
+	for index in item_count:
+		var value := get_item_text(index)
+		if GameOptions.get_option(key, section).value_string_matches(value):
+			select(index)
