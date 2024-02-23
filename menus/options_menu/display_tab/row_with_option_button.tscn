@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="1_48vx0"]
 
-[node name="Option" type="HBoxContainer"]
+[node name="RowWithOptionButton" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
