@@ -16,6 +16,8 @@ var _option_handlers: Array[OptionHandler] = [
 	preload("option_handlers/glow.gd").new(),
 	preload("option_handlers/upscaling_mode.gd").new(),
 	preload("option_handlers/fsr_sharpness.gd").new(),
+	preload("option_handlers/lens_flare.gd").new(),
+	preload("option_handlers/motion_particles.gd").new(),
 ]
 var _option_handlers_dict := {}
 var config := ConfigFile.new()
