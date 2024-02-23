@@ -1,4 +1,4 @@
-extends OptionHandler
+extends EnumOption
 
 @onready var current_value = snappedf(ProjectSettings.get_setting("rendering/scaling_3d/fsr_sharpness"), 0.1)
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnu7ouj5kw015"]
+[gd_scene load_steps=5 format=3 uid="uid://bnu7ouj5kw015"]
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
 [ext_resource type="PackedScene" uid="uid://cipsfd504dpxe" path="res://menus/options_menu/display_tab/row_with_option_button.tscn" id="3_ohcr4"]
+[ext_resource type="PackedScene" uid="uid://otiblovqox1f" path="res://menus/options_menu/display_tab/row_with_check_button.tscn" id="4_dykk5"]
 
 [node name="DisplayTab" type="VBoxContainer"]
 anchors_preset = 15
@@ -61,23 +62,23 @@ text = "Max FPS"
 key = "display"
 section = "max_fps"
 
-[node name="WindowMode" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="Fullscreen" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
-[node name="Label" parent="ScrollContainer/Body/List/WindowMode" index="0"]
-text = "Window mode"
+[node name="Label" parent="ScrollContainer/Body/List/Fullscreen" index="0"]
+text = "Fullscreen"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/WindowMode" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/Fullscreen" index="1"]
 key = "display"
-section = "window_mode"
+section = "fullscreen"
 
-[node name="ShowFPS" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="ShowFPS" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/ShowFPS" index="0"]
 text = "Show FPS"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/ShowFPS" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/ShowFPS" index="1"]
 key = "display"
 section = "fps_counter"
 
@@ -126,53 +127,53 @@ text = "MSAA"
 key = "display"
 section = "msaa"
 
-[node name="TAA" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="TAA" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/TAA" index="0"]
 text = "TAA"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/TAA" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/TAA" index="1"]
 key = "display"
 section = "taa"
 
-[node name="Glow" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="Glow" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/Glow" index="0"]
 text = "Glow"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/Glow" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/Glow" index="1"]
 key = "display"
 section = "glow"
 
-[node name="LensFlare" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="LensFlare" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/LensFlare" index="0"]
 text = "Lens flare"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/LensFlare" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/LensFlare" index="1"]
 key = "display"
 section = "lens_flare"
 
-[node name="MotionParticles" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="MotionParticles" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/MotionParticles" index="0"]
 text = "Motion particles"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/MotionParticles" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/MotionParticles" index="1"]
 key = "display"
 section = "motion_particles"
 
-[node name="InputHints" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="InputHints" parent="ScrollContainer/Body/List" instance=ExtResource("4_dykk5")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/InputHints" index="0"]
 text = "Input hints"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/InputHints" index="1"]
+[node name="GameOptionCheckButton" parent="ScrollContainer/Body/List/InputHints" index="1"]
 key = "display"
 section = "input_hints"
 
@@ -204,7 +205,7 @@ text = "Reset to defaults"
 [editable path="ScrollContainer/Body/List/UIScale"]
 [editable path="ScrollContainer/Body/List/VSync"]
 [editable path="ScrollContainer/Body/List/MaxFPS"]
-[editable path="ScrollContainer/Body/List/WindowMode"]
+[editable path="ScrollContainer/Body/List/Fullscreen"]
 [editable path="ScrollContainer/Body/List/ShowFPS"]
 [editable path="ScrollContainer/Body/List/3DResolution"]
 [editable path="ScrollContainer/Body/List/Upscaling"]

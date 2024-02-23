@@ -1,4 +1,4 @@
-extends BoolOptionHandler
+extends BoolOption
 
 var current_value := true  # Assume glow is enabled by default
 

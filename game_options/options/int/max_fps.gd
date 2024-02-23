@@ -1,4 +1,4 @@
-extends OptionHandler
+extends EnumOption
 
 var UNLIMITED = tr("Unlimited")
 

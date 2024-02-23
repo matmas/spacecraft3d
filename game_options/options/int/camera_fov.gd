@@ -1,4 +1,4 @@
-extends OptionHandler
+extends EnumOption
 
 var current_value := 75.0
 

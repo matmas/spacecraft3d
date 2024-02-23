@@ -1,5 +1,5 @@
-extends OptionHandler
-class_name BoolOptionHandler
+extends EnumOption
+class_name BoolOption
 
 var ENABLED := tr("Enabled")
 var DISABLED := tr("Disabled")

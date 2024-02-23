@@ -1,4 +1,4 @@
-extends OptionHandler
+extends EnumOption
 
 var DISABLED := tr("Disabled")
 @onready var current_value = ProjectSettings.get_setting("rendering/anti_aliasing/quality/msaa_3d")

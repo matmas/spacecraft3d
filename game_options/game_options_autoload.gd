@@ -3,40 +3,40 @@ extends Node
 const PATH = "user://options.cfg"
 
 
-var _option_handlers: Array[OptionHandler] = [
-	preload("option_handlers/ui_scale.gd").new(),
-	preload("option_handlers/vsync.gd").new(),
-	preload("option_handlers/max_fps.gd").new(),
-	preload("option_handlers/window_mode.gd").new(),
-	preload("option_handlers/fps_counter.gd").new(),
-	preload("option_handlers/camera_fov.gd").new(),
-	preload("option_handlers/3d_scale.gd").new(),
-	preload("option_handlers/msaa.gd").new(),
-	preload("option_handlers/taa.gd").new(),
-	preload("option_handlers/glow.gd").new(),
-	preload("option_handlers/upscaling_mode.gd").new(),
-	preload("option_handlers/fsr_sharpness.gd").new(),
-	preload("option_handlers/lens_flare.gd").new(),
-	preload("option_handlers/motion_particles.gd").new(),
-	preload("option_handlers/input_hints.gd").new(),
+var _options: Array[Option] = [
+	preload("options/int/ui_scale.gd").new(),
+	preload("options/enum/vsync.gd").new(),
+	preload("options/int/max_fps.gd").new(),
+	preload("options/bool/fullscreen.gd").new(),
+	preload("options/bool/fps_counter.gd").new(),
+	preload("options/int/camera_fov.gd").new(),
+	preload("options/int/3d_scale.gd").new(),
+	preload("options/enum/msaa.gd").new(),
+	preload("options/bool/taa.gd").new(),
+	preload("options/bool/glow.gd").new(),
+	preload("options/enum/upscaling_mode.gd").new(),
+	preload("options/int/fsr_sharpness.gd").new(),
+	preload("options/bool/lens_flare.gd").new(),
+	preload("options/bool/motion_particles.gd").new(),
+	preload("options/bool/input_hints.gd").new(),
 ]
-var _option_handlers_dict := {}
+var _options_dict := {}
 var config := ConfigFile.new()
 
 
-func get_handler(key: String, section: String) -> OptionHandler:
-	return _option_handlers_dict[key][section]
+func get_option(key: String, section: String) -> Option:
+	return _options_dict[key][section]
 
 
 func _init() -> void:
-	for handler in _option_handlers:
-		add_child(handler)
-		_option_handlers_dict.get_or_add(handler.section(), {})[handler.key()] = handler
+	for option in _options:
+		add_child(option)
+		_options_dict.get_or_add(option.section(), {})[option.key()] = option
 
 
 func _ready() -> void:
-	for handler in _option_handlers:
-		handler.initial_value = handler.get_value()
+	for option in _options:
+		option.initial_value = option.get_value()
 	_load()
 
 
@@ -51,18 +51,18 @@ func _load() -> void:
 		])
 		return
 
-	for handler in _option_handlers:
-		if config.has_section_key(handler.section(), handler.key()):
-			handler.set_value(config.get_value(handler.section(), handler.key()))
+	for option in _options:
+		if config.has_section_key(option.section(), option.key()):
+			option.set_value(config.get_value(option.section(), option.key()))
 
 
 func save() -> void:
-	for handler in _option_handlers:
-		if handler.get_value() != handler.initial_value:
-			config.set_value(handler.section(), handler.key(), handler.get_value())
+	for option in _options:
+		if option.get_value() != option.initial_value:
+			config.set_value(option.section(), option.key(), option.get_value())
 		else:
-			if config.has_section_key(handler.section(), handler.key()):
-				config.erase_section_key(handler.section(), handler.key())
+			if config.has_section_key(option.section(), option.key()):
+				config.erase_section_key(option.section(), option.key())
 
 	var error := config.save(PATH)
 	if error:
@@ -72,8 +72,8 @@ func save() -> void:
 
 
 func reset_to_defaults() -> void:
-	for handler in _option_handlers:
-		handler.set_value(handler.initial_value)
+	for option in _options:
+		option.set_value(option.initial_value)
 
 	if FileAccess.file_exists(PATH):
 		var error := DirAccess.remove_absolute(PATH)

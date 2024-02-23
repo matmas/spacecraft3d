@@ -13,7 +13,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	var current_value := GameOptions.get_handler(key, section).get_string_value()
+	var current_value = GameOptions.get_option(key, section).get_string_value()
 	if current_value:
 		add_item(current_value)
 		select(0)
@@ -31,7 +31,7 @@ func _on_button_down() -> void:
 
 func _populate() -> void:
 	clear()
-	for value in GameOptions.get_handler(key, section).get_possible_string_values():
+	for value in GameOptions.get_option(key, section).get_possible_string_values():
 		add_item(value)
 	_is_populated = true
 
@@ -39,13 +39,13 @@ func _populate() -> void:
 func _select_active() -> void:
 	for index in item_count:
 		var value := get_item_text(index)
-		if GameOptions.get_handler(key, section).value_string_matches(value):
+		if GameOptions.get_option(key, section).value_string_matches(value):
 			select(index)
 
 
 func _on_item_selected(index: int) -> void:
 	var value := get_item_text(index)
-	GameOptions.get_handler(key, section).set_value_string(value)
+	GameOptions.get_option(key, section).set_value_string(value)
 	GameOptions.save()
 	_select_active()  # If something goes wrong we revert back to previous value
 

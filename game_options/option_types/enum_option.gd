@@ -1,23 +1,5 @@
-extends Node
-class_name OptionHandler
-
-var initial_value: Variant
-
-
-func section() -> String:
-	printerr("Not implemented."); return ""
-
-
-func key() -> String:
-	printerr("Not implemented."); return ""
-
-
-func get_value() -> Variant:
-	printerr("Not implemented."); return null
-
-
-func set_value(_value: Variant) -> void:
-	printerr("Not implemented.")
+extends Option
+class_name EnumOption
 
 
 func get_value_from_string(_value: String) -> Variant:

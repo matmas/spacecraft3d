@@ -1,4 +1,4 @@
-extends OptionHandler
+extends EnumOption
 
 @onready var current_value = ProjectSettings.get_setting("rendering/scaling_3d/mode")
 

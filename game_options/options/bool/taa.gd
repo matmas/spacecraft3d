@@ -1,6 +1,6 @@
-extends BoolOptionHandler
+extends BoolOption
 
-@onready var current_value = ProjectSettings.get_setting("rendering/anti_aliasing/quality/use_taa")
+@onready var current_value := ProjectSettings.get_setting("rendering/anti_aliasing/quality/use_taa") as bool
 
 
 func section() -> String:

@@ -11,6 +11,6 @@ func _init() -> void:
 
 func _process(_delta: float) -> void:
 	var parent := get_parent()
-	parent.visible = GameOptions.get_handler(section, key).get_value()
+	parent.visible = GameOptions.get_option(section, key).get_value()
 	parent.set_process(parent.visible)
 	parent.set_physics_process(parent.visible)

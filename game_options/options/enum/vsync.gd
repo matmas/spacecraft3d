@@ -1,9 +1,9 @@
-extends OptionHandler
+extends EnumOption
 
-var ENABLED = tr("Enabled")
-var DISABLED = tr("Disabled")
-var ADAPTIVE = tr("Adaptive")
-var MAILBOX = tr("Mailbox")
+var ENABLED := tr("Enabled")
+var DISABLED := tr("Disabled")
+var ADAPTIVE := tr("Adaptive")
+var MAILBOX := tr("Mailbox")
 
 
 func section() -> String:

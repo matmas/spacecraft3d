@@ -1,4 +1,4 @@
-extends BoolOptionHandler
+extends BoolOption
 
 var current_value := true
 
@@ -8,7 +8,7 @@ func section() -> String:
 
 
 func key() -> String:
-	return "fps_counter"
+	return "motion_particles"
 
 
 func set_value(value: Variant) -> void:
