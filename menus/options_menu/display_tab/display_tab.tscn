@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnu7ouj5kw015"]
+[gd_scene load_steps=6 format=3 uid="uid://bnu7ouj5kw015"]
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
 [ext_resource type="PackedScene" uid="uid://cipsfd504dpxe" path="res://menus/options_menu/display_tab/row_with_option_button.tscn" id="3_ohcr4"]
 [ext_resource type="PackedScene" uid="uid://otiblovqox1f" path="res://menus/options_menu/display_tab/row_with_check_button.tscn" id="4_dykk5"]
+[ext_resource type="PackedScene" uid="uid://dos6s212o3okw" path="res://menus/options_menu/display_tab/row_with_range.tscn" id="5_0wot2"]
 
 [node name="DisplayTab" type="VBoxContainer"]
 anchors_preset = 15
@@ -107,13 +108,17 @@ text = "Upscaling"
 key = "display"
 section = "upscaling_mode"
 
-[node name="FSRSharpness" parent="ScrollContainer/Body/List" instance=ExtResource("3_ohcr4")]
+[node name="FSRSharpness" parent="ScrollContainer/Body/List" instance=ExtResource("5_0wot2")]
 layout_mode = 2
 
 [node name="Label" parent="ScrollContainer/Body/List/FSRSharpness" index="0"]
 text = "FSR sharpness"
 
-[node name="GameOptionButton" parent="ScrollContainer/Body/List/FSRSharpness" index="1"]
+[node name="HSlider" parent="ScrollContainer/Body/List/FSRSharpness/HBoxContainer" index="0"]
+key = "display"
+section = "fsr_sharpness"
+
+[node name="SpinBox" parent="ScrollContainer/Body/List/FSRSharpness/HBoxContainer" index="1"]
 key = "display"
 section = "fsr_sharpness"
 

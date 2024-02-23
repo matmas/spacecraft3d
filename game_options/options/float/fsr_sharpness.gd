@@ -1,4 +1,4 @@
-extends EnumOption
+extends FloatOption
 
 @onready var current_value = snappedf(ProjectSettings.get_setting("rendering/scaling_3d/fsr_sharpness"), 0.1)
 
@@ -21,9 +21,13 @@ func get_value() -> Variant:
 	return current_value
 
 
-func get_value_from_string(value: String) -> Variant:
-	return float(value)
+func get_min_value() -> float:
+	return 0.0
 
 
-func get_possible_string_values() -> Array[String]:
-	return ["0.0", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0", "2.0"]
+func get_step() -> float:
+	return 0.1
+
+
+func get_max_value() -> float:
+	return 2.0
