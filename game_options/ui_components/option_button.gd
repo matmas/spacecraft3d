@@ -18,7 +18,7 @@ func _ready() -> void:
 		add_item(current_value)
 		select(0)
 	else:
-		# get_string_value() might not be implemented so populate everything
+		# get_string_value() is not implemented so populate everything
 		_populate()
 		_refresh()
 	GameOptions.get_option(key, section).value_changed.connect(func(_value): _refresh())
