@@ -56,4 +56,5 @@ func get_description() -> String:
 
 
 func _ready() -> void:
+	# Update description when window size changes
 	get_window().size_changed.connect(func(): value_changed.emit())

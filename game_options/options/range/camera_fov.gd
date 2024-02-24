@@ -50,3 +50,8 @@ func get_max_display_value() -> float:
 
 func spinbox_suffix() -> String:
 	return "°"
+
+
+func _ready() -> void:
+	# Update description when window size changes
+	get_window().size_changed.connect(func(): value_changed.emit())
