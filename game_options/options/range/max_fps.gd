@@ -16,7 +16,7 @@ func get_display_name() -> String:
 
 
 func get_display_category() -> String:
-	return tr("User interface")
+	return tr("General")
 
 
 func set_value(value: Variant) -> void:

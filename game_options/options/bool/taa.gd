@@ -16,7 +16,7 @@ func get_display_name() -> String:
 
 
 func get_display_category() -> String:
-	return tr("Graphics")
+	return tr("Upscaling & anti-aliasing")
 
 
 func set_value(value: Variant) -> void:
