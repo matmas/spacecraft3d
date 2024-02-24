@@ -1,6 +1,6 @@
-extends FloatOption
+extends RangeOption
 
-var current_value := 75.0
+@onready var current_value = snappedf(ProjectSettings.get_setting("rendering/scaling_3d/fsr_sharpness"), 0.1)
 
 
 func section() -> String:
@@ -8,11 +8,11 @@ func section() -> String:
 
 
 func key() -> String:
-	return "camera_fov"
+	return "fsr_sharpness"
 
 
 func display_name() -> String:
-	return tr("Vertical FOV")  # Assumes Camera3D.keep_aspect == Camera3D.KEEP_HEIGHT (default)
+	return tr("FSR sharpness")
 
 
 func display_category() -> String:
@@ -20,10 +20,8 @@ func display_category() -> String:
 
 
 func set_value(value: Variant) -> void:
+	RenderingServer.viewport_set_fsr_sharpness(get_viewport().get_viewport_rid(), value)
 	current_value = value
-	var camera := get_viewport().get_camera_3d()
-	if camera:
-		camera.fov = value
 	value_changed.emit(value)
 
 
@@ -32,16 +30,12 @@ func get_value() -> Variant:
 
 
 func get_min_value() -> float:
-	return 36
+	return 0.0
 
 
 func get_step() -> float:
-	return 1
+	return 0.1
 
 
 func get_max_value() -> float:
-	return 75
-
-
-func spinbox_suffix() -> String:
-	return "°"
+	return 2.0

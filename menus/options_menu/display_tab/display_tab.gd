@@ -17,7 +17,7 @@ func _ready() -> void:
 			row = ROW_WITH_CHECK_BUTTON.instantiate()
 		elif option is EnumOption:
 			row = ROW_WITH_OPTION_BUTTON.instantiate()
-		elif option is FloatOption:
+		elif option is RangeOption:
 			row = ROW_WITH_RANGE.instantiate()
 
 		row.set_option(option)

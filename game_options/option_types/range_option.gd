@@ -1,5 +1,5 @@
 extends Option
-class_name FloatOption
+class_name RangeOption
 
 
 func get_min_value() -> float:
