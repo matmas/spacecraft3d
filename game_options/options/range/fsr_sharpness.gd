@@ -34,8 +34,20 @@ func get_min_display_value() -> float:
 
 
 func get_display_step() -> float:
-	return 0.1
+	return 5.0
 
 
 func get_max_display_value() -> float:
-	return 2.0
+	return 100.0
+
+
+func get_display_value() -> float:
+	return (1 - get_value() * 0.5) * 100.0
+
+
+func set_display_value(value: float) -> void:
+	set_value((1 - value / 100) * 2)
+
+
+func spinbox_suffix() -> String:
+	return "%"
