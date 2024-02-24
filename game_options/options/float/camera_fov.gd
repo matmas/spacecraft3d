@@ -32,7 +32,7 @@ func get_value() -> Variant:
 
 
 func get_min_value() -> float:
-	return 50
+	return 36
 
 
 func get_step() -> float:
@@ -41,3 +41,7 @@ func get_step() -> float:
 
 func get_max_value() -> float:
 	return 75
+
+
+func spinbox_suffix() -> String:
+	return "°"

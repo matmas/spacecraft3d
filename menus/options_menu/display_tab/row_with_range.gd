@@ -1,15 +1,10 @@
 extends HBoxContainer
 
 
-func set_display_name(display_name: String) -> void:
-	$Label.text = display_name
-
-
-func set_section(section: String) -> void:
-	$HBoxContainer/HSlider.section = section
-	$HBoxContainer/SpinBox.section = section
-
-
-func set_key(key: String) -> void:
-	$HBoxContainer/HSlider.key = key
-	$HBoxContainer/SpinBox.key = key
+func set_option(option: FloatOption) -> void:
+	$Label.text = option.display_name()
+	$HBoxContainer/HSlider.section = option.section()
+	$HBoxContainer/HSlider.key = option.key()
+	$HBoxContainer/SpinBox.section = option.section()
+	$HBoxContainer/SpinBox.key = option.key()
+	$HBoxContainer/SpinBox.suffix = option.spinbox_suffix()

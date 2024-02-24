@@ -1,13 +1,7 @@
 extends HBoxContainer
 
 
-func set_display_name(display_name: String) -> void:
-	$Label.text = display_name
-
-
-func set_section(section: String) -> void:
-	$GameOptionButton.section = section
-
-
-func set_key(key: String) -> void:
-	$GameOptionButton.key = key
+func set_option(option: Option) -> void:
+	$Label.text = option.display_name()
+	$GameOptionButton.section = option.section()
+	$GameOptionButton.key = option.key()

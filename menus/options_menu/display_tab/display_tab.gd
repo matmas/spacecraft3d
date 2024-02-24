@@ -20,9 +20,7 @@ func _ready() -> void:
 		elif option is FloatOption:
 			row = ROW_WITH_RANGE.instantiate()
 
-		row.set_display_name(option.display_name())
-		row.set_section(option.section())
-		row.set_key(option.key())
+		row.set_option(option)
 
 		if option.display_category() != current_category:
 			var category_label := Label.new()
