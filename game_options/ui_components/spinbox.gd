@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	var option := GameOptions.get_option(section, key)
-	set_value_no_signal(option.get_min_value())  # Prevents emitting value_changed signal
+	set_value_no_signal(option.get_min_value())  # Prevents emitting value_changed signal when changing min_value
 	min_value = option.get_min_value()
 	max_value = option.get_max_value()
 	step = option.get_step()
