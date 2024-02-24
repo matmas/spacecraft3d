@@ -1,4 +1,4 @@
-extends EnumOption
+extends RangeOption
 
 
 func section() -> String:
@@ -26,12 +26,28 @@ func get_value() -> Variant:
 	return get_window().content_scale_factor
 
 
-func get_value_from_display_value(value: String) -> Variant:
-	return int(value.rstrip("%")) / 100.0
+func get_min_display_value() -> float:
+	return 100.0
 
 
-func get_possible_display_values() -> Array[String]:
-	return ["100%", "150%", "200%"]
+func get_display_step() -> float:
+	return 12.5
+
+
+func get_max_display_value() -> float:
+	return 200.0
+
+
+func get_display_value() -> float:
+	return get_value() * 100.0
+
+
+func set_display_value(value: float) -> void:
+	set_value(value / 100.0)
+
+
+func spinbox_suffix() -> String:
+	return "%"
 
 
 func _ready() -> void:
