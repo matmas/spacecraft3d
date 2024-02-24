@@ -12,7 +12,7 @@ func key() -> String:
 
 
 func display_name() -> String:
-	return tr("Vertical FOV")
+	return tr("Vertical FOV")  # Assumes Camera3D.keep_aspect == Camera3D.KEEP_HEIGHT (default)
 
 
 func display_category() -> String:
