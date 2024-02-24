@@ -37,7 +37,7 @@ func get_value() -> Variant:
 
 
 func get_min_display_value() -> float:
-	return 36
+	return 35
 
 
 func get_display_step() -> float:
