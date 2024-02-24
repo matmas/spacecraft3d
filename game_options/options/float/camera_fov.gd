@@ -1,4 +1,4 @@
-extends EnumOption
+extends FloatOption
 
 var current_value := 75.0
 
@@ -31,9 +31,13 @@ func get_value() -> Variant:
 	return current_value
 
 
-func get_value_from_string(value: String) -> Variant:
-	return float(value)
+func get_min_value() -> float:
+	return 50
 
 
-func get_possible_string_values() -> Array[String]:
-	return ["50", "75"]
+func get_step() -> float:
+	return 1
+
+
+func get_max_value() -> float:
+	return 75

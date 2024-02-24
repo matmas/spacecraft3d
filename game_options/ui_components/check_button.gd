@@ -20,4 +20,4 @@ func _on_toggled(toggled_on: bool) -> void:
 
 
 func _refresh() -> void:
-	button_pressed = GameOptions.get_option(section, key).get_value()
+	set_pressed_no_signal(GameOptions.get_option(section, key).get_value())
