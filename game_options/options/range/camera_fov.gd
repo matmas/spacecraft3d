@@ -29,22 +29,22 @@ func set_value(value: Variant) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		camera.fov = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:
 	return current_value
 
 
-func get_min_value() -> float:
+func get_min_display_value() -> float:
 	return 36
 
 
-func get_step() -> float:
+func get_display_step() -> float:
 	return 1
 
 
-func get_max_value() -> float:
+func get_max_display_value() -> float:
 	return 75
 
 

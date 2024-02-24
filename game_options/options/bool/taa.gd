@@ -22,7 +22,7 @@ func get_display_category() -> String:
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_use_taa(get_viewport().get_viewport_rid(), value)
 	current_value = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:

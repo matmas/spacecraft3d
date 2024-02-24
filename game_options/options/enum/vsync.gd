@@ -24,14 +24,14 @@ func get_display_category() -> String:
 
 func set_value(value: Variant) -> void:
 	DisplayServer.window_set_vsync_mode(value)
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:
 	return DisplayServer.window_get_vsync_mode()
 
 
-func get_value_from_string(value: String) -> Variant:
+func get_value_from_display_value(value: String) -> Variant:
 	match value:
 		ENABLED:
 			return DisplayServer.VSYNC_ENABLED
@@ -45,7 +45,7 @@ func get_value_from_string(value: String) -> Variant:
 			return null
 
 
-func get_possible_string_values() -> Array[String]:
+func get_possible_display_values() -> Array[String]:
 	var possible_values: Array[String] = []
 	var current = get_value()
 	for value in [ENABLED, DISABLED, ADAPTIVE, MAILBOX]:
@@ -56,15 +56,15 @@ func get_possible_string_values() -> Array[String]:
 			# "The requested V-Sync mode Mailbox is not available. Falling back to V-Sync mode Enabled."
 			continue
 
-		set_value_string(value)
-		if value_string_matches(value):
+		set_display_value(value)
+		if display_value_matches(value):
 			possible_values.push_back(value)
 
 	set_value(current)
 	return possible_values
 
 
-func get_string_value() -> String:
+func get_display_value() -> String:
 	match get_value():
 		DisplayServer.VSYNC_ENABLED:
 			return ENABLED

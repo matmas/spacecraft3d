@@ -25,7 +25,7 @@ func set_value(value: Variant) -> void:
 		camera.get_world_3d().environment.glow_enabled = value
 	else:
 		current_value = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:

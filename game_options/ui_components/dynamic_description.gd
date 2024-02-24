@@ -8,7 +8,7 @@ class_name GameOptionDescription
 func _ready() -> void:
 	var option := GameOptions.get_option(section, key)
 	_refresh()
-	option.value_changed.connect(func(_value): _refresh())
+	option.value_changed.connect(func(): _refresh())
 
 
 func _refresh() -> void:

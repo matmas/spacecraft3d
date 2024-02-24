@@ -23,14 +23,14 @@ func get_display_category() -> String:
 func set_value(value: Variant) -> void:
 	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), value)
 	current_value = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:
 	return current_value
 
 
-func get_value_from_string(value: String) -> Variant:
+func get_value_from_display_value(value: String) -> Variant:
 	match value:
 		DISABLED:
 			return RenderingServer.VIEWPORT_MSAA_DISABLED
@@ -44,5 +44,5 @@ func get_value_from_string(value: String) -> Variant:
 			return null
 
 
-func get_possible_string_values() -> Array[String]:
+func get_possible_display_values() -> Array[String]:
 	return [DISABLED, "2x", "4x", "8x"]

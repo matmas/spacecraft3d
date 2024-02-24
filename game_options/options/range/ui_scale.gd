@@ -19,18 +19,18 @@ func get_display_category() -> String:
 
 func set_value(value: Variant) -> void:
 	get_window().content_scale_factor = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:
 	return get_window().content_scale_factor
 
 
-func get_value_from_string(value: String) -> Variant:
+func get_value_from_display_value(value: String) -> Variant:
 	return int(value.rstrip("%")) / 100.0
 
 
-func get_possible_string_values() -> Array[String]:
+func get_possible_display_values() -> Array[String]:
 	return ["100%", "150%", "200%"]
 
 

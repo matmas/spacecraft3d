@@ -21,7 +21,7 @@ func get_display_category() -> String:
 
 func set_value(value: Variant) -> void:
 	current_value = value
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:

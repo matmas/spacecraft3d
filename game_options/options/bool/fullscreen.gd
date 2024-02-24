@@ -22,7 +22,7 @@ func set_value(value: Variant) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	value_changed.emit(value)
+	value_changed.emit()
 
 
 func get_value() -> Variant:

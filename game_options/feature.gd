@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_update()
-	GameOptions.get_option(section, key).value_changed.connect(func(_value): _update())
+	GameOptions.get_option(section, key).value_changed.connect(func(): _update())
 
 
 func _update() -> void:
