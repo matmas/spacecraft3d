@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://otiblovqox1f"]
+[gd_scene load_steps=4 format=3 uid="uid://otiblovqox1f"]
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/bool_option_row.gd" id="1_sk1ee"]
 [ext_resource type="Script" path="res://game_options/ui_components/check_button.gd" id="2_0838i"]
+[ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="3_huf1n"]
 
 [node name="BoolOptionRow" type="HBoxContainer"]
 anchors_preset = 15
@@ -20,3 +21,9 @@ theme_type_variation = &"CategoryItem"
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_0838i")
+
+[node name="GameOptionDescription" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+script = ExtResource("3_huf1n")

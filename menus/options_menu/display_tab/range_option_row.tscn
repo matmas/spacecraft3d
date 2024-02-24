@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dos6s212o3okw"]
+[gd_scene load_steps=5 format=3 uid="uid://dos6s212o3okw"]
 
 [ext_resource type="Script" path="res://menus/options_menu/display_tab/range_option_row.gd" id="1_6jlny"]
 [ext_resource type="Script" path="res://game_options/ui_components/slider.gd" id="2_ixwtr"]
 [ext_resource type="Script" path="res://game_options/ui_components/spinbox.gd" id="3_440vq"]
+[ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="4_bttvg"]
 
 [node name="RangeOptionRow" type="HBoxContainer"]
 anchors_preset = 15
@@ -32,3 +33,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource("3_440vq")
+
+[node name="GameOptionDescription" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+script = ExtResource("4_bttvg")

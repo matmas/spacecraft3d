@@ -8,3 +8,5 @@ func set_option(option: RangeOption) -> void:
 	$HBoxContainer/SpinBox.section = option.section()
 	$HBoxContainer/SpinBox.key = option.key()
 	$HBoxContainer/SpinBox.suffix = option.spinbox_suffix()
+	$GameOptionDescription.section = option.section()
+	$GameOptionDescription.key = option.key()

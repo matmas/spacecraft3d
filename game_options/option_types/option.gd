@@ -18,6 +18,10 @@ func get_display_name() -> String:
 	printerr("Not implemented."); return ""
 
 
+func get_description() -> String:
+	return ""
+
+
 func get_display_category() -> String:
 	printerr("Not implemented."); return ""
 
