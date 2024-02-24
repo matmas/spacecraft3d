@@ -87,6 +87,7 @@ func reset_to_defaults() -> void:
 			printerr("Error while removing file %s: %s" % [
 				ProjectSettings.globalize_path(PATH), Utils.error_message(error)
 			])
+	await get_tree().create_timer(0.1).timeout  # Improves performance of reset_window_size()
 	reset_window_size()
 
 
