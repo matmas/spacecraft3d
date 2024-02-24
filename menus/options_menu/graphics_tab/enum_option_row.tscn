@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cipsfd504dpxe"]
 
-[ext_resource type="Script" path="res://menus/options_menu/display_tab/enum_option_row.gd" id="1_7ge3t"]
+[ext_resource type="Script" path="res://menus/options_menu/graphics_tab/enum_option_row.gd" id="1_7ge3t"]
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="2_nxys6"]
 [ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="3_301sb"]
 

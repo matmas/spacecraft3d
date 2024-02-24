@@ -25,5 +25,5 @@ script = ExtResource("2_aysj0")
 
 [node name="Feature" type="Node" parent="."]
 script = ExtResource("1_ag1xd")
-section = "display"
+section = "graphics"
 key = "lens_flare"

@@ -23,5 +23,5 @@ script = ExtResource("1_fu203")
 
 [node name="Feature" type="Node" parent="."]
 script = ExtResource("2_soa3w")
-section = "display"
+section = "graphics"
 key = "fps_counter"

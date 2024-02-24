@@ -4,7 +4,7 @@ var current_value := 75.0
 
 
 func section() -> String:
-	return "display"
+	return "graphics"
 
 
 func key() -> String:

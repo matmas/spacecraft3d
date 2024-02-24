@@ -2,7 +2,7 @@ extends Control
 
 @onready var tab_bar: TabBar = %TabBar
 @onready var tabs: Array[CanvasItem] = [
-	%DisplayTab,
+	%GraphicsTab,
 	%ControlsTab,
 ]
 

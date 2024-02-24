@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnu7ouj5kw015"]
 
-[ext_resource type="Script" path="res://menus/options_menu/display_tab/display_tab.gd" id="1_poj5n"]
+[ext_resource type="Script" path="res://menus/options_menu/graphics_tab/graphics_tab.gd" id="1_poj5n"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="2_utw8y"]
 
-[node name="DisplayTab" type="VBoxContainer"]
+[node name="GraphicsTab" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

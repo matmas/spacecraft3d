@@ -13,7 +13,7 @@ script = ExtResource("1_isslh")
 
 [node name="Feature" type="Node" parent="."]
 script = ExtResource("2_w37bw")
-section = "display"
+section = "graphics"
 key = "input_hints"
 
 [node name="LeftControls" type="VBoxContainer" parent="."]

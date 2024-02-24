@@ -8,7 +8,7 @@ var FSR2 = "FSR 2.2"
 
 
 func section() -> String:
-	return "display"
+	return "graphics"
 
 
 func key() -> String:

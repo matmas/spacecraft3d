@@ -4,7 +4,7 @@ var current_value := true  # Assume glow is enabled by default
 
 
 func section() -> String:
-	return "display"
+	return "graphics"
 
 
 func key() -> String:

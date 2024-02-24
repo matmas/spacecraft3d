@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="2_6r6d6"]
 [ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://menus/options_menu/controls_tab/controls_tab.tscn" id="3_kmojk"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="3_t74me"]
-[ext_resource type="PackedScene" uid="uid://bnu7ouj5kw015" path="res://menus/options_menu/display_tab/display_tab.tscn" id="4_qxrll"]
+[ext_resource type="PackedScene" uid="uid://bnu7ouj5kw015" path="res://menus/options_menu/graphics_tab/graphics_tab.tscn" id="4_qxrll"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -51,7 +51,7 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 tab_count = 2
 tab_alignment = 1
-tab_0/title = "Display"
+tab_0/title = "Graphics"
 tab_1/title = "Controls"
 
 [node name="Next" type="TextureRect" parent="List/HBoxContainer"]
@@ -62,7 +62,7 @@ action_name = &"ui_tab_next"
 visibility_condition = 2
 visibility_mode = 1
 
-[node name="DisplayTab" parent="List" instance=ExtResource("4_qxrll")]
+[node name="GraphicsTab" parent="List" instance=ExtResource("4_qxrll")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

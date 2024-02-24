@@ -2,7 +2,7 @@ extends BoolOption
 
 
 func section() -> String:
-	return "display"
+	return "graphics"
 
 
 func key() -> String:
