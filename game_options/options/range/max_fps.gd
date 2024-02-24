@@ -11,11 +11,11 @@ func key() -> String:
 	return "max_fps"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("Max FPS")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("User interface")
 
 

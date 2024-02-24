@@ -9,11 +9,11 @@ func key() -> String:
 	return "fullscreen"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("Fullscreen")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("User interface")
 
 

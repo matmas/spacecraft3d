@@ -11,11 +11,11 @@ func key() -> String:
 	return "camera_fov"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("Vertical FOV")  # Assumes Camera3D.keep_aspect == Camera3D.KEEP_HEIGHT (default)
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("Graphics")
 
 

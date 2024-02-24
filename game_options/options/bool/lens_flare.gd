@@ -11,11 +11,11 @@ func key() -> String:
 	return "lens_flare"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("Lens flare")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("Graphics")
 
 

@@ -9,11 +9,11 @@ func key() -> String:
 	return "3d_scale"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("3D resolution")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("Graphics")
 
 

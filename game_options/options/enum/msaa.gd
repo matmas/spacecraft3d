@@ -12,11 +12,11 @@ func key() -> String:
 	return "msaa"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("MSAA")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("Graphics")
 
 

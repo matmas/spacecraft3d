@@ -14,11 +14,11 @@ func key() -> String:
 	printerr("Not implemented."); return ""
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	printerr("Not implemented."); return ""
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	printerr("Not implemented."); return ""
 
 

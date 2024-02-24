@@ -20,7 +20,6 @@ func _set_tab_visible(index: int) -> void:
 		tabs[i].visible = i == index
 
 
-
 func _input(event: InputEvent) -> void:
 	var relative_index := 0
 	if event.is_action_pressed(&"ui_tab_next"):

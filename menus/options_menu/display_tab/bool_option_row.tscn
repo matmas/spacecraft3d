@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://otiblovqox1f"]
 
-[ext_resource type="Script" path="res://game_options/ui_components/check_button.gd" id="1_aexf8"]
-[ext_resource type="Script" path="res://menus/options_menu/display_tab/row_with_check_button.gd" id="1_cw7pv"]
+[ext_resource type="Script" path="res://menus/options_menu/display_tab/bool_option_row.gd" id="1_sk1ee"]
+[ext_resource type="Script" path="res://game_options/ui_components/check_button.gd" id="2_0838i"]
 
-[node name="RowWithCheckButton" type="HBoxContainer"]
+[node name="BoolOptionRow" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cw7pv")
+script = ExtResource("1_sk1ee")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -19,4 +19,4 @@ theme_type_variation = &"CategoryItem"
 [node name="GameOptionCheckButton" type="CheckButton" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("1_aexf8")
+script = ExtResource("2_0838i")

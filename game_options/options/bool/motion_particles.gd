@@ -11,11 +11,11 @@ func key() -> String:
 	return "motion_particles"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("Motion particles")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("Graphics")
 
 

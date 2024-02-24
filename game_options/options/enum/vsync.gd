@@ -14,11 +14,11 @@ func key() -> String:
 	return "vsync"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("VSync")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("User interface")
 
 

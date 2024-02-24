@@ -2,9 +2,9 @@ extends VBoxContainer
 
 @onready var list: VBoxContainer = %List
 
-const ROW_WITH_CHECK_BUTTON = preload("res://menus/options_menu/display_tab/row_with_check_button.tscn")
-const ROW_WITH_OPTION_BUTTON = preload("res://menus/options_menu/display_tab/row_with_option_button.tscn")
-const ROW_WITH_RANGE = preload("res://menus/options_menu/display_tab/row_with_range.tscn")
+const BOOL_OPTION_ROW = preload("bool_option_row.tscn")
+const ENUM_OPTION_ROW = preload("enum_option_row.tscn")
+const RANGE_OPTION_ROW = preload("range_option_row.tscn")
 
 
 func _ready() -> void:
@@ -14,20 +14,20 @@ func _ready() -> void:
 		var row: Node
 
 		if option is BoolOption:
-			row = ROW_WITH_CHECK_BUTTON.instantiate()
+			row = BOOL_OPTION_ROW.instantiate()
 		elif option is EnumOption:
-			row = ROW_WITH_OPTION_BUTTON.instantiate()
+			row = ENUM_OPTION_ROW.instantiate()
 		elif option is RangeOption:
-			row = ROW_WITH_RANGE.instantiate()
+			row = RANGE_OPTION_ROW.instantiate()
 
 		row.set_option(option)
 
-		if option.display_category() != current_category:
+		if option.get_display_category() != current_category:
 			var category_label := Label.new()
-			category_label.text = option.display_category()
+			category_label.text = option.get_display_category()
 			category_label.theme_type_variation = &"CategoryHeader"
 			list.add_child(category_label)
-			current_category = option.display_category()
+			current_category = option.get_display_category()
 
 		list.add_child(row)
 

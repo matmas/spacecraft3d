@@ -9,11 +9,11 @@ func key() -> String:
 	return "ui_scale"
 
 
-func display_name() -> String:
+func get_display_name() -> String:
 	return tr("UI scale")
 
 
-func display_category() -> String:
+func get_display_category() -> String:
 	return tr("User interface")
 
 
