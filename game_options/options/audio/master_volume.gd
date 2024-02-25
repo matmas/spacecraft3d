@@ -1,6 +1,6 @@
 extends RangeOption
 
-const MIN_DECIBELS = -60
+const MIN_DECIBELS = -60.0
 
 
 func section() -> String:
@@ -46,7 +46,7 @@ func get_max_value() -> float:
 func get_display_value() -> String:
 	match get_value():
 		MIN_DECIBELS:
-			return "Muted"
+			return tr("Muted")
 		var value:
 			return "%s dB" % str(value)
 
