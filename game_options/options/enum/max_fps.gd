@@ -35,4 +35,4 @@ func get_value_from_display_value(value: String) -> Variant:
 
 
 func get_possible_display_values() -> Array[String]:
-	return [UNLIMITED, "15", "30", "40", "60", "75", "90", "120", "144", "165", "175", "200", "240", "250", "300", "360", "500"]
+	return ["15", "30", "40", "60", "75", "90", "120", "144", "160", "165", "175", "180", "200", "240", "250", "300", "360", "500", UNLIMITED]

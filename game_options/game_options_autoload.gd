@@ -8,7 +8,7 @@ var options: Array[Option] = [
 	preload("options/bool/fullscreen.gd").new(),
 	preload("options/enum/screen.gd").new(),
 	preload("options/enum/vsync.gd").new(),
-	preload("options/range/max_fps.gd").new(),
+	preload("options/enum/max_fps.gd").new(),
 	preload("options/bool/fps_counter.gd").new(),
 
 	preload("options/range/3d_scale.gd").new(),
