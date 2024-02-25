@@ -33,7 +33,7 @@ func set_value(value: Variant) -> void:
 
 
 func get_value() -> Variant:
-	last_current_screen = get_window().current_screen
+	last_current_screen = maxi(0, get_window().current_screen)  # current_screen returns -1 on Android
 	return last_current_screen
 
 
