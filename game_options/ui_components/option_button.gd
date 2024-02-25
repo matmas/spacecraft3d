@@ -4,7 +4,7 @@ class_name GameOptionButton
 @export var key := ""
 @export var section := ""
 
-var _is_populated := false
+var _is_all_populated := false
 
 
 func _init() -> void:
@@ -13,28 +13,34 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	_refresh()
+	GameOptions.get_option(section, key).value_changed.connect(_refresh)
+
+
+func _refresh() -> void:
+	_is_all_populated = false
 	var current_value = GameOptions.get_option(section, key).get_display_value()
 	if current_value:
+		clear()
 		add_item(current_value)
 		select(0)
 	else:
 		# get_display_value() is not implemented so populate everything
-		_populate()
-		_refresh()
-	GameOptions.get_option(section, key).value_changed.connect(func(): _refresh())
+		_populate_all()
+		_select_active()
 
 
 func _on_button_down() -> void:
-	if not _is_populated:
-		_populate()
-		_refresh()
+	if not _is_all_populated:
+		_populate_all()
+		_select_active()
 
 
-func _populate() -> void:
+func _populate_all() -> void:
 	clear()
 	for value in GameOptions.get_option(section, key).get_possible_display_values():
 		add_item(value)
-	_is_populated = true
+	_is_all_populated = true
 
 
 func _on_item_selected(index: int) -> void:
@@ -43,7 +49,7 @@ func _on_item_selected(index: int) -> void:
 	GameOptions.save()
 
 
-func _refresh() -> void:
+func _select_active() -> void:
 	for index in item_count:
 		var value := get_item_text(index)
 		if GameOptions.get_option(section, key).display_value_matches(value):

@@ -56,11 +56,11 @@ func get_possible_display_values() -> Array[String]:
 			# "The requested V-Sync mode Mailbox is not available. Falling back to V-Sync mode Enabled."
 			continue
 
-		set_display_value(value)
+		DisplayServer.window_set_vsync_mode(get_value_from_display_value(value))  # Don't emit value_changed
 		if display_value_matches(value):
 			possible_values.push_back(value)
 
-	set_value(current)
+	DisplayServer.window_set_vsync_mode(current)  # Don't emit value_changed
 	return possible_values
 
 
