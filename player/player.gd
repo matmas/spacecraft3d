@@ -12,8 +12,6 @@ const SPRINT_SPEED = 6.0
 const CROUCHED_SPEED = 1.5
 const JUMP_SPEED = 4.5
 const ALIGN_SPEED = 2.0
-const MOUSE_SENSITIVITY = 0.002
-const JOYSTICK_SENSITIVITY = 2.00
 const UPRIGHT_HEAD_POSITION_Y = 1.2
 const CROUCHED_HEAD_POSITION_Y = 0.4
 const HEAD_ROTATION_TRANSFER_SPEED = 1.0
@@ -75,7 +73,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _process(delta: float) -> void:
 	# Get the input direction and handle the looking around.
 	var look_dir := InputHints.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
-	look_direction_change += look_dir * delta * JOYSTICK_SENSITIVITY
+	var joypad_sensitivity = GameOptions.get_option("input", "joypad_sensitivity").get_value()
+	look_direction_change += look_dir * delta * joypad_sensitivity
 
 	# Animate head position
 	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, HEAD_POSITION_ANIMATION_SPEED * delta))
@@ -83,7 +82,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		look_direction_change += event.relative * MOUSE_SENSITIVITY * get_window().content_scale_factor
+		var mouse_sensitivity = GameOptions.get_option("input", "mouse_sensitivity").get_value()
+		look_direction_change += event.relative * mouse_sensitivity * get_window().content_scale_factor
 
 
 func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:

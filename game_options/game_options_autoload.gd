@@ -21,6 +21,8 @@ var options: Array[Option] = [
 	preload("options/graphics/effects/motion_particles.gd").new(),
 	preload("options/graphics/camera/camera_fov.gd").new(),
 	preload("options/graphics/ui/input_hints.gd").new(),
+	preload("options/input/mouse_sensitivity.gd").new(),
+	preload("options/input/joypad_sensitivity.gd").new(),
 ]
 var _options_dict := {}
 var config := ConfigFile.new()
