@@ -4,28 +4,23 @@ const PATH = "user://options.cfg"
 
 
 var options: Array[Option] = [
-	preload("options/range/ui_scale.gd").new(),
-	preload("options/bool/fullscreen.gd").new(),
-	preload("options/enum/screen.gd").new(),
-	preload("options/enum/vsync.gd").new(),
-	preload("options/enum/max_fps.gd").new(),
-	preload("options/bool/fps_counter.gd").new(),
-
-	preload("options/range/3d_scale.gd").new(),
-	preload("options/enum/upscaling_mode.gd").new(),
-	preload("options/range/fsr_sharpness.gd").new(),
-
-	preload("options/bool/taa.gd").new(),
-	preload("options/bool/fxaa.gd").new(),
-	preload("options/enum/msaa.gd").new(),
-
-	preload("options/bool/glow.gd").new(),
-	preload("options/bool/lens_flare.gd").new(),
-	preload("options/bool/motion_particles.gd").new(),
-
-	preload("options/range/camera_fov.gd").new(),
-
-	preload("options/bool/input_hints.gd").new(),
+	preload("options/graphics/general/ui_scale.gd").new(),
+	preload("options/graphics/general/fullscreen.gd").new(),
+	preload("options/graphics/general/screen.gd").new(),
+	preload("options/graphics/general/vsync.gd").new(),
+	preload("options/graphics/general/max_fps.gd").new(),
+	preload("options/graphics/general/fps_counter.gd").new(),
+	preload("options/graphics/res_upscaling_aa/3d_scale.gd").new(),
+	preload("options/graphics/res_upscaling_aa/upscaling_mode.gd").new(),
+	preload("options/graphics/res_upscaling_aa/fsr_sharpness.gd").new(),
+	preload("options/graphics/res_upscaling_aa/taa.gd").new(),
+	preload("options/graphics/res_upscaling_aa/fxaa.gd").new(),
+	preload("options/graphics/res_upscaling_aa/msaa.gd").new(),
+	preload("options/graphics/effects/glow.gd").new(),
+	preload("options/graphics/effects/lens_flare.gd").new(),
+	preload("options/graphics/effects/motion_particles.gd").new(),
+	preload("options/graphics/camera/camera_fov.gd").new(),
+	preload("options/graphics/ui/input_hints.gd").new(),
 ]
 var _options_dict := {}
 var config := ConfigFile.new()
