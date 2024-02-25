@@ -33,7 +33,7 @@ func get_min_value() -> float:
 
 
 func get_step() -> float:
-	return 0.05
+	return 0.08
 
 
 func get_max_value() -> float:
