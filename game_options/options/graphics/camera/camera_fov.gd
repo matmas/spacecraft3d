@@ -48,7 +48,7 @@ func get_max_display_value() -> float:
 	return 75
 
 
-func spinbox_suffix() -> String:
+func get_display_suffix() -> String:
 	return "°"
 
 

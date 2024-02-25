@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/graphics_tab/range_option_row.gd" id="1_6jlny"]
 [ext_resource type="Script" path="res://game_options/ui_components/slider.gd" id="2_ixwtr"]
-[ext_resource type="Script" path="res://game_options/ui_components/spinbox.gd" id="3_440vq"]
+[ext_resource type="Script" path="res://game_options/ui_components/value_label.gd" id="3_v3ycx"]
 [ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="4_bttvg"]
 
 [node name="RangeOptionRow" type="HBoxContainer"]
@@ -29,11 +29,13 @@ size_flags_vertical = 4
 scrollable = false
 script = ExtResource("2_ixwtr")
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+[node name="ValueLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-alignment = 1
-script = ExtResource("3_440vq")
+theme_type_variation = &"CategoryItem"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_v3ycx")
 
 [node name="GameOptionDescription" type="Label" parent="."]
 layout_mode = 2

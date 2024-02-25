@@ -14,7 +14,7 @@ func get_max_display_value() -> float:
 	printerr("Not implemented"); return 0
 
 
-func spinbox_suffix() -> String:
+func get_display_suffix() -> String:
 	return ""
 
 

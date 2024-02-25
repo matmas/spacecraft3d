@@ -49,5 +49,5 @@ func set_display_value(value: float) -> void:
 	set_value((1 - value / 100) * 2)
 
 
-func spinbox_suffix() -> String:
+func get_display_suffix() -> String:
 	return "%"
