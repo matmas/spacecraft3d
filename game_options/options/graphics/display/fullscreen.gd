@@ -14,7 +14,7 @@ func get_display_name() -> String:
 
 
 func get_display_category() -> String:
-	return tr("General")
+	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

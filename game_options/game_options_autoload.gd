@@ -4,12 +4,12 @@ const PATH = "user://options.cfg"
 
 
 var options: Array[Option] = [
-	preload("options/graphics/general/ui_scale.gd").new(),
-	preload("options/graphics/general/fullscreen.gd").new(),
-	preload("options/graphics/general/screen.gd").new(),
-	preload("options/graphics/general/vsync.gd").new(),
-	preload("options/graphics/general/max_fps.gd").new(),
-	preload("options/graphics/general/fps_counter.gd").new(),
+	preload("options/graphics/display/ui_scale.gd").new(),
+	preload("options/graphics/display/fullscreen.gd").new(),
+	preload("options/graphics/display/screen.gd").new(),
+	preload("options/graphics/display/vsync.gd").new(),
+	preload("options/graphics/display/max_fps.gd").new(),
+	preload("options/graphics/display/fps_counter.gd").new(),
 	preload("options/graphics/res_upscaling_aa/3d_scale.gd").new(),
 	preload("options/graphics/res_upscaling_aa/upscaling_mode.gd").new(),
 	preload("options/graphics/res_upscaling_aa/taa.gd").new(),
