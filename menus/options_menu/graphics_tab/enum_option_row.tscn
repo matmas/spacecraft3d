@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/graphics_tab/enum_option_row.gd" id="1_7ge3t"]
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="2_nxys6"]
-[ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="3_301sb"]
+[ext_resource type="Script" path="res://game_options/ui_components/description_label.gd" id="3_301sb"]
 
 [node name="EnumOptionRow" type="HBoxContainer"]
 anchors_preset = 15

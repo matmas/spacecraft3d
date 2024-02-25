@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/graphics_tab/bool_option_row.gd" id="1_sk1ee"]
 [ext_resource type="Script" path="res://game_options/ui_components/check_button.gd" id="2_0838i"]
-[ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="3_huf1n"]
+[ext_resource type="Script" path="res://game_options/ui_components/description_label.gd" id="3_huf1n"]
 
 [node name="BoolOptionRow" type="HBoxContainer"]
 anchors_preset = 15

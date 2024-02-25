@@ -1,5 +1,5 @@
 extends Label
-class_name GameOptionValueLabel
+class_name GameOptionDescriptionLabel
 
 @export var key := ""
 @export var section := ""
@@ -12,7 +12,4 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	text = "%s %s" % [
-		str(GameOptions.get_option(section, key).get_display_value()),
-		GameOptions.get_option(section, key).get_display_suffix(),
-	]
+	text = GameOptions.get_option(section, key).get_description()

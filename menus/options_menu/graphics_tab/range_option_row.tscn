@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dos6s212o3okw"]
+[gd_scene load_steps=4 format=3 uid="uid://dos6s212o3okw"]
 
 [ext_resource type="Script" path="res://menus/options_menu/graphics_tab/range_option_row.gd" id="1_6jlny"]
 [ext_resource type="Script" path="res://game_options/ui_components/slider.gd" id="2_ixwtr"]
-[ext_resource type="Script" path="res://game_options/ui_components/value_label.gd" id="3_v3ycx"]
-[ext_resource type="Script" path="res://game_options/ui_components/dynamic_description.gd" id="4_bttvg"]
+[ext_resource type="Script" path="res://game_options/ui_components/description_and_value_label.gd" id="3_sr5xj"]
 
 [node name="RangeOptionRow" type="HBoxContainer"]
 anchors_preset = 15
@@ -18,27 +17,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HSlider" type="HSlider" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="HSlider" type="HSlider" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 1
 scrollable = false
 script = ExtResource("2_ixwtr")
 
-[node name="ValueLabel" type="Label" parent="HBoxContainer"]
+[node name="DescriptionAndValue" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_v3ycx")
-
-[node name="GameOptionDescription" type="Label" parent="."]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
-script = ExtResource("4_bttvg")
+script = ExtResource("3_sr5xj")

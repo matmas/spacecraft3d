@@ -17,7 +17,7 @@ func get_display_name() -> String:
 
 func get_description() -> String:
 	var horizontal_fov := rad_to_deg(2 * atan(tan(deg_to_rad(current_value * 0.5)) * get_window().size.aspect()))
-	return "Horizontal FOV: %d°" % horizontal_fov
+	return "Horizontal: %d°" % horizontal_fov
 
 
 func get_display_category() -> String:
