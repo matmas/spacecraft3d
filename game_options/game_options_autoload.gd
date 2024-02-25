@@ -86,12 +86,3 @@ func reset_to_defaults() -> void:
 			printerr("Error while removing file %s: %s" % [
 				ProjectSettings.globalize_path(PATH), Utils.error_message(error)
 			])
-	await get_tree().create_timer(0.1).timeout  # Improves performance of reset_window_size()
-	reset_window_size()
-
-
-func reset_window_size() -> void:
-	get_window().size = Vector2i(
-		ProjectSettings.get_setting_with_override("display/window/size/viewport_width"),
-		ProjectSettings.get_setting_with_override("display/window/size/viewport_height"),
-	)
