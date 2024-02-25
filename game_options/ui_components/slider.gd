@@ -7,9 +7,9 @@ class_name GameOptionSlider
 
 func _ready() -> void:
 	var option := GameOptions.get_option(section, key)
-	min_value = option.get_min_display_value()
-	max_value = option.get_max_display_value()
-	step = option.get_display_step()
+	min_value = option.get_min_value()
+	max_value = option.get_max_value()
+	step = option.get_step()
 
 	# After setting min_value, max_value as those could emit value_changed
 	value_changed.connect(_on_value_changed)
@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _on_value_changed(_value: float) -> void:
-	GameOptions.get_option(section, key).set_display_value(value)
+	GameOptions.get_option(section, key).set_value(value)
 
 
 func _on_drag_ended(_value_changed: bool):
@@ -29,4 +29,4 @@ func _on_drag_ended(_value_changed: bool):
 
 
 func _refresh() -> void:
-	set_value_no_signal(GameOptions.get_option(section, key).get_display_value())
+	set_value_no_signal(GameOptions.get_option(section, key).get_value())

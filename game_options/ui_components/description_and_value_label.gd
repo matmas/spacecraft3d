@@ -13,10 +13,7 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	var option := GameOptions.get_option(section, key)
-	text = "%s %s" % [
-		str(option.get_display_value()),
-		option.get_display_suffix(),
-	]
+	text = option.get_display_value()
 	var description := option.get_description()
 	if description:
 		text += " (%s)" % description

@@ -12,7 +12,6 @@ var options: Array[Option] = [
 	preload("options/graphics/general/fps_counter.gd").new(),
 	preload("options/graphics/res_upscaling_aa/3d_scale.gd").new(),
 	preload("options/graphics/res_upscaling_aa/upscaling_mode.gd").new(),
-	preload("options/graphics/res_upscaling_aa/fsr_sharpness.gd").new(),
 	preload("options/graphics/res_upscaling_aa/taa.gd").new(),
 	preload("options/graphics/res_upscaling_aa/fxaa.gd").new(),
 	preload("options/graphics/res_upscaling_aa/msaa.gd").new(),

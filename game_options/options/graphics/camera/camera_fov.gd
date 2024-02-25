@@ -36,20 +36,20 @@ func get_value() -> Variant:
 	return current_value
 
 
-func get_min_display_value() -> float:
+func get_min_value() -> float:
 	return 35
 
 
-func get_display_step() -> float:
+func get_step() -> float:
 	return 1
 
 
-func get_max_display_value() -> float:
+func get_max_value() -> float:
 	return 75
 
 
-func get_display_suffix() -> String:
-	return "°"
+func get_display_value() -> String:
+	return "%s °" % str(get_value())
 
 
 func _ready() -> void:

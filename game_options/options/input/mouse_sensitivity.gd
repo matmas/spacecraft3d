@@ -28,25 +28,17 @@ func get_value() -> Variant:
 	return current_value
 
 
-func get_min_display_value() -> float:
+func get_min_value() -> float:
 	return 0.0
 
 
-func get_display_step() -> float:
-	return 1.0
+func get_step() -> float:
+	return 0.00005
 
 
-func get_max_display_value() -> float:
-	return 100.0
+func get_max_value() -> float:
+	return 0.008
 
 
-func get_display_value() -> float:
-	return get_value() * 100.0 / 0.008
-
-
-func set_display_value(value: float) -> void:
-	set_value(value / 100 * 0.008)
-
-
-func get_display_suffix() -> String:
-	return "%"
+func get_display_value() -> String:
+	return "%s %%" % str(get_value() / 0.008 * 100.0)

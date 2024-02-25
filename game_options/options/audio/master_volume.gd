@@ -31,28 +31,24 @@ func get_value() -> Variant:
 	return AudioServer.get_bus_volume_db(bus_index)
 
 
-func get_min_display_value() -> float:
+func get_min_value() -> float:
 	return MIN_DECIBELS
 
 
-func get_display_step() -> float:
+func get_step() -> float:
 	return 1.0
 
 
-func get_max_display_value() -> float:
+func get_max_value() -> float:
 	return 0.0
 
 
-func get_display_value() -> float:
-	return get_value()
-
-
-func set_display_value(value: float) -> void:
-	set_value(value)
-
-
-func get_display_suffix() -> String:
-	return "dB"
+func get_display_value() -> String:
+	match get_value():
+		MIN_DECIBELS:
+			return "Muted"
+		var value:
+			return "%s dB" % str(value)
 
 
 func get_bus_name() -> String:
