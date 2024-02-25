@@ -23,6 +23,7 @@ var options: Array[Option] = [
 	preload("options/graphics/ui/input_hints.gd").new(),
 	preload("options/input/mouse_sensitivity.gd").new(),
 	preload("options/input/joypad_sensitivity.gd").new(),
+	preload("options/audio/master_volume.gd").new(),
 ]
 var _options_dict := {}
 var config := ConfigFile.new()
