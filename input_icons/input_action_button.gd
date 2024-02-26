@@ -16,6 +16,7 @@ var viewport := SubViewport.new()
 	set(value):
 		convert_physical_keycodes = value
 		input_action_rect.convert_physical_keycodes = value
+		_redraw_viewport()
 
 @export var input_type_mode := InputActionTextureRect.InputTypeMode.ADAPTIVE:
 	set(value):
@@ -27,6 +28,7 @@ var viewport := SubViewport.new()
 	set(value):
 		ignore_joypad_direction = value
 		input_action_rect.ignore_joypad_direction = value
+		_redraw_viewport()
 
 @export var icon_visibility_condition := InputActionTextureRect.VisibilityCondition.ANY_USAGE:
 	set(value):
@@ -57,7 +59,7 @@ func _init() -> void:
 	viewport.disable_3d = true
 	viewport.gui_disable_input = true
 	viewport.transparent_bg = true
-	viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_PARENT_VISIBLE
+	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	viewport.add_child(input_action_rect)
 	icon = viewport.get_texture()
 	add_child(viewport)
@@ -79,7 +81,12 @@ func _update_viewport_size() -> void:
 	input_action_rect.minimum_size = icon_size
 	input_action_rect.scale = Vector2.ONE * _scale
 	viewport.size = input_action_rect.custom_minimum_size * _scale
+	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 	if not Engine.is_editor_hint():  # Don't change scene file when running as @tool
 		# Make sure the icon stays the same size regardless of the window scaling factor
 		add_theme_constant_override("icon_max_width", int(icon_size.x))
+
+
+func _redraw_viewport() -> void:
+	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
