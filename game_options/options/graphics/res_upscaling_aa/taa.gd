@@ -27,3 +27,7 @@ func set_value(value: Variant) -> void:
 
 func get_value() -> Variant:
 	return current_value
+
+
+func is_visible() -> bool:
+	return ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method") not in ["mobile", "gl_compatibility"]

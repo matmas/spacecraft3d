@@ -11,6 +11,9 @@ func _ready() -> void:
 	var current_category := ""
 
 	for option in GameOptions.options:
+		if not option.is_visible():
+			continue
+
 		var row: Node
 
 		if option is BoolOption:

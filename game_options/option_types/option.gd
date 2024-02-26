@@ -32,3 +32,7 @@ func get_value() -> Variant:
 
 func set_value(_value: Variant) -> void:
 	printerr("Not implemented.")
+
+
+func is_visible() -> bool:
+	return true
