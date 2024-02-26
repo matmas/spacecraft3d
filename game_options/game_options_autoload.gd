@@ -17,6 +17,7 @@ var options: Array[Option] = [
 	preload("options/graphics/res_upscaling_aa/msaa.gd").new(),
 	preload("options/graphics/effects/glow.gd").new(),
 	preload("options/graphics/effects/ssao.gd").new(),
+	preload("options/graphics/effects/ssil.gd").new(),
 	preload("options/graphics/effects/lens_flare.gd").new(),
 	preload("options/graphics/effects/motion_particles.gd").new(),
 	preload("options/graphics/camera/camera_fov.gd").new(),
