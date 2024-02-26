@@ -1,6 +1,6 @@
 extends EnumOption
 
-@onready var last_current_screen := get_window().current_screen
+@onready var last_current_screen := _get_current_screen()
 @onready var last_screen_count := DisplayServer.get_screen_count()
 @onready var last_primary_screen := DisplayServer.get_primary_screen()
 
@@ -33,7 +33,7 @@ func set_value(value: Variant) -> void:
 
 
 func get_value() -> Variant:
-	last_current_screen = maxi(0, get_window().current_screen)  # current_screen returns -1 on Android
+	last_current_screen = _get_current_screen()
 	return last_current_screen
 
 
@@ -66,7 +66,7 @@ func _ready() -> void:
 
 
 func _on_timer_timeout() -> void:
-	var current_screen := get_window().current_screen
+	var current_screen := _get_current_screen()
 	var screen_count := DisplayServer.get_screen_count()
 	var primary_screen := DisplayServer.get_primary_screen()
 
@@ -77,3 +77,8 @@ func _on_timer_timeout() -> void:
 		last_screen_count = screen_count
 		last_primary_screen = primary_screen
 		value_changed.emit()
+
+
+func _get_current_screen() -> int:
+	# get_window().current_screen returns -1 on Android and 1 on web
+	return mini(maxi(get_window().current_screen, 0), DisplayServer.get_screen_count() - 1)
