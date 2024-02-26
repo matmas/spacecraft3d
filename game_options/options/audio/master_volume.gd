@@ -36,7 +36,7 @@ func get_min_value() -> float:
 
 
 func get_step() -> float:
-	return 1.0
+	return 1.0 / 100.0 * -MIN_DECIBELS
 
 
 func get_max_value() -> float:
@@ -48,7 +48,7 @@ func get_display_value() -> String:
 		MIN_DECIBELS:
 			return tr("Muted")
 		var value:
-			return "%s dB" % str(value)
+			return "%d %%" % [(value - MIN_DECIBELS) / -MIN_DECIBELS * 100.0]
 
 
 func get_bus_name() -> String:
