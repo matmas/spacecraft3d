@@ -82,3 +82,7 @@ func _on_timer_timeout() -> void:
 func _get_current_screen() -> int:
 	# get_window().current_screen returns -1 on Android and 1 on web
 	return mini(maxi(get_window().current_screen, 0), DisplayServer.get_screen_count() - 1)
+
+
+func is_visible() -> bool:
+	return OS.get_name() not in ["Android", "Web"]

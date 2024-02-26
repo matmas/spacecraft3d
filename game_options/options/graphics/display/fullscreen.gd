@@ -38,3 +38,7 @@ func get_value() -> Variant:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"toggle_fullscreen"):
 		set_value(not get_value())
+
+
+func is_visible() -> bool:
+	return OS.get_name() not in ["Android"]

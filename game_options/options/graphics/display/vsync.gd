@@ -76,3 +76,7 @@ func get_display_value() -> String:
 			return MAILBOX
 		_:
 			return ""
+
+
+func is_visible() -> bool:
+	return OS.get_name() not in ["Web"]
