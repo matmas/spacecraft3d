@@ -53,7 +53,8 @@ var action_categories := {
 }
 
 const non_remappable_actions := [
-	&"toggle_fullscreen"
+	&"toggle_fullscreen",
+	&"toggle_fullscreen.web",
 ]
 
 func _ready() -> void:
