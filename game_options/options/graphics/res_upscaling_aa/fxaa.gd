@@ -40,3 +40,7 @@ func _get_initial_value() -> bool:
 			return false
 		_:
 			return false
+
+
+func is_visible() -> bool:
+	return ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method") not in ["gl_compatibility"]

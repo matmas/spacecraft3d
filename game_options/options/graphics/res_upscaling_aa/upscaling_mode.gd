@@ -47,3 +47,7 @@ func get_value_from_display_value(value: String) -> Variant:
 
 func get_possible_display_values() -> Array[String]:
 	return [BILINEAR, FSR, FSR2]
+
+
+func is_visible() -> bool:
+	return ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method") not in ["mobile", "gl_compatibility"]
