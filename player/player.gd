@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var mouse_sensitivity = GameOptions.get_option("input", "mouse_sensitivity").get_value()
+		var mouse_sensitivity = GameOptions.get_option("input", "mouse_sensitivity").get_value() * 0.001
 		look_direction_change += event.relative * mouse_sensitivity * get_window().content_scale_factor
 
 
