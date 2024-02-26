@@ -1,6 +1,6 @@
 extends BoolOption
 
-var current_value := true  # Assume enabled by default
+var current_value := false  # Assume disabled by default
 
 
 func section() -> String:
@@ -8,11 +8,11 @@ func section() -> String:
 
 
 func key() -> String:
-	return "glow"
+	return "ssao"
 
 
 func get_display_name() -> String:
-	return tr("Glow")
+	return tr("SSAO")
 
 
 func get_display_category() -> String:
@@ -22,7 +22,7 @@ func get_display_category() -> String:
 func set_value(value: Variant) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
-		camera.get_world_3d().environment.glow_enabled = value
+		camera.get_world_3d().environment.ssao_enabled = value
 	else:
 		current_value = value
 	value_changed.emit()
@@ -31,6 +31,10 @@ func set_value(value: Variant) -> void:
 func get_value() -> Variant:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
-		return camera.get_world_3d().environment.glow_enabled
+		return camera.get_world_3d().environment.ssao_enabled
 	else:
 		return current_value
+
+
+func is_visible() -> bool:
+	return ProjectSettings.get_setting_with_override("rendering/renderer/rendering_method") not in ["mobile", "gl_compatibility"]
