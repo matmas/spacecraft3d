@@ -1,3 +1,4 @@
+@icon("icons/TabBar.svg")
 extends Node
 class_name GameOptionSection
 

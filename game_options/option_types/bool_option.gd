@@ -1,3 +1,4 @@
+@icon("../icons/GuiToggleOn.svg")
 extends Option
 class_name BoolOption
 

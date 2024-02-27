@@ -1,3 +1,4 @@
+@icon("icons/AnimationTrackGroup.svg")
 extends Node
 class_name GameOptionCategory
 

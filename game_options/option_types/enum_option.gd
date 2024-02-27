@@ -1,3 +1,4 @@
+@icon("../icons/OptionButton.svg")
 extends Option
 class_name EnumOption
 

@@ -1,3 +1,4 @@
+@icon("../icons/HSlider.svg")
 extends Option
 class_name RangeOption
 
