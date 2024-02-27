@@ -37,7 +37,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Controls" parent="List/JoypadTabContainer" instance=ExtResource("3_kmojk")]
+[node name="Controls1" parent="List/JoypadTabContainer" instance=ExtResource("3_kmojk")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3

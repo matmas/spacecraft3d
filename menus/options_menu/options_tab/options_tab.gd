@@ -5,6 +5,7 @@ extends VBoxContainer
 const BOOL_OPTION_ROW = preload("bool_option_row.tscn")
 const ENUM_OPTION_ROW = preload("enum_option_row.tscn")
 const RANGE_OPTION_ROW = preload("range_option_row.tscn")
+const INPUT_ACTION_OPTION_ROW = preload("res://menus/options_menu/options_tab/input_action_option_row.tscn")
 
 var section: GameOptionSection
 
@@ -22,6 +23,8 @@ func _ready() -> void:
 			row = ENUM_OPTION_ROW.instantiate()
 		elif option is RangeOption:
 			row = RANGE_OPTION_ROW.instantiate()
+		elif option is InputActionOption:
+			row = INPUT_ACTION_OPTION_ROW.instantiate()
 
 		row.set_option(option)
 

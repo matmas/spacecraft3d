@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cwdgkuos243k3"]
+[gd_scene load_steps=26 format=3 uid="uid://cwdgkuos243k3"]
 
 [ext_resource type="Script" path="res://game_options/game_options_autoload.gd" id="1_daw0r"]
 [ext_resource type="Script" path="res://game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://game_options/options/input/mouse_sensitivity.gd" id="20_wtelj"]
 [ext_resource type="Script" path="res://game_options/options/input/joypad_sensitivity.gd" id="21_bkwbe"]
 [ext_resource type="Script" path="res://game_options/options/audio/master_volume.gd" id="22_6xkgs"]
+[ext_resource type="Script" path="res://game_options/option_types/input_action_option.gd" id="25_q8vr3"]
 
 [node name="GameOptions" type="Node"]
 script = ExtResource("1_daw0r")
@@ -133,3 +134,118 @@ script = ExtResource("20_wtelj")
 
 [node name="JoypadSensitivity" type="Node" parent="Input/PlayerInput"]
 script = ExtResource("21_bkwbe")
+
+[node name="Controls" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Controls"
+config_name = "controls"
+
+[node name="General" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "General"
+
+[node name="LookUp" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_up"
+display_name = "Look up"
+
+[node name="LookDown" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_down"
+display_name = "Look down"
+
+[node name="LookLeft" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_left"
+display_name = "Look left"
+
+[node name="LookRight" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_right"
+display_name = "Look right"
+
+[node name="Walking" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Walking"
+
+[node name="MoveForward" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_forward"
+display_name = "Move forward"
+
+[node name="MoveBackward" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_backward"
+display_name = "Move backward"
+
+[node name="MoveLeft" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_left"
+display_name = "Move left"
+
+[node name="MoveRight" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_right"
+display_name = "Move right"
+
+[node name="Jump" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"jump"
+display_name = "Jump"
+
+[node name="Sprint" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"sprint"
+display_name = "Sprint"
+
+[node name="Crouch" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"crouch"
+display_name = "Crouch"
+
+[node name="Flying" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Flying"
+
+[node name="MoveUp" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_up"
+display_name = "Move up"
+
+[node name="MoveDown" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_down"
+display_name = "Move down"
+
+[node name="RollLeft" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"roll_left"
+display_name = "Roll left"
+
+[node name="RollRight" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"roll_right"
+display_name = "Roll right"
+
+[node name="Building" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Building"
+
+[node name="PlaceBlock" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"place_block"
+display_name = "Place block"
+
+[node name="Other" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Other"
+
+[node name="PauseMenu" type="Node" parent="Controls/Other"]
+script = ExtResource("25_q8vr3")
+action_name = &"pause_menu"
+display_name = "Pause menu"
+
+[node name="CaptureScreenshot" type="Node" parent="Controls/Other"]
+script = ExtResource("25_q8vr3")
+action_name = &"capture_screenshot"
+display_name = "Capture Screenshot"

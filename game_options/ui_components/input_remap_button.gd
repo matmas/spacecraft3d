@@ -1,14 +1,9 @@
 @tool
 extends InputActionButton
+class_name InputRemapButton
 
-@export var is_controller_button: bool = false:
-	set(value):
-		is_controller_button = value
-
-var action: StringName:
-	set(value):
-		action = value
-		action_name = value
+var option: InputActionOption
+var is_controller_button: bool
 
 var _is_capturing := false
 var _saved_mouse_position := Vector2()
@@ -16,12 +11,17 @@ var _saved_mouse_position := Vector2()
 
 func _validate_property(property: Dictionary) -> void:
 	super._validate_property(property)
-	if property.name == "disabled":
+	if property.name in ["disabled", "toggle_mode"]:
 		# Don't persist or show property in the editor
 		property.usage = PROPERTY_USAGE_NONE
 
 
 func _ready() -> void:
+	toggle_mode = true
+	action_name = option.action_name
+	toggled.connect(_on_toggled)
+	gui_input.connect(_on_gui_input)
+	option.value_changed.connect(_refresh)
 	_on_input_type_changed(InputMonitor.current_input_type)
 	InputMonitor.input_type_changed.connect(_on_input_type_changed)
 
@@ -30,19 +30,8 @@ func _on_input_type_changed(input_type) -> void:
 	disabled = (input_type == InputMonitor.InputType.KEYBOARD_AND_MOUSE) == is_controller_button
 
 
-func refresh() -> void:
+func _refresh() -> void:
 	input_action_rect._update_input_event()
-
-
-func _get_current_event() -> InputEvent:
-	for event in InputMap.action_get_events(action):
-		if is_controller_button:
-			if _is_joypad_event(event):
-				return event
-		else:
-			if _is_key_or_mouse_event(event):
-				return event
-	return null
 
 
 func _on_toggled(toggled_on: bool) -> void:
@@ -57,7 +46,7 @@ func _on_toggled(toggled_on: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_viewport().warp_mouse(_saved_mouse_position)
 		text = ""
-		action_name = action  # Show icon
+		action_name = option.action_name  # Show icon
 
 
 func _input(event: InputEvent) -> void:
@@ -75,14 +64,19 @@ func _input(event: InputEvent) -> void:
 			grab_focus()
 
 
-func _remap_action_to(event: InputEvent) -> void:
-	var current_event := _get_current_event()
-	if current_event:
-		InputMap.action_erase_event(action, current_event)
-	InputMap.action_add_event(action, event)
-	InputMonitor.input_map_changed.emit()
-	InputmapPersistence.add_action(action)
-	InputmapPersistence.save()
+func _on_gui_input(event: InputEvent) -> void:
+	if not disabled:
+		if event is InputEventMouseButton:
+			if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:
+				if event.is_pressed():
+					grab_focus()
+				if event.is_released():
+					if Rect2(Vector2(), size).has_point(event.position):
+						_clear_mapping()
+						_refresh()
+		if event.is_action_pressed(&"ui_text_delete"):
+			_clear_mapping()
+			_refresh()
 
 
 func _is_joypad_event(event: InputEvent) -> bool:
@@ -93,25 +87,24 @@ func _is_key_or_mouse_event(event: InputEvent) -> bool:
 	return event is InputEventKey or event is InputEventMouse
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	if not disabled:
-		if event is InputEventMouseButton:
-			if (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:
-				if event.is_pressed():
-					grab_focus()
-				if event.is_released():
-					if Rect2(Vector2(), size).has_point(event.position):
-						_clear_mapping()
-						refresh()
-		if event.is_action_pressed(&"ui_text_delete"):
-			_clear_mapping()
-			refresh()
+func _matches_input_type(event: InputEvent) -> bool:
+	if is_controller_button:
+		if _is_joypad_event(event):
+			return true
+	else:
+		if _is_key_or_mouse_event(event):
+			return true
+	return false
+
+
+func _remap_action_to(event: InputEvent) -> void:
+	var events := option.get_value().filter(func(e): return not _matches_input_type(e))
+	events.append(event)
+	option.set_value(events)
+	GameOptions.save()
 
 
 func _clear_mapping() -> void:
-	var current_event := _get_current_event()
-	if current_event:
-		InputMap.action_erase_event(action, current_event)
-		InputMonitor.input_map_changed.emit()
-		InputmapPersistence.add_action(action)
-		InputmapPersistence.save()
+	var events := option.get_value().filter(func(e): return not _matches_input_type(e))
+	option.set_value(events)
+	GameOptions.save()

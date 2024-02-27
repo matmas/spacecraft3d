@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb6kcsdtllrb7"]
+
+[ext_resource type="Script" path="res://menus/options_menu/options_tab/input_action_option_row.gd" id="1_pta6x"]
+[ext_resource type="Script" path="res://game_options/ui_components/input_remap_button.gd" id="2_u7b1k"]
+
+[node name="InputActionOptionRow" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pta6x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+
+[node name="KBMInputRemapButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DefaultButton"
+icon_alignment = 1
+script = ExtResource("2_u7b1k")
+input_type_mode = 1
+
+[node name="JoypadInputRemapButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"DefaultButton"
+icon_alignment = 1
+script = ExtResource("2_u7b1k")
+input_type_mode = 2
