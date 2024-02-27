@@ -2,8 +2,7 @@ extends Node
 
 const PATH = "user://options.cfg"
 
-
-var options: Array[Option] = [
+var _options: Array[Option] = [
 	preload("options/graphics/display/ui_scale.gd").new(),
 	preload("options/graphics/display/fullscreen.gd").new(),
 	preload("options/graphics/display/screen.gd").new(),
@@ -30,18 +29,22 @@ var _options_dict := {}
 var config := ConfigFile.new()
 
 
+func get_options() -> Array[Option]:
+	return _options
+
+
 func get_option(section: String, key: String) -> Option:
 	return _options_dict[section][key]
 
 
 func _init() -> void:
-	for option in options:
+	for option in _options:
 		add_child(option)
 		_options_dict.get_or_add(option.section(), {})[option.key()] = option
 
 
 func _ready() -> void:
-	for option in options:
+	for option in _options:
 		option.initial_value = option.get_value()
 	_load()
 
@@ -57,13 +60,13 @@ func _load() -> void:
 		])
 		return
 
-	for option in options:
+	for option in _options:
 		if config.has_section_key(option.section(), option.key()):
 			option.set_value(config.get_value(option.section(), option.key()))
 
 
 func save() -> void:
-	for option in options:
+	for option in _options:
 		if option.get_value() != option.initial_value:
 			config.set_value(option.section(), option.key(), option.get_value())
 		else:
@@ -78,7 +81,7 @@ func save() -> void:
 
 
 func reset_to_defaults() -> void:
-	for option in options:
+	for option in _options:
 		option.set_value(option.initial_value)
 
 	if FileAccess.file_exists(PATH):

@@ -1,8 +1,7 @@
 extends CheckButton
 class_name GameOptionCheckButton
 
-@export var key := ""
-@export var section := ""
+var option: Option
 
 
 func _init() -> void:
@@ -11,13 +10,13 @@ func _init() -> void:
 
 func _ready() -> void:
 	_refresh()
-	GameOptions.get_option(section, key).value_changed.connect(func(): _refresh())
+	option.value_changed.connect(func(): _refresh())
 
 
 func _on_toggled(toggled_on: bool) -> void:
-	GameOptions.get_option(section, key).set_value(toggled_on)
+	option.set_value(toggled_on)
 	GameOptions.save()
 
 
 func _refresh() -> void:
-	set_pressed_no_signal(GameOptions.get_option(section, key).get_value())
+	set_pressed_no_signal(option.get_value())

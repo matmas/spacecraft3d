@@ -1,8 +1,7 @@
 extends OptionButton
 class_name GameOptionButton
 
-@export var key := ""
-@export var section := ""
+var option: Option
 
 var _is_all_populated := false
 
@@ -14,12 +13,12 @@ func _init() -> void:
 
 func _ready() -> void:
 	_refresh()
-	GameOptions.get_option(section, key).value_changed.connect(_refresh)
+	option.value_changed.connect(_refresh)
 
 
 func _refresh() -> void:
 	_is_all_populated = false
-	var current_value = GameOptions.get_option(section, key).get_display_value()
+	var current_value = option.get_display_value()
 	if current_value:
 		clear()
 		add_item(current_value)
@@ -38,19 +37,19 @@ func _on_button_down() -> void:
 
 func _populate_all() -> void:
 	clear()
-	for value in GameOptions.get_option(section, key).get_possible_display_values():
+	for value in option.get_possible_display_values():
 		add_item(value)
 	_is_all_populated = true
 
 
 func _on_item_selected(index: int) -> void:
 	var value := get_item_text(index)
-	GameOptions.get_option(section, key).set_display_value(value)
+	option.set_display_value(value)
 	GameOptions.save()
 
 
 func _select_active() -> void:
 	for index in item_count:
 		var value := get_item_text(index)
-		if GameOptions.get_option(section, key).display_value_matches(value):
+		if option.display_value_matches(value):
 			select(index)

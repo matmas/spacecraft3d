@@ -1,12 +1,10 @@
 extends Slider
 class_name GameOptionSlider
 
-@export var key := ""
-@export var section := ""
+var option: Option
 
 
 func _ready() -> void:
-	var option := GameOptions.get_option(section, key)
 	min_value = option.get_min_value()
 	max_value = option.get_max_value()
 	step = option.get_step()
@@ -20,7 +18,7 @@ func _ready() -> void:
 
 
 func _on_value_changed(_value: float) -> void:
-	GameOptions.get_option(section, key).set_value(value)
+	option.set_value(value)
 
 
 func _on_drag_ended(_value_changed: bool):
@@ -29,4 +27,4 @@ func _on_drag_ended(_value_changed: bool):
 
 
 func _refresh() -> void:
-	set_value_no_signal(GameOptions.get_option(section, key).get_value())
+	set_value_no_signal(option.get_value())

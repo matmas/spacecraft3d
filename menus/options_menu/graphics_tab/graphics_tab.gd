@@ -10,12 +10,11 @@ const RANGE_OPTION_ROW = preload("range_option_row.tscn")
 func _ready() -> void:
 	var current_category := ""
 
-	for option in GameOptions.options:
+	for option in GameOptions.get_options():
 		if not option.is_visible():
 			continue
 
-		var row: Node
-
+		var row: Control
 		if option is BoolOption:
 			row = BOOL_OPTION_ROW.instantiate()
 		elif option is EnumOption:
