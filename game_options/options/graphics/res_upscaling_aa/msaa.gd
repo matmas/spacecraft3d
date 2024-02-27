@@ -4,20 +4,12 @@ var DISABLED := tr("Disabled")
 @onready var current_value = ProjectSettings.get_setting("rendering/anti_aliasing/quality/msaa_3d")
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "msaa"
 
 
 func get_display_name() -> String:
 	return tr("MSAA")
-
-
-func get_display_category() -> String:
-	return tr("Resolution, upscaling & anti-aliasing")
 
 
 func set_value(value: Variant) -> void:

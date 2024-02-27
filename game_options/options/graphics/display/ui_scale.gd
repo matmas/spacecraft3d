@@ -1,20 +1,12 @@
 extends RangeOption
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "ui_scale"
 
 
 func get_display_name() -> String:
 	return tr("UI scale")
-
-
-func get_display_category() -> String:
-	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

@@ -24,12 +24,12 @@ func _ready() -> void:
 
 		row.set_option(option)
 
-		if option.get_display_category() != current_category:
+		if option.category.display_name != current_category:
 			var category_label := Label.new()
-			category_label.text = option.get_display_category()
+			category_label.text = option.category.display_name
 			category_label.theme_type_variation = &"CategoryHeader"
 			list.add_child(category_label)
-			current_category = option.get_display_category()
+			current_category = option.category.display_name
 
 		list.add_child(row)
 

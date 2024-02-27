@@ -1,0 +1,135 @@
+[gd_scene load_steps=25 format=3 uid="uid://cwdgkuos243k3"]
+
+[ext_resource type="Script" path="res://game_options/game_options_autoload.gd" id="1_daw0r"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
+[ext_resource type="Script" path="res://game_options/section.gd" id="2_7j3vk"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/fullscreen.gd" id="3_wah1i"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/screen.gd" id="4_4v7lj"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/vsync.gd" id="5_b6ofn"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/max_fps.gd" id="6_jjx0q"]
+[ext_resource type="Script" path="res://game_options/options/graphics/display/fps_counter.gd" id="7_qytg8"]
+[ext_resource type="Script" path="res://game_options/options/graphics/res_upscaling_aa/3d_scale.gd" id="8_c5kmu"]
+[ext_resource type="Script" path="res://game_options/category.gd" id="8_eyxuy"]
+[ext_resource type="Script" path="res://game_options/options/graphics/res_upscaling_aa/upscaling_mode.gd" id="9_408ih"]
+[ext_resource type="Script" path="res://game_options/options/graphics/res_upscaling_aa/taa.gd" id="10_bldqe"]
+[ext_resource type="Script" path="res://game_options/options/graphics/res_upscaling_aa/fxaa.gd" id="11_mnem2"]
+[ext_resource type="Script" path="res://game_options/options/graphics/res_upscaling_aa/msaa.gd" id="12_md2op"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/glow.gd" id="13_62vlf"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/ssao.gd" id="14_d46ab"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/ssil.gd" id="15_4e3ce"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/lens_flare.gd" id="16_5c5rd"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/motion_particles.gd" id="17_njksq"]
+[ext_resource type="Script" path="res://game_options/options/graphics/camera/camera_fov.gd" id="18_dvdfb"]
+[ext_resource type="Script" path="res://game_options/options/graphics/ui/input_hints.gd" id="19_gfb4p"]
+[ext_resource type="Script" path="res://game_options/options/input/mouse_sensitivity.gd" id="20_wtelj"]
+[ext_resource type="Script" path="res://game_options/options/input/joypad_sensitivity.gd" id="21_bkwbe"]
+[ext_resource type="Script" path="res://game_options/options/audio/master_volume.gd" id="22_6xkgs"]
+
+[node name="GameOptions" type="Node"]
+script = ExtResource("1_daw0r")
+
+[node name="Graphics" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Graphics"
+config_name = "graphics"
+
+[node name="Display" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Display"
+
+[node name="UIScale" type="Node" parent="Graphics/Display"]
+script = ExtResource("2_0cifp")
+
+[node name="Fullscreen" type="Node" parent="Graphics/Display"]
+script = ExtResource("3_wah1i")
+
+[node name="Screen" type="Node" parent="Graphics/Display"]
+script = ExtResource("4_4v7lj")
+
+[node name="VSync" type="Node" parent="Graphics/Display"]
+script = ExtResource("5_b6ofn")
+
+[node name="MaxFPS" type="Node" parent="Graphics/Display"]
+script = ExtResource("6_jjx0q")
+
+[node name="FPSCounter" type="Node" parent="Graphics/Display"]
+script = ExtResource("7_qytg8")
+
+[node name="ResUpscalingAA" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Resolution, upscaling & anti-aliasing"
+
+[node name="3DScale" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("8_c5kmu")
+
+[node name="UpscalingMode" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("9_408ih")
+
+[node name="TAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("10_bldqe")
+
+[node name="FXAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("11_mnem2")
+
+[node name="MSAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("12_md2op")
+
+[node name="Effects" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Effects"
+
+[node name="Glow" type="Node" parent="Graphics/Effects"]
+script = ExtResource("13_62vlf")
+
+[node name="SSAO" type="Node" parent="Graphics/Effects"]
+script = ExtResource("14_d46ab")
+
+[node name="SSIL" type="Node" parent="Graphics/Effects"]
+script = ExtResource("15_4e3ce")
+
+[node name="LensFlare" type="Node" parent="Graphics/Effects"]
+script = ExtResource("16_5c5rd")
+
+[node name="MotionParticles" type="Node" parent="Graphics/Effects"]
+script = ExtResource("17_njksq")
+
+[node name="Camera" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Camera"
+
+[node name="CameraFOV" type="Node" parent="Graphics/Camera"]
+script = ExtResource("18_dvdfb")
+
+[node name="UserInterface" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "User interface"
+
+[node name="InputHints" type="Node" parent="Graphics/UserInterface"]
+script = ExtResource("19_gfb4p")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Input"
+config_name = "input"
+
+[node name="PlayerInput" type="Node" parent="Input"]
+script = ExtResource("8_eyxuy")
+display_name = "Player input"
+
+[node name="MouseSensitivity" type="Node" parent="Input/PlayerInput"]
+script = ExtResource("20_wtelj")
+
+[node name="JoypadSensitivity" type="Node" parent="Input/PlayerInput"]
+script = ExtResource("21_bkwbe")
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Audio"
+config_name = "audio"
+
+[node name="Volume" type="Node" parent="Audio"]
+script = ExtResource("8_eyxuy")
+display_name = "Volume"
+
+[node name="Master" type="Node" parent="Audio/Volume"]
+script = ExtResource("22_6xkgs")

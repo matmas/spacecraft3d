@@ -6,20 +6,12 @@ var ADAPTIVE := tr("Adaptive")
 var MAILBOX := tr("Mailbox")
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "vsync"
 
 
 func get_display_name() -> String:
 	return tr("VSync")
-
-
-func get_display_category() -> String:
-	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

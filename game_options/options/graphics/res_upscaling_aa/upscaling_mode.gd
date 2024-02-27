@@ -7,20 +7,12 @@ var FSR = "FSR 1.0"
 var FSR2 = "FSR 2.2"
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "upscaling_mode"
 
 
 func get_display_name() -> String:
 	return tr("Upscaling")
-
-
-func get_display_category() -> String:
-	return tr("Resolution, upscaling & anti-aliasing")
 
 
 func set_value(value: Variant) -> void:

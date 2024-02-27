@@ -1,20 +1,12 @@
 extends BoolOption
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "fullscreen"
 
 
 func get_display_name() -> String:
 	return tr("Fullscreen")
-
-
-func get_display_category() -> String:
-	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

@@ -3,20 +3,12 @@ extends BoolOption
 @onready var current_value := _get_initial_value()
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "fxaa"
 
 
 func get_display_name() -> String:
 	return tr("FXAA")
-
-
-func get_display_category() -> String:
-	return tr("Resolution, upscaling & anti-aliasing")
 
 
 func set_value(value: Variant) -> void:

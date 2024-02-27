@@ -1,20 +1,12 @@
 extends RangeOption
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "3d_scale"
 
 
 func get_display_name() -> String:
 	return tr("3D resolution")
-
-
-func get_display_category() -> String:
-	return tr("Resolution, upscaling & anti-aliasing")
 
 
 func set_value(value: Variant) -> void:

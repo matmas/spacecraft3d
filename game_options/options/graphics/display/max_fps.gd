@@ -6,20 +6,12 @@ var UNLIMITED = tr("Unlimited")
 var current_value := Engine.max_fps
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "max_fps"
 
 
 func get_display_name() -> String:
 	return tr("Max FPS")
-
-
-func get_display_category() -> String:
-	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

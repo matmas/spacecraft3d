@@ -3,11 +3,9 @@ class_name Option
 
 signal value_changed
 
+var section: GameOptionSection
+var category: GameOptionCategory
 var initial_value: Variant
-
-
-func section() -> String:
-	printerr("Not implemented."); return ""
 
 
 func key() -> String:
@@ -20,10 +18,6 @@ func get_display_name() -> String:
 
 func get_description() -> String:
 	return ""
-
-
-func get_display_category() -> String:
-	printerr("Not implemented."); return ""
 
 
 func get_value() -> Variant:

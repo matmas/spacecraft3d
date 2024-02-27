@@ -3,20 +3,12 @@ extends RangeOption
 @onready var current_value = 2.0
 
 
-func section() -> String:
-	return "input"
-
-
 func key() -> String:
 	return "joypad_sensitivity"
 
 
 func get_display_name() -> String:
 	return tr("Controller sensitivity")
-
-
-func get_display_category() -> String:
-	return tr("Player input")
 
 
 func set_value(value: Variant) -> void:

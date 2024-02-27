@@ -17,13 +17,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GameOptions="*res://game_options/game_options_autoload.tscn"
 ScreenshotCaptureAutoload="res://screenshot_capture/screenshot_capture_autoload.gd"
 JoypadInputEchoAutoload="res://joypad_input_echo/joypad_input_echo_autoload.gd"
 FpsCounterAutoload="res://fps_counter/fps_counter_autoload.tscn"
 Utils="*res://utils/utils_autoload.gd"
 InputmapPersistence="*res://menus/options_menu/controls_tab/inputmap_persistence_autoload.gd"
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
-GameOptions="*res://game_options/game_options_autoload.gd"
 
 [display]
 

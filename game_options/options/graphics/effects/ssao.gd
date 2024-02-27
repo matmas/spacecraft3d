@@ -3,20 +3,12 @@ extends BoolOption
 var current_value := false  # Assume disabled by default
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "ssao"
 
 
 func get_display_name() -> String:
 	return tr("SSAO")
-
-
-func get_display_category() -> String:
-	return tr("Effects")
 
 
 func set_value(value: Variant) -> void:

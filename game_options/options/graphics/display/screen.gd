@@ -5,20 +5,12 @@ extends EnumOption
 @onready var last_primary_screen := DisplayServer.get_primary_screen()
 
 
-func section() -> String:
-	return "graphics"
-
-
 func key() -> String:
 	return "screen"
 
 
 func get_display_name() -> String:
 	return tr("Screen")
-
-
-func get_display_category() -> String:
-	return tr("Display")
 
 
 func set_value(value: Variant) -> void:

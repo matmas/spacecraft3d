@@ -3,20 +3,12 @@ extends RangeOption
 const MIN_DECIBELS = -60.0
 
 
-func section() -> String:
-	return "audio"
-
-
 func key() -> String:
 	return "master_volume"
 
 
 func get_display_name() -> String:
 	return tr("Master")
-
-
-func get_display_category() -> String:
-	return tr("Volume")
 
 
 func set_value(value: Variant) -> void:
