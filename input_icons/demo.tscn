@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1leqryjhee1w"]
+[gd_scene load_steps=15 format=3 uid="uid://b1leqryjhee1w"]
 
-[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="1_hwhyq"]
 [ext_resource type="Script" path="res://input_icons/key_icon_texture_rect.gd" id="2_lmof7"]
 [ext_resource type="Script" path="res://input_icons/input_event_texture_rect.gd" id="3_oex6b"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="4_hsbbn"]
@@ -80,7 +79,6 @@ layout_mode = 2
 [node name="KeyIconTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-theme = ExtResource("1_hwhyq")
 script = ExtResource("2_lmof7")
 text = ":)"
 
@@ -97,25 +95,21 @@ layout_mode = 2
 
 [node name="InputEventTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_iw1st")
 
 [node name="InputEventTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventMouseButton_oibl6")
 
 [node name="InputEventTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventJoypadButton_5j2e8")
 
 [node name="InputEventTextureRect4" type="TextureRect" parent="GridContainer/HBoxContainer2"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventJoypadMotion_3cvhs")
 
@@ -133,19 +127,16 @@ alignment = 1
 
 [node name="InputActionTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
 action_name = &"ui_up"
 
 [node name="InputActionTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
 action_name = &"ui_select"
 
 [node name="InputActionTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer3"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("4_hsbbn")
 action_name = &"ui_focus_next"
 
@@ -182,7 +173,6 @@ alignment = 1
 
 [node name="InputEventTextureRect" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_58kcg")
 convert_physical_keycodes = true
@@ -191,7 +181,6 @@ add_margin = false
 
 [node name="InputEventTextureRect2" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_bj5bp")
 convert_physical_keycodes = true
@@ -200,7 +189,6 @@ add_margin = false
 
 [node name="InputEventTextureRect3" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_0vu52")
 convert_physical_keycodes = true
@@ -209,7 +197,6 @@ add_margin = false
 
 [node name="InputEventTextureRect4" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_kljca")
 convert_physical_keycodes = true
@@ -218,7 +205,6 @@ add_margin = false
 
 [node name="InputEventTextureRect5" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_h5oul")
 convert_physical_keycodes = true
@@ -227,7 +213,6 @@ add_margin = false
 
 [node name="InputEventTextureRect6" type="TextureRect" parent="GridContainer/HBoxContainer5"]
 layout_mode = 2
-theme = ExtResource("1_hwhyq")
 script = ExtResource("3_oex6b")
 input_event = SubResource("InputEventKey_1a66p")
 convert_physical_keycodes = true

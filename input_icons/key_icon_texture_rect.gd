@@ -68,6 +68,16 @@ func _init() -> void:
 	_update_custom_minimum_size()
 
 
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_EDITOR_PRE_SAVE:
+			if theme == THEME:
+				theme = null
+		NOTIFICATION_EDITOR_POST_SAVE:
+			if theme == null:
+				theme = THEME
+
+
 func _get_height() -> int:
 	return int(size.y)
 

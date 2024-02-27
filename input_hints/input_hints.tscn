@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://game_options/feature.gd" id="2_w37bw"]
 [ext_resource type="Script" path="res://input_icons/visibility_helper.gd" id="4_07c5p"]
-[ext_resource type="Theme" uid="uid://cwqd3tfda3i1g" path="res://input_icons/key_icon_theme.tres" id="5_mck50"]
 [ext_resource type="Script" path="res://input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
 [node name="InputHints" type="CanvasLayer"]
@@ -29,7 +28,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_up"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_up"
 
@@ -42,7 +40,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_down"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_down"
 
@@ -55,7 +52,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/jump"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"jump"
 
@@ -68,7 +64,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/crouch"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"crouch"
 
@@ -81,7 +76,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/sprint"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"sprint"
 
@@ -107,7 +101,6 @@ layout_mode = 2
 
 [node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
 ignore_joypad_direction = true
@@ -120,7 +113,6 @@ layout_mode = 2
 
 [node name="move_left" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_left"
 visibility_condition = 1
@@ -129,7 +121,6 @@ add_margin = false
 
 [node name="move_backward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_backward"
 visibility_condition = 1
@@ -138,7 +129,6 @@ add_margin = false
 
 [node name="move_right" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_right"
 visibility_condition = 1
@@ -147,7 +137,6 @@ add_margin = false
 
 [node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"move_forward"
 ignore_joypad_direction = true
@@ -162,7 +151,6 @@ layout_mode = 2
 
 [node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/MovementAndLook/look_up"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"look_up"
 ignore_joypad_direction = true
@@ -199,7 +187,6 @@ text = "place block
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"place_block"
 
@@ -213,12 +200,10 @@ text = "roll"
 
 [node name="roll_left" type="TextureRect" parent="RightControls/roll_left"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"roll_left"
 
 [node name="roll_right" type="TextureRect" parent="RightControls/roll_left"]
 layout_mode = 2
-theme = ExtResource("5_mck50")
 script = ExtResource("6_kuhb4")
 action_name = &"roll_right"
