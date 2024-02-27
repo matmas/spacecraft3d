@@ -6,11 +6,12 @@ const BOOL_OPTION_ROW = preload("bool_option_row.tscn")
 const ENUM_OPTION_ROW = preload("enum_option_row.tscn")
 const RANGE_OPTION_ROW = preload("range_option_row.tscn")
 
+var section: GameOptionSection
 
 func _ready() -> void:
 	var current_category := ""
 
-	for option in GameOptions.get_options():
+	for option in GameOptions.get_options(section):
 		if not option.is_visible():
 			continue
 
@@ -32,7 +33,3 @@ func _ready() -> void:
 			current_category = option.category.display_name
 
 		list.add_child(row)
-
-
-func _on_reset_pressed() -> void:
-	GameOptions.reset_to_defaults()

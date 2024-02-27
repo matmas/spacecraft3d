@@ -4,13 +4,20 @@ extends VBoxContainer
 var tabs: Array[CanvasItem] = []
 
 func _ready() -> void:
+	_refresh()
+	Utils.grab_focus_first_visible_button(tabs[tab_bar.current_tab])
+
+
+func _refresh() -> void:
+	tabs.clear()
+	tab_bar.clear_tabs()
+
 	for child in get_children():
 		if child is CanvasItem and child.owner != self:  # Don't add nodes this scene is made of
 			tabs.append(child)
 			tab_bar.add_tab(child.name)
 
 	_switch_tab_visibility(tab_bar.current_tab)
-	Utils.grab_focus_first_visible_button(tabs[tab_bar.current_tab])
 
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
@@ -35,3 +42,10 @@ func _input(event: InputEvent) -> void:
 			tab_bar.current_tab = target_tab
 			get_viewport().set_input_as_handled()
 			tab_bar.grab_focus()
+
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_CHILD_ORDER_CHANGED:
+			if is_node_ready():
+				_refresh()

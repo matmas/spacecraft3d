@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dos6s212o3okw"]
 
-[ext_resource type="Script" path="res://menus/options_menu/graphics_tab/range_option_row.gd" id="1_6jlny"]
+[ext_resource type="Script" path="res://menus/options_menu/options_tab/range_option_row.gd" id="1_6jlny"]
 [ext_resource type="Script" path="res://game_options/ui_components/slider.gd" id="2_ixwtr"]
 [ext_resource type="Script" path="res://game_options/ui_components/description_and_value_label.gd" id="3_sr5xj"]
 

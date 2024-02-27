@@ -40,8 +40,25 @@ func get_enum_option(section: String, key: String) -> EnumOption:
 	return _options_dict[section][key]
 
 
-func get_options() -> Array[Option]:
-	return _options
+func get_sections() -> Array[GameOptionSection]:
+	var sections: Array[GameOptionSection] = []
+	for child in get_children():
+		if child is GameOptionSection:
+			sections.append(child)
+	return sections
+
+
+func get_options(section: GameOptionSection, node: Node = self) -> Array[Option]:
+	var options: Array[Option] = []
+	for child in node.get_children():
+		if child is GameOptionSection and child == section:
+			options.assign(get_options(section, child))
+			break
+		if child is GameOptionCategory:
+			options.append_array(get_options(section, child))
+		if child is Option:
+			options.append(child)
+	return options
 
 
 func _load() -> void:

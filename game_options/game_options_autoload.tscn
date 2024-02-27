@@ -107,6 +107,18 @@ display_name = "User interface"
 [node name="InputHints" type="Node" parent="Graphics/UserInterface"]
 script = ExtResource("19_gfb4p")
 
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Audio"
+config_name = "audio"
+
+[node name="Volume" type="Node" parent="Audio"]
+script = ExtResource("8_eyxuy")
+display_name = "Volume"
+
+[node name="Master" type="Node" parent="Audio/Volume"]
+script = ExtResource("22_6xkgs")
+
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_7j3vk")
 display_name = "Input"
@@ -121,15 +133,3 @@ script = ExtResource("20_wtelj")
 
 [node name="JoypadSensitivity" type="Node" parent="Input/PlayerInput"]
 script = ExtResource("21_bkwbe")
-
-[node name="Audio" type="Node" parent="."]
-script = ExtResource("2_7j3vk")
-display_name = "Audio"
-config_name = "audio"
-
-[node name="Volume" type="Node" parent="Audio"]
-script = ExtResource("8_eyxuy")
-display_name = "Volume"
-
-[node name="Master" type="Node" parent="Audio/Volume"]
-script = ExtResource("22_6xkgs")
