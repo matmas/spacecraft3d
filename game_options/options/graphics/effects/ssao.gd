@@ -11,7 +11,7 @@ func get_display_name() -> String:
 	return tr("SSAO")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: bool) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		camera.get_world_3d().environment.ssao_enabled = value
@@ -20,7 +20,7 @@ func set_value(value: Variant) -> void:
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> bool:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
 		return camera.get_world_3d().environment.ssao_enabled

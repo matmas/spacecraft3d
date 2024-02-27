@@ -20,13 +20,5 @@ func get_description() -> String:
 	return ""
 
 
-func get_value() -> Variant:
-	printerr("Not implemented."); return null
-
-
-func set_value(_value: Variant) -> void:
-	printerr("Not implemented.")
-
-
 func is_visible() -> bool:
 	return true

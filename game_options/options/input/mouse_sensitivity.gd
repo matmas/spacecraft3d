@@ -11,12 +11,12 @@ func get_display_name() -> String:
 	return tr("Mouse sensitivity")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: float) -> void:
 	current_value = value
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> float:
 	return current_value
 
 

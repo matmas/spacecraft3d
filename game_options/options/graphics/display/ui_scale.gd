@@ -9,12 +9,12 @@ func get_display_name() -> String:
 	return tr("UI scale")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: float) -> void:
 	get_window().content_scale_factor = value
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> float:
 	return get_window().content_scale_factor
 
 

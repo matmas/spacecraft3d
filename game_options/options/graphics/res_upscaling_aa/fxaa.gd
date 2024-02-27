@@ -11,7 +11,7 @@ func get_display_name() -> String:
 	return tr("FXAA")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: bool) -> void:
 	if value:
 		RenderingServer.viewport_set_screen_space_aa(get_viewport().get_viewport_rid(), RenderingServer.VIEWPORT_SCREEN_SPACE_AA_FXAA)
 	else:
@@ -20,7 +20,7 @@ func set_value(value: Variant) -> void:
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> bool:
 	return current_value
 
 

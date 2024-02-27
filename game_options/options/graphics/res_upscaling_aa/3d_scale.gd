@@ -9,12 +9,12 @@ func get_display_name() -> String:
 	return tr("3D resolution")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: float) -> void:
 	get_viewport().scaling_3d_scale = value
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> float:
 	return get_viewport().scaling_3d_scale
 
 

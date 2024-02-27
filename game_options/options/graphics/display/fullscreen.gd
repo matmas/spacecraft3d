@@ -9,7 +9,7 @@ func get_display_name() -> String:
 	return tr("Fullscreen")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: bool) -> void:
 	if value:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
@@ -17,7 +17,7 @@ func set_value(value: Variant) -> void:
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> bool:
 	match DisplayServer.window_get_mode():
 		DisplayServer.WINDOW_MODE_WINDOWED:
 			return false

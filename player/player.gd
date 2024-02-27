@@ -73,7 +73,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func _process(delta: float) -> void:
 	# Get the input direction and handle the looking around.
 	var look_dir := InputHints.get_vector(&"look_left", &"look_right", &"look_up", &"look_down")
-	var joypad_sensitivity = GameOptions.get_option("input", "joypad_sensitivity").get_value()
+	var joypad_sensitivity := GameOptions.get_range_option("input", "joypad_sensitivity").get_value()
 	look_direction_change += look_dir * delta * joypad_sensitivity
 
 	# Animate head position
@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var mouse_sensitivity = GameOptions.get_option("input", "mouse_sensitivity").get_value() * 0.001
+		var mouse_sensitivity := GameOptions.get_range_option("input", "mouse_sensitivity").get_value() * 0.001
 		look_direction_change += event.relative * mouse_sensitivity * get_window().content_scale_factor
 
 

@@ -11,14 +11,14 @@ func get_display_name() -> String:
 	return tr("Master")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: float) -> void:
 	var bus_index := AudioServer.get_bus_index(get_bus_name())
 	AudioServer.set_bus_volume_db(bus_index, value)
 	AudioServer.set_bus_mute(bus_index, value <= MIN_DECIBELS)
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> float:
 	var bus_index := AudioServer.get_bus_index(get_bus_name())
 	return AudioServer.get_bus_volume_db(bus_index)
 

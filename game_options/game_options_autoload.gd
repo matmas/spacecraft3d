@@ -28,7 +28,15 @@ func _walk_tree(node: Node, section: GameOptionSection, category: GameOptionCate
 			_options_dict.get_or_add(section.config_name, {})[option.key()] = option
 
 
-func get_option(section: String, key: String) -> Option:
+func get_bool_option(section: String, key: String) -> BoolOption:
+	return _options_dict[section][key]
+
+
+func get_range_option(section: String, key: String) -> RangeOption:
+	return _options_dict[section][key]
+
+
+func get_enum_option(section: String, key: String) -> EnumOption:
 	return _options_dict[section][key]
 
 

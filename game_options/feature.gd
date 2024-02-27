@@ -11,11 +11,11 @@ func _init() -> void:
 
 func _ready() -> void:
 	_update()
-	GameOptions.get_option(section, key).value_changed.connect(func(): _update())
+	GameOptions.get_bool_option(section, key).value_changed.connect(func(): _update())
 
 
 func _update() -> void:
 	var parent := get_parent()
-	parent.visible = GameOptions.get_option(section, key).get_value()
+	parent.visible = GameOptions.get_bool_option(section, key).get_value()
 	parent.set_process(parent.visible)
 	parent.set_physics_process(parent.visible)

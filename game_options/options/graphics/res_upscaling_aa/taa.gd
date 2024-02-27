@@ -11,13 +11,13 @@ func get_display_name() -> String:
 	return tr("TAA")
 
 
-func set_value(value: Variant) -> void:
+func set_value(value: bool) -> void:
 	RenderingServer.viewport_set_use_taa(get_viewport().get_viewport_rid(), value)
 	current_value = value
 	value_changed.emit()
 
 
-func get_value() -> Variant:
+func get_value() -> bool:
 	return current_value
 
 

@@ -2,6 +2,14 @@ extends Option
 class_name RangeOption
 
 
+func get_value() -> float:
+	printerr("Not implemented."); return 0.0
+
+
+func set_value(_value: float) -> void:
+	printerr("Not implemented.")
+
+
 func get_min_value() -> float:
 	printerr("Not implemented"); return 0
 

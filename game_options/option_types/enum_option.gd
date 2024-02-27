@@ -2,6 +2,14 @@ extends Option
 class_name EnumOption
 
 
+func get_value() -> Variant:
+	printerr("Not implemented."); return null
+
+
+func set_value(_value: Variant) -> void:
+	printerr("Not implemented.")
+
+
 func get_value_from_display_value(_value: String) -> Variant:
 	printerr("Not implemented."); return null
 
