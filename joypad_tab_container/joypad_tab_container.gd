@@ -1,21 +1,23 @@
-extends Control
+extends VBoxContainer
 
-@onready var tab_bar: TabBar = %TabBar
-@onready var tabs: Array[CanvasItem] = [
-	%GraphicsTab,
-	%ControlsTab,
-]
+@onready var tab_bar := %TabBar as TabBar
+var tabs: Array[CanvasItem] = []
 
 func _ready() -> void:
-	_set_tab_visible(tab_bar.current_tab)
+	for child in get_children():
+		if child is CanvasItem and child.owner != self:  # Don't add nodes this scene is made of
+			tabs.append(child)
+			tab_bar.add_tab(child.name)
+
+	_switch_tab_visibility(tab_bar.current_tab)
 	Utils.grab_focus_first_visible_button(tabs[tab_bar.current_tab])
 
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
-	_set_tab_visible(tab)
+	_switch_tab_visibility(tab)
 
 
-func _set_tab_visible(index: int) -> void:
+func _switch_tab_visibility(index: int) -> void:
 	for i in tabs.size():
 		tabs[i].visible = i == index
 
