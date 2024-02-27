@@ -5,12 +5,12 @@ var tabs: Array[CanvasItem] = []
 
 func _ready() -> void:
 	_refresh()
-	Utils.grab_focus_first_visible_button(tabs[tab_bar.current_tab])
 
 
 func _refresh() -> void:
 	tabs.clear()
 	tab_bar.clear_tabs()
+	tab_bar.grab_focus()
 
 	for child in get_children():
 		if child is CanvasItem and child.owner != self:  # Don't add nodes this scene is made of
@@ -47,5 +47,5 @@ func _input(event: InputEvent) -> void:
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_CHILD_ORDER_CHANGED:
-			if is_node_ready():
+			if is_node_ready() and is_inside_tree():
 				_refresh()

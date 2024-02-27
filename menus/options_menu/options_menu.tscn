@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnq3wuts8j0vn"]
+[gd_scene load_steps=4 format=3 uid="uid://bnq3wuts8j0vn"]
 
 [ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_ajcmm"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_kqk81"]
 [ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://joypad_tab_container/joypad_tab_container.tscn" id="2_6koo0"]
-[ext_resource type="PackedScene" uid="uid://y4iwb3s0bn2j" path="res://menus/options_menu/controls_tab/controls_tab.tscn" id="3_kmojk"]
 
 [node name="OptionsMenu" type="Control"]
 process_mode = 3
@@ -33,11 +32,6 @@ text = "Options"
 horizontal_alignment = 1
 
 [node name="JoypadTabContainer" parent="List" instance=ExtResource("2_6koo0")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Controls1" parent="List/JoypadTabContainer" instance=ExtResource("3_kmojk")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
