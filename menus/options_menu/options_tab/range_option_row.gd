@@ -2,6 +2,6 @@ extends HBoxContainer
 
 
 func set_option(option: RangeOption) -> void:
-	$Label.text = option.get_display_name()
+	$NameWithResetButton.set_option(option)
 	$HSlider.option = option
 	$DescriptionAndValue.option = option

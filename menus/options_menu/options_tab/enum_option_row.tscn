@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cipsfd504dpxe"]
+[gd_scene load_steps=5 format=3 uid="uid://cipsfd504dpxe"]
 
 [ext_resource type="Script" path="res://menus/options_menu/options_tab/enum_option_row.gd" id="1_7ge3t"]
+[ext_resource type="PackedScene" uid="uid://qrnonn8qahio" path="res://menus/options_menu/options_tab/name_with_reset_button.tscn" id="2_6u0yn"]
 [ext_resource type="Script" path="res://game_options/ui_components/option_button.gd" id="2_nxys6"]
 [ext_resource type="Script" path="res://game_options/ui_components/description_label.gd" id="3_301sb"]
 
@@ -12,10 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7ge3t")
 
-[node name="Label" type="Label" parent="."]
+[node name="NameWithResetButton" parent="." instance=ExtResource("2_6u0yn")]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"CategoryItem"
 
 [node name="GameOptionButton" type="OptionButton" parent="."]
 layout_mode = 2

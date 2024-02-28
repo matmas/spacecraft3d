@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://qrnonn8qahio"]
+
+[ext_resource type="Script" path="res://game_options/ui_components/reset_button.gd" id="1_8ecul"]
+[ext_resource type="Script" path="res://menus/options_menu/options_tab/name_with_reset_button.gd" id="1_gww31"]
+
+[node name="NameWithResetButton" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gww31")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"CategoryItem"
+
+[node name="GameOptionResetButton" type="Button" parent="."]
+layout_mode = 2
+script = ExtResource("1_8ecul")
