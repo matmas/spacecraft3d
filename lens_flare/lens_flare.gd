@@ -1,5 +1,5 @@
 @tool
-extends TextureRect
+extends CanvasLayer
 class_name LensFlare
 
 @export var directional_light: DirectionalLight3D:
@@ -8,7 +8,8 @@ class_name LensFlare
 		update_configuration_warnings()
 @export_flags_3d_physics var raycast_collision_mask = 0b11111111_11111111_11111111_11111111
 
-@onready var shader_material := material as ShaderMaterial
+@onready var texture_rect: TextureRect = $TextureRect
+@onready var shader_material := texture_rect.material as ShaderMaterial
 
 var visibility := 0.0
 var target_visibility := 0.0
@@ -22,8 +23,8 @@ func _process(delta: float) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if not camera or not directional_light or Engine.is_editor_hint():
 		return
-	visible = not camera.is_position_behind(get_light_apparent_global_position(camera))
-	if visible:
+	texture_rect.visible = not camera.is_position_behind(get_light_apparent_global_position(camera))
+	if texture_rect.visible:
 		shader_material.set_shader_parameter(&"sun_position", camera.unproject_position(get_light_apparent_global_position(camera)))
 		shader_material.set_shader_parameter(&"visibility", visibility)
 		visibility = lerpf(visibility, target_visibility, 1 - pow(0.1, delta * 10.0))

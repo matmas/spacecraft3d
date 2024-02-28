@@ -25,3 +25,7 @@ func get_max_value() -> float:
 
 func get_display_value() -> String:
 	return str(get_value())
+
+
+func _to_string() -> String:
+	return "%s(%s)" % [name, get_value()]

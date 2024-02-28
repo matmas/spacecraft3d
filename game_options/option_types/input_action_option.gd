@@ -29,3 +29,7 @@ func set_value(value: Array[InputEvent]) -> void:
 		InputMap.action_add_event(action_name, event)
 	value_changed.emit()
 	InputMonitor.input_map_changed.emit()
+
+
+func _to_string() -> String:
+	return "%s(%s)" % [name, get_value()]

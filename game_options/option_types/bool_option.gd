@@ -9,3 +9,7 @@ func get_value() -> bool:
 
 func set_value(_value: bool) -> void:
 	printerr("Not implemented.")
+
+
+func _to_string() -> String:
+	return "%s(%s)" % [name, get_value()]

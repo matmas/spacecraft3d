@@ -12,7 +12,11 @@ shader_parameter/visibility = 1.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhgmt"]
 
-[node name="LensFlare" type="TextureRect"]
+[node name="LensFlare" type="CanvasLayer"]
+layer = 0
+script = ExtResource("2_aysj0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_dyc6w")
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("PlaceholderTexture2D_xhgmt")
-script = ExtResource("2_aysj0")
 
 [node name="Feature" type="Node" parent="."]
 script = ExtResource("1_ag1xd")

@@ -31,3 +31,7 @@ func set_display_value(value: String) -> void:
 
 func display_value_matches(value: String) -> bool:
 	return get_value_from_display_value(value) == get_value()
+
+
+func _to_string() -> String:
+	return "%s(%s)" % [name, get_value()]

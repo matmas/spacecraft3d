@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _update() -> void:
 	var parent := get_parent()
-	parent.visible = GameOptions.get_bool_option(section, key).get_value()
+	var option := GameOptions.get_bool_option(section, key)
+	parent.visible = option.get_value()
 	parent.set_process(parent.visible)
 	parent.set_physics_process(parent.visible)
