@@ -4,7 +4,11 @@ class_name InputEventTextureRect
 
 @export var input_event: InputEvent:
 	set(value):
+		if input_event:
+			input_event.changed.disconnect(_update_text)
 		input_event = value
+		if input_event:
+			input_event.changed.connect(_update_text)
 		_update_text()
 
 ## Convert physical keycodes (US QWERTY) to ones in the active keyboard layout, e.g. AZERTY if supported by DisplayServer
