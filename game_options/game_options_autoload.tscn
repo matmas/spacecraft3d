@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwdgkuos243k3"]
+[gd_scene load_steps=27 format=3 uid="uid://cwdgkuos243k3"]
 
 [ext_resource type="Script" path="res://game_options/game_options_autoload.gd" id="1_daw0r"]
 [ext_resource type="Script" path="res://game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://game_options/options/graphics/effects/ssil.gd" id="15_4e3ce"]
 [ext_resource type="Script" path="res://game_options/options/graphics/effects/lens_flare.gd" id="16_5c5rd"]
 [ext_resource type="Script" path="res://game_options/options/graphics/effects/motion_particles.gd" id="17_njksq"]
+[ext_resource type="Script" path="res://game_options/options/graphics/effects/ssr.gd" id="18_8dxpk"]
 [ext_resource type="Script" path="res://game_options/options/graphics/camera/camera_fov.gd" id="18_dvdfb"]
 [ext_resource type="Script" path="res://game_options/options/graphics/ui/input_hints.gd" id="19_gfb4p"]
 [ext_resource type="Script" path="res://game_options/options/input/mouse_sensitivity.gd" id="20_wtelj"]
@@ -87,6 +88,9 @@ script = ExtResource("14_d46ab")
 
 [node name="SSIL" type="Node" parent="Graphics/Effects"]
 script = ExtResource("15_4e3ce")
+
+[node name="SSR" type="Node" parent="Graphics/Effects"]
+script = ExtResource("18_8dxpk")
 
 [node name="LensFlare" type="Node" parent="Graphics/Effects"]
 script = ExtResource("16_5c5rd")
