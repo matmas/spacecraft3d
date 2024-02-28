@@ -13,5 +13,5 @@ func _ready() -> void:
 		joypad_tab_container.add_child(tab)
 
 
-func _on_reset_pressed() -> void:
+func _on_reset_all_pressed() -> void:
 	GameOptions.reset_to_defaults()

@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 
 func _ready() -> void:
@@ -10,6 +10,7 @@ func _input(event: InputEvent) -> void:
 		# Prevent unpausing when nested menus are still open
 		if not get_tree().paused or get_tree().paused and visible:
 			_set_paused(not get_tree().paused)
+			get_viewport().set_input_as_handled()
 
 
 func _on_resume_pressed() -> void:
