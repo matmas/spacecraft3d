@@ -4,7 +4,7 @@ class_name KeyIconTextureRect
 
 func get_class_name() -> StringName: return &"KeyIconTextureRect"
 
-const THEME = preload("key_icon_theme.tres")
+const DEFAULT_THEME = preload("key_icon_theme.tres")
 
 @export_multiline var text := "":
 	set(value):
@@ -64,18 +64,18 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _init() -> void:
-	theme = THEME
+	theme = DEFAULT_THEME
 	_update_custom_minimum_size()
 
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_EDITOR_PRE_SAVE:
-			if theme == THEME:
+			if theme == DEFAULT_THEME:
 				theme = null
 		NOTIFICATION_EDITOR_POST_SAVE:
 			if theme == null:
-				theme = THEME
+				theme = DEFAULT_THEME
 
 
 func _get_height() -> int:
