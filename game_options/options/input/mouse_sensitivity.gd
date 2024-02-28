@@ -8,7 +8,7 @@ func key() -> String:
 
 
 func get_display_name() -> String:
-	return tr("Mouse sensitivity")
+	return tr("Mouse")
 
 
 func set_value(value: float) -> void:

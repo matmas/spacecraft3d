@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 @onready var joypad_tab_container: VBoxContainer = %JoypadTabContainer
 const OPTIONS_TAB = preload("res://menus/options_menu/options_tab/options_tab.tscn")

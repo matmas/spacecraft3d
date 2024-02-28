@@ -125,14 +125,14 @@ script = ExtResource("2_7j3vk")
 display_name = "Input"
 config_name = "input"
 
-[node name="PlayerInput" type="Node" parent="Input"]
+[node name="Sensitivity" type="Node" parent="Input"]
 script = ExtResource("8_eyxuy")
-display_name = "Player input"
+display_name = "Sensitivity"
 
-[node name="MouseSensitivity" type="Node" parent="Input/PlayerInput"]
+[node name="Mouse" type="Node" parent="Input/Sensitivity"]
 script = ExtResource("20_wtelj")
 
-[node name="JoypadSensitivity" type="Node" parent="Input/PlayerInput"]
+[node name="Joypad" type="Node" parent="Input/Sensitivity"]
 script = ExtResource("21_bkwbe")
 
 [node name="Controls" type="Node" parent="."]

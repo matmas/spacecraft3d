@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnq3wuts8j0vn"]
+[gd_scene load_steps=7 format=3 uid="uid://bnq3wuts8j0vn"]
 
 [ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="1_ajcmm"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="1_kqk81"]
 [ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://joypad_tab_container/joypad_tab_container.tscn" id="2_6koo0"]
+[ext_resource type="Script" path="res://scene_buttons/shortcut_button.gd" id="4_vyngb"]
 
-[node name="OptionsMenu" type="Control"]
-process_mode = 3
-layout_mode = 3
+[sub_resource type="InputEventAction" id="InputEventAction_xmh7t"]
+action = &"reset_all"
+
+[sub_resource type="Shortcut" id="Shortcut_dmmn3"]
+events = [SubResource("InputEventAction_xmh7t")]
+
+[node name="OptionsMenu" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,43 +19,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ajcmm")
 
-[node name="List" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -204.0
-offset_right = 204.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Header" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_type_variation = &"BigMarginContainer"
 
-[node name="OptionsLabel" type="Label" parent="List"]
+[node name="OptionsLabel" type="Label" parent="Header"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Options"
 horizontal_alignment = 1
 
-[node name="JoypadTabContainer" parent="List" instance=ExtResource("2_6koo0")]
-unique_name_in_owner = true
+[node name="Body" type="Control" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Footer" type="MarginContainer" parent="List"]
-layout_mode = 2
+[node name="JoypadTabContainer" parent="Body" instance=ExtResource("2_6koo0")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -354.0
+offset_right = 354.0
+size_flags_vertical = 3
 
-[node name="Reset" type="Button" parent="List/Footer"]
+[node name="Footer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Reset to defaults"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 4.0
 theme_type_variation = &"BigMarginContainer"
 
-[node name="Back" parent="MarginContainer" instance=ExtResource("1_kqk81")]
+[node name="Buttons" type="HBoxContainer" parent="Footer"]
 layout_mode = 2
+alignment = 2
 
-[connection signal="pressed" from="List/Footer/Reset" to="." method="_on_reset_pressed"]
+[node name="Back" parent="Footer/Buttons" instance=ExtResource("1_kqk81")]
+layout_mode = 2
+icon_visibility_condition = 2
+
+[node name="ResetAll" type="Button" parent="Footer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 8
+shortcut = SubResource("Shortcut_dmmn3")
+text = "Reset all"
+script = ExtResource("4_vyngb")
+
+[connection signal="pressed" from="Footer/Buttons/ResetAll" to="." method="_on_reset_pressed"]

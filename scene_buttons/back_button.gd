@@ -1,5 +1,5 @@
 @tool
-extends Button
+extends ShortcutButton
 
 
 func _on_pressed() -> void:
