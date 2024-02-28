@@ -94,7 +94,8 @@ func save() -> void:
 
 func reset_to_defaults() -> void:
 	for option in _options:
-		option.set_value(option.initial_value)
+		if option.get_value() != option.initial_value:
+			option.set_value(option.initial_value)
 
 	if FileAccess.file_exists(PATH):
 		var error := DirAccess.remove_absolute(PATH)
