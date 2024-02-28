@@ -2,6 +2,8 @@ extends Node
 class_name InputHints
 
 static var _actions_used := {}
+var _physics_frame_passed := false
+var _process_frame_passed := false
 
 
 func _ready() -> void:
@@ -39,17 +41,27 @@ static func get_vector(negative_x: StringName, positive_x: StringName, negative_
 	return Input.get_vector(negative_x, positive_x, negative_y, positive_y, deadzone)
 
 
+func _process(_delta: float) -> void:
+	_process_frame_passed = true
+	_refresh()
+
+
 func _physics_process(_delta: float) -> void:
+	_physics_frame_passed = true
 	_refresh()
 
 
 func _refresh() -> void:
-	for action in InputMap.get_actions():
-		if not _actions_used.has(action):
-			_actions_used[action] = false
+	# Prevent flickering when FPS is either lower or higher than physics ticks per second
+	if _physics_frame_passed and _process_frame_passed:
+		for action in InputMap.get_actions():
+			if not _actions_used.has(action):
+				_actions_used[action] = false
 
-	_update_visibility_recursively(self)
-	_actions_used.clear()
+		_update_visibility_recursively(self)
+		_actions_used.clear()
+		_process_frame_passed = false
+		_physics_frame_passed = false
 
 
 func _update_visibility_recursively(node: Node):
