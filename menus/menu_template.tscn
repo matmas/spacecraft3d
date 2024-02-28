@@ -28,4 +28,4 @@ theme_type_variation = &"BigMarginContainer"
 
 [node name="Buttons" type="HBoxContainer" parent="Footer"]
 layout_mode = 2
-alignment = 2
+alignment = 1
