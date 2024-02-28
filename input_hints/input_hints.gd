@@ -64,7 +64,7 @@ func _refresh() -> void:
 		_physics_frame_passed = false
 
 
-func _update_visibility_recursively(node: Node):
+func _update_visibility_recursively(node: Node) -> void:
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
 			node.visible = _actions_used[node.name] \

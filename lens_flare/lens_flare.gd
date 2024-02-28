@@ -44,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 	target_visibility = 0.0 if result else 1.0
 
 
-func _get_configuration_warnings():
+func _get_configuration_warnings() -> PackedStringArray:
 	if not directional_light:
 		return ["Must have directional light assigned."]
 	else:

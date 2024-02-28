@@ -21,7 +21,7 @@ func _on_value_changed(_value: float) -> void:
 	option.set_value(value)
 
 
-func _on_drag_ended(_value_changed: bool):
+func _on_drag_ended(_value_changed: bool) -> void:
 	if _value_changed:
 		GameOptions.save()
 
