@@ -13,7 +13,10 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
+	var had_focus := has_focus()
 	visible = option.get_value() != option.initial_value
+	if had_focus and not visible:
+		find_next_valid_focus().grab_focus()  # Maintain focus on something
 
 
 func _on_pressed() -> void:
