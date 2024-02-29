@@ -93,6 +93,7 @@ func _trigger_input_from_vector(vector: Vector2) -> void:
 func _trigger_input(action: StringName, pressed: bool, strength: float = 1) -> void:
 	if trigger_action_presses:
 		if pressed:
+			strength = clampf(strength * 1.04, 0, 1)  # Allow wider angle with strength 1
 			Input.action_press(action, strength)
 		else:
 			Input.action_release(action)
