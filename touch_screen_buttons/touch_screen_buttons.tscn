@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bc275k4543pyd"]
+
+[ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_fj2kx"]
+[ext_resource type="Texture2D" uid="uid://oou2dp7ftdkc" path="res://touch_screen_buttons/joystick_outline.png" id="3_mjbc8"]
+[ext_resource type="Script" path="res://touch_screen_buttons/virtual_joystick.gd" id="3_pmdmo"]
+[ext_resource type="Texture2D" uid="uid://o7fps01xcvgt" path="res://touch_screen_buttons/joystick_tip.png" id="4_lu0fn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6y7r"]
+radius = 122.93
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2ngx"]
+radius = 75.0
+
+[node name="TouchScreenButtons" type="CanvasLayer"]
+process_mode = 3
+layer = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(1444, 701)
+texture_normal = ExtResource("1_fj2kx")
+action = "jump"
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
+position = Vector2(1438, 546)
+texture_normal = ExtResource("1_fj2kx")
+shape = SubResource("CircleShape2D_n6y7r")
+action = "crouch"
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_right = 4.0
+grow_vertical = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VirtualJoystick" type="TextureRect" parent="Margin"]
+layout_mode = 2
+texture = ExtResource("3_mjbc8")
+script = ExtResource("3_pmdmo")
+tip = ExtResource("4_lu0fn")
+shape = SubResource("CircleShape2D_h2ngx")
+action_up = &"move_forward"
+action_down = &"move_backward"
+action_left = &"move_left"
+action_right = &"move_right"
