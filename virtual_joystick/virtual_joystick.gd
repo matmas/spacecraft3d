@@ -1,10 +1,9 @@
 @tool
-extends TextureRect
+extends Control
+class_name VirtualJoystick
 
-@export var tip: Texture2D:
-	set(value):
-		tip = value
-		queue_redraw()
+@onready var movable_part := $MovablePart as Control
+
 @export var shape: CircleShape2D:
 	set(value):
 		if shape:
@@ -28,9 +27,8 @@ extends TextureRect
 var current_value := Vector2()
 var current_index := -1
 
+
 func _draw() -> void:
-	if tip:
-		draw_texture(tip, size * 0.5 - tip.get_size() * 0.5 + current_value * shape.radius)
 	if shape and Engine.is_editor_hint() or get_tree().is_debugging_collisions_hint():
 		draw_circle(size * 0.5, shape.radius, ProjectSettings.get_setting("debug/shapes/collision/shape_color"))
 
@@ -42,14 +40,14 @@ func _input(event: InputEvent) -> void:
 	if not shape:
 		return  # No shape no game
 
-	if current_index != -1:  # We are tracking some finger index
+	if current_index != -1:  # Tracking a finger
 		match event.get_class():
 			"InputEventScreenTouch":
 				if (event as InputEventScreenTouch).index != current_index:
-					return  # We are not interested in other finger touches
+					return  # Not interested in other finger touches
 			"InputEventScreenDrag":
 				if (event as InputEventScreenDrag).index != current_index:
-					return  # We are not interested in other finger movements
+					return  # Not interested in other finger movements
 
 	var event_position: Vector2
 	match event.get_class():
@@ -70,17 +68,19 @@ func _input(event: InputEvent) -> void:
 				else:
 					return  # Ignore finger presses outside shape
 			else:  # Finger release
-				for action in [action_up, action_down, action_left, action_right]:
-					_trigger_input(action, false)
-				current_value = Vector2()
-				current_index = -1
-				get_viewport().set_input_as_handled()
+				if current_index == (event as InputEventScreenTouch).index:
+					for action in [action_up, action_down, action_left, action_right]:
+						_trigger_input(action, false)
+					current_value = Vector2()
+					current_index = -1
+					get_viewport().set_input_as_handled()
 		"InputEventScreenDrag":
 			if current_index != -1:
 				current_value = vector if vector.length_squared() < 1.0 else vector.normalized()
 				_trigger_input_from_vector(current_value)
 				get_viewport().set_input_as_handled()
-	queue_redraw()
+
+	movable_part.position = size * 0.5 - movable_part.size * 0.5 + current_value * shape.radius
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:

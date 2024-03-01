@@ -18,7 +18,8 @@ func _on_pressed():
 func _on_scene_closed() -> void:
 	owner.show()
 	_restore_shortcuts_recursively(owner)
-	grab_focus()
+	if is_inside_tree():
+		grab_focus()
 
 
 func _clear_shortcuts_recursively(node: Node) -> void:

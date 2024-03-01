@@ -15,7 +15,6 @@ func _input(event: InputEvent) -> void:
 			e.pressed = event.is_pressed()
 			e.position = embedded_window_position + (event as InputEventScreenTouch).position
 			get_tree().root.push_input(e, true)
-			get_viewport().set_input_as_handled()
 		"InputEventScreenDrag":
 			var drag_event := event as InputEventScreenDrag
 			var e := InputEventMouseMotion.new()
@@ -23,7 +22,6 @@ func _input(event: InputEvent) -> void:
 			e.relative = drag_event.relative
 			e.velocity = drag_event.velocity
 			get_tree().root.push_input(e, true)
-			get_viewport().set_input_as_handled()
 
 
 func _on_gui_focus_changed(node: Control) -> void:
