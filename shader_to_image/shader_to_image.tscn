@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpblpjfuwhvvl"]
+
+[ext_resource type="Script" path="res://shader_to_image/shader_to_image.gd" id="1_g01bs"]
+[ext_resource type="Shader" path="res://shader_to_image/shaders/disc.gdshader" id="1_hud26"]
+[ext_resource type="Texture2D" uid="uid://k5g4ps525kly" path="res://shader_to_image/transparent1x1.png" id="2_xjw4s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8yvp8"]
+viewport_path = NodePath("JoystickBase/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6dard"]
+shader = ExtResource("1_hud26")
+shader_parameter/color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j7ai6"]
+viewport_path = NodePath("JoystickTip/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugdiu"]
+shader = ExtResource("1_hud26")
+shader_parameter/color = Color(1, 1, 1, 0.8)
+
+[node name="ShaderToImage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g01bs")
+
+[node name="JoystickBase" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 300.0
+offset_bottom = 300.0
+texture = SubResource("ViewportTexture_8yvp8")
+
+[node name="SubViewport" type="SubViewport" parent="JoystickBase"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(300, 300)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="JoystickBase/SubViewport"]
+material = SubResource("ShaderMaterial_6dard")
+position = Vector2(150, 150)
+scale = Vector2(300, 300)
+texture = ExtResource("2_xjw4s")
+
+[node name="JoystickTip" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 300.0
+offset_top = -1.0
+offset_right = 450.0
+offset_bottom = 149.0
+texture = SubResource("ViewportTexture_j7ai6")
+
+[node name="SubViewport" type="SubViewport" parent="JoystickTip"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(150, 150)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="JoystickTip/SubViewport"]
+material = SubResource("ShaderMaterial_ugdiu")
+position = Vector2(75, 75)
+scale = Vector2(150, 150)
+texture = ExtResource("2_xjw4s")

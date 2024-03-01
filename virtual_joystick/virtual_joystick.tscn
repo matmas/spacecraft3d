@@ -1,25 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv5p05tu6tssn"]
+[gd_scene load_steps=5 format=3 uid="uid://cv5p05tu6tssn"]
 
 [ext_resource type="Script" path="res://virtual_joystick/virtual_joystick.gd" id="1_bqojw"]
-[ext_resource type="Texture2D" uid="uid://k5g4ps525kly" path="res://virtual_joystick/transparent1x1.png" id="3_1c1vm"]
-[ext_resource type="Shader" path="res://virtual_joystick/disc.gdshader" id="4_07rug"]
+[ext_resource type="Texture2D" uid="uid://ol4tba764ucb" path="res://shader_to_image/output/joystick_base.png" id="2_m85od"]
+[ext_resource type="Texture2D" uid="uid://bruq7vr5dxd3i" path="res://shader_to_image/output/joystick_tip.png" id="3_si3jp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kggmo"]
 radius = 75.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_t37l1"]
-viewport_path = NodePath("TextureRect/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e50cm"]
-shader = ExtResource("4_07rug")
-shader_parameter/color = Color(1, 1, 1, 0.5)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_rh2bk"]
-viewport_path = NodePath("MovablePart/TextureRect/SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkjyd"]
-shader = ExtResource("4_07rug")
-shader_parameter/color = Color(1, 1, 1, 0.8)
 
 [node name="VirtualJoystick" type="Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -40,19 +26,7 @@ offset_left = -50.0
 offset_top = -50.0
 offset_right = 250.0
 offset_bottom = 250.0
-texture = SubResource("ViewportTexture_t37l1")
-
-[node name="SubViewport" type="SubViewport" parent="TextureRect"]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(300, 300)
-render_target_update_mode = 1
-
-[node name="Base" type="Sprite2D" parent="TextureRect/SubViewport"]
-material = SubResource("ShaderMaterial_e50cm")
-position = Vector2(150, 150)
-scale = Vector2(300, 300)
-texture = ExtResource("3_1c1vm")
+texture = ExtResource("2_m85od")
 
 [node name="MovablePart" type="Control" parent="."]
 custom_minimum_size = Vector2(100, 100)
@@ -75,16 +49,4 @@ offset_left = -25.0
 offset_top = -25.0
 offset_right = 125.0
 offset_bottom = 125.0
-texture = SubResource("ViewportTexture_rh2bk")
-
-[node name="SubViewport" type="SubViewport" parent="MovablePart/TextureRect"]
-disable_3d = true
-transparent_bg = true
-size = Vector2i(150, 150)
-render_target_update_mode = 1
-
-[node name="Tip" type="Sprite2D" parent="MovablePart/TextureRect/SubViewport"]
-material = SubResource("ShaderMaterial_fkjyd")
-position = Vector2(75, 75)
-scale = Vector2(150, 150)
-texture = ExtResource("3_1c1vm")
+texture = ExtResource("3_si3jp")
