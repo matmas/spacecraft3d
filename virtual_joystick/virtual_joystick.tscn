@@ -23,10 +23,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_bqojw")
 shape = SubResource("CircleShape2D_kggmo")
-action_up = &"move_forward"
-action_down = &"move_backward"
-action_left = &"move_left"
-action_right = &"move_right"
 
 [node name="Base" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 300)

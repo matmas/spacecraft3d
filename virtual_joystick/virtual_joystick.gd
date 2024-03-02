@@ -31,6 +31,7 @@ enum VisibilityCondition {
 @export var action_down := &""
 @export var action_left := &""
 @export var action_right := &""
+@export var action_double_tap := &""
 
 ## Triggers Input.is_action_pressed(), Input.is_action_just_pressed(), Input.get_axis(), Input.get_vector(), etc.
 @export var trigger_action_presses := true
@@ -80,23 +81,25 @@ func _input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventScreenTouch":
 			if event.is_pressed():
+				var touch_event := event as InputEventScreenTouch
 				var vector := (event_position - get_global_rect().get_center()) / shape.radius
 				if (joystick_mode == JoystickMode.FIXED and vector.length_squared() < 1.0  # Finger press inside shape
-						or joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING] and get_global_rect().has_point(event_position)  # Finger press inside the whole control
-						):
+						or joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING] and get_global_rect().has_point(event_position)):  # Finger press inside the whole control
 					if joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING]:
 						base.global_position = event_position - base.size * 0.5
 						vector = (event_position - base.get_global_rect().get_center()) / shape.radius
 
 					current_value = vector
 					_trigger_input_from_vector(current_value)
-					current_index = (event as InputEventScreenTouch).index
+					current_index = touch_event.index
+					if touch_event.double_tap:
+						_trigger_input(action_double_tap, true)
 					get_viewport().set_input_as_handled()
 				else:
 					return  # Ignore finger presses outside shape
 			else:  # Finger release
 				if current_index == (event as InputEventScreenTouch).index:
-					for action in [action_up, action_down, action_left, action_right] as Array[StringName]:
+					for action in [action_up, action_down, action_left, action_right, action_double_tap] as Array[StringName]:
 						_trigger_input(action, false)
 					current_value = Vector2()
 					current_index = -1

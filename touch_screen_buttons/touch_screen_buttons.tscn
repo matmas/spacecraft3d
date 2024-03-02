@@ -20,6 +20,11 @@ offset_top = -300.0
 offset_right = 300.0
 offset_bottom = 0.0
 grow_vertical = 0
+action_up = &"move_forward"
+action_down = &"move_backward"
+action_left = &"move_left"
+action_right = &"move_right"
+action_double_tap = &"sprint"
 
 [node name="VirtualJoystickLook" parent="." instance=ExtResource("2_ngcm6")]
 anchors_preset = 3
