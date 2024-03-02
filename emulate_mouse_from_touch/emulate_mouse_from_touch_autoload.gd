@@ -9,11 +9,13 @@ func _input(event: InputEvent) -> void:
 	var embedded_window_position := Vector2() if get_window() == get_tree().root else Vector2(get_window().position)
 	match event.get_class():
 		"InputEventScreenTouch":
+			var touch_event := event as InputEventScreenTouch
 			var e := InputEventMouseButton.new()
 			e.button_index = MOUSE_BUTTON_LEFT
 			e.button_mask = MOUSE_BUTTON_MASK_LEFT if event.is_pressed() else 0
 			e.pressed = event.is_pressed()
-			e.position = embedded_window_position + (event as InputEventScreenTouch).position
+			e.double_click = touch_event.double_tap
+			e.position = embedded_window_position + touch_event.position
 			get_tree().root.push_input(e, true)
 		"InputEventScreenDrag":
 			var drag_event := event as InputEventScreenDrag
