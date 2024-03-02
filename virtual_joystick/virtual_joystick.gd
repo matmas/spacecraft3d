@@ -5,6 +5,21 @@ class_name VirtualJoystick
 @onready var base := $Base as Control
 @onready var tip := $Base/Tip as Control
 
+@export var action_up := &""
+@export var action_down := &""
+@export var action_left := &""
+@export var action_right := &""
+@export var action_double_tap := &""
+
+@export var shape: CircleShape2D:
+	set(value):
+		if shape:
+			shape.changed.disconnect(queue_redraw)
+		shape = value
+		if shape:
+			shape.changed.connect(queue_redraw)
+		queue_redraw()
+
 enum JoystickMode {
 	FIXED,
 	DYNAMIC,
@@ -17,21 +32,6 @@ enum VisibilityCondition {
 	TOUCHSCREEN_ONLY,
 }
 @export var visibility_condition := VisibilityCondition.TOUCHSCREEN_ONLY
-
-@export var shape: CircleShape2D:
-	set(value):
-		if shape:
-			shape.changed.disconnect(queue_redraw)
-		shape = value
-		if shape:
-			shape.changed.connect(queue_redraw)
-		queue_redraw()
-
-@export var action_up := &""
-@export var action_down := &""
-@export var action_left := &""
-@export var action_right := &""
-@export var action_double_tap := &""
 
 ## Triggers Input.is_action_pressed(), Input.is_action_just_pressed(), Input.get_axis(), Input.get_vector(), etc.
 @export var trigger_action_presses := true
@@ -56,9 +56,6 @@ func _draw() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not event is InputEventScreenTouch and not event is InputEventScreenDrag:
-		return  # We are interested only in touch events
-
 	if not shape:
 		return  # No shape no game
 
@@ -89,9 +86,9 @@ func _input(event: InputEvent) -> void:
 						base.global_position = event_position - base.size * 0.5
 						vector = (event_position - base.get_global_rect().get_center()) / shape.radius
 
-					current_value = vector
-					_trigger_input_from_vector(current_value)
 					current_index = touch_event.index
+					current_value = vector
+					_update_tip_position_and_trigger_input(current_value)
 					if touch_event.double_tap:
 						_trigger_input(action_double_tap, true)
 					get_viewport().set_input_as_handled()
@@ -99,10 +96,9 @@ func _input(event: InputEvent) -> void:
 					return  # Ignore finger presses outside shape
 			else:  # Finger release
 				if current_index == (event as InputEventScreenTouch).index:
-					for action in [action_up, action_down, action_left, action_right, action_double_tap] as Array[StringName]:
-						_trigger_input(action, false)
-					current_value = Vector2()
 					current_index = -1
+					current_value = Vector2()
+					_update_tip_position_and_trigger_input(current_value)
 					base.global_position = _original_base_position
 					get_viewport().set_input_as_handled()
 		"InputEventScreenDrag":
@@ -113,10 +109,21 @@ func _input(event: InputEvent) -> void:
 					base.global_position = event_position + event_position.direction_to(base.get_global_rect().get_center()) * shape.radius - base.size * 0.5
 
 				current_value = vector if vector.length_squared() < 1.0 else vector.normalized()
-				_trigger_input_from_vector(current_value)
+				_update_tip_position_and_trigger_input(current_value)
 				get_viewport().set_input_as_handled()
 
-	tip.position = size * 0.5 - tip.size * 0.5 + current_value * shape.radius
+
+func _update_tip_position_and_trigger_input(vector: Vector2) -> void:
+	if vector.is_zero_approx():
+		for action in [action_up, action_down, action_left, action_right, action_double_tap] as Array[StringName]:
+			_trigger_input(action, false)
+	else:
+		_trigger_input_from_vector(vector)
+	_update_tip_position(vector)
+
+
+func _update_tip_position(vector: Vector2) -> void:
+	tip.position = size * 0.5 - tip.size * 0.5 + vector * shape.radius
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:
