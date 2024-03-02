@@ -20,12 +20,28 @@ func _on_resume_pressed() -> void:
 func _set_paused(paused: bool) -> void:
 	get_tree().paused = paused
 	visible = paused
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED
+	_update_mouse_mode()
 	if visible:
 		Utils.grab_focus_first_visible_button(self)
+
+
+func _update_mouse_mode() -> void:
+	if get_tree().paused or force_mouse_visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_quit_to_main_menu_pressed() -> void:
 	get_tree().paused = false
 	owner.get_parent().remove_child(owner)
 	owner.queue_free()
+
+
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_GO_BACK_REQUEST:
+			if not visible:
+				_set_paused(true)
+			else:
+				_on_quit_to_main_menu_pressed()
