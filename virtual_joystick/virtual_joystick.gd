@@ -1,8 +1,22 @@
-@tool
+@tool  # For drawing shape radius inside the editor
 extends Control
 class_name VirtualJoystick
 
-@onready var movable_part := $MovablePart as Control
+@onready var base := $Base as Control
+@onready var tip := $Base/Tip as Control
+
+enum JoystickMode {
+	FIXED,
+	DYNAMIC,
+	FOLLOWING,
+}
+@export var joystick_mode := JoystickMode.FOLLOWING
+
+enum VisibilityCondition {
+	ALWAYS,
+	TOUCHSCREEN_ONLY,
+}
+@export var visibility_condition := VisibilityCondition.TOUCHSCREEN_ONLY
 
 @export var shape: CircleShape2D:
 	set(value):
@@ -26,6 +40,13 @@ class_name VirtualJoystick
 
 var current_value := Vector2()
 var current_index := -1
+@onready var _original_base_position := base.global_position
+
+
+func _ready():
+	match visibility_condition:
+		VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available() and not Engine.is_editor_hint():
+			hide()
 
 
 func _draw() -> void:
@@ -55,12 +76,18 @@ func _input(event: InputEvent) -> void:
 			event_position = (event as InputEventScreenTouch).position
 		"InputEventScreenDrag":
 			event_position = (event as InputEventScreenDrag).position
-	var vector := (event_position - (global_position + size * 0.5)) / shape.radius
 
 	match event.get_class():
 		"InputEventScreenTouch":
 			if event.is_pressed():
-				if vector.length_squared() < 1.0:  # Finger press inside shape
+				var vector := (event_position - get_global_rect().get_center()) / shape.radius
+				if (joystick_mode == JoystickMode.FIXED and vector.length_squared() < 1.0  # Finger press inside shape
+						or joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING] and get_global_rect().has_point(event_position)  # Finger press inside the whole control
+						):
+					if joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING]:
+						base.global_position = event_position - base.size * 0.5
+						vector = (event_position - base.get_global_rect().get_center()) / shape.radius
+
 					current_value = vector
 					_trigger_input_from_vector(current_value)
 					current_index = (event as InputEventScreenTouch).index
@@ -69,18 +96,24 @@ func _input(event: InputEvent) -> void:
 					return  # Ignore finger presses outside shape
 			else:  # Finger release
 				if current_index == (event as InputEventScreenTouch).index:
-					for action in [action_up, action_down, action_left, action_right]:
+					for action in [action_up, action_down, action_left, action_right] as Array[StringName]:
 						_trigger_input(action, false)
 					current_value = Vector2()
 					current_index = -1
+					base.global_position = _original_base_position
 					get_viewport().set_input_as_handled()
 		"InputEventScreenDrag":
 			if current_index != -1:
+				var vector := (event_position - base.get_global_rect().get_center()) / shape.radius
+
+				if joystick_mode == JoystickMode.FOLLOWING and vector.length_squared() > 1.0:
+					base.global_position = event_position + event_position.direction_to(base.get_global_rect().get_center()) * shape.radius - base.size * 0.5
+
 				current_value = vector if vector.length_squared() < 1.0 else vector.normalized()
 				_trigger_input_from_vector(current_value)
 				get_viewport().set_input_as_handled()
 
-	movable_part.position = size * 0.5 - movable_part.size * 0.5 + current_value * shape.radius
+	tip.position = size * 0.5 - tip.size * 0.5 + current_value * shape.radius
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:

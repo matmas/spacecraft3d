@@ -8,26 +8,20 @@ process_mode = 3
 layer = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(50, 50)
+position = Vector2(698, 362)
 texture_normal = ExtResource("1_dx033")
 action = "jump"
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="VirtualJoystickMove" parent="." instance=ExtResource("2_ngcm6")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -4.0
-offset_right = 4.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 0.0
 grow_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
 
-[node name="VirtualJoystick" parent="Margin" instance=ExtResource("2_ngcm6")]
-layout_mode = 2
-
-[node name="Margin2" type="MarginContainer" parent="."]
+[node name="VirtualJoystickLook" parent="." instance=ExtResource("2_ngcm6")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -35,15 +29,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -300.0
 offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="VirtualJoystick" parent="Margin2" instance=ExtResource("2_ngcm6")]
-layout_mode = 2
 action_up = &"look_up"
 action_down = &"look_down"
 action_left = &"look_left"

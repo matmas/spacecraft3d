@@ -16,7 +16,7 @@ shader = ExtResource("4_07rug")
 shader_parameter/color = Color(1, 1, 1, 0.4)
 
 [node name="VirtualJoystick" type="Control"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -28,13 +28,19 @@ action_down = &"move_backward"
 action_left = &"move_left"
 action_right = &"move_right"
 
-[node name="Base" type="Sprite2D" parent="."]
+[node name="Base" type="Control" parent="."]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Base"]
 material = SubResource("ShaderMaterial_e50cm")
-position = Vector2(100, 100)
+position = Vector2(150, 150)
 scale = Vector2(300, 300)
 texture = ExtResource("5_vb2dw")
 
-[node name="MovablePart" type="Control" parent="."]
+[node name="Tip" type="Control" parent="Base"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 8
@@ -49,7 +55,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Tip" type="Sprite2D" parent="MovablePart"]
+[node name="Sprite2D" type="Sprite2D" parent="Base/Tip"]
 material = SubResource("ShaderMaterial_fkjyd")
 position = Vector2(50, 50)
 scale = Vector2(150, 150)
