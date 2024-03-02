@@ -2,6 +2,7 @@ extends Node
 # Alternative to input_devices/pointing/emulate_mouse_from_touch (default: true)
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS  # Should not be paused
 	get_viewport().gui_focus_changed.connect(_on_gui_focus_changed)
 
 
@@ -31,6 +32,7 @@ func _on_gui_focus_changed(node: Control) -> void:
 		for child in node.get_children(true):
 			if child is PopupMenu:
 				var popup_menu := child as PopupMenu
+				# While a PopupMenu is open we don't receive _input events here
 				popup_menu.set_script(get_script())
 				popup_menu.set_process_input(true)
 				return
