@@ -26,7 +26,7 @@ func _set_paused(paused: bool) -> void:
 
 
 func _update_mouse_mode() -> void:
-	if get_tree().paused or force_mouse_visible:
+	if get_tree().paused:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
