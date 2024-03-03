@@ -21,6 +21,7 @@ func _input(event: InputEvent) -> void:
 			e.pressed = event.is_pressed()
 			e.double_click = touch_event.double_tap
 			e.position = embedded_window_position + touch_event.position
+			e.device = -1
 			get_tree().root.push_input(e, true)
 		"InputEventScreenDrag":
 			var drag_event := event as InputEventScreenDrag
@@ -28,6 +29,7 @@ func _input(event: InputEvent) -> void:
 			e.position = embedded_window_position + drag_event.position
 			e.relative = drag_event.relative
 			e.velocity = drag_event.velocity
+			e.device = -1
 			get_tree().root.push_input(e, true)
 
 

@@ -54,6 +54,7 @@ func _input(event: InputEvent) -> void:
 			if is_controller_button == _is_joypad_event(event):
 				# Allow remap cancelling with keyboard but not with joypad
 				if not event.is_action(&"ui_cancel") or _is_joypad_event(event):
+					_normalize_event(event)
 					_remap_action_to(event)
 			get_viewport().set_input_as_handled()
 			button_pressed = false
@@ -94,6 +95,13 @@ func _matches_input_type(event: InputEvent) -> bool:
 		if _is_key_or_mouse_event(event):
 			return true
 	return false
+
+
+func _normalize_event(event: InputEvent) -> void:
+	if event is InputEventJoypadMotion:
+		var e := event as InputEventJoypadMotion
+		e.axis_value = signf(e.axis_value)
+	event.device = -1  # All devices
 
 
 func _remap_action_to(event: InputEvent) -> void:
