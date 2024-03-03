@@ -54,8 +54,7 @@ func _input(event: InputEvent) -> void:
 			if is_controller_button == _is_joypad_event(event):
 				# Allow remap cancelling with keyboard but not with joypad
 				if not event.is_action(&"ui_cancel") or _is_joypad_event(event):
-					_normalize_event(event)
-					_remap_action_to(event)
+					_remap_action_to(_normalize_event(event))
 			get_viewport().set_input_as_handled()
 			button_pressed = false
 			grab_focus()
@@ -97,16 +96,34 @@ func _matches_input_type(event: InputEvent) -> bool:
 	return false
 
 
-func _normalize_event(event: InputEvent) -> void:
-	if event is InputEventJoypadMotion:
-		var e := event as InputEventJoypadMotion
-		e.axis_value = signf(e.axis_value)
+func _normalize_event(event: InputEvent) -> InputEvent:
+	match event.get_class():
+		"InputEventKey":
+			var e := InputEventKey.new()
+			e.physical_keycode = (event as InputEventKey).physical_keycode
+			e.unicode = (event as InputEventKey).unicode  # Match Godot keeping unicode in default InputMap
+			event = e
+		"InputEventMouseButton":
+			var e := InputEventMouseButton.new()
+			e.button_index = (event as InputEventMouseButton).button_index
+			e.button_mask = (event as InputEventMouseButton).button_mask
+			e.pressed = true  # Match Godot keeping pressed true in default InputMap
+			event = e
+		"InputEventJoypadMotion":
+			var e := event as InputEventJoypadMotion
+			e.axis_value = signf(e.axis_value)
 	event.device = -1  # All devices
+	return event
 
 
 func _remap_action_to(event: InputEvent) -> void:
 	var events := option.get_value().filter(func(e): return not _matches_input_type(e))
-	events.append(event)
+	# Maintain order by input type to have better detection of defaults using value comparisons
+	match event.get_class():
+		"InputEventKey", "InputEventMouse":
+			events.push_front(event)
+		"InputEventJoypadButton", "InputEventJoypadMotion", _:
+			events.push_back(event)
 	option.set_value(events)
 	GameOptions.save()
 
