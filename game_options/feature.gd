@@ -20,3 +20,7 @@ func _update() -> void:
 	parent.visible = option.get_value()
 	parent.set_process(parent.visible)
 	parent.set_physics_process(parent.visible)
+	parent.set_process_input(parent.visible)
+	parent.set_process_shortcut_input(parent.visible)
+	parent.set_process_unhandled_input(parent.visible)
+	parent.set_process_unhandled_key_input(parent.visible)
