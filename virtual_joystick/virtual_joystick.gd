@@ -41,7 +41,7 @@ enum VisibilityCondition {
 
 var current_value := Vector2()
 var current_index := -1
-@onready var _original_base_position := base.global_position
+var _original_base_position: Vector2
 
 
 func _ready():
@@ -83,7 +83,7 @@ func _input(event: InputEvent) -> void:
 				if (joystick_mode == JoystickMode.FIXED and vector.length_squared() < 1.0  # Finger press inside shape
 						or joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING] and get_global_rect().has_point(event_position)):  # Finger press inside the whole control
 					if joystick_mode in [JoystickMode.DYNAMIC, JoystickMode.FOLLOWING]:
-						base.global_position = event_position - base.size * 0.5
+						_set_base_position(event_position)
 						vector = (event_position - base.get_global_rect().get_center()) / shape.radius
 
 					current_index = touch_event.index
@@ -98,15 +98,15 @@ func _input(event: InputEvent) -> void:
 				if current_index == (event as InputEventScreenTouch).index:
 					current_index = -1
 					current_value = Vector2()
+					_reset_base_position()
 					_update_tip_position_and_trigger_input(current_value)
-					base.global_position = _original_base_position
 					get_viewport().set_input_as_handled()
 		"InputEventScreenDrag":
 			if current_index != -1:
 				var vector := (event_position - base.get_global_rect().get_center()) / shape.radius
 
 				if joystick_mode == JoystickMode.FOLLOWING and vector.length_squared() > 1.0:
-					base.global_position = event_position + event_position.direction_to(base.get_global_rect().get_center()) * shape.radius - base.size * 0.5
+					_set_base_position(event_position + event_position.direction_to(base.get_global_rect().get_center()) * shape.radius)
 
 				current_value = vector if vector.length_squared() < 1.0 else vector.normalized()
 				_update_tip_position_and_trigger_input(current_value)
@@ -124,6 +124,16 @@ func _update_tip_position_and_trigger_input(vector: Vector2) -> void:
 
 func _update_tip_position(vector: Vector2) -> void:
 	tip.position = base.size * 0.5 - tip.size * 0.5 + vector * shape.radius
+
+
+func _set_base_position(new_center: Vector2) -> void:
+	if not _original_base_position:
+		_original_base_position = base.global_position
+	base.global_position = new_center - base.size * 0.5
+
+
+func _reset_base_position() -> void:
+	base.global_position = _original_base_position
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:
