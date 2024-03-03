@@ -123,7 +123,7 @@ func _update_tip_position_and_trigger_input(vector: Vector2) -> void:
 
 
 func _update_tip_position(vector: Vector2) -> void:
-	tip.position = size * 0.5 - tip.size * 0.5 + vector * shape.radius
+	tip.position = base.size * 0.5 - tip.size * 0.5 + vector * shape.radius
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:

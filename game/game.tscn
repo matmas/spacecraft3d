@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://lens_flare/lens_flare.tscn" id="7_k38yw"]
-[ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://touch_screen_buttons/touch_screen_buttons.tscn" id="8_2lra2"]
+[ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://touch_screen_controls/touch_screen_controls.tscn" id="8_2lra2"]
 [ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
 
@@ -71,7 +71,7 @@ shadow_enabled = true
 directional_light = NodePath("../DirectionalLight3D")
 raycast_collision_mask = 4294967291
 
-[node name="TouchScreenButtons" parent="." instance=ExtResource("8_2lra2")]
+[node name="TouchScreenControls" parent="." instance=ExtResource("8_2lra2")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_18bxx")]
 

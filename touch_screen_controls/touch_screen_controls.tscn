@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bc275k4543pyd"]
+[gd_scene load_steps=19 format=3 uid="uid://bc275k4543pyd"]
 
-[ext_resource type="PackedScene" uid="uid://cv5p05tu6tssn" path="res://virtual_joystick/virtual_joystick.tscn" id="2_ngcm6"]
-[ext_resource type="Script" path="res://input_icons/input_event_touch_button.gd" id="3_xsqax"]
+[ext_resource type="Script" path="res://touch_screen_controls/touch_screen_controls.gd" id="1_0ibve"]
+[ext_resource type="Script" path="res://input_icons/input_event_touch_button.gd" id="2_yrocn"]
+[ext_resource type="PackedScene" uid="uid://cv5p05tu6tssn" path="res://virtual_joystick/virtual_joystick.tscn" id="3_h5rvy"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_lcfso"]
 device = -1
@@ -77,15 +78,16 @@ pressed = true
 device = -1
 pressed = true
 
-[node name="TouchScreenButtons" type="CanvasLayer"]
-process_mode = 3
+[node name="TouchScreenControls" type="CanvasLayer"]
 layer = 0
+script = ExtResource("1_0ibve")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 104.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SpecialButtons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -95,18 +97,18 @@ alignment = 1
 [node name="Select" type="TextureRect" parent="VBoxContainer/SpecialButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_lcfso")
 
 [node name="Home" type="TextureRect" parent="VBoxContainer/SpecialButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_4rlin")
 
 [node name="Start" type="TextureRect" parent="VBoxContainer/SpecialButtons"]
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_ycwsi")
 
 [node name="CommonButtons" type="HBoxContainer" parent="VBoxContainer"]
@@ -120,7 +122,7 @@ columns = 3
 [node name="LT" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadMotion_f5841")
 
 [node name="Empty" type="Control" parent="VBoxContainer/CommonButtons/LeftButtons"]
@@ -129,7 +131,7 @@ layout_mode = 2
 [node name="LB" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_scpwc")
 
 [node name="Empty2" type="Control" parent="VBoxContainer/CommonButtons/LeftButtons"]
@@ -139,7 +141,7 @@ layout_mode = 2
 [node name="DpadUp" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_l4ret")
 
 [node name="Empty3" type="Control" parent="VBoxContainer/CommonButtons/LeftButtons"]
@@ -149,7 +151,7 @@ layout_mode = 2
 [node name="DpadLeft" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_su5ff")
 
 [node name="Empty4" type="Control" parent="VBoxContainer/CommonButtons/LeftButtons"]
@@ -159,7 +161,7 @@ layout_mode = 2
 [node name="DpadRight" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_3uyqa")
 
 [node name="Empty5" type="Control" parent="VBoxContainer/CommonButtons/LeftButtons"]
@@ -169,7 +171,7 @@ layout_mode = 2
 [node name="DpadRight2" type="TextureRect" parent="VBoxContainer/CommonButtons/LeftButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_nm5ve")
 
 [node name="RightButtons" type="GridContainer" parent="VBoxContainer/CommonButtons"]
@@ -181,7 +183,7 @@ columns = 3
 [node name="RB" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_ruv2u")
 
 [node name="Empty" type="Control" parent="VBoxContainer/CommonButtons/RightButtons"]
@@ -191,7 +193,7 @@ layout_mode = 2
 [node name="RT" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadMotion_xu8dc")
 
 [node name="Empty2" type="Control" parent="VBoxContainer/CommonButtons/RightButtons"]
@@ -201,7 +203,7 @@ layout_mode = 2
 [node name="Y" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_lhm6h")
 
 [node name="Empty3" type="Control" parent="VBoxContainer/CommonButtons/RightButtons"]
@@ -211,7 +213,7 @@ layout_mode = 2
 [node name="X" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_j3u5w")
 
 [node name="Empty4" type="Control" parent="VBoxContainer/CommonButtons/RightButtons"]
@@ -221,7 +223,7 @@ layout_mode = 2
 [node name="B" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_e3luv")
 
 [node name="Empty5" type="Control" parent="VBoxContainer/CommonButtons/RightButtons"]
@@ -231,35 +233,25 @@ layout_mode = 2
 [node name="A" type="TextureRect" parent="VBoxContainer/CommonButtons/RightButtons"]
 auto_translate_mode = 1
 layout_mode = 2
-script = ExtResource("3_xsqax")
+script = ExtResource("2_yrocn")
 input_event = SubResource("InputEventJoypadButton_amm3l")
 
-[node name="VirtualJoystickMove" parent="." instance=ExtResource("2_ngcm6")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -300.0
-offset_right = 300.0
-offset_bottom = 0.0
-grow_vertical = 0
+[node name="Joysticks" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VirtualJoystickMove" parent="VBoxContainer/Joysticks" instance=ExtResource("3_h5rvy")]
+layout_mode = 2
+size_flags_horizontal = 3
 action_up = &"move_forward"
 action_down = &"move_backward"
 action_left = &"move_left"
 action_right = &"move_right"
 action_double_tap = &"sprint"
 
-[node name="VirtualJoystickLook" parent="." instance=ExtResource("2_ngcm6")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -300.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="VirtualJoystickLook" parent="VBoxContainer/Joysticks" instance=ExtResource("3_h5rvy")]
+layout_mode = 2
+size_flags_horizontal = 3
 action_up = &"look_up"
 action_down = &"look_down"
 action_left = &"look_left"
