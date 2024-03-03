@@ -15,6 +15,8 @@ func _ready():
 	match visibility_condition:
 		VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available() and not Engine.is_editor_hint():
 			hide()
+	_update()
+	InputMonitor.input_map_changed.connect(_update)
 
 
 func _input(event: InputEvent) -> void:
@@ -44,3 +46,12 @@ func _trigger_input(pressed: bool) -> void:
 		"InputEventJoypadMotion":
 			(event as InputEventJoypadMotion).axis_value = (input_event as InputEventJoypadMotion).axis_value if pressed else 0.0
 	Input.parse_input_event(event)
+
+
+func _update() -> void:
+	var has_event := false
+	for action in InputMap.get_actions():
+		if InputMap.action_has_event(action, input_event):
+			has_event = true
+			break
+	modulate = Color.WHITE if has_event else Color(Color.WHITE, 0.25)
