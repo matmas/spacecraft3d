@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bc275k4543pyd"]
 
 [ext_resource type="Script" path="res://touch_screen_controls/touch_screen_controls.gd" id="1_0ibve"]
-[ext_resource type="Script" path="res://input_icons/input_event_touch_button.gd" id="2_yrocn"]
+[ext_resource type="Script" path="res://touch_screen_controls/input_event_touch_button.gd" id="2_yrocn"]
 [ext_resource type="PackedScene" uid="uid://cv5p05tu6tssn" path="res://virtual_joystick/virtual_joystick.tscn" id="3_h5rvy"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_lcfso"]
