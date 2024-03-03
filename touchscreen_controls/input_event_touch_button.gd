@@ -15,8 +15,9 @@ func _ready():
 	match visibility_condition:
 		VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available() and not Engine.is_editor_hint():
 			hide()
-	_update()
-	InputMonitor.input_map_changed.connect(_update)
+	if not Engine.is_editor_hint():
+		_update()
+		InputMonitor.input_map_changed.connect(_update)
 
 
 func _input(event: InputEvent) -> void:
