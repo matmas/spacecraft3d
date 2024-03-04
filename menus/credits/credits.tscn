@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://5evkaouka3rr"]
+
+[ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_0bn6e"]
+[ext_resource type="Script" path="res://menus/credits/joypad_information.gd" id="2_fiyq3"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="3_0lcgh"]
+
+[node name="Credits" instance=ExtResource("1_0bn6e")]
+
+[node name="TitleLabel" parent="Body/Header" index="0"]
+text = "Credits"
+
+[node name="JoypadInformation" type="RichTextLabel" parent="Body" index="1"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+context_menu_enabled = true
+selection_enabled = true
+script = ExtResource("2_fiyq3")
+
+[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_0lcgh")]
+layout_mode = 2

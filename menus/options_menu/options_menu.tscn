@@ -26,7 +26,6 @@ size_flags_vertical = 3
 
 [node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("5_8igc4")]
 layout_mode = 2
-icon_visibility_condition = 2
 
 [node name="ResetAll" type="Button" parent="Footer/Buttons" index="1"]
 layout_mode = 2

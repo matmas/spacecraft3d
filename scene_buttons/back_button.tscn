@@ -12,5 +12,6 @@ events = [SubResource("InputEventAction_3uhot")]
 shortcut = SubResource("Shortcut_c743h")
 text = "Back"
 script = ExtResource("1_44nc2")
+icon_visibility_condition = 2
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
