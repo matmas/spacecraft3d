@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsw5h18lsmyoy" path="res://scene_buttons/scene_button.tscn" id="3_nv1py"]
 [ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
 [ext_resource type="PackedScene" uid="uid://bg60kamn8ivh0" path="res://menus/options_menu/options_menu.tscn" id="5_fx4r5"]
-[ext_resource type="PackedScene" uid="uid://5evkaouka3rr" path="res://menus/credits/credits.tscn" id="7_7hf08"]
+[ext_resource type="PackedScene" uid="uid://5evkaouka3rr" path="res://menus/information/information.tscn" id="7_7hf08"]
 
 [node name="MainMenu" instance=ExtResource("1_i62cn")]
 script = ExtResource("1_lf3s8")
@@ -29,9 +29,9 @@ layout_mode = 2
 text = "Options"
 scene = ExtResource("5_fx4r5")
 
-[node name="Credits" parent="Body" index="3" instance=ExtResource("3_nv1py")]
+[node name="Information" parent="Body" index="3" instance=ExtResource("3_nv1py")]
 layout_mode = 2
-text = "Credits"
+text = "Information"
 scene = ExtResource("7_7hf08")
 
 [node name="Quit" type="Button" parent="Body" index="4"]

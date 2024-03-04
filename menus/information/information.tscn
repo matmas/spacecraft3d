@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://5evkaouka3rr"]
+[gd_scene load_steps=5 format=3 uid="uid://5evkaouka3rr"]
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_0bn6e"]
-[ext_resource type="Script" path="res://menus/credits/joypad_information.gd" id="2_fiyq3"]
+[ext_resource type="Script" path="res://menus/information/information.gd" id="2_drdfy"]
+[ext_resource type="Script" path="res://menus/information/joypad_information.gd" id="2_fiyq3"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="3_0lcgh"]
 
-[node name="Credits" instance=ExtResource("1_0bn6e")]
+[node name="Information" instance=ExtResource("1_0bn6e")]
+script = ExtResource("2_drdfy")
 
 [node name="TitleLabel" parent="Body/Header" index="0"]
-text = "Credits"
+text = "Information"
 
 [node name="JoypadInformation" type="RichTextLabel" parent="Body" index="1"]
 auto_translate_mode = 1
