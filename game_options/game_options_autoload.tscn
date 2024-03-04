@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cwdgkuos243k3"]
+[gd_scene load_steps=30 format=3 uid="uid://cwdgkuos243k3"]
 
 [ext_resource type="Script" path="res://game_options/game_options_autoload.gd" id="1_daw0r"]
 [ext_resource type="Script" path="res://game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
@@ -27,6 +27,8 @@
 [ext_resource type="Script" path="res://game_options/options/audio/master_volume.gd" id="22_6xkgs"]
 [ext_resource type="Script" path="res://game_options/options/graphics/ui/touchscreen_controls.gd" id="23_rxb8a"]
 [ext_resource type="Script" path="res://game_options/option_types/input_action_option.gd" id="25_q8vr3"]
+[ext_resource type="Script" path="res://game_options/option_types/godot_license_bundle.gd" id="28_a43fo"]
+[ext_resource type="Script" path="res://game_options/option_types/license_option.gd" id="28_jaw2c"]
 
 [node name="GameOptions" type="Node"]
 script = ExtResource("1_daw0r")
@@ -257,3 +259,27 @@ display_name = "Pause menu"
 script = ExtResource("25_q8vr3")
 action_name = &"capture_screenshot"
 display_name = "Capture Screenshot"
+
+[node name="Licenses" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Licenses"
+config_name = "licenses"
+
+[node name="VisualEffects" type="Node" parent="Licenses"]
+script = ExtResource("8_eyxuy")
+display_name = "Visual effects"
+
+[node name="LensFlare" type="Node" parent="Licenses/VisualEffects"]
+script = ExtResource("28_jaw2c")
+software_name = "Lens Flare Shader"
+source_url = "https://godotshaders.com/shader/lens-flare-shader/"
+copyright = "2022, malhotraprateek
+2013-2020, mu6k"
+license_name = "MIT"
+
+[node name="GameEngine" type="Node" parent="Licenses"]
+script = ExtResource("8_eyxuy")
+display_name = "Game engine"
+
+[node name="GodotLicenseBundle" type="Node" parent="Licenses/GameEngine"]
+script = ExtResource("28_a43fo")

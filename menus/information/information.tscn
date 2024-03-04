@@ -13,10 +13,9 @@ text = "Information"
 
 [node name="JoypadInformation" type="RichTextLabel" parent="Body" index="1"]
 auto_translate_mode = 1
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-size_flags_horizontal = 3
 focus_mode = 2
+fit_content = true
 context_menu_enabled = true
 selection_enabled = true
 script = ExtResource("2_fiyq3")

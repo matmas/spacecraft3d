@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://c2rf8oioa2jj4"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://c2rf8oioa2jj4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycajn"]
 content_margin_left = 10.0
@@ -91,6 +91,12 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaqf3"]
+content_margin_left = 30.0
+content_margin_top = 5.0
+content_margin_bottom = 18.0
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afapy"]
 content_margin_left = 4.0
@@ -264,6 +270,8 @@ CategoryHeader/base_type = &"Label"
 CategoryHeader/styles/normal = SubResource("StyleBoxFlat_um48j")
 CategoryItem/base_type = &"Label"
 CategoryItem/styles/normal = SubResource("StyleBoxFlat_ssdtw")
+CategoryItemContent/base_type = &"Label"
+CategoryItemContent/styles/normal = SubResource("StyleBoxFlat_gaqf3")
 DefaultButton/base_type = &"Button"
 DefaultButton/styles/disabled = SubResource("StyleBoxFlat_afapy")
 DefaultButton/styles/focus = SubResource("StyleBoxFlat_dse2n")

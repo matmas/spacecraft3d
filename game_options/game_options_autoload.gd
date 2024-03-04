@@ -2,8 +2,8 @@ extends Node
 
 const PATH = "user://options.cfg"
 
-var _options: Array[Option] = []
-var _options_dict := {}
+var _options: Array[Option] = []  # For internal use, load(), save(), etc.
+var _options_dict := {}  # For various game features to decide their settings
 var config := ConfigFile.new()
 
 
@@ -40,7 +40,7 @@ func get_enum_option(section: String, key: String) -> EnumOption:
 	return _options_dict[section][key]
 
 
-func get_sections() -> Array[GameOptionSection]:
+func get_sections() -> Array[GameOptionSection]:  # For generating UI section by section
 	var sections: Array[GameOptionSection] = []
 	for child in get_children():
 		if child is GameOptionSection:
@@ -48,15 +48,20 @@ func get_sections() -> Array[GameOptionSection]:
 	return sections
 
 
-func get_options(section: GameOptionSection, node: Node = self) -> Array[Option]:
+func get_options(section: GameOptionSection, node: Node = self) -> Array[Option]:  # For generating UI section by section
 	var options: Array[Option] = []
 	for child in node.get_children():
 		if child is GameOptionSection and child == section:
 			options.assign(get_options(section, child))
 			break
-		if child is GameOptionCategory:
+		elif child is GameOptionCategory:
 			options.append_array(get_options(section, child))
-		if child is Option:
+		elif child is GodotLicenseBundle:
+			for license in (child as GodotLicenseBundle).get_licenses():
+				license.section = (child as Option).section
+				license.category = (child as Option).category
+				options.append(license)
+		elif child is Option:
 			options.append(child)
 	return options
 
