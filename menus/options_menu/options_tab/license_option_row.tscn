@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://02o24qu2h3p2"]
+[gd_scene load_steps=3 format=3 uid="uid://02o24qu2h3p2"]
 
 [ext_resource type="Script" path="res://menus/options_menu/options_tab/license_option_row.gd" id="1_q65s6"]
+[ext_resource type="Script" path="res://game_options/ui_components/license_buttons.gd" id="2_0busb"]
 
 [node name="LicenseOptionRow" type="VBoxContainer"]
 anchors_preset = 15
@@ -20,10 +21,10 @@ size_flags_horizontal = 3
 theme_type_variation = &"CategoryItem"
 text = "Software Name"
 
-[node name="LicenseName" type="Label" parent="HBoxContainer"]
+[node name="LicenseButtons" type="HBoxContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "MIT"
+script = ExtResource("2_0busb")
 
 [node name="Copyright" type="Label" parent="."]
 unique_name_in_owner = true

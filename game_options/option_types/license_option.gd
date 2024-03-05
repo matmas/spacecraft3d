@@ -5,7 +5,7 @@ class_name LicenseOption
 @export var software_name := ""
 @export var source_url := ""
 @export_multiline var copyright := ""
-@export var license_name := ""
+@export var license := ""
 
 
 #region Mandatory Option functions
@@ -30,23 +30,9 @@ func get_copyright() -> String:
 	return "\n".join(Array(copyright.split("\n")).map(func(c): return "© %s" % c))
 
 
-func get_license_name() -> String:
-	return license_name
+func get_license() -> String:
+	return license
 
 
-#func _get_license_text(component: Dictionary) -> String:
-	#var license_text := ""
-#
-	#var license_set := {}
-	#for part in component["parts"]:
-		#for licenses in Array(part["license"].split(" or ")).map(func(l): return l.split(" and ")):
-			#for license in licenses:
-				#license_set[license] = true
-#
-	##return ", ".join(license_set.keys())
-	#for license in license_set.keys():
-		#if license in _license_info:
-			#license_text += _license_info[license]
-		#else:
-			#license_text += license
-	#return license_text
+func _to_string() -> String:
+	return "%s(%s)" % [get_software_name().to_pascal_case(), get_license()]

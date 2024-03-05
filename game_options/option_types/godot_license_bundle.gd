@@ -24,13 +24,13 @@ func get_licenses() -> Array[LicenseOption]:
 		var license := LicenseOption.new()
 		license.software_name = component["name"]
 		license.copyright = _get_copyright(component)
-		license.license_name = _get_license_name(component)
+		license.license = _get_license(component)
 		licenses.append(license)
 
 	return licenses
 
 
-func _get_license_name(component: Dictionary) -> String:
+func _get_license(component: Dictionary) -> String:
 	var license_set := {}
 	for part in component["parts"]:
 		license_set[part["license"]] = true
@@ -43,5 +43,5 @@ func _get_copyright(component: Dictionary) -> String:
 		for copyright in part["copyright"]:
 			copyright_set[copyright] = true
 	var copyrights := copyright_set.keys()
-	copyrights.sort_custom(func(a, b): return a > b)  # Descending order
+	copyrights.sort_custom(func(a: String, b: String): return a > b)  # Descending order
 	return "\n".join(copyrights)

@@ -275,7 +275,7 @@ software_name = "Lens Flare Shader"
 source_url = "https://godotshaders.com/shader/lens-flare-shader/"
 copyright = "2022, malhotraprateek
 2013-2020, mu6k"
-license_name = "MIT"
+license = "Expat"
 
 [node name="GameEngine" type="Node" parent="Licenses"]
 script = ExtResource("8_eyxuy")
