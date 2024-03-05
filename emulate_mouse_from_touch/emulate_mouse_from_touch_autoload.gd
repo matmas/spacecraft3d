@@ -18,14 +18,14 @@ func _window_input(event: InputEvent) -> void:
 			e.button_mask = MOUSE_BUTTON_MASK_LEFT if event.is_pressed() else 0
 			e.pressed = event.is_pressed()
 			e.double_click = touch_event.double_tap
-			e.position = touch_event.position / get_tree().root.content_scale_factor
+			e.position = touch_event.position
 			e.device = -1
-			get_tree().root.push_input(e, true)
+			Input.parse_input_event(e)
 		"InputEventScreenDrag":
 			var drag_event := event as InputEventScreenDrag
 			var e := InputEventMouseMotion.new()
-			e.position = drag_event.position / get_tree().root.content_scale_factor
-			e.relative = drag_event.relative / get_tree().root.content_scale_factor
-			e.velocity = drag_event.velocity / get_tree().root.content_scale_factor
+			e.position = drag_event.position
+			e.relative = drag_event.relative
+			e.velocity = drag_event.velocity
 			e.device = -1
-			get_tree().root.push_input(e, true)
+			Input.parse_input_event(e)
