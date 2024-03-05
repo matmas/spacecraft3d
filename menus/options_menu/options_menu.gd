@@ -10,6 +10,7 @@ func _ready() -> void:
 		tab.name = section.display_name
 		tab.section = section
 		tab.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		tab.visible = false
 		joypad_tab_container.add_child(tab)
 
 

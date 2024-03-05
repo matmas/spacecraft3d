@@ -10,7 +10,21 @@ const LICENSE_OPTION_ROW = preload("license_option_row.tscn")
 
 var section: GameOptionSection
 
+var _initialized := false
+
+
 func _ready() -> void:
+	_on_visibility_changed()
+	visibility_changed.connect(_on_visibility_changed)
+
+
+func _on_visibility_changed() -> void:
+	if visible and not _initialized:
+		_initialize()
+		_initialized = true
+
+
+func _initialize() -> void:
 	var current_category := ""
 
 	for option in GameOptions.get_options(section):
