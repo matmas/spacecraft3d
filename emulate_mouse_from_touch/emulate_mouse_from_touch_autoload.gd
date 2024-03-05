@@ -33,12 +33,13 @@ func _input(event: InputEvent) -> void:
 			get_tree().root.push_input(e, true)
 
 
+# NOTE: Window must already exist as a direct child of the Button that is being pressed to open it.
 func _on_gui_focus_changed(node: Control) -> void:
-	if node is OptionButton:
+	if node is Button:
 		for child in node.get_children(true):
-			if child is PopupMenu:
-				var popup_menu := child as PopupMenu
-				# While a PopupMenu is open we don't receive _input events here
-				popup_menu.set_script(get_script())
-				popup_menu.set_process_input(is_processing_input())
+			if child is Window:
+				var window := child as Window
+				# While a Window is open we don't receive _input events here
+				window.set_script(get_script())
+				window.set_process_input(is_processing_input())
 				return

@@ -26,8 +26,15 @@ func add_ui_component(license: String) -> void:
 	if license in _license_info.keys():
 		var button := Button.new()
 		button.text = get_license_name_for_display(license)
-		button.pressed.connect(func(): _on_button_pressed(license))
 		add_child(button)
+
+		var popup := PopupPanel.new()
+		var label := Label.new()
+		label.text = _license_info[license]
+		popup.add_child(label)
+		button.add_child(popup)
+
+		button.pressed.connect(func(): _on_button_pressed(popup))
 	else:
 		var label := Label.new()
 		label.text = get_license_name_for_display(license)
@@ -44,12 +51,5 @@ func get_license_name_for_display(license: String) -> String:
 			return "%s" % license
 
 
-func _on_button_pressed(license: String) -> void:
-	var popup := PopupPanel.new()
-
-	var label := Label.new()
-	label.text = _license_info[license]
-	popup.add_child(label)
-
-	add_child(popup)
+func _on_button_pressed(popup: Popup) -> void:
 	popup.popup_centered()
