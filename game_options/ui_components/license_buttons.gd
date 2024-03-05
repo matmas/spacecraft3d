@@ -54,9 +54,23 @@ func _on_button_pressed(license: String) -> void:
 
 	if not popup:
 		popup = PopupPanel.new()
+		var scroll_container := JoypadScrollContainer.new()
+
 		var label := Label.new()
 		label.text = _license_info[license]
-		popup.add_child(label)
+		scroll_container.add_child(label)
+
+		popup.add_child(scroll_container)
 		add_child(popup)
 
-	popup.popup_centered()
+		var resize := func():
+			var scrollbar_width_approx := 20 * get_window().content_scale_aspect
+			popup.size = Vector2(
+				minf(get_window().size.x, label.size.x + scrollbar_width_approx),
+				minf(get_window().size.y, label.size.y + scrollbar_width_approx),
+			)
+			popup.move_to_center()
+		resize.call()
+		get_window().size_changed.connect(resize)
+
+	popup.popup()
