@@ -1,17 +1,15 @@
 extends Node
 # Alternative to input_devices/pointing/emulate_mouse_from_touch (default: true)
 
-func set_enabled(value) -> void:
-	set_process_input(value)
-
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Useful even when game is paused
-	get_viewport().gui_focus_changed.connect(_on_gui_focus_changed)
+	# _window_input receives input events even when there is another embedded
+	# window focused. Function _input() stops receiving them when window loses focus
+	get_tree().root.window_input.connect(_window_input)
 
 
-func _input(event: InputEvent) -> void:
-	var embedded_window_position := Vector2() if get_window() == get_tree().root else Vector2(get_window().position)
+func _window_input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventScreenTouch":
 			var touch_event := event as InputEventScreenTouch
@@ -20,26 +18,14 @@ func _input(event: InputEvent) -> void:
 			e.button_mask = MOUSE_BUTTON_MASK_LEFT if event.is_pressed() else 0
 			e.pressed = event.is_pressed()
 			e.double_click = touch_event.double_tap
-			e.position = embedded_window_position + touch_event.position
+			e.position = touch_event.position / get_tree().root.content_scale_factor
 			e.device = -1
 			get_tree().root.push_input(e, true)
 		"InputEventScreenDrag":
 			var drag_event := event as InputEventScreenDrag
 			var e := InputEventMouseMotion.new()
-			e.position = embedded_window_position + drag_event.position
-			e.relative = drag_event.relative
-			e.velocity = drag_event.velocity
+			e.position = drag_event.position / get_tree().root.content_scale_factor
+			e.relative = drag_event.relative / get_tree().root.content_scale_factor
+			e.velocity = drag_event.velocity / get_tree().root.content_scale_factor
 			e.device = -1
 			get_tree().root.push_input(e, true)
-
-
-# NOTE: Window must already exist as a direct child of the Button that is being pressed to open it.
-func _on_gui_focus_changed(node: Control) -> void:
-	if node is Button:
-		for child in node.get_children(true):
-			if child is Window:
-				var window := child as Window
-				# While a Window is open we don't receive _input events here
-				window.set_script(get_script())
-				window.set_process_input(is_processing_input())
-				return

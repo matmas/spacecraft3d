@@ -21,7 +21,6 @@ func _set_paused(paused: bool) -> void:
 	get_tree().paused = paused
 	visible = paused
 	_update_mouse_mode()
-	EmulateMouseFromTouch.set_enabled(paused)
 	if visible:
 		Utils.grab_focus_first_visible_button(self)
 
