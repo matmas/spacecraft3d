@@ -414,3 +414,7 @@ func _get_joypad_name() -> String:
 			elif "Steam Deck" in joy_name or "Steam Virtual Gamepad" in joy_name:
 				return "steam_deck"
 	return "xbox_series"
+
+
+# 045e-028e-Xbox Wireless Controller* (XBox series controller, Bluetooth, Linux) Share button works as F11
+# 045e-0b12-Microsoft Xbox Series S|X Controller* (XBox series controller, USB, Linux) Share button works as A
