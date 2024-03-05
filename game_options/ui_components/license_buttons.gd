@@ -54,6 +54,9 @@ func _on_button_pressed(license: String) -> void:
 
 	if not popup:
 		popup = PopupPanel.new()
+		popup.borderless = false
+		popup.unresizable = false
+
 		var scroll_container := JoypadScrollContainer.new()
 
 		var label := Label.new()
@@ -72,5 +75,6 @@ func _on_button_pressed(license: String) -> void:
 			popup.move_to_center()
 		resize.call()
 		get_window().size_changed.connect(resize)
+		popup.close_requested.connect(func(): popup.queue_free(); get_window().size_changed.disconnect(resize))
 
 	popup.popup()
