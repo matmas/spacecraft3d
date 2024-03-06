@@ -1,6 +1,7 @@
 extends HBoxContainer
 class_name LicenseButtons
 
+@export var popup_scene: PackedScene
 
 static var _and_or_regex := RegEx.create_from_string("( and | or )(.*)")  # RegEx is greedy so we don't prefix it with (.*) to get the first part
 static var _license_info := Engine.get_license_info()
@@ -53,28 +54,8 @@ func _on_button_pressed(license: String) -> void:
 			popup = child as Popup
 
 	if not popup:
-		popup = PopupPanel.new()
-		popup.borderless = false
-		popup.unresizable = false
-
-		var scroll_container := JoypadScrollContainer.new()
-
-		var label := Label.new()
-		label.text = _license_info[license]
-		scroll_container.add_child(label)
-
-		popup.add_child(scroll_container)
+		popup = popup_scene.instantiate()
+		popup.set_license_text(_license_info[license])
 		add_child(popup)
-
-		var resize := func():
-			var scrollbar_width_approx := 20 * get_window().content_scale_aspect
-			popup.size = Vector2(
-				minf(get_window().size.x, label.size.x + scrollbar_width_approx),
-				minf(get_window().size.y, label.size.y + scrollbar_width_approx),
-			)
-			popup.move_to_center()
-		resize.call()
-		get_window().size_changed.connect(resize)
-		popup.close_requested.connect(func(): popup.queue_free(); get_window().size_changed.disconnect(resize))
 
 	popup.popup()
