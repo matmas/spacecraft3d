@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menus/options_menu/options_tab/license_option_row.gd" id="1_q65s6"]
 [ext_resource type="Script" path="res://game_options/ui_components/license_buttons.gd" id="2_0busb"]
-[ext_resource type="PackedScene" uid="uid://c84vf03xv1ftm" path="res://menus/options_menu/options_tab/license_popup.tscn" id="3_uh3ke"]
+[ext_resource type="PackedScene" uid="uid://djrbjglwd8rbj" path="res://menus/options_menu/options_tab/license_viewer/license_viewer.tscn" id="3_cw8n2"]
 
 [node name="LicenseOptionRow" type="VBoxContainer"]
 anchors_preset = 15
@@ -26,7 +26,7 @@ text = "Software Name"
 unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("2_0busb")
-popup_scene = ExtResource("3_uh3ke")
+license_viewer_scene = ExtResource("3_cw8n2")
 
 [node name="Copyright" type="Label" parent="."]
 unique_name_in_owner = true

@@ -1,7 +1,7 @@
 extends HBoxContainer
 class_name LicenseButtons
 
-@export var popup_scene: PackedScene
+@export var license_viewer_scene: PackedScene
 
 static var _and_or_regex := RegEx.create_from_string("( and | or )(.*)")  # RegEx is greedy so we don't prefix it with (.*) to get the first part
 static var _license_info := Engine.get_license_info()
@@ -25,11 +25,12 @@ func set_license(license: String) -> void:
 
 func add_ui_component(license: String) -> void:
 	if license in _license_info.keys():
-		var button := Button.new()
+		var button := OpenSceneButton.new()
+		button.scene = license_viewer_scene
 		button.text = get_license_name_for_display(license)
 		add_child(button)
 
-		button.pressed.connect(func(): _on_button_pressed(license))
+		button.scene_opened.connect(func(scene_instance): scene_instance.set_license(get_license_name_for_display(license), _license_info[license]))
 	else:
 		var label := Label.new()
 		label.text = get_license_name_for_display(license)
@@ -44,18 +45,3 @@ func get_license_name_for_display(license: String) -> String:
 			return "Public domain"
 		_:
 			return "%s" % license
-
-
-func _on_button_pressed(license: String) -> void:
-	var popup: Popup
-
-	for child in get_children():
-		if child is Popup:
-			popup = child as Popup
-
-	if not popup:
-		popup = popup_scene.instantiate()
-		popup.set_license_text(_license_info[license])
-		add_child(popup)
-
-	popup.popup()
