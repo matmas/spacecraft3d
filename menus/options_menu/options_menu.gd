@@ -16,10 +16,3 @@ func _ready() -> void:
 
 func _on_reset_all_pressed() -> void:
 	GameOptions.reset_to_defaults()
-
-
-func _notification(what):
-	match what:
-		NOTIFICATION_WM_GO_BACK_REQUEST when visible:
-			get_parent().remove_child(self)
-			queue_free()

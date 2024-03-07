@@ -36,12 +36,3 @@ func _on_quit_to_main_menu_pressed() -> void:
 	get_tree().paused = false
 	owner.get_parent().remove_child(owner)
 	owner.queue_free()
-
-
-func _notification(what):
-	match what:
-		NOTIFICATION_WM_GO_BACK_REQUEST:
-			if not visible:
-				_set_paused(true)
-			else:
-				_on_quit_to_main_menu_pressed()
