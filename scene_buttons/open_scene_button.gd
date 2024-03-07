@@ -61,4 +61,7 @@ func _on_go_back_requested() -> void:
 	if _scene_stack.size() == 1:
 		get_tree().quit()
 		return
-	_scene_stack.front().queue_free()
+	if _scene_stack.front().has_method("_on_go_back_requested"):
+		_scene_stack.front()._on_go_back_requested()
+	else:
+		_scene_stack.front().queue_free()

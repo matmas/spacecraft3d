@@ -37,3 +37,10 @@ func _on_quit_to_main_menu_pressed() -> void:
 	get_tree().paused = false
 	owner.get_parent().remove_child(owner)
 	owner.queue_free()
+
+
+func _on_go_back_requested() -> void:
+	if not get_tree().paused:
+		_set_paused(true)
+	else:
+		_on_quit_to_main_menu_pressed()
