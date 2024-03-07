@@ -8,7 +8,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"pause_menu"):
 		# Prevent unpausing when nested menus are still open
-		if not get_tree().paused or get_tree().paused and visible:
+		if not get_tree().paused or get_tree().paused and owner.visible:
 			_set_paused(not get_tree().paused)
 			get_viewport().set_input_as_handled()
 
@@ -19,9 +19,9 @@ func _on_resume_pressed() -> void:
 
 func _set_paused(paused: bool) -> void:
 	get_tree().paused = paused
-	visible = paused
+	owner.visible = paused
 	_update_mouse_mode()
-	if visible:
+	if paused:
 		Utils.grab_focus_first_visible_button(self)
 
 

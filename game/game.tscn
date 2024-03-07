@@ -47,7 +47,8 @@ rough = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho7vk"]
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="CanvasLayer"]
+layer = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
