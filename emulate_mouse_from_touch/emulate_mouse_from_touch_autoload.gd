@@ -1,6 +1,8 @@
 extends Node
 # Alternative to input_devices/pointing/emulate_mouse_from_touch (default: true)
 
+var enabled := true
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Useful even when game is paused
@@ -10,6 +12,8 @@ func _ready() -> void:
 
 
 func _window_input(event: InputEvent) -> void:
+	if not enabled:
+		return
 	match event.get_class():
 		"InputEventScreenTouch":
 			var touch_event := event as InputEventScreenTouch
