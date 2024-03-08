@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_agidi"]
 [ext_resource type="Script" path="res://menus/options_menu/options_tab/license_viewer/license_viewer.gd" id="2_gbg4l"]
 [ext_resource type="Script" path="res://joypad_scroll_container/joypad_scroll_container.gd" id="3_yt13p"]
-[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="4_cawd5"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_management/back_button.tscn" id="4_cawd5"]
 
 [node name="LicenseViewer" instance=ExtResource("1_agidi")]
 script = ExtResource("2_gbg4l")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_0bn6e"]
 [ext_resource type="Script" path="res://menus/information/information.gd" id="2_drdfy"]
 [ext_resource type="Script" path="res://menus/information/joypad_information.gd" id="2_fiyq3"]
-[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="3_0lcgh"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_management/back_button.tscn" id="3_0lcgh"]
 
 [node name="Information" instance=ExtResource("1_0bn6e")]
 script = ExtResource("2_drdfy")

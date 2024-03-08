@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://davcgqd8rtnpl"]
 
-[ext_resource type="Script" path="res://scene_buttons/back_button.gd" id="1_44nc2"]
+[ext_resource type="Script" path="res://scene_management/back_button.gd" id="1_44nc2"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_3uhot"]
 action = &"ui_cancel"

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_f7kga"]
 [ext_resource type="Script" path="res://menus/options_menu/options_menu.gd" id="2_8kihv"]
 [ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://joypad_tab_container/joypad_tab_container.tscn" id="3_kbu31"]
-[ext_resource type="Script" path="res://scene_buttons/shortcut_button.gd" id="4_7smst"]
-[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_buttons/back_button.tscn" id="5_8igc4"]
+[ext_resource type="Script" path="res://scene_management/shortcut_button.gd" id="4_7smst"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://scene_management/back_button.tscn" id="5_8igc4"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_xmh7t"]
 action = &"reset_all"

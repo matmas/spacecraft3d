@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
 [ext_resource type="PackedScene" uid="uid://bg60kamn8ivh0" path="res://menus/options_menu/options_menu.tscn" id="5_fx4r5"]
 [ext_resource type="PackedScene" uid="uid://5evkaouka3rr" path="res://menus/information/information.tscn" id="7_7hf08"]
-[ext_resource type="Script" path="res://scene_buttons/open_scene_button.gd" id="7_vcmw5"]
+[ext_resource type="Script" path="res://scene_management/open_scene_button.gd" id="7_vcmw5"]
 
 [node name="MainMenu" instance=ExtResource("1_i62cn")]
 script = ExtResource("1_lf3s8")

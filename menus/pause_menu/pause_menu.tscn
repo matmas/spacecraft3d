@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://menus/menu_template.tscn" id="1_60rje"]
 [ext_resource type="Script" path="res://menus/pause_menu/pause_menu.gd" id="1_fw410"]
-[ext_resource type="Script" path="res://scene_buttons/open_scene_button.gd" id="3_1lffn"]
+[ext_resource type="Script" path="res://scene_management/open_scene_button.gd" id="3_1lffn"]
 [ext_resource type="PackedScene" uid="uid://bg60kamn8ivh0" path="res://menus/options_menu/options_menu.tscn" id="3_yqm5d"]
-[ext_resource type="Script" path="res://scene_buttons/shortcut_button.gd" id="5_2sf5d"]
+[ext_resource type="Script" path="res://scene_management/shortcut_button.gd" id="5_2sf5d"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_bipv6"]
 action = &"ui_cancel"

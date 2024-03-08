@@ -24,6 +24,7 @@ FpsCounterAutoload="res://fps_counter/fps_counter_autoload.tscn"
 Utils="*res://utils/utils_autoload.gd"
 InputMonitor="*res://input_icons/input_monitor_autoload.gd"
 EmulateMouseFromTouch="*res://emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
+SceneManagement="*res://scene_management/scene_management_autoload.gd"
 
 [display]
 
