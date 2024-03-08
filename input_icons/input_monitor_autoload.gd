@@ -19,6 +19,7 @@ var current_input_type: InputType
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Allow in paused game menus such as control remapping
+	_update_joy_mappings()
 
 	var found_known_joypad := false
 	for device in Input.get_connected_joypads():
@@ -63,3 +64,12 @@ func _input(event: InputEvent) -> void:
 func _set_current_input_type(_current_input_type: InputType) -> void:
 	current_input_type = _current_input_type
 	input_type_changed.emit(_current_input_type)
+
+
+func _update_joy_mappings() -> void:
+	Input.add_joy_mapping(
+		"03000000eb03000001ff000093000000,Wooting One (Legacy),a:b0,b:b1,x:b2,y:b3," +
+		"leftshoulder:b4,rightshoulder:b5,back:b6,start:b7,guide:b8,leftstick:b9,rightstick:b10," +
+		"dpup:h0.1,dpright:h0.2,dpdown:h0.4,dpleft:h0.8," +
+		"leftx:a0,lefty:a1,lefttrigger:a2,rightx:a3,righty:a4,righttrigger:a5", true
+	)
