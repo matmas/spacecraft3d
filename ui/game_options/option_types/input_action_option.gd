@@ -4,7 +4,6 @@ class_name InputActionOption
 
 @export var action_name := &""
 @export var display_name := ""
-@export var description := ""
 
 
 func key() -> String:
@@ -13,10 +12,6 @@ func key() -> String:
 
 func get_display_name() -> String:
 	return display_name
-
-
-func get_description() -> String:
-	return description
 
 
 func get_value() -> Array[InputEvent]:

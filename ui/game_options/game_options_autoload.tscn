@@ -241,6 +241,11 @@ display_name = "Roll right"
 script = ExtResource("8_eyxuy")
 display_name = "Building"
 
+[node name="BuildMenu" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"build_menu"
+display_name = "Build menu"
+
 [node name="PlaceBlock" type="Node" parent="Controls/Building"]
 script = ExtResource("25_q8vr3")
 action_name = &"place_block"

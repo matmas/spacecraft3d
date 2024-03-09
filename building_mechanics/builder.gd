@@ -27,12 +27,7 @@ func _process(_delta: float) -> void:
 		if ray_cast.is_colliding():
 			var point := ray_cast.get_collision_point()
 			var normal := ray_cast.get_collision_normal()
-			block_instance.global_basis = Basis(
-				normal.cross(global_basis.z),
-				normal,
-				global_basis.z
-			).orthonormalized()
-
+			block_instance.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
 			block_instance.global_position = point + normal * 0.001
 			block_instance.show()
 			if block_instance.is_colliding():
@@ -49,3 +44,20 @@ func _process(_delta: float) -> void:
 			block_instance.global_basis = global_basis
 			block_instance.global_position = camera.global_position - camera.global_basis.z * 3.0
 			block_instance.set_ghost_color(Color.RED)
+
+
+## Calculates Basis from y and z vectors.
+## If y and z are parallel then alternative_z is used instead of z.
+func _basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Basis:
+	var b := Basis(
+		y.cross(z),
+		y,
+		z,
+	).orthonormalized()
+	if not b.is_conformal():
+		b = Basis(
+			y.cross(alternative_z),
+			y,
+			alternative_z,
+		).orthonormalized()
+	return b

@@ -94,6 +94,7 @@ func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 			upright_vector,
 			state.transform.basis.z
 		).orthonormalized()
+
 		var delta := get_physics_process_delta_time()
 		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, ALIGN_SPEED * delta)).orthonormalized()
 		if upright_vector.dot(state.transform.basis.y) < 0.0:
