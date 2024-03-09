@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://vfx/lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://ui/touchscreen_controls/touchscreen_controls.tscn" id="8_2lra2"]
 [ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://ui/menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
-[ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://builder/builder.tscn" id="9_40lip"]
+[ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://building_mechanics/builder.tscn" id="9_40lip"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

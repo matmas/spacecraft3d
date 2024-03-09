@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dayewbaua6f8l"]
 
-[ext_resource type="Shader" path="res://builder/ghost_shader_material.gdshader" id="1_kigqu"]
+[ext_resource type="Shader" path="res://building_mechanics/ghost_shader_material.gdshader" id="1_kigqu"]
 
 [resource]
 render_priority = 0
