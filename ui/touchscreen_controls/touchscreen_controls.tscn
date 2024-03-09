@@ -1,0 +1,249 @@
+[gd_scene load_steps=20 format=3 uid="uid://bc275k4543pyd"]
+
+[ext_resource type="Script" path="res://ui/touchscreen_controls/touchscreen_controls.gd" id="1_numpv"]
+[ext_resource type="Script" path="res://ui/touchscreen_controls/input_event_touch_button.gd" id="2_rhrv2"]
+[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_rmod4"]
+[ext_resource type="PackedScene" uid="uid://cv5p05tu6tssn" path="res://ui/touchscreen_controls/virtual_joystick/virtual_joystick.tscn" id="3_txs5w"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_lcfso"]
+button_index = 4
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_4rlin"]
+button_index = 5
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ycwsi"]
+button_index = 6
+pressed = true
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_f5841"]
+axis = 4
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_scpwc"]
+button_index = 9
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_l4ret"]
+button_index = 11
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_su5ff"]
+button_index = 13
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_3uyqa"]
+button_index = 14
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_nm5ve"]
+button_index = 12
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_ruv2u"]
+button_index = 10
+pressed = true
+
+[sub_resource type="InputEventJoypadMotion" id="InputEventJoypadMotion_xu8dc"]
+axis = 5
+axis_value = 1.0
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_lhm6h"]
+button_index = 3
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_j3u5w"]
+button_index = 2
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_e3luv"]
+button_index = 1
+pressed = true
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_amm3l"]
+pressed = true
+
+[node name="TouchscreenControls" type="CanvasLayer"]
+layer = 0
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("2_rmod4")
+section = "graphics"
+key = "touchscreen_controls"
+
+[node name="TouchscreenControls" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_numpv")
+
+[node name="SpecialButtons" type="HBoxContainer" parent="TouchscreenControls"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Select" type="TextureRect" parent="TouchscreenControls/SpecialButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_lcfso")
+
+[node name="Home" type="TextureRect" parent="TouchscreenControls/SpecialButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_4rlin")
+
+[node name="Start" type="TextureRect" parent="TouchscreenControls/SpecialButtons"]
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_ycwsi")
+
+[node name="CommonButtons" type="HBoxContainer" parent="TouchscreenControls"]
+layout_mode = 2
+
+[node name="LeftButtons" type="GridContainer" parent="TouchscreenControls/CommonButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+columns = 3
+
+[node name="LT" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadMotion_f5841")
+
+[node name="Empty" type="Control" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+layout_mode = 2
+
+[node name="LB" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_scpwc")
+
+[node name="Empty2" type="Control" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="DpadUp" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_l4ret")
+
+[node name="Empty3" type="Control" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="DpadLeft" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_su5ff")
+
+[node name="Empty4" type="Control" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="DpadRight" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_3uyqa")
+
+[node name="Empty5" type="Control" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="DpadRight2" type="TextureRect" parent="TouchscreenControls/CommonButtons/LeftButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_nm5ve")
+
+[node name="RightButtons" type="GridContainer" parent="TouchscreenControls/CommonButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 10
+columns = 3
+
+[node name="RB" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_ruv2u")
+
+[node name="Empty" type="Control" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="RT" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadMotion_xu8dc")
+
+[node name="Empty2" type="Control" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Y" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_lhm6h")
+
+[node name="Empty3" type="Control" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="X" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_j3u5w")
+
+[node name="Empty4" type="Control" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="B" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_e3luv")
+
+[node name="Empty5" type="Control" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="A" type="TextureRect" parent="TouchscreenControls/CommonButtons/RightButtons"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("2_rhrv2")
+input_event = SubResource("InputEventJoypadButton_amm3l")
+
+[node name="Joysticks" type="HBoxContainer" parent="TouchscreenControls"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VirtualJoystickMove" parent="TouchscreenControls/Joysticks" instance=ExtResource("3_txs5w")]
+layout_mode = 2
+size_flags_horizontal = 3
+action_up = &"move_forward"
+action_down = &"move_backward"
+action_left = &"move_left"
+action_right = &"move_right"
+action_double_tap = &"sprint"
+
+[node name="VirtualJoystickLook" parent="TouchscreenControls/Joysticks" instance=ExtResource("3_txs5w")]
+layout_mode = 2
+size_flags_horizontal = 3
+action_up = &"look_up"
+action_down = &"look_down"
+action_left = &"look_left"
+action_right = &"look_right"

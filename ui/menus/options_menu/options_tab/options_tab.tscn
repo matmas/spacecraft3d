@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnu7ouj5kw015"]
+
+[ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/options_tab.gd" id="1_2v8nl"]
+[ext_resource type="Script" path="res://ui/joypad_scroll_container/joypad_scroll_container.gd" id="2_prucu"]
+
+[node name="OptionsTab" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2v8nl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+script = ExtResource("2_prucu")
+
+[node name="Body" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="List" type="VBoxContainer" parent="ScrollContainer/Body"]
+unique_name_in_owner = true
+layout_mode = 2

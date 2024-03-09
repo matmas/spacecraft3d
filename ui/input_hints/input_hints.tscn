@@ -1,0 +1,209 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
+
+[ext_resource type="Script" path="res://ui/input_hints/input_hints.gd" id="1_isslh"]
+[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_w37bw"]
+[ext_resource type="Script" path="res://ui/input_icons/visibility_helper.gd" id="4_07c5p"]
+[ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
+
+[node name="InputHints" type="CanvasLayer"]
+process_mode = 3
+layer = 0
+script = ExtResource("1_isslh")
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("2_w37bw")
+section = "graphics"
+key = "input_hints"
+
+[node name="LeftControls" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="move_up" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_up"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_up"
+
+[node name="Label" type="Label" parent="LeftControls/move_up"]
+layout_mode = 2
+text = "move up"
+
+[node name="move_down" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/move_down"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_down"
+
+[node name="Label" type="Label" parent="LeftControls/move_down"]
+layout_mode = 2
+text = "move down"
+
+[node name="jump" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/jump"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"jump"
+
+[node name="Label" type="Label" parent="LeftControls/jump"]
+layout_mode = 2
+text = "jump"
+
+[node name="crouch" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/crouch"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"crouch"
+
+[node name="Label" type="Label" parent="LeftControls/crouch"]
+layout_mode = 2
+text = "crouch"
+
+[node name="sprint" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/sprint"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"sprint"
+
+[node name="Label" type="Label" parent="LeftControls/sprint"]
+layout_mode = 2
+text = "sprint"
+
+[node name="MovementAndLook" type="HBoxContainer" parent="LeftControls"]
+layout_mode = 2
+
+[node name="move_forward" type="HBoxContainer" parent="LeftControls/MovementAndLook"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WASDGrid" type="GridContainer" parent="LeftControls/MovementAndLook/move_forward"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="Empty" type="Control" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+
+[node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_forward"
+ignore_joypad_direction = true
+visibility_condition = 1
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="Empty2" type="Control" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+
+[node name="move_left" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_left"
+visibility_condition = 1
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="move_backward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_backward"
+visibility_condition = 1
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="move_right" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward/WASDGrid"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_right"
+visibility_condition = 1
+minimum_size = Vector2(25, 25)
+add_margin = false
+
+[node name="move_forward" type="TextureRect" parent="LeftControls/MovementAndLook/move_forward"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"move_forward"
+ignore_joypad_direction = true
+visibility_condition = 2
+
+[node name="Label" type="Label" parent="LeftControls/MovementAndLook/move_forward"]
+layout_mode = 2
+text = " movement"
+
+[node name="look_up" type="HBoxContainer" parent="LeftControls/MovementAndLook"]
+layout_mode = 2
+
+[node name="InputActionTextureRect" type="TextureRect" parent="LeftControls/MovementAndLook/look_up"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"look_up"
+ignore_joypad_direction = true
+
+[node name="look" type="Label" parent="LeftControls/MovementAndLook/look_up"]
+layout_mode = 2
+text = "look
+"
+
+[node name="InputTypeVisibilityHelper" type="Node" parent="LeftControls/MovementAndLook/look_up/look"]
+script = ExtResource("4_07c5p")
+parent_visibility_condition = 2
+
+[node name="RightControls" type="VBoxContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -104.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="place_block" type="HBoxContainer" parent="RightControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/place_block"]
+layout_mode = 2
+text = "place block
+"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"place_block"
+
+[node name="roll_left" type="HBoxContainer" parent="RightControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/roll_left"]
+layout_mode = 2
+text = "roll"
+
+[node name="roll_left" type="TextureRect" parent="RightControls/roll_left"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"roll_left"
+
+[node name="roll_right" type="TextureRect" parent="RightControls/roll_left"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"roll_right"

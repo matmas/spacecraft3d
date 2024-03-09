@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpko8s0wyyp8h"]
+
+[ext_resource type="Script" path="res://ui/joypad_tab_container/joypad_tab_container.gd" id="1_wwfak"]
+[ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="2_icyoc"]
+
+[node name="JoypadTabContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwfak")
+
+[node name="Navigation" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Previous" type="TextureRect" parent="Navigation"]
+layout_mode = 2
+script = ExtResource("2_icyoc")
+action_name = &"ui_tab_prev"
+visibility_condition = 2
+visibility_mode = 1
+
+[node name="TabBar" type="TabBar" parent="Navigation"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+tab_alignment = 1
+
+[node name="Next" type="TextureRect" parent="Navigation"]
+layout_mode = 2
+script = ExtResource("2_icyoc")
+action_name = &"ui_tab_next"
+visibility_condition = 2
+visibility_mode = 1
+
+[connection signal="tab_changed" from="Navigation/TabBar" to="." method="_on_tab_bar_tab_changed"]

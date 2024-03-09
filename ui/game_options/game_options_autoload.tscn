@@ -1,0 +1,285 @@
+[gd_scene load_steps=30 format=3 uid="uid://cwdgkuos243k3"]
+
+[ext_resource type="Script" path="res://ui/game_options/game_options_autoload.gd" id="1_daw0r"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
+[ext_resource type="Script" path="res://ui/game_options/section.gd" id="2_7j3vk"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/fullscreen.gd" id="3_wah1i"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/screen.gd" id="4_4v7lj"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/vsync.gd" id="5_b6ofn"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/max_fps.gd" id="6_jjx0q"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/display/fps_counter.gd" id="7_qytg8"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/res_upscaling_aa/3d_scale.gd" id="8_c5kmu"]
+[ext_resource type="Script" path="res://ui/game_options/category.gd" id="8_eyxuy"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/res_upscaling_aa/upscaling_mode.gd" id="9_408ih"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/res_upscaling_aa/taa.gd" id="10_bldqe"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/res_upscaling_aa/fxaa.gd" id="11_mnem2"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/res_upscaling_aa/msaa.gd" id="12_md2op"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/glow.gd" id="13_62vlf"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/ssao.gd" id="14_d46ab"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/ssil.gd" id="15_4e3ce"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/lens_flare.gd" id="16_5c5rd"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/motion_particles.gd" id="17_njksq"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/effects/ssr.gd" id="18_8dxpk"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/camera/camera_fov.gd" id="18_dvdfb"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/ui/input_hints.gd" id="19_gfb4p"]
+[ext_resource type="Script" path="res://ui/game_options/options/input/mouse_sensitivity.gd" id="20_wtelj"]
+[ext_resource type="Script" path="res://ui/game_options/options/input/joypad_sensitivity.gd" id="21_bkwbe"]
+[ext_resource type="Script" path="res://ui/game_options/options/audio/master_volume.gd" id="22_6xkgs"]
+[ext_resource type="Script" path="res://ui/game_options/options/graphics/ui/touchscreen_controls.gd" id="23_rxb8a"]
+[ext_resource type="Script" path="res://ui/game_options/option_types/input_action_option.gd" id="25_q8vr3"]
+[ext_resource type="Script" path="res://ui/game_options/option_types/godot_license_bundle.gd" id="28_a43fo"]
+[ext_resource type="Script" path="res://ui/game_options/option_types/license_option.gd" id="28_jaw2c"]
+
+[node name="GameOptions" type="Node"]
+script = ExtResource("1_daw0r")
+
+[node name="Graphics" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Graphics"
+config_name = "graphics"
+
+[node name="Display" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Display"
+
+[node name="UIScale" type="Node" parent="Graphics/Display"]
+script = ExtResource("2_0cifp")
+
+[node name="Fullscreen" type="Node" parent="Graphics/Display"]
+script = ExtResource("3_wah1i")
+
+[node name="Screen" type="Node" parent="Graphics/Display"]
+script = ExtResource("4_4v7lj")
+
+[node name="VSync" type="Node" parent="Graphics/Display"]
+script = ExtResource("5_b6ofn")
+
+[node name="MaxFPS" type="Node" parent="Graphics/Display"]
+script = ExtResource("6_jjx0q")
+
+[node name="FPSCounter" type="Node" parent="Graphics/Display"]
+script = ExtResource("7_qytg8")
+
+[node name="ResUpscalingAA" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Resolution, upscaling & anti-aliasing"
+
+[node name="3DScale" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("8_c5kmu")
+
+[node name="UpscalingMode" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("9_408ih")
+
+[node name="TAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("10_bldqe")
+
+[node name="FXAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("11_mnem2")
+
+[node name="MSAA" type="Node" parent="Graphics/ResUpscalingAA"]
+script = ExtResource("12_md2op")
+
+[node name="Effects" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Effects"
+
+[node name="Glow" type="Node" parent="Graphics/Effects"]
+script = ExtResource("13_62vlf")
+
+[node name="SSAO" type="Node" parent="Graphics/Effects"]
+script = ExtResource("14_d46ab")
+
+[node name="SSIL" type="Node" parent="Graphics/Effects"]
+script = ExtResource("15_4e3ce")
+
+[node name="SSR" type="Node" parent="Graphics/Effects"]
+script = ExtResource("18_8dxpk")
+
+[node name="LensFlare" type="Node" parent="Graphics/Effects"]
+script = ExtResource("16_5c5rd")
+
+[node name="MotionParticles" type="Node" parent="Graphics/Effects"]
+script = ExtResource("17_njksq")
+
+[node name="Camera" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "Camera"
+
+[node name="CameraFOV" type="Node" parent="Graphics/Camera"]
+script = ExtResource("18_dvdfb")
+
+[node name="UserInterface" type="Node" parent="Graphics"]
+script = ExtResource("8_eyxuy")
+display_name = "User interface"
+
+[node name="InputHints" type="Node" parent="Graphics/UserInterface"]
+script = ExtResource("19_gfb4p")
+
+[node name="TouchscreenControls" type="Node" parent="Graphics/UserInterface"]
+script = ExtResource("23_rxb8a")
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Audio"
+config_name = "audio"
+
+[node name="Volume" type="Node" parent="Audio"]
+script = ExtResource("8_eyxuy")
+display_name = "Volume"
+
+[node name="Master" type="Node" parent="Audio/Volume"]
+script = ExtResource("22_6xkgs")
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Input"
+config_name = "input"
+
+[node name="Sensitivity" type="Node" parent="Input"]
+script = ExtResource("8_eyxuy")
+display_name = "Sensitivity"
+
+[node name="Mouse" type="Node" parent="Input/Sensitivity"]
+script = ExtResource("20_wtelj")
+
+[node name="Joypad" type="Node" parent="Input/Sensitivity"]
+script = ExtResource("21_bkwbe")
+
+[node name="Controls" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Controls"
+config_name = "controls"
+
+[node name="General" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "General"
+
+[node name="LookUp" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_up"
+display_name = "Look up"
+
+[node name="LookDown" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_down"
+display_name = "Look down"
+
+[node name="LookLeft" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_left"
+display_name = "Look left"
+
+[node name="LookRight" type="Node" parent="Controls/General"]
+script = ExtResource("25_q8vr3")
+action_name = &"look_right"
+display_name = "Look right"
+
+[node name="Walking" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Walking"
+
+[node name="MoveForward" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_forward"
+display_name = "Move forward"
+
+[node name="MoveBackward" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_backward"
+display_name = "Move backward"
+
+[node name="MoveLeft" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_left"
+display_name = "Move left"
+
+[node name="MoveRight" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_right"
+display_name = "Move right"
+
+[node name="Jump" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"jump"
+display_name = "Jump"
+
+[node name="Sprint" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"sprint"
+display_name = "Sprint"
+
+[node name="Crouch" type="Node" parent="Controls/Walking"]
+script = ExtResource("25_q8vr3")
+action_name = &"crouch"
+display_name = "Crouch"
+
+[node name="Flying" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Flying"
+
+[node name="MoveUp" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_up"
+display_name = "Move up"
+
+[node name="MoveDown" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"move_down"
+display_name = "Move down"
+
+[node name="RollLeft" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"roll_left"
+display_name = "Roll left"
+
+[node name="RollRight" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"roll_right"
+display_name = "Roll right"
+
+[node name="Building" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Building"
+
+[node name="PlaceBlock" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"place_block"
+display_name = "Place block"
+
+[node name="Other" type="Node" parent="Controls"]
+script = ExtResource("8_eyxuy")
+display_name = "Other"
+
+[node name="PauseMenu" type="Node" parent="Controls/Other"]
+script = ExtResource("25_q8vr3")
+action_name = &"pause_menu"
+display_name = "Pause menu"
+
+[node name="CaptureScreenshot" type="Node" parent="Controls/Other"]
+script = ExtResource("25_q8vr3")
+action_name = &"capture_screenshot"
+display_name = "Capture Screenshot"
+
+[node name="Licenses" type="Node" parent="."]
+script = ExtResource("2_7j3vk")
+display_name = "Licenses"
+config_name = "licenses"
+
+[node name="VisualEffects" type="Node" parent="Licenses"]
+script = ExtResource("8_eyxuy")
+display_name = "Visual effects"
+
+[node name="LensFlare" type="Node" parent="Licenses/VisualEffects"]
+script = ExtResource("28_jaw2c")
+software_name = "Lens Flare Shader"
+source_url = "https://godotshaders.com/shader/lens-flare-shader/"
+copyright = "2022, malhotraprateek
+2013-2020, mu6k"
+license = "Expat"
+
+[node name="GameEngine" type="Node" parent="Licenses"]
+script = ExtResource("8_eyxuy")
+display_name = "Game engine"
+
+[node name="GodotLicenseBundle" type="Node" parent="Licenses/GameEngine"]
+script = ExtResource("28_a43fo")

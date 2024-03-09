@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=3 uid="uid://mic25bshahx8"]
+
+[ext_resource type="Shader" path="res://vfx/motion_particles/motion_particles.gdshader" id="1_5y605"]
+[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="1_xwt4v"]
+[ext_resource type="Script" path="res://vfx/motion_particles/motion_particles.gd" id="2_dryvb"]
+[ext_resource type="Texture2D" uid="uid://btt5rihg15jeh" path="res://vfx/motion_particles/particle.png" id="2_o3mn0"]
+
+[sub_resource type="Gradient" id="Gradient_6kw36"]
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3gi08"]
+gradient = SubResource("Gradient_6kw36")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_clwi4"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 25)
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.0980392)
+color_ramp = SubResource("GradientTexture1D_3gi08")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h4sg"]
+render_priority = 0
+shader = ExtResource("1_5y605")
+shader_parameter/camera_velocity = Vector3(0, 0, 40)
+shader_parameter/texture_albedo = ExtResource("2_o3mn0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gjrs2"]
+material = SubResource("ShaderMaterial_7h4sg")
+
+[node name="MotionParticles" type="GPUParticles3D"]
+amount = 500
+visibility_aabb = AABB(-10, -10, -25, 20, 20, 50)
+process_material = SubResource("ParticleProcessMaterial_clwi4")
+draw_pass_1 = SubResource("QuadMesh_gjrs2")
+script = ExtResource("2_dryvb")
+
+[node name="Feature" type="Node" parent="."]
+script = ExtResource("1_xwt4v")
+section = "graphics"
+key = "motion_particles"

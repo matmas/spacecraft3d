@@ -11,20 +11,20 @@ config_version=5
 [application]
 
 config/name="spacecraft3d"
-run/main_scene="res://menus/main_menu/main_menu.tscn"
+run/main_scene="res://ui/menus/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
-GameOptions="*res://game_options/game_options_autoload.tscn"
-ScreenshotCaptureAutoload="res://screenshot_capture/screenshot_capture_autoload.gd"
-JoypadInputEchoAutoload="res://joypad_input_echo/joypad_input_echo_autoload.gd"
-FpsCounterAutoload="res://fps_counter/fps_counter_autoload.tscn"
+GameOptions="*res://ui/game_options/game_options_autoload.tscn"
+ScreenshotCaptureAutoload="res://ui/screenshot_capture/screenshot_capture_autoload.gd"
+JoypadInputEchoAutoload="res://ui/joypad_input_echo/joypad_input_echo_autoload.gd"
+FpsCounterAutoload="res://ui/fps_counter/fps_counter_autoload.tscn"
 Utils="*res://utils/utils_autoload.gd"
-InputMonitor="*res://input_icons/input_monitor_autoload.gd"
-EmulateMouseFromTouch="*res://emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
-SceneManagement="*res://scene_management/scene_management_autoload.gd"
+InputMonitor="*res://ui/input_icons/input_monitor_autoload.gd"
+EmulateMouseFromTouch="*res://ui/emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
+SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
 
 [display]
 
@@ -39,8 +39,8 @@ movie_writer/movie_file="export/movie.avi"
 
 folder_colors={
 "res://game/": "red",
-"res://menus/": "green",
-"res://player/": "red"
+"res://player/": "red",
+"res://ui/menus/": "green"
 }
 
 [gui]
