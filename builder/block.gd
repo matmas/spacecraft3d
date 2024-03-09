@@ -40,8 +40,7 @@ func is_colliding() -> bool:
 
 
 func add_physics_interpolation() -> void:
-	var node := Node3D.new()
+	var node := PhysicsInterpolation.new()
 	node.name = "PhysicsInterpolation"
-	node.set_script(preload("res://physics_interpolation/node_3d.gd"))
 	add_child(node)
 	mesh.reparent(node)
