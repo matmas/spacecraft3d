@@ -16,10 +16,9 @@ func _ready() -> void:
 
 
 func prepare_block() -> void:
-	var new_block_instance := block_scenes[0].instantiate() as Block
-	new_block_instance.hide()  # correct position is set later in _process()
-	add_child(new_block_instance)
-	block_instance = new_block_instance
+	block_instance = block_scenes[0].instantiate() as Block
+	block_instance.hide()  # correct position is set later in _process()
+	add_child(block_instance)
 
 
 func _process(_delta: float) -> void:
