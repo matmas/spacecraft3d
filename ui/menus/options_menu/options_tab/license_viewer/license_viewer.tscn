@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://djrbjglwd8rbj"]
+[gd_scene load_steps=6 format=3 uid="uid://djrbjglwd8rbj"]
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_agidi"]
 [ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/license_viewer/license_viewer.gd" id="2_gbg4l"]
 [ext_resource type="Script" path="res://ui/joypad_scroll_container/joypad_scroll_container.gd" id="3_yt13p"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://ui/scene_management/back_button.tscn" id="4_cawd5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aoyn"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="LicenseViewer" instance=ExtResource("1_agidi")]
 script = ExtResource("2_gbg4l")
@@ -14,7 +25,9 @@ unique_name_in_owner = true
 [node name="ScrollContainer" type="ScrollContainer" parent="Body" index="1"]
 auto_translate_mode = 1
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 script = ExtResource("3_yt13p")
 
 [node name="Label" type="Label" parent="Body/ScrollContainer" index="0"]
@@ -22,6 +35,7 @@ unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_4aoyn")
 text = "License text"
 
 [node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("4_cawd5")]
