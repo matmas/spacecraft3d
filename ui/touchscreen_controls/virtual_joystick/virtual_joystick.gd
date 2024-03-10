@@ -44,7 +44,7 @@ var current_index := -1
 var _original_base_position: Vector2
 
 
-func _ready():
+func _ready() -> void:
 	match visibility_condition:
 		VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available() and not Engine.is_editor_hint():
 			hide()

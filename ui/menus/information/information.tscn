@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_0bn6e"]
 [ext_resource type="Script" path="res://ui/scene_management/scene.gd" id="2_21wyj"]
 [ext_resource type="Script" path="res://ui/menus/information/joypad_information.gd" id="2_fiyq3"]
-[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://ui/scene_management/back_button.tscn" id="3_0lcgh"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="4_q2phj"]
 
 [node name="Information" instance=ExtResource("1_0bn6e")]
 script = ExtResource("2_21wyj")
@@ -20,5 +20,5 @@ context_menu_enabled = true
 selection_enabled = true
 script = ExtResource("2_fiyq3")
 
-[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_0lcgh")]
+[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("4_q2phj")]
 layout_mode = 2

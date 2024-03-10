@@ -2,11 +2,11 @@ extends Node
 class_name Scene
 
 
-func _ready():
+func _ready() -> void:
 	refresh()
 
 
-func refresh():
+func refresh() -> void:
 	if should_focus_first_visible_button():
 		Utils.grab_focus_first_visible_button(self)
 	EmulateMouseFromTouch.enabled = should_emulate_mouse_from_touch()

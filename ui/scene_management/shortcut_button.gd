@@ -25,6 +25,6 @@ func _shortcut_to_action_name(_shortcut: Shortcut) -> StringName:
 
 func _validate_property(property: Dictionary) -> void:
 	super._validate_property(property)
-	if property.name == "action_name" and shortcut:
+	if property.name == "action_name":
 		# Don't persist or show property in the editor
 		property.usage = PROPERTY_USAGE_NONE
