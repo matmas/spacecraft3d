@@ -207,3 +207,15 @@ action_name = &"roll_left"
 layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"roll_right"
+
+[node name="build_menu" type="HBoxContainer" parent="RightControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RightControls/build_menu"]
+layout_mode = 2
+text = "build menu"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/build_menu"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"build_menu"

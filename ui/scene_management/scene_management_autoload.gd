@@ -4,13 +4,6 @@ var _scene_stack := []
 var _original_shortcuts := {}
 
 
-func _ready() -> void:
-	if _scene_stack.is_empty():
-		_scene_stack.push_front(get_tree().current_scene)
-		get_tree().quit_on_go_back = false
-		get_tree().root.go_back_requested.connect(_on_go_back_requested)
-
-
 func open_scene(scene: PackedScene) -> Node:
 	_scene_stack.front().hide()
 	# Shortcuts are handled even when the buttons are not visible
@@ -23,6 +16,17 @@ func open_scene(scene: PackedScene) -> Node:
 
 	scene_instance.tree_exiting.connect(_on_tree_exiting)
 	return scene_instance
+
+
+func current_scene() -> Node:
+	return _scene_stack.front()
+
+
+func _ready() -> void:
+	if _scene_stack.is_empty():
+		_scene_stack.push_front(get_tree().current_scene)
+		get_tree().quit_on_go_back = false
+		get_tree().root.go_back_requested.connect(_on_go_back_requested)
 
 
 func _on_tree_exiting() -> void:

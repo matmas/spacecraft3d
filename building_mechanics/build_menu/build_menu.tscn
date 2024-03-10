@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmsoxac68w1q8"]
+
+[ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_b8xn3"]
+[ext_resource type="Script" path="res://building_mechanics/build_menu/build_menu.gd" id="2_2slw5"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://ui/scene_management/back_button.tscn" id="2_gwbwi"]
+
+[node name="BuildMenu" instance=ExtResource("1_b8xn3")]
+script = ExtResource("2_2slw5")
+
+[node name="TitleLabel" parent="Body/Header" index="0"]
+text = "Build"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Body" index="1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("2_gwbwi")]
+layout_mode = 2

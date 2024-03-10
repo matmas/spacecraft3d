@@ -22,6 +22,9 @@ func prepare_block() -> void:
 
 
 func _process(_delta: float) -> void:
+	if SceneManagement.current_scene() is not BuildMenu and InputHints.is_action_just_pressed(&"build_menu"):
+		SceneManagement.open_scene(preload("build_menu/build_menu.tscn"))
+
 	if block_instance:
 		ray_cast.force_raycast_update()
 		if ray_cast.is_colliding():
