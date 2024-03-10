@@ -22,7 +22,7 @@ func prepare_block() -> void:
 
 
 func _process(_delta: float) -> void:
-	if SceneManagement.current_scene() is not BuildMenu and InputHints.is_action_just_pressed(&"build_menu"):
+	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"build_menu"):
 		SceneManagement.open_scene(preload("build_menu/build_menu.tscn"))
 
 	if block_instance:
@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 				block_instance.set_ghost_color(Color.YELLOW)
 			else:
 				block_instance.set_ghost_color(Color.GREEN)
-				if InputHints.is_action_just_pressed(&"place_block"):
+				if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 					block_instance.add_physics_interpolation()
 					block_instance.set_ghost(false)
 					if ray_cast.get_collider() is RigidBody3D:
