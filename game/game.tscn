@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=25 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Script" path="res://game/world_environment.gd" id="1_axnvw"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_rsu7a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://vfx/lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://ui/touchscreen_controls/touchscreen_controls.tscn" id="8_2lra2"]
+[ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://ui/menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://building_mechanics/builder.tscn" id="9_40lip"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
@@ -50,6 +51,7 @@ rough = true
 [node name="Game" type="CanvasLayer"]
 layer = 0
 script = ExtResource("1_rsu7a")
+pause_menu_scene = ExtResource("8_18bxx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_20bue")
