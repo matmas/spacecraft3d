@@ -24,9 +24,19 @@ func current_scene() -> Node:
 
 
 func previous_scene() -> Node:
-	if _scene_stack.size() <= 1:
+	if _scene_stack.size() < 2:
 		return null
 	return _scene_stack[1]
+
+
+func close_current_scene(num_scenes_to_close: int = 1) -> void:
+	for i in num_scenes_to_close:
+		if previous_scene() != null:
+			var scene := current_scene()
+			scene.get_parent().remove_child(scene)
+			scene.queue_free()
+		else:
+			get_tree().quit()
 
 
 func _ready() -> void:

@@ -34,8 +34,4 @@ func should_hide_mouse_cursor() -> bool:
 
 
 func on_go_back_requested() -> void:
-	if SceneManagement.previous_scene() != null:
-		get_parent().remove_child(self)
-		queue_free()
-	else:
-		get_tree().quit()
+	SceneManagement.close_current_scene()
