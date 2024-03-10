@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Scene
 
 
 func set_license(license_name: String, license_text: String) -> void:

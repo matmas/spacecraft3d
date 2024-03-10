@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=24 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Script" path="res://game/world_environment.gd" id="1_axnvw"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_rsu7a"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://vfx/lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://ui/touchscreen_controls/touchscreen_controls.tscn" id="8_2lra2"]
-[ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://ui/menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
 [ext_resource type="PackedScene" uid="uid://d12guuxlcbu6a" path="res://building_mechanics/builder.tscn" id="9_40lip"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
@@ -75,8 +74,6 @@ directional_light = NodePath("../DirectionalLight3D")
 raycast_collision_mask = 4294967291
 
 [node name="TouchscreenControls" parent="." instance=ExtResource("8_2lra2")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("8_18bxx")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)

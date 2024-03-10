@@ -1,16 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://mbq7m437qpbm"]
+[gd_scene load_steps=6 format=3 uid="uid://mbq7m437qpbm"]
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_60rje"]
 [ext_resource type="Script" path="res://ui/menus/pause_menu/pause_menu.gd" id="1_fw410"]
 [ext_resource type="Script" path="res://ui/scene_management/open_scene_button.gd" id="3_1lffn"]
+[ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://ui/scene_management/back_button.tscn" id="3_1w83i"]
 [ext_resource type="PackedScene" uid="uid://bg60kamn8ivh0" path="res://ui/menus/options_menu/options_menu.tscn" id="3_yqm5d"]
-[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="5_2sf5d"]
-
-[sub_resource type="InputEventAction" id="InputEventAction_bipv6"]
-action = &"ui_cancel"
-
-[sub_resource type="Shortcut" id="Shortcut_0dxge"]
-events = [SubResource("InputEventAction_bipv6")]
 
 [node name="PauseMenu" instance=ExtResource("1_60rje")]
 script = ExtResource("1_fw410")
@@ -22,7 +16,7 @@ size_flags_vertical = 6
 [node name="TitleLabel" parent="Body/Header" index="0"]
 text = "Game paused"
 
-[node name="Resume" type="Button" parent="Body" index="1"]
+[node name="Resume" parent="Body" index="1" instance=ExtResource("3_1w83i")]
 layout_mode = 2
 text = "Resume"
 
@@ -36,13 +30,7 @@ scene = ExtResource("3_yqm5d")
 layout_mode = 2
 text = "Quit to main menu"
 
-[node name="Back" type="Button" parent="Footer/Buttons" index="0"]
+[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_1w83i")]
 layout_mode = 2
-shortcut = SubResource("Shortcut_0dxge")
-text = "Back"
-script = ExtResource("5_2sf5d")
-icon_visibility_condition = 2
 
-[connection signal="pressed" from="Body/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Body/QuitToMainMenu" to="." method="_on_quit_to_main_menu_pressed"]
-[connection signal="pressed" from="Footer/Buttons/Back" to="." method="_on_resume_pressed"]

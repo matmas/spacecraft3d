@@ -5,21 +5,28 @@ var _original_shortcuts := {}
 
 
 func open_scene(scene: PackedScene) -> Node:
-	_scene_stack.front().hide()
+	current_scene().hide()
 	# Shortcuts are handled even when the buttons are not visible
 	# so we clear them now and restore later
-	_clear_shortcuts_recursively(_scene_stack.front())
+	_clear_shortcuts_recursively(current_scene())
 
 	var scene_instance := scene.instantiate()
 	_scene_stack.push_front(scene_instance)
-	get_tree().root.add_child(scene_instance)
 
-	scene_instance.tree_exiting.connect(_on_tree_exiting)
+	get_tree().root.add_child(scene_instance)
+	scene_instance.refresh()
+	scene_instance.tree_exiting.connect(func(): _on_tree_exiting(scene_instance))
 	return scene_instance
 
 
 func current_scene() -> Node:
 	return _scene_stack.front()
+
+
+func previous_scene() -> Node:
+	if _scene_stack.size() <= 1:
+		return null
+	return _scene_stack[1]
 
 
 func _ready() -> void:
@@ -29,10 +36,13 @@ func _ready() -> void:
 		get_tree().root.go_back_requested.connect(_on_go_back_requested)
 
 
-func _on_tree_exiting() -> void:
+func _on_tree_exiting(scene_instance: Node) -> void:
+	if current_scene() != scene_instance:
+		printerr("current_scene() != scene_instance")
 	_scene_stack.pop_front()
-	_scene_stack.front().show()
-	_restore_shortcuts_recursively(_scene_stack.front())
+	current_scene().show()
+	current_scene().refresh()
+	_restore_shortcuts_recursively(current_scene())
 
 
 func _clear_shortcuts_recursively(node: Node) -> void:
@@ -54,10 +64,4 @@ func _restore_shortcuts_recursively(node: Node) -> void:
 
 
 func _on_go_back_requested() -> void:
-	if _scene_stack.size() == 1:
-		get_tree().quit()
-		return
-	if _scene_stack.front().has_method("_on_go_back_requested"):
-		_scene_stack.front()._on_go_back_requested()
-	else:
-		_scene_stack.front().queue_free()
+	current_scene().on_go_back_requested()

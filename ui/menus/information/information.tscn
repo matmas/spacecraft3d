@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://5evkaouka3rr"]
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_0bn6e"]
-[ext_resource type="Script" path="res://ui/menus/information/information.gd" id="2_drdfy"]
+[ext_resource type="Script" path="res://ui/scene_management/scene.gd" id="2_21wyj"]
 [ext_resource type="Script" path="res://ui/menus/information/joypad_information.gd" id="2_fiyq3"]
 [ext_resource type="PackedScene" uid="uid://davcgqd8rtnpl" path="res://ui/scene_management/back_button.tscn" id="3_0lcgh"]
 
 [node name="Information" instance=ExtResource("1_0bn6e")]
-script = ExtResource("2_drdfy")
+script = ExtResource("2_21wyj")
 
 [node name="TitleLabel" parent="Body/Header" index="0"]
 text = "Information"
