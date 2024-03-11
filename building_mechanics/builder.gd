@@ -21,16 +21,7 @@ func prepare_block() -> void:
 	add_child(block_instance)
 
 
-func _input(event: InputEvent) -> void:
-	if SceneManagement.current_scene() is Game and event.is_action_pressed(&"build_menu"):
-		SceneManagement.open_scene(preload("build_menu/build_menu.tscn"))
-		get_viewport().set_input_as_handled()
-
-
 func _process(_delta: float) -> void:
-	if SceneManagement.current_scene() is Game:
-		InputHints.is_action_just_pressed(&"build_menu")
-
 	if block_instance:
 		ray_cast.force_raycast_update()
 		if ray_cast.is_colliding():

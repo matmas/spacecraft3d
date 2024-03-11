@@ -2,7 +2,7 @@ extends Node
 class_name Scene
 
 @export var close_scene_action := &""
-
+@export var open_scene_actions: Array[ActionSceneMapping] = []
 
 func _ready() -> void:
 	_refresh()
@@ -50,3 +50,13 @@ func _input(event: InputEvent) -> void:
 		if SceneManagement.current_scene() == self and event.is_action_pressed(close_scene_action):
 			get_viewport().set_input_as_handled()
 			SceneManagement.close_current_scene()
+	for mapping in open_scene_actions:
+		if SceneManagement.current_scene() == self and event.is_action_pressed(mapping.action_name):
+			get_viewport().set_input_as_handled()
+			SceneManagement.open_scene(mapping.scene)
+
+
+func _process(_delta: float) -> void:
+	for mapping in open_scene_actions:
+		if SceneManagement.current_scene() == self:
+			InputHints.is_action_just_pressed(mapping.action_name)

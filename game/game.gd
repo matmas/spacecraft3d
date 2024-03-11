@@ -4,12 +4,6 @@ class_name Game
 @export var pause_menu_scene: PackedScene
 
 
-func _input(event: InputEvent) -> void:
-	if SceneManagement.current_scene() is Game and event.is_action_pressed(&"pause_menu"):
-		SceneManagement.open_scene(pause_menu_scene)
-		get_viewport().set_input_as_handled()
-
-
 func should_pause_game() -> bool:
 	return false
 
