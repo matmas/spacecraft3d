@@ -6,6 +6,7 @@
 
 [node name="BuildMenu" instance=ExtResource("1_b8xn3")]
 script = ExtResource("2_2slw5")
+close_scene_action = &"build_menu"
 
 [node name="TitleLabel" parent="Body/Header" index="0"]
 text = "Build"
