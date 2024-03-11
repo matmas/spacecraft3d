@@ -20,6 +20,7 @@ text = "Game paused"
 [node name="Resume" parent="Body" index="1" instance=ExtResource("3_rjn8x")]
 layout_mode = 2
 text = "Resume"
+icon_visibility_condition = 3
 
 [node name="Options" type="Button" parent="Body" index="2"]
 layout_mode = 2

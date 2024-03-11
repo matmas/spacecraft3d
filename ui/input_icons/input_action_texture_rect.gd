@@ -26,6 +26,7 @@ enum VisibilityCondition {
 	ANY_USAGE,  ## Icon is shown regardless of the current input usage.
 	USING_KEYBOARD_AND_MOUSE,  ## Icon is shown when using keyboard or mouse only.
 	USING_JOYPAD,  ## Icon is shown when using joypad only.
+	NEVER,  ## Icon is never shown.
 }
 @export var visibility_condition := VisibilityCondition.ANY_USAGE:
 	set(value):
@@ -62,7 +63,8 @@ func _get_input_event_for_display() -> InputEvent:
 	if visibility_condition == VisibilityCondition.USING_KEYBOARD_AND_MOUSE \
 			and InputMonitor.current_input_type != InputMonitor.InputType.KEYBOARD_AND_MOUSE \
 			or visibility_condition == VisibilityCondition.USING_JOYPAD \
-			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD:
+			and InputMonitor.current_input_type != InputMonitor.InputType.JOYPAD \
+			or visibility_condition == VisibilityCondition.NEVER:
 		return null
 
 	for event in _inputmap_get_events(action_name):
