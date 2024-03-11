@@ -3,10 +3,16 @@ class_name Scene
 
 
 func _ready() -> void:
-	refresh()
+	_refresh()
+	SceneManagement.current_scene_changed.connect(_on_current_scene_changed)
 
 
-func refresh() -> void:
+func _on_current_scene_changed(scene_instance: Node) -> void:
+	if scene_instance == self:
+		_refresh()
+
+
+func _refresh() -> void:
 	if should_focus_first_visible_button():
 		Utils.grab_focus_first_visible_button(self)
 	EmulateMouseFromTouch.enabled = should_emulate_mouse_from_touch()

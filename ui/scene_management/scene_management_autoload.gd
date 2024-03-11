@@ -1,5 +1,7 @@
 extends Node
 
+signal current_scene_changed(scene_instance)
+
 var _scene_stack := []
 var _original_shortcuts := {}
 
@@ -14,7 +16,7 @@ func open_scene(scene: PackedScene) -> Node:
 	_scene_stack.push_front(scene_instance)
 
 	get_tree().root.add_child(scene_instance)
-	scene_instance.refresh()
+	current_scene_changed.emit(scene_instance)
 	scene_instance.tree_exiting.connect(func(): _on_tree_exiting(scene_instance))
 	return scene_instance
 
@@ -51,7 +53,7 @@ func _on_tree_exiting(scene_instance: Node) -> void:
 		printerr("current_scene() != scene_instance")
 	_scene_stack.pop_front()
 	current_scene().show()
-	current_scene().refresh()
+	current_scene_changed.emit(current_scene())
 	_restore_shortcuts_recursively(current_scene())
 
 
