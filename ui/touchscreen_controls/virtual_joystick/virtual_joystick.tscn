@@ -25,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bqojw")
 shape = SubResource("CircleShape2D_kggmo")
+show_without_touching = false
 
 [node name="Base" type="Control" parent="."]
 custom_minimum_size = Vector2(300, 300)

@@ -33,6 +33,8 @@ enum VisibilityCondition {
 }
 @export var visibility_condition := VisibilityCondition.TOUCHSCREEN_ONLY
 
+@export var show_without_touching := true
+
 ## Triggers Input.is_action_pressed(), Input.is_action_just_pressed(), Input.get_axis(), Input.get_vector(), etc.
 @export var trigger_action_presses := true
 
@@ -45,9 +47,11 @@ var _original_base_position: Vector2
 
 
 func _ready() -> void:
-	match visibility_condition:
-		VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available() and not Engine.is_editor_hint():
-			hide()
+	if not Engine.is_editor_hint():
+		match visibility_condition:
+			VisibilityCondition.TOUCHSCREEN_ONLY when not DisplayServer.is_touchscreen_available():
+				hide()
+		_update_base_visibility()
 
 
 func _draw() -> void:
@@ -101,6 +105,7 @@ func _input(event: InputEvent) -> void:
 					_reset_base_position()
 					_update_tip_position_and_trigger_input(current_value)
 					get_viewport().set_input_as_handled()
+			_update_base_visibility()
 		"InputEventScreenDrag":
 			if current_index != -1:
 				var vector := (event_position - base.get_global_rect().get_center()) / shape.radius
@@ -134,6 +139,10 @@ func _set_base_position(new_center: Vector2) -> void:
 
 func _reset_base_position() -> void:
 	base.global_position = _original_base_position
+
+
+func _update_base_visibility() -> void:
+	base.visible = current_index != -1 or show_without_touching
 
 
 func _trigger_input_from_vector(vector: Vector2) -> void:
