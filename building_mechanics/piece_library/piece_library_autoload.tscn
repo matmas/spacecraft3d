@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://b786dks5oq5tw"]
+
+[ext_resource type="Script" path="res://building_mechanics/piece_library/piece_library_autoload.gd" id="1_urft5"]
+[ext_resource type="PackedScene" uid="uid://dt6anlgriwrxp" path="res://building_mechanics/piece_library/pieces/block.tscn" id="2_vn2kt"]
+[ext_resource type="PackedScene" uid="uid://b3nv8vb62xwr3" path="res://building_mechanics/piece_library/pieces/halfblock.tscn" id="3_65o2x"]
+
+[node name="PieceLibraryAutoload" type="Node"]
+script = ExtResource("1_urft5")
+piece_scenes = Array[PackedScene]([ExtResource("2_vn2kt"), ExtResource("3_65o2x")])

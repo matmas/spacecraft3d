@@ -1,9 +1,5 @@
 extends Node3D
 
-var block_scenes: Array[PackedScene] = [
-	preload("pieces/halfblock.tscn"),
-	preload("pieces/block.tscn"),
-]
 @onready var camera := get_viewport().get_camera_3d()
 @onready var ray_cast := $RayCast as RayCast3D
 
@@ -16,7 +12,7 @@ func _ready() -> void:
 
 
 func prepare_block() -> void:
-	block_instance = block_scenes[0].instantiate() as Block
+	block_instance = PieceLibrary.piece_scenes[1].instantiate() as Block
 	block_instance.hide()  # correct position is set later in _process()
 	add_child(block_instance)
 

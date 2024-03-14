@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 
@@ -18,6 +19,32 @@ func remove_all_children(node: Node) -> void:
 	for child in node.get_children():
 		node.remove_child(child)
 		child.queue_free()
+
+
+func calculate_spatial_bounds(parent: Node3D, include_top_level_transform: bool = false) -> AABB:
+	# Similar to Node3DEditorViewport::_calculate_spatial_bounds from Godot Engine
+	var bounds: AABB
+
+	var visual_instance := parent as VisualInstance3D
+	if visual_instance:
+		bounds = visual_instance.get_aabb()
+
+	for child in parent.get_children():
+		if child is Node3D:
+			var child_bounds := calculate_spatial_bounds(child, true)
+
+			if bounds.size == Vector3() and parent:
+				bounds = child_bounds
+			else:
+				bounds.merge(child_bounds)
+
+	if not bounds.size and not parent:
+		bounds = AABB(Vector3(-0.2, -0.2, -0.2), Vector3(0.4, 0.4, 0.4));
+
+	if include_top_level_transform:
+		bounds = parent.transform * bounds
+
+	return bounds
 
 
 func error_message(error: Error) -> String:

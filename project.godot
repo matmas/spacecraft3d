@@ -25,6 +25,7 @@ Utils="*res://utils/utils_autoload.gd"
 InputMonitor="*res://ui/input_icons/input_monitor_autoload.gd"
 EmulateMouseFromTouch="*res://ui/emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
 SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
+PieceLibrary="*res://building_mechanics/piece_library/piece_library_autoload.tscn"
 
 [display]
 
