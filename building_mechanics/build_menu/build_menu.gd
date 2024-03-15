@@ -7,7 +7,7 @@ const SCENE_VIEWER_SCENE = preload("scene_viewer/scene_viewer.tscn")
 
 
 func _ready() -> void:
-	for scene in PieceLibrary.piece_scenes:
+	for scene in BuildLibrary.pieces:
 		var scene_viewer := SCENE_VIEWER_SCENE.instantiate()
 		scene_viewer.scene = scene
 		flow_container.add_child(scene_viewer)
