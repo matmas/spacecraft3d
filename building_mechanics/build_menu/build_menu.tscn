@@ -1,17 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmsoxac68w1q8"]
+[gd_scene load_steps=4 format=3 uid="uid://dmsoxac68w1q8"]
 
 [ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_b8xn3"]
 [ext_resource type="Script" path="res://building_mechanics/build_menu/build_menu.gd" id="2_2slw5"]
-[ext_resource type="PackedScene" uid="uid://hy3jlvfray5m" path="res://building_mechanics/build_menu/scene_viewer.tscn" id="3_3e7tt"]
 [ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_583fe"]
-[ext_resource type="PackedScene" uid="uid://dt6anlgriwrxp" path="res://building_mechanics/piece_library/pieces/block.tscn" id="4_xim56"]
-[ext_resource type="PackedScene" uid="uid://b3nv8vb62xwr3" path="res://building_mechanics/piece_library/pieces/halfblock.tscn" id="5_cld8v"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_u2ryn"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_dnfcr"]
-viewport_path = NodePath("SubViewport")
 
 [node name="BuildMenu" instance=ExtResource("1_b8xn3")]
 script = ExtResource("2_2slw5")
@@ -21,19 +12,9 @@ close_scene_action = &"build_menu"
 text = "Build"
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Body" index="1"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="SceneViewer" parent="Body/HFlowContainer" index="0" instance=ExtResource("3_3e7tt")]
-layout_mode = 2
-texture = SubResource("ViewportTexture_u2ryn")
-scene = ExtResource("4_xim56")
-
-[node name="SceneViewer2" parent="Body/HFlowContainer" index="1" instance=ExtResource("3_3e7tt")]
-auto_translate_mode = 1
-layout_mode = 2
-texture = SubResource("ViewportTexture_dnfcr")
-scene = ExtResource("5_cld8v")
 
 [node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_583fe")]
 layout_mode = 2

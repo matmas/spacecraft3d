@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name SceneViewer
 
 @export var scene: PackedScene:
 	set(value):

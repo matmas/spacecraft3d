@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hy3jlvfray5m"]
 
-[ext_resource type="Script" path="res://building_mechanics/build_menu/scene_viewer.gd" id="1_1jslo"]
+[ext_resource type="Script" path="res://building_mechanics/build_menu/scene_viewer/scene_viewer.gd" id="1_1jslo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6j8ph"]
 viewport_path = NodePath("SubViewport")
