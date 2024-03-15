@@ -19,9 +19,16 @@ extends Control
 		if is_inside_tree():
 			_refresh()
 
+@export var directional_light_rotation_degrees := Vector3(-18, 2, 0):
+	set(value):
+		directional_light_rotation_degrees = value
+		if is_inside_tree():
+			_refresh()
+
 @onready var sub_viewport := $SubViewport as SubViewport
 @onready var scene_root := $SubViewport/SceneRoot as Node3D
 @onready var camera := $SubViewport/Camera as Camera3D
+@onready var directional_light := $SubViewport/DirectionalLight3D as DirectionalLight3D
 
 
 func _ready() -> void:
@@ -33,14 +40,18 @@ func _refresh() -> void:
 	if scene:
 		var scene_instance := scene.instantiate()
 		scene_root.add_child(scene_instance)
-	_update_camera()
+	_update_camera_and_light()
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 
-func _update_camera() -> void:
+func _update_camera_and_light() -> void:
 	camera.rotation_degrees = camera_rotation_degrees
 	camera.fov = camera_fov
+	directional_light.rotation_degrees = directional_light_rotation_degrees
+	_update_camera_position()
 
+
+func _update_camera_position() -> void:
 	var aabb := Utils.calculate_spatial_bounds(scene_root)
 	var endpoints: Array[Vector3] = []
 	for endpoint_idx in range(8):
@@ -71,5 +82,6 @@ func _notification(what: int) -> void:
 		NOTIFICATION_EDITOR_PRE_SAVE:
 			camera.transform = Transform3D.IDENTITY
 			camera.fov = 75
+			directional_light.rotation = Vector3()
 		NOTIFICATION_EDITOR_POST_SAVE:
-			_update_camera()
+			_update_camera_and_light()
