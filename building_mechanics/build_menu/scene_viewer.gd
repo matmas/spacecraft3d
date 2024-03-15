@@ -4,11 +4,24 @@ extends Control
 @export var scene: PackedScene:
 	set(value):
 		scene = value
-		_refresh()
+		if is_inside_tree():
+			_refresh()
 
-@onready var sub_viewport: SubViewport = $SubViewport
-@onready var scene_root = $SubViewport/SceneRoot
-@onready var camera_3d := $SubViewport/Camera as Camera3D
+@export var camera_rotation_degrees := Vector3(-25, 30, 0):
+	set(value):
+		camera_rotation_degrees = value
+		if is_inside_tree():
+			_refresh()
+
+@export var camera_fov := 40.0:
+	set(value):
+		camera_fov = value
+		if is_inside_tree():
+			_refresh()
+
+@onready var sub_viewport := $SubViewport as SubViewport
+@onready var scene_root := $SubViewport/SceneRoot as Node3D
+@onready var camera := $SubViewport/Camera as Camera3D
 
 
 func _ready() -> void:
@@ -16,42 +29,47 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	if scene_root:
-		Utils.remove_all_children(scene_root)
-		if scene:
-			var scene_instance := scene.instantiate()
-			scene_root.add_child(scene_instance)
-	if camera_3d:
-		camera_3d.transform = _calculate_camera_transform()
-	if sub_viewport:
-		sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	Utils.remove_all_children(scene_root)
+	if scene:
+		var scene_instance := scene.instantiate()
+		scene_root.add_child(scene_instance)
+	_update_camera()
+	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 
-func _calculate_camera_transform() -> Transform3D:
+func _update_camera() -> void:
+	camera.rotation_degrees = camera_rotation_degrees
+	camera.fov = camera_fov
+
 	var aabb := Utils.calculate_spatial_bounds(scene_root)
-	var bounding_sphere_radius := aabb.size.length() * 0.5
-	var camera_distance := bounding_sphere_radius / sin(deg_to_rad(camera_3d.fov * 0.5))
-	var transform := Transform3D.IDENTITY
-	transform = transform.translated_local(aabb.get_center())
-	transform = transform.rotated_local(Vector3.UP, PI / 6)
-	transform = transform.rotated_local(Vector3.RIGHT, -PI / 7)
-	transform = transform.translated_local(Vector3.BACK * camera_distance)
+	var endpoints: Array[Vector3] = []
+	for endpoint_idx in range(8):
+		endpoints.push_back(aabb.get_endpoint(endpoint_idx))
 
-	#var rect := Rect2()
-	#for index in range(8):
-		#var endpoint := aabb.get_endpoint(index)
-		#var point_2d := camera_3d.unproject_position(endpoint)
-		#if index == 0:
-			#rect.position = point_2d
-		#else:
-			#rect = rect.expand(point_2d)
+	var planes := camera.get_frustum().slice(2) as Array[Plane]  # [left, top, right, bottom]
+	var new_planes: Array[Plane] = []
+	for plane in planes:
+		new_planes.push_back(Plane(plane.normal, endpoints.reduce(
+			func(closest: Vector3, endpoint: Vector3):
+				return endpoint if plane.distance_to(endpoint) > plane.distance_to(closest) else closest,
+			endpoints[0]
+		)))
+	var horizontal_intersection := Utils.get_planes_intersection(new_planes[0], new_planes[2])
+	var vertical_intersection := Utils.get_planes_intersection(new_planes[1], new_planes[3])
 
-	return transform
+	if horizontal_intersection and vertical_intersection:
+		var closest_points := Utils.closest_points_on_two_lines(
+			horizontal_intersection[0], horizontal_intersection[1],
+			vertical_intersection[0], vertical_intersection[1],
+		)
+		if closest_points:
+			camera.global_position = closest_points[0] if (closest_points[0] - closest_points[1]).dot(-camera.basis.z) < 0.0 else closest_points[1]
 
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_EDITOR_PRE_SAVE:
-			camera_3d.transform = Transform3D.IDENTITY
+			camera.transform = Transform3D.IDENTITY
+			camera.fov = 75
 		NOTIFICATION_EDITOR_POST_SAVE:
-			camera_3d.transform = _calculate_camera_transform()
+			_update_camera()
