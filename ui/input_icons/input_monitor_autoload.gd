@@ -4,6 +4,7 @@ extends Node
 signal input_type_changed(input_type)
 
 ## Emit this signal to refresh InputActionTextureRect and InputActionButton instances
+@warning_ignore("unused_signal")
 signal input_map_changed
 
 const MOUSE_MIN_MOVEMENT = 100
