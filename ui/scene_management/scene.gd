@@ -16,7 +16,7 @@ func _on_current_scene_changed(scene_instance: Node) -> void:
 
 func _refresh() -> void:
 	if should_focus_first_visible_button():
-		Utils.grab_focus_first_visible_button(self)
+		_grab_focus_first_visible_button(self)
 	EmulateMouseFromTouch.enabled = should_emulate_mouse_from_touch()
 	get_tree().paused = should_pause_game()
 	if should_hide_mouse_cursor():
@@ -60,3 +60,16 @@ func _process(_delta: float) -> void:
 	for mapping in open_scene_actions:
 		if SceneManagement.current_scene() == self:
 			InputHints.is_action_just_pressed(mapping.action_name)
+
+
+func _grab_focus_first_visible_button(node: Node) -> bool:
+	if node is CanvasItem:
+		if not (node as CanvasItem).visible:
+			return false
+	if node is Button:
+		(node as Button).grab_focus()
+		return true
+	for child in node.get_children():
+		if _grab_focus_first_visible_button(child):
+			return true
+	return false
