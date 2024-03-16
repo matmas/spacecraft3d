@@ -8,21 +8,21 @@ class_name SceneViewer
 		if is_inside_tree():
 			_refresh()
 
-@export var camera_rotation_degrees := Vector3(-25, 30, 0):
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees") var camera_rotation := Vector3(-TAU / 14.4, TAU / 12, 0):
 	set(value):
-		camera_rotation_degrees = value
+		camera_rotation = value
 		if is_inside_tree():
 			_refresh()
 
-@export var camera_fov := 40.0:
+@export_range(1, 179, 0.1, "degrees") var camera_fov := 40.0:
 	set(value):
 		camera_fov = value
 		if is_inside_tree():
 			_refresh()
 
-@export var directional_light_rotation_degrees := Vector3(-18, 2, 0):
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees") var directional_light_rotation := Vector3(-TAU / 20, TAU / 180, 0):
 	set(value):
-		directional_light_rotation_degrees = value
+		directional_light_rotation = value
 		if is_inside_tree():
 			_refresh()
 
@@ -46,9 +46,9 @@ func _refresh() -> void:
 
 
 func _update_camera_and_light() -> void:
-	camera.rotation_degrees = camera_rotation_degrees
+	camera.rotation = camera_rotation
 	camera.fov = camera_fov
-	directional_light.rotation_degrees = directional_light_rotation_degrees
+	directional_light.rotation = directional_light_rotation
 	_update_camera_position()
 
 
