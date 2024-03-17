@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func prepare_block() -> void:
-	block_instance = BuildLibrary.pieces[1].scene.instantiate() as Block
+	block_instance = BuildLibrary.pieces[1].instantiate() as Block
 	block_instance.hide()  # correct position is set later in _process()
 	add_child(block_instance)
 

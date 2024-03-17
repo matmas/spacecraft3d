@@ -1,6 +1,8 @@
 extends RigidBody3D
 class_name Block
 
+@export var display_name := ""
+
 @export_flags_3d_physics var default_collision_mask = 0b11111111_11111111_11111111_11111111  # Scan all layers by default
 @export_flags_3d_physics var default_collision_layer = 0b10  # Affect light solids only by default
 
