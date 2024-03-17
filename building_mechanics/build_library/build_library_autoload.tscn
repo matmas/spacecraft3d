@@ -1,9 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://b786dks5oq5tw"]
+[gd_scene load_steps=7 format=3 uid="uid://b786dks5oq5tw"]
 
 [ext_resource type="Script" path="res://building_mechanics/build_library/build_library_autoload.gd" id="1_urft5"]
 [ext_resource type="PackedScene" uid="uid://dt6anlgriwrxp" path="res://building_mechanics/build_library/pieces/block.tscn" id="2_rya1b"]
 [ext_resource type="PackedScene" uid="uid://b3nv8vb62xwr3" path="res://building_mechanics/build_library/pieces/halfblock.tscn" id="3_wbhah"]
+[ext_resource type="Script" path="res://building_mechanics/build_library/build_piece.gd" id="3_x4tda"]
+
+[sub_resource type="Resource" id="Resource_lxpmg"]
+script = ExtResource("3_x4tda")
+scene = ExtResource("2_rya1b")
+name = "Block"
+
+[sub_resource type="Resource" id="Resource_mw1by"]
+script = ExtResource("3_x4tda")
+scene = ExtResource("3_wbhah")
+name = "Half-block"
 
 [node name="PieceLibraryAutoload" type="Node"]
 script = ExtResource("1_urft5")
-pieces = Array[PackedScene]([ExtResource("2_rya1b"), ExtResource("3_wbhah")])
+pieces = Array[ExtResource("3_x4tda")]([SubResource("Resource_lxpmg"), SubResource("Resource_mw1by")])

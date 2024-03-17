@@ -6,10 +6,10 @@ class_name BuildMenu
 
 func _ready() -> void:
 	item_list.clear()
-	for scene in BuildLibrary.pieces:
+	for piece in BuildLibrary.pieces:
 		var scene_texture := SceneTexture.new()
-		scene_texture.scene = scene
-		item_list.add_item("test", scene_texture)
+		scene_texture.scene = piece.scene
+		item_list.add_item(piece.name, scene_texture)
 	super._ready()
 
 

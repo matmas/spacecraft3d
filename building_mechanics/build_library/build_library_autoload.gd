@@ -1,3 +1,3 @@
 extends Node
 
-@export var pieces: Array[PackedScene] = []
+@export var pieces: Array[BuildPiece] = []
