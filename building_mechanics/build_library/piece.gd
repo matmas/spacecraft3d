@@ -1,5 +1,5 @@
 extends RigidBody3D
-class_name BuildPiece
+class_name Piece
 
 @export var display_name := ""
 

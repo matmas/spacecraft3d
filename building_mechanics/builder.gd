@@ -3,7 +3,7 @@ extends Node3D
 @onready var camera := get_viewport().get_camera_3d()
 @onready var ray_cast := $RayCast as RayCast3D
 
-var piece_instance: BuildPiece
+var piece: Piece
 
 
 func _ready() -> void:
@@ -12,34 +12,34 @@ func _ready() -> void:
 
 
 func prepare_block() -> void:
-	piece_instance = BuildLibrary.pieces[1].instantiate() as BuildPiece
-	piece_instance.hide()  # correct position is set later in _process()
-	add_child(piece_instance)
+	piece = BuildLibrary.pieces[1].instantiate() as Piece
+	piece.hide()  # correct position is set later in _process()
+	add_child(piece)
 
 
 func _process(_delta: float) -> void:
-	if piece_instance:
+	if piece:
 		ray_cast.force_raycast_update()
 		if ray_cast.is_colliding():
 			var point := ray_cast.get_collision_point()
 			var normal := ray_cast.get_collision_normal()
-			piece_instance.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
-			piece_instance.global_position = point + normal * 0.001
-			piece_instance.show()
-			if piece_instance.is_colliding():
-				piece_instance.set_ghost_color(Color.YELLOW)
+			piece.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
+			piece.global_position = point + normal * 0.001
+			piece.show()
+			if piece.is_colliding():
+				piece.set_ghost_color(Color.YELLOW)
 			else:
-				piece_instance.set_ghost_color(Color.GREEN)
+				piece.set_ghost_color(Color.GREEN)
 				if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
-					piece_instance.add_physics_interpolation()
-					piece_instance.set_ghost(false)
+					piece.add_physics_interpolation()
+					piece.set_ghost(false)
 					if ray_cast.get_collider() is RigidBody3D:
-						piece_instance.linear_velocity = ray_cast.get_collider().linear_velocity
+						piece.linear_velocity = ray_cast.get_collider().linear_velocity
 					prepare_block()
 		else:
-			piece_instance.global_basis = global_basis
-			piece_instance.global_position = camera.global_position - camera.global_basis.z * 3.0
-			piece_instance.set_ghost_color(Color.RED)
+			piece.global_basis = global_basis
+			piece.global_position = camera.global_position - camera.global_basis.z * 3.0
+			piece.set_ghost_color(Color.RED)
 
 
 ## Calculates Basis from y and z vectors.
