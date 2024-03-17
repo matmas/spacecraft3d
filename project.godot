@@ -260,9 +260,10 @@ pointing/emulate_mouse_from_touch=false
 
 [layer_names]
 
-3d_physics/layer_1="Heavy solids"
-3d_physics/layer_2="Light solids"
-3d_physics/layer_3="Player"
+3d_physics/layer_1="Lightweight solids"
+3d_physics/layer_2="Mediumweight solids"
+3d_physics/layer_3="Heavyweight solids"
+3d_physics/layer_5="Player"
 
 [physics]
 

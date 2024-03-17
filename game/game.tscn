@@ -86,12 +86,14 @@ shadow_enabled = true
 
 [node name="LensFlare" parent="." node_paths=PackedStringArray("directional_light") instance=ExtResource("7_k38yw")]
 directional_light = NodePath("../DirectionalLight3D")
-raycast_collision_mask = 4294967291
+raycast_collision_mask = 4294967279
 
 [node name="TouchscreenControls" parent="." instance=ExtResource("8_2lra2")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
 size = Vector3(10, 0.1, 10)
@@ -110,6 +112,8 @@ shape = SubResource("BoxShape3D_add4j")
 
 [node name="Platform" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
+collision_layer = 2
+collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_y2a1a")
 linear_velocity = Vector3(5, 0, 0)
 angular_velocity = Vector3(0.174533, 0, 0)
@@ -136,8 +140,7 @@ shape = SubResource("BoxShape3D_add4j")
 
 [node name="Box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11)
-collision_layer = 2
-collision_mask = 7
+collision_mask = 23
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_72if5")
 
