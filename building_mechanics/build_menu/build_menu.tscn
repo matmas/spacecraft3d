@@ -11,10 +11,11 @@ close_scene_action = &"build_menu"
 [node name="TitleLabel" parent="Body/Header" index="0"]
 text = "Build"
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Body" index="1"]
-unique_name_in_owner = true
+[node name="ItemList" type="ItemList" parent="Body" index="1"]
 layout_mode = 2
-size_flags_vertical = 3
+auto_height = true
+max_columns = 0
+icon_mode = 0
 
 [node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_583fe")]
 layout_mode = 2
