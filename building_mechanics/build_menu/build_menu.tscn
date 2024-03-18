@@ -19,3 +19,5 @@ icon_mode = 0
 
 [node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("3_583fe")]
 layout_mode = 2
+
+[connection signal="item_selected" from="Body/ItemList" to="." method="_on_item_list_item_selected"]

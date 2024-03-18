@@ -40,6 +40,7 @@ movie_writer/movie_file="export/movie.avi"
 [file_customization]
 
 folder_colors={
+"res://building_mechanics/build_menu/": "green",
 "res://game/": "red",
 "res://player/": "red",
 "res://ui/menus/": "green"

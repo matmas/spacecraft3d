@@ -10,7 +10,10 @@ func _ready() -> void:
 		var scene_texture := SceneTexture.new()
 		scene_texture.scene = piece
 		var display_name := _get_property_value(piece.get_state(), &"display_name") as String
-		item_list.add_item(display_name, scene_texture)
+		var index := item_list.add_item(display_name, scene_texture)
+
+		if piece == BuildLibrary.selected_piece:
+			item_list.select(index)
 	super._ready()
 
 
@@ -23,3 +26,7 @@ func _get_property_value(state: SceneState, property_name: StringName, node_idx:
 		if state.get_node_property_name(node_idx, property_idx) == property_name:
 			return state.get_node_property_value(node_idx, property_idx)
 	return null
+
+
+func _on_item_list_item_selected(index: int) -> void:
+	BuildLibrary.selected_piece = BuildLibrary.pieces[index]
