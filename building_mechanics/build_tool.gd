@@ -65,7 +65,7 @@ func _process(_delta: float) -> void:
 					var spawned_piece := BuildLibrary.selected_piece.instantiate() as Piece
 					add_child(spawned_piece)
 					spawned_piece.global_transform = _piece.global_transform
-					PhysicsInterpolation.apply(spawned_piece, spawned_piece.get_node("Mesh") as MeshInstance3D)
+					PhysicsInterpolation.apply(spawned_piece)
 
 					if _raycast.get_collider() is RigidBody3D:
 						spawned_piece.linear_velocity = _raycast.get_collider().linear_velocity
