@@ -4,8 +4,9 @@ class_name BuildTool
 @export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
 
 var _raycast: RayCast3D
-
-var piece: Piece
+var _piece: Piece
+var _collision_shape: CollisionShape3D
+var _ghost_material := preload("ghost_shader_material.tres")
 
 
 func _ready() -> void:
@@ -18,49 +19,60 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	var selected_piece := BuildLibrary.selected_piece
-	if piece:
-		remove_child(piece)
-		piece.queue_free()
+	if _piece:
+		remove_child(_piece)
+		_piece.queue_free()
+		_piece = null
+		_collision_shape = null
 
+	var selected_piece := BuildLibrary.selected_piece
 	if selected_piece:
-		piece = selected_piece.instantiate()
-		piece.hide()  # correct position is set later in _process()
-		add_child(piece)
+		_piece = selected_piece.instantiate() as Piece
+		_piece.freeze = true
+		_piece.collision_layer = 0
+		_piece.collision_mask = 0
+		_collision_shape = _piece.get_node("CollisionShape") as CollisionShape3D
+		var piece_mesh := _piece.get_node("Mesh") as MeshInstance3D
+		piece_mesh.material_override = _ghost_material
+		_piece.hide()  # correct position is set later in _process()
+		add_child(_piece)
 
 
 func _process(_delta: float) -> void:
-	if piece:
+	if _piece:
 		var camera := get_viewport().get_camera_3d()
-
-		#var params := PhysicsRayQueryParameters3D.new()
-		#params.from = camera.global_position
-		#params.to = -camera.global_basis.z * 100.0
-		#params.collision_mask = raycast_collision_mask
-		#var result := get_world_3d().direct_space_state.intersect_ray(params)
-
 		_raycast.force_raycast_update()
 		if _raycast.is_colliding():
 			var point := _raycast.get_collision_point()
 			var normal := _raycast.get_collision_normal()
-			piece.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
-			piece.global_position = point + normal * 0.001
-			piece.show()
-			if piece.is_colliding():
-				piece.set_ghost_color(Color.YELLOW)
+			_piece.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
+			_piece.global_position = point + normal * 0.001
+			_piece.show()
+
+			var params := PhysicsShapeQueryParameters3D.new()
+			params.shape = _collision_shape.shape
+			params.transform = _collision_shape.global_transform
+			params.exclude = [self]
+			params.margin = -0.05  # Ignore touching objects
+			var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
+
+			if contact_points:
+				_ghost_material.set_shader_parameter(&"color", Color.YELLOW)
 			else:
-				piece.set_ghost_color(Color.GREEN)
+				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 				if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
-					piece.add_physics_interpolation()
-					piece.set_ghost(false)
+
+					var spawned_piece := BuildLibrary.selected_piece.instantiate() as Piece
+					add_child(spawned_piece)
+					spawned_piece.global_transform = _piece.global_transform
+					_add_physics_interpolation(spawned_piece, spawned_piece.get_node("Mesh") as MeshInstance3D)
+
 					if _raycast.get_collider() is RigidBody3D:
-						piece.linear_velocity = _raycast.get_collider().linear_velocity
-					piece = null
-					_refresh()
+						spawned_piece.linear_velocity = _raycast.get_collider().linear_velocity
 		else:
-			piece.global_basis = global_basis
-			piece.global_position = camera.global_position - camera.global_basis.z * 3.0
-			piece.set_ghost_color(Color.RED)
+			_piece.global_basis = global_basis
+			_piece.global_position = camera.global_position - camera.global_basis.z * 3.0
+			_ghost_material.set_shader_parameter(&"color", Color.RED)
 
 
 ## Calculates Basis from y and z vectors.
@@ -78,3 +90,10 @@ func _basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Basis:
 			alternative_z,
 		).orthonormalized()
 	return b
+
+
+func _add_physics_interpolation(node: Node3D, mesh_instance: MeshInstance3D) -> void:
+	var physics_interpolation := PhysicsInterpolation.new()
+	physics_interpolation.name = &"PhysicsInterpolation"
+	node.add_child(physics_interpolation)
+	mesh_instance.reparent(physics_interpolation)
