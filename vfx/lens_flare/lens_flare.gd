@@ -6,7 +6,7 @@ class_name LensFlare
 	set(value):
 		directional_light = value
 		update_configuration_warnings()
-@export_flags_3d_physics var raycast_collision_mask = 0b11111111_11111111_11111111_11111111
+@export_flags_3d_physics var raycast_collision_mask = 0b00000000_00000000_00000000_11111111
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var shader_material := texture_rect.material as ShaderMaterial
