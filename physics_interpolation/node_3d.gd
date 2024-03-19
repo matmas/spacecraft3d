@@ -26,3 +26,10 @@ func _process(_delta: float) -> void:
 	global_transform = target.global_transform
 	var f := Engine.get_physics_interpolation_fraction()
 	global_transform = previous_global_transform.interpolate_with(current_global_transform, f)
+
+
+static func apply(node: Node3D, mesh_instance: MeshInstance3D) -> void:
+	var physics_interpolation := PhysicsInterpolation.new()
+	physics_interpolation.name = &"PhysicsInterpolation"
+	node.add_child(physics_interpolation)
+	mesh_instance.reparent(physics_interpolation)

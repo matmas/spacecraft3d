@@ -65,7 +65,7 @@ func _process(_delta: float) -> void:
 					var spawned_piece := BuildLibrary.selected_piece.instantiate() as Piece
 					add_child(spawned_piece)
 					spawned_piece.global_transform = _piece.global_transform
-					_add_physics_interpolation(spawned_piece, spawned_piece.get_node("Mesh") as MeshInstance3D)
+					PhysicsInterpolation.apply(spawned_piece, spawned_piece.get_node("Mesh") as MeshInstance3D)
 
 					if _raycast.get_collider() is RigidBody3D:
 						spawned_piece.linear_velocity = _raycast.get_collider().linear_velocity
@@ -90,10 +90,3 @@ func _basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Basis:
 			alternative_z,
 		).orthonormalized()
 	return b
-
-
-func _add_physics_interpolation(node: Node3D, mesh_instance: MeshInstance3D) -> void:
-	var physics_interpolation := PhysicsInterpolation.new()
-	physics_interpolation.name = &"PhysicsInterpolation"
-	node.add_child(physics_interpolation)
-	mesh_instance.reparent(physics_interpolation)
