@@ -1,6 +1,8 @@
 extends Node3D
 class_name PhysicsInterpolation
 
+@export var enabled := true
+
 @onready var target := get_parent() as Node3D  # assumes parent movement is controlled by physics
 
 var previous_global_transform := Transform3D()
@@ -23,9 +25,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	global_transform = target.global_transform
-	var f := Engine.get_physics_interpolation_fraction()
-	global_transform = previous_global_transform.interpolate_with(current_global_transform, f)
+	if enabled:
+		var f := Engine.get_physics_interpolation_fraction()
+		global_transform = previous_global_transform.interpolate_with(current_global_transform, f)
+	else:
+		global_transform = target.global_transform
 
 
 ## Make sure to apply any desired transform to the node before calling this function

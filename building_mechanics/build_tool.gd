@@ -3,14 +3,13 @@ class_name BuildTool
 
 @export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
 
-var _raycast: RayCast3D
+var _raycast := RayCast3D.new()
 var _piece: Piece
 var _collision_shape: CollisionShape3D
 var _ghost_material := preload("ghost_shader_material.tres")
 
 
 func _ready() -> void:
-	_raycast = RayCast3D.new()
 	_raycast.collision_mask = raycast_collision_mask
 	_raycast.target_position = Vector3.FORWARD * 100.0
 	get_viewport().get_camera_3d().add_child(_raycast)
