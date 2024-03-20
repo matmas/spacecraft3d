@@ -36,7 +36,6 @@ func _refresh() -> void:
 		piece_mesh.material_override = _ghost_material
 		_piece.hide()  # correct position is set later in _process()
 		add_child(_piece)
-		PhysicsInterpolation.apply(_piece)
 
 
 func _physics_process(_delta: float) -> void:
@@ -47,7 +46,9 @@ func _physics_process(_delta: float) -> void:
 			var normal := _raycast.get_collision_normal()
 			_piece.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
 			_piece.global_position = point + normal * 0.001
-			_piece.show()
+			if not _piece.visible:
+				_piece.show()
+				PhysicsInterpolation.apply(_piece)
 
 			var params := PhysicsShapeQueryParameters3D.new()
 			params.shape = _collision_shape.shape

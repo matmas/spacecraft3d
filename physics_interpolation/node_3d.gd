@@ -33,7 +33,7 @@ func _process(_delta: float) -> void:
 
 
 ## Make sure to apply any desired transform to the node before calling this function
-## to prevent it being visible in the old transform for a brief moment
+## to prevent it being visible in the old transform for a brief moment between physics frames
 ## node must be in the scene tree before calling this function
 static func apply(node: Node3D) -> void:
 	var physics_interpolation := PhysicsInterpolation.new()
