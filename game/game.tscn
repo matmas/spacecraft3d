@@ -77,8 +77,6 @@ shadow_enabled = true
 [node name="MotionParticles" parent="." instance=ExtResource("2_apmyu")]
 
 [node name="Player" parent="." instance=ExtResource("5_u4j58")]
-collision_layer = 256
-collision_mask = 255
 
 [node name="BuildTool" type="Node3D" parent="Player"]
 script = ExtResource("8_eo3d3")
@@ -115,7 +113,7 @@ shape = SubResource("BoxShape3D_add4j")
 [node name="Platform" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 254
 physics_material_override = SubResource("PhysicsMaterial_y2a1a")
 linear_velocity = Vector3(5, 0, 0)
 angular_velocity = Vector3(0.174533, 0, 0)
