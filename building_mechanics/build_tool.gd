@@ -12,7 +12,8 @@ var _ghost_material := preload("ghost_shader_material.tres")
 func _ready() -> void:
 	_raycast.collision_mask = raycast_collision_mask
 	_raycast.target_position = Vector3.FORWARD * 100.0
-	get_viewport().get_camera_3d().add_child(_raycast)
+	var camera := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+	camera.add_child(_raycast)
 	_refresh()
 	BuildLibrary.selection_changed.connect(_refresh)
 
@@ -35,12 +36,12 @@ func _refresh() -> void:
 		piece_mesh.material_override = _ghost_material
 		_piece.hide()  # correct position is set later in _process()
 		add_child(_piece)
+		PhysicsInterpolation.apply(_piece)
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _piece:
-		var camera := get_viewport().get_camera_3d()
-		_raycast.force_raycast_update()
+		var camera := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 		if _raycast.is_colliding():
 			var point := _raycast.get_collision_point()
 			var normal := _raycast.get_collision_normal()
