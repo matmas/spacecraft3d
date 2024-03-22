@@ -5,7 +5,6 @@ class_name Player
 @onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
 @onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
 @onready var head := $Head as Node3D
-@onready var camera := get_viewport().get_camera_3d()
 
 const WALK_SPEED = 2.5
 const SPRINT_SPEED = 6.0

@@ -12,8 +12,8 @@ var _ghost_material := preload("ghost_shader_material.tres")
 func _ready() -> void:
 	_raycast.collision_mask = raycast_collision_mask
 	_raycast.target_position = Vector3.FORWARD * 100.0
-	var camera := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
-	camera.add_child(_raycast)
+	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+	camera_parent.add_child(_raycast)
 	_refresh()
 	BuildLibrary.selection_changed.connect(_refresh)
 
@@ -40,7 +40,7 @@ func _refresh() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _piece:
-		var camera := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+		var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 		if _raycast.is_colliding():
 			var point := _raycast.get_collision_point()
 			var normal := _raycast.get_collision_normal()
@@ -72,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 						spawned_piece.linear_velocity = _raycast.get_collider().linear_velocity
 		else:
 			_piece.global_basis = global_basis
-			_piece.global_position = camera.global_position - camera.global_basis.z * 3.0
+			_piece.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 			_ghost_material.set_shader_parameter(&"color", Color.RED)
 
 
