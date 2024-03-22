@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3nv8vb62xwr3"]
 
-[ext_resource type="Script" path="res://building_mechanics/build_library/piece.gd" id="1_2hc5f"]
+[ext_resource type="Script" path="res://building_mechanics/build_library/block.gd" id="1_2hc5f"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="2_6revt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkyas"]
