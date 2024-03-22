@@ -4,8 +4,8 @@ class_name BuildTool
 @export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
 
 var _raycast := RayCast3D.new()
-var _block: Block
-var _collision_shape: CollisionShape3D
+var _ghost_block: Block
+var _ghost_block_collision_shape: CollisionShape3D
 var _ghost_material := preload("ghost_shader_material.tres")
 
 
@@ -19,45 +19,45 @@ func _ready() -> void:
 
 
 func _refresh() -> void:
-	if _block:
-		remove_child(_block)
-		_block.queue_free()
-		_block = null
-		_collision_shape = null
+	if _ghost_block:
+		remove_child(_ghost_block)
+		_ghost_block.queue_free()
+		_ghost_block = null
+		_ghost_block_collision_shape = null
 
 	var selected_block := BlockLibrary.selected_block
 	if selected_block:
-		_block = selected_block.instantiate() as Block
-		_block.freeze = true
-		_block.collision_layer = 0
-		_block.collision_mask = 0
-		_collision_shape = _block.get_node("CollisionShape") as CollisionShape3D
-		var block_mesh := _block.get_node("Mesh") as MeshInstance3D
+		_ghost_block = selected_block.instantiate() as Block
+		_ghost_block.freeze = true
+		_ghost_block.collision_layer = 0
+		_ghost_block.collision_mask = 0
+		_ghost_block_collision_shape = _ghost_block.get_node("CollisionShape") as CollisionShape3D
+		var block_mesh := _ghost_block.get_node("Mesh") as MeshInstance3D
 		block_mesh.material_override = _ghost_material
-		_block.hide()  # correct position is set later in _process()
-		add_child(_block)
+		_ghost_block.hide()  # correct position is set later in _process()
+		add_child(_ghost_block)
 
 
 func _physics_process(_delta: float) -> void:
-	if _block:
+	if _ghost_block:
 		var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 		if _raycast.is_colliding():
 			var point := _raycast.get_collision_point()
 			var normal := _raycast.get_collision_normal()
-			_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
-			_block.global_position = point + normal * 0.001
-			if not _block.visible:
-				_block.show()
-				PhysicsInterpolation.apply(_block)
+			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
+			_ghost_block.global_position = point + normal * 0.001
+			if not _ghost_block.visible:
+				_ghost_block.show()
+				PhysicsInterpolation.apply(_ghost_block)
 
-			if _is_collision_shape_colliding(_collision_shape):
+			if _is_collision_shape_colliding(_ghost_block_collision_shape):
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 				_allow_block_placement(_raycast.get_collider())
 		else:
-			_block.global_basis = global_basis
-			_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
+			_ghost_block.global_basis = global_basis
+			_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 			_allow_block_placement(get_parent())
 
@@ -66,7 +66,7 @@ func _allow_block_placement(node_with_velocity: Node = null) -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
-		spawned_block.global_transform = _block.global_transform
+		spawned_block.global_transform = _ghost_block.global_transform
 		PhysicsInterpolation.apply(spawned_block)
 
 		if node_with_velocity is RigidBody3D:
