@@ -50,14 +50,7 @@ func _physics_process(_delta: float) -> void:
 				_piece.show()
 				PhysicsInterpolation.apply(_piece)
 
-			var params := PhysicsShapeQueryParameters3D.new()
-			params.shape = _collision_shape.shape
-			params.transform = _collision_shape.global_transform
-			params.exclude = [self]
-			params.margin = -0.05  # Ignore touching objects
-			var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
-
-			if contact_points:
+			if _is_collision_shape_colliding(_collision_shape):
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
@@ -78,6 +71,15 @@ func _allow_block_placement(node_with_velocity: Node = null) -> void:
 
 		if node_with_velocity is RigidBody3D:
 			spawned_piece.linear_velocity = node_with_velocity.linear_velocity
+
+
+func _is_collision_shape_colliding(collision_shape: CollisionShape3D, margin: float = -0.05) -> bool:
+	var params := PhysicsShapeQueryParameters3D.new()
+	params.shape = collision_shape.shape
+	params.transform = collision_shape.global_transform
+	params.margin = margin  # Ignore touching objects
+	var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
+	return contact_points.size() != 0
 
 
 ## Calculates Basis from y and z vectors.
