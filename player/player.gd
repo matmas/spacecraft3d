@@ -3,6 +3,7 @@ class_name Player
 
 @onready var upright_collision_shape := $UprightCollisionShape as CollisionShape3D
 @onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
+@onready var ball_collision_shape: CollisionShape3D = $BallCollisionShape
 @onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
 @onready var head := $Head as Node3D
 
@@ -13,6 +14,7 @@ const JUMP_SPEED = 4.5
 const ALIGN_SPEED = 2.0
 const UPRIGHT_HEAD_POSITION_Y = 1.2
 const CROUCHED_HEAD_POSITION_Y = 0.4
+const BALL_HEAD_POSITION_Y = 0.2
 const HEAD_ROTATION_TRANSFER_SPEED = 1.0
 const HEAD_POSITION_ANIMATION_SPEED = 5.0
 
@@ -34,7 +36,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if total_gravity:
 		var floor_info := _get_floor_info()
 		if floor_info:
-			_set_crouched(InputHints.is_action_pressed(&"crouch"))
+			if InputHints.is_action_pressed(&"crouch"):
+				_set_collision_shape(crouched_collision_shape)
+			else:
+				_set_collision_shape(upright_collision_shape)
 			var move_direction := InputHints.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
 			var upward_speed := JUMP_SPEED if InputHints.is_action_pressed(&"jump") else 0.0
 			var horizontal_speed := (
@@ -50,7 +55,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		head.rotation.x -= head_rotation_transfer_diff
 		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, head_rotation_transfer_diff).basis
 
-		_set_crouched(false)
+		_set_collision_shape(upright_collision_shape)
 		var linear_acceleration_direction := Vector3(
 			InputHints.get_axis(&"move_left", &"move_right"),
 			InputHints.get_axis(&"move_down", &"move_up"),
@@ -97,17 +102,37 @@ func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 		var delta := get_physics_process_delta_time()
 		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, ALIGN_SPEED * delta)).orthonormalized()
 		if upright_vector.dot(state.transform.basis.y) < 0.0:
-			_set_crouched(true)
+			_set_collision_shape(ball_collision_shape)
 
 
-func _set_crouched(crouched: bool) -> void:
-	if not crouched and not _can_stand_up():
-		return
-	if upright_collision_shape.disabled != crouched:
-		upright_collision_shape.set_deferred(&"disabled", crouched)
-	if crouched_collision_shape.disabled != not crouched:
-		crouched_collision_shape.set_deferred(&"disabled", not crouched)
-	target_head_position_y = UPRIGHT_HEAD_POSITION_Y if not crouched else CROUCHED_HEAD_POSITION_Y
+func _set_collision_shape(collision_shape: CollisionShape3D) -> void:
+	match collision_shape:
+		upright_collision_shape:
+			if not _can_stand_up():
+				return
+			if upright_collision_shape.disabled:
+				upright_collision_shape.set_deferred(&"disabled", false)
+			if not crouched_collision_shape.disabled:
+				crouched_collision_shape.set_deferred(&"disabled", true)
+			if not ball_collision_shape.disabled:
+				ball_collision_shape.set_deferred(&"disabled", true)
+			target_head_position_y = UPRIGHT_HEAD_POSITION_Y
+		crouched_collision_shape:
+			if not upright_collision_shape.disabled:
+				upright_collision_shape.set_deferred(&"disabled", true)
+			if crouched_collision_shape.disabled:
+				crouched_collision_shape.set_deferred(&"disabled", false)
+			if not ball_collision_shape.disabled:
+				ball_collision_shape.set_deferred(&"disabled", true)
+			target_head_position_y = CROUCHED_HEAD_POSITION_Y
+		ball_collision_shape:
+			if not upright_collision_shape.disabled:
+				upright_collision_shape.set_deferred(&"disabled", true)
+			if not crouched_collision_shape.disabled:
+				crouched_collision_shape.set_deferred(&"disabled", true)
+			if ball_collision_shape.disabled:
+				ball_collision_shape.set_deferred(&"disabled", false)
+			target_head_position_y = BALL_HEAD_POSITION_Y
 
 
 func _can_stand_up() -> bool:
