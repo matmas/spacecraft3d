@@ -36,6 +36,7 @@ func _refresh() -> void:
 		block_mesh.material_override = _ghost_material
 		_ghost_block.hide()  # correct position is set later in _process()
 		add_child(_ghost_block)
+		PhysicsInterpolation.apply(_ghost_block)
 
 
 func _physics_process(_delta: float) -> void:
@@ -48,7 +49,6 @@ func _physics_process(_delta: float) -> void:
 			_ghost_block.global_position = point + normal * 0.001
 			if not _ghost_block.visible:
 				_ghost_block.show()
-				PhysicsInterpolation.apply(_ghost_block)
 
 			if _is_collision_shape_colliding(_ghost_block_collision_shape):
 				_ghost_material.set_shader_parameter(&"color", Color.RED)

@@ -14,6 +14,11 @@ func _ready() -> void:
 	process_priority = -2
 
 	top_level = true
+	_reset()
+	target.visibility_changed.connect(_reset)
+
+
+func _reset() -> void:
 	global_transform = target.global_transform
 	previous_global_transform = target.global_transform
 	current_global_transform = target.global_transform
