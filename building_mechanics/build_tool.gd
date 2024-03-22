@@ -11,7 +11,7 @@ var _ghost_material := preload("ghost_shader_material.tres")
 
 func _ready() -> void:
 	_raycast.collision_mask = raycast_collision_mask
-	_raycast.target_position = Vector3.FORWARD * 100.0
+	_raycast.target_position = Vector3.FORWARD * 10.0
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 	camera_parent.add_child(_raycast)
 	_refresh()
