@@ -3,7 +3,7 @@ class_name Player
 
 @onready var upright_collision_shape := $UprightCollisionShape as CollisionShape3D
 @onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
-@onready var ball_collision_shape: CollisionShape3D = $BallCollisionShape
+@onready var ball_collision_shape: CollisionShape3D = $BallCollisionShape as CollisionShape3D
 @onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
 @onready var head := $Head as Node3D
 
@@ -106,33 +106,28 @@ func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _set_collision_shape(collision_shape: CollisionShape3D) -> void:
+	var collision_shapes := [
+		upright_collision_shape,
+		crouched_collision_shape,
+		ball_collision_shape,
+	]
 	match collision_shape:
 		upright_collision_shape:
 			if not _can_stand_up():
 				return
-			if upright_collision_shape.disabled:
-				upright_collision_shape.set_deferred(&"disabled", false)
-			if not crouched_collision_shape.disabled:
-				crouched_collision_shape.set_deferred(&"disabled", true)
-			if not ball_collision_shape.disabled:
-				ball_collision_shape.set_deferred(&"disabled", true)
 			target_head_position_y = UPRIGHT_HEAD_POSITION_Y
 		crouched_collision_shape:
-			if not upright_collision_shape.disabled:
-				upright_collision_shape.set_deferred(&"disabled", true)
-			if crouched_collision_shape.disabled:
-				crouched_collision_shape.set_deferred(&"disabled", false)
-			if not ball_collision_shape.disabled:
-				ball_collision_shape.set_deferred(&"disabled", true)
 			target_head_position_y = CROUCHED_HEAD_POSITION_Y
 		ball_collision_shape:
-			if not upright_collision_shape.disabled:
-				upright_collision_shape.set_deferred(&"disabled", true)
-			if not crouched_collision_shape.disabled:
-				crouched_collision_shape.set_deferred(&"disabled", true)
-			if ball_collision_shape.disabled:
-				ball_collision_shape.set_deferred(&"disabled", false)
 			target_head_position_y = BALL_HEAD_POSITION_Y
+
+	for col_shape in collision_shapes:
+		if col_shape == collision_shape:
+			if col_shape.disabled:
+				col_shape.set_deferred(&"disabled", false)
+		else:
+			if not col_shape.disabled:
+				col_shape.set_deferred(&"disabled", true)
 
 
 func _can_stand_up() -> bool:
