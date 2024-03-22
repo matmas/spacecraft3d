@@ -58,22 +58,26 @@ func _physics_process(_delta: float) -> void:
 			var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
 
 			if contact_points:
-				_ghost_material.set_shader_parameter(&"color", Color.YELLOW)
+				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-				if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
-
-					var spawned_piece := BuildLibrary.selected_piece.instantiate() as Piece
-					add_child(spawned_piece)
-					spawned_piece.global_transform = _piece.global_transform
-					PhysicsInterpolation.apply(spawned_piece)
-
-					if _raycast.get_collider() is RigidBody3D:
-						spawned_piece.linear_velocity = _raycast.get_collider().linear_velocity
+				_allow_block_placement(_raycast.get_collider())
 		else:
 			_piece.global_basis = global_basis
 			_piece.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
-			_ghost_material.set_shader_parameter(&"color", Color.RED)
+			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
+			_allow_block_placement(get_parent())
+
+
+func _allow_block_placement(node_with_velocity: Node = null) -> void:
+	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
+		var spawned_piece := BuildLibrary.selected_piece.instantiate() as Piece
+		add_child(spawned_piece)
+		spawned_piece.global_transform = _piece.global_transform
+		PhysicsInterpolation.apply(spawned_piece)
+
+		if node_with_velocity is RigidBody3D:
+			spawned_piece.linear_velocity = node_with_velocity.linear_velocity
 
 
 ## Calculates Basis from y and z vectors.
