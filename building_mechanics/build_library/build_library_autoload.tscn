@@ -1,9 +1,0 @@
-[gd_scene load_steps=4 format=3 uid="uid://b786dks5oq5tw"]
-
-[ext_resource type="Script" path="res://building_mechanics/build_library/build_library_autoload.gd" id="1_urft5"]
-[ext_resource type="PackedScene" uid="uid://dt6anlgriwrxp" path="res://building_mechanics/build_library/blocks/block.tscn" id="2_rya1b"]
-[ext_resource type="PackedScene" uid="uid://b3nv8vb62xwr3" path="res://building_mechanics/build_library/blocks/halfblock.tscn" id="3_wbhah"]
-
-[node name="PieceLibraryAutoload" type="Node"]
-script = ExtResource("1_urft5")
-blocks = Array[PackedScene]([ExtResource("2_rya1b"), ExtResource("3_wbhah")])

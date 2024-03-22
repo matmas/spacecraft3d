@@ -15,7 +15,7 @@ func _ready() -> void:
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 	camera_parent.add_child(_raycast)
 	_refresh()
-	BuildLibrary.selection_changed.connect(_refresh)
+	BlockLibrary.selection_changed.connect(_refresh)
 
 
 func _refresh() -> void:
@@ -25,7 +25,7 @@ func _refresh() -> void:
 		_block = null
 		_collision_shape = null
 
-	var selected_block := BuildLibrary.selected_block
+	var selected_block := BlockLibrary.selected_block
 	if selected_block:
 		_block = selected_block.instantiate() as Block
 		_block.freeze = true
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 
 func _allow_block_placement(node_with_velocity: Node = null) -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
-		var spawned_block := BuildLibrary.selected_block.instantiate() as Block
+		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
 		spawned_block.global_transform = _block.global_transform
 		PhysicsInterpolation.apply(spawned_block)

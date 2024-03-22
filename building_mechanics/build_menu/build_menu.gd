@@ -6,13 +6,13 @@ class_name BuildMenu
 
 func _ready() -> void:
 	item_list.clear()
-	for block in BuildLibrary.blocks:
+	for block in BlockLibrary.blocks:
 		var scene_texture := SceneTexture.new()
 		scene_texture.scene = block
 		var display_name := _get_property_value(block.get_state(), &"display_name") as String
 		var index := item_list.add_item(display_name, scene_texture)
 
-		if block == BuildLibrary.selected_block:
+		if block == BlockLibrary.selected_block:
 			item_list.select(index)
 	super._ready()
 
@@ -29,4 +29,4 @@ func _get_property_value(state: SceneState, property_name: StringName, node_idx:
 
 
 func _on_item_list_item_selected(index: int) -> void:
-	BuildLibrary.selected_block = BuildLibrary.blocks[index]
+	BlockLibrary.selected_block = BlockLibrary.blocks[index]
