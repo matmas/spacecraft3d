@@ -5,7 +5,6 @@ class_name BuildTool
 
 var _raycast := RayCast3D.new()
 var _ghost_block: Block
-var _ghost_block_collision_shape: CollisionShape3D
 var _ghost_material := preload("ghost_shader_material.tres")
 
 
@@ -23,7 +22,6 @@ func _refresh() -> void:
 		remove_child(_ghost_block)
 		_ghost_block.queue_free()
 		_ghost_block = null
-		_ghost_block_collision_shape = null
 
 	var selected_block := BlockLibrary.selected_block
 	if selected_block:
@@ -31,7 +29,6 @@ func _refresh() -> void:
 		_ghost_block.freeze = true
 		_ghost_block.collision_layer = 0
 		_ghost_block.collision_mask = 0
-		_ghost_block_collision_shape = _ghost_block.get_node("CollisionShape") as CollisionShape3D
 		var block_mesh := _ghost_block.get_node("Mesh") as MeshInstance3D
 		block_mesh.material_override = _ghost_material
 		_ghost_block.hide()  # correct position is set later in _process()
@@ -50,7 +47,7 @@ func _physics_process(_delta: float) -> void:
 			if not _ghost_block.visible:
 				_ghost_block.show()
 
-			if _is_collision_shape_colliding(_ghost_block_collision_shape):
+			if _is_ghost_block_colliding():
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
@@ -66,14 +63,23 @@ func _allow_block_placement() -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
-		spawned_block.global_transform = _ghost_block.global_transform
 		spawned_block.name = _ghost_block.name
-		PhysicsInterpolation.apply(spawned_block)
-
 		if _raycast.is_colliding() and _raycast.get_collider() is RigidBody3D:
+			spawned_block.global_transform = _ghost_block.global_transform
 			spawned_block.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
 		else:
+			spawned_block.global_transform = _ghost_block.global_transform
 			spawned_block.linear_velocity = (get_parent() as Player).linear_velocity
+		PhysicsInterpolation.apply(spawned_block)
+
+
+
+func _is_ghost_block_colliding() -> bool:
+	for child in _ghost_block.get_children():
+		if child is CollisionShape3D:
+			if _is_collision_shape_colliding(child as CollisionShape3D):
+				return true
+	return false
 
 
 func _is_collision_shape_colliding(collision_shape: CollisionShape3D, margin: float = -0.05) -> bool:
