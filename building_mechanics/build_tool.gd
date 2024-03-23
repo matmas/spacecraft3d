@@ -29,8 +29,9 @@ func _refresh() -> void:
 		_ghost_block.freeze = true
 		_ghost_block.collision_layer = 0
 		_ghost_block.collision_mask = 0
-		var block_mesh := _ghost_block.get_node("Mesh") as MeshInstance3D
-		block_mesh.material_override = _ghost_material
+		for child in _ghost_block.get_children():
+			if child is MeshInstance3D:
+				(child as MeshInstance3D).material_override = _ghost_material
 		_ghost_block.hide()  # correct position is set later in _process()
 		add_child(_ghost_block)
 		PhysicsInterpolation.apply(_ghost_block)
