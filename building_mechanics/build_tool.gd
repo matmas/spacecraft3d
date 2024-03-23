@@ -54,15 +54,15 @@ func _physics_process(_delta: float) -> void:
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-				_allow_block_placement(_raycast.get_collider())
+				_allow_block_placement()
 		else:
 			_ghost_block.global_basis = global_basis
 			_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-			_allow_block_placement(get_parent())
+			_allow_block_placement()
 
 
-func _allow_block_placement(node_with_velocity: Node = null) -> void:
+func _allow_block_placement() -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
@@ -70,8 +70,10 @@ func _allow_block_placement(node_with_velocity: Node = null) -> void:
 		spawned_block.name = _ghost_block.name
 		PhysicsInterpolation.apply(spawned_block)
 
-		if node_with_velocity is RigidBody3D:
-			spawned_block.linear_velocity = node_with_velocity.linear_velocity
+		if _raycast.is_colliding() and _raycast.get_collider() is RigidBody3D:
+			spawned_block.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
+		else:
+			spawned_block.linear_velocity = (get_parent() as Player).linear_velocity
 
 
 func _is_collision_shape_colliding(collision_shape: CollisionShape3D, margin: float = -0.05) -> bool:
