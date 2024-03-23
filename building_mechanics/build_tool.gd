@@ -43,8 +43,19 @@ func _physics_process(_delta: float) -> void:
 		if _raycast.is_colliding():
 			var point := _raycast.get_collision_point()
 			var normal := _raycast.get_collision_normal()
-			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
-			_ghost_block.global_position = point + normal * 0.001
+			var collider := _raycast.get_collider() as Node3D
+			if collider is Block:
+				var block := collider as Block
+				var block_aabb := Utils.calculate_spatial_bounds(block.get_node("PhysicsInterpolation") as Node3D)
+				var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block.get_node("PhysicsInterpolation") as Node3D)
+				_ghost_block.global_basis = block.global_basis
+				var local_normal := block.global_basis.inverse() * normal
+				var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
+				_ghost_block.global_position = block.global_position + block_offset
+			else:
+				_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
+				_ghost_block.global_position = point + normal * 0.001
+
 			if not _ghost_block.visible:
 				_ghost_block.show()
 
@@ -65,14 +76,19 @@ func _allow_block_placement() -> void:
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
 		spawned_block.name = _ghost_block.name
+		spawned_block.global_transform = _ghost_block.global_transform
+		PhysicsInterpolation.apply(spawned_block)
 		if _raycast.is_colliding() and _raycast.get_collider() is RigidBody3D:
-			spawned_block.global_transform = _ghost_block.global_transform
 			spawned_block.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
 		else:
-			spawned_block.global_transform = _ghost_block.global_transform
 			spawned_block.linear_velocity = (get_parent() as Player).linear_velocity
-		PhysicsInterpolation.apply(spawned_block)
 
+
+func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:
+	return local_normal * (
+		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +
+		ghost_aabb.size * 0.5 + ghost_aabb.get_center() * -local_normal
+	)
 
 
 func _is_ghost_block_colliding() -> bool:
