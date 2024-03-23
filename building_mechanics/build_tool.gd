@@ -67,6 +67,7 @@ func _allow_block_placement(node_with_velocity: Node = null) -> void:
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		add_child(spawned_block)
 		spawned_block.global_transform = _ghost_block.global_transform
+		spawned_block.name = _ghost_block.name
 		PhysicsInterpolation.apply(spawned_block)
 
 		if node_with_velocity is RigidBody3D:
