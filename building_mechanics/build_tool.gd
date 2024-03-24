@@ -48,9 +48,9 @@ func _physics_process(_delta: float) -> void:
 				var block := collider as Block
 				var block_aabb := Utils.calculate_spatial_bounds(block.get_node("PhysicsInterpolation") as Node3D)
 				var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block.get_node("PhysicsInterpolation") as Node3D)
-				_ghost_block.global_basis = block.global_basis
 				var local_normal := block.global_basis.inverse() * normal
 				var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
+				_ghost_block.global_basis = block.global_basis
 				_ghost_block.global_position = block.global_position + block_offset
 			else:
 				_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
@@ -77,11 +77,28 @@ func _allow_block_placement() -> void:
 		add_child(spawned_block)
 		spawned_block.name = _ghost_block.name
 		spawned_block.global_transform = _ghost_block.global_transform
-		PhysicsInterpolation.apply(spawned_block)
+
+		if _raycast.is_colliding() and _raycast.get_collider() is Block:
+			_append_block(spawned_block, _raycast.get_collider() as RigidBody3D)
+			remove_child(spawned_block)
+			spawned_block.queue_free()
+		else:
+			PhysicsInterpolation.apply(spawned_block)
+
 		if _raycast.is_colliding() and _raycast.get_collider() is RigidBody3D:
 			spawned_block.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
 		else:
 			spawned_block.linear_velocity = (get_parent() as Player).linear_velocity
+
+
+func _append_block(source: RigidBody3D, target: RigidBody3D) -> void:
+	var target_physics_interpolation := target.get_node("PhysicsInterpolation")
+	for source_child in source.get_children():
+		if source_child is VisualInstance3D:
+			source_child.reparent(target_physics_interpolation)
+		else:
+			source_child.reparent(target)
+	target.mass += source.mass
 
 
 func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:
