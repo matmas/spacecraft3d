@@ -55,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 				_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
 				_ghost_block.global_position = point + normal * 0.001
 
-			if _is_ghost_block_colliding():
+			if _is_body_colliding(_ghost_block):
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
 				_ghost_material.set_shader_parameter(&"color", Color.GREEN)
@@ -107,8 +107,8 @@ func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: V
 	)
 
 
-func _is_ghost_block_colliding() -> bool:
-	for child in _ghost_block.get_children():
+func _is_body_colliding(body: PhysicsBody3D) -> bool:
+	for child in body.get_children():
 		if child is CollisionShape3D:
 			if _is_collision_shape_colliding(child as CollisionShape3D):
 				return true
