@@ -55,9 +55,6 @@ func _physics_process(_delta: float) -> void:
 				_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
 				_ghost_block.global_position = point + normal * 0.001
 
-			if not _ghost_block.visible:
-				_ghost_block.show()
-
 			if _is_ghost_block_colliding():
 				_ghost_material.set_shader_parameter(&"color", Color.RED)
 			else:
@@ -68,6 +65,9 @@ func _physics_process(_delta: float) -> void:
 			_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 			_allow_block_placement()
+
+		if not _ghost_block.visible:
+			_ghost_block.show()
 
 
 func _allow_block_placement() -> void:
