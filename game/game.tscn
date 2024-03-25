@@ -92,8 +92,8 @@ directional_light = NodePath("../DirectionalLight3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.2, 0)
-collision_layer = 2
-collision_mask = 254
+collision_layer = 528
+collision_mask = 240
 
 [node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
 size = Vector3(10, 0.1, 10)
@@ -112,8 +112,8 @@ shape = SubResource("BoxShape3D_add4j")
 
 [node name="Platform" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1.2, -10.7251)
-collision_layer = 2
-collision_mask = 254
+collision_layer = 528
+collision_mask = 240
 physics_material_override = SubResource("PhysicsMaterial_y2a1a")
 linear_velocity = Vector3(5, 0, 0)
 angular_velocity = Vector3(0.174533, 0, 0)
@@ -140,6 +140,7 @@ shape = SubResource("BoxShape3D_add4j")
 
 [node name="Box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11)
+collision_layer = 513
 collision_mask = 511
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_72if5")
@@ -156,6 +157,8 @@ skeleton = NodePath("../..")
 
 [node name="Obstacle" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.462343, 3.24253)
+collision_layer = 513
+collision_mask = 0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Obstacle"]
 

@@ -1,7 +1,7 @@
 extends Node3D
 class_name BuildTool
 
-@export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
+@export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000010_00000000
 
 var _raycast := RayCast3D.new()
 var _ghost_block: Block
@@ -26,7 +26,6 @@ func _refresh() -> void:
 	var selected_block := BlockLibrary.selected_block
 	if selected_block:
 		_ghost_block = selected_block.instantiate() as Block
-		_ghost_block.freeze = true
 		_ghost_block.collision_layer = 0
 		_ghost_block.collision_mask = 0
 		for child in _ghost_block.get_children():
@@ -74,31 +73,31 @@ func _physics_process(_delta: float) -> void:
 func _allow_block_placement() -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
-		add_child(spawned_block)
 		spawned_block.name = _ghost_block.name
+		var grid: Grid
+		if _raycast.get_collider() is Block:
+			grid = (_raycast.get_collider() as Block).grid
+			grid.add_child(spawned_block)
+		else:
+			grid = Grid.new()
+			add_child(grid)
+			grid.global_transform = _ghost_block.global_transform
+			grid.add_child(spawned_block)
+			if _raycast.get_collider() is RigidBody3D:
+				grid.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
+			else:
+				grid.linear_velocity = (get_parent() as Player).linear_velocity
+
 		spawned_block.global_transform = _ghost_block.global_transform
 
-		if _raycast.is_colliding() and _raycast.get_collider() is Block:
-			_append_block(spawned_block, _raycast.get_collider() as RigidBody3D)
-			remove_child(spawned_block)
-			spawned_block.queue_free()
-		else:
-			PhysicsInterpolation.apply(spawned_block)
+		for child in spawned_block.get_children():
+			if child is CollisionShape3D:
+				var collision_shape := child as CollisionShape3D
+				var grid_collision_shape := collision_shape.duplicate()
+				grid.add_child(grid_collision_shape)
+				grid_collision_shape.global_transform = collision_shape.global_transform
 
-		if _raycast.is_colliding() and _raycast.get_collider() is RigidBody3D:
-			spawned_block.linear_velocity = (_raycast.get_collider() as RigidBody3D).linear_velocity
-		else:
-			spawned_block.linear_velocity = (get_parent() as Player).linear_velocity
-
-
-func _append_block(source: RigidBody3D, target: RigidBody3D) -> void:
-	var target_physics_interpolation := target.get_node("PhysicsInterpolation")
-	for source_child in source.get_children():
-		if source_child is VisualInstance3D:
-			source_child.reparent(target_physics_interpolation)
-		else:
-			source_child.reparent(target)
-	target.mass += source.mass
+		PhysicsInterpolation.apply(spawned_block)
 
 
 func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:
