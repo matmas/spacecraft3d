@@ -69,6 +69,16 @@ func closest_points_on_two_lines(line1_origin: Vector3, line1_direction: Vector3
 	return [closest_point_on_line1, closest_point_on_line2]
 
 
+func raycast(parent_global_transform: Transform3D, relative_target: Vector3, collision_mask: int) -> Dictionary:
+	return get_viewport().get_camera_3d().get_world_3d().direct_space_state.intersect_ray(
+		PhysicsRayQueryParameters3D.create(
+			parent_global_transform.origin,
+			parent_global_transform.origin + parent_global_transform.basis * relative_target,
+			collision_mask,
+		)
+	)
+
+
 func error_message(error: Error) -> String:
 	match error:
 		FAILED:
