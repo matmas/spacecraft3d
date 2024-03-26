@@ -3,11 +3,16 @@ class_name BuildTool
 
 @export_flags_3d_physics var collision_mask := 0b00000000_00000000_00000010_00000000
 
+var _raycast := RayCast3D.new()
 var _ghost_block: Block
 var _ghost_material := preload("ghost_shader_material.tres")
 
 
 func _ready() -> void:
+	_raycast.collision_mask = collision_mask
+	_raycast.target_position = Vector3.FORWARD * 10.0
+	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+	camera_parent.add_child(_raycast)
 	_refresh()
 	BlockLibrary.selection_changed.connect(_refresh)
 
@@ -36,13 +41,11 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
-	var raycast := Utils.raycast(camera_parent.global_transform, Vector3.FORWARD * 10, collision_mask)
 
-	var collider: Node3D
-	if raycast:
-		var point := raycast.position as Vector3
-		var normal := raycast.normal as Vector3
-		collider = raycast.collider
+	var collider := _raycast.get_collider()
+	if _raycast.is_colliding():
+		var point := _raycast.get_collision_point()
+		var normal := _raycast.get_collision_normal()
 		if collider is Block:
 			var block := collider as Block
 			var block_aabb := Utils.calculate_spatial_bounds(block.get_node("PhysicsInterpolation") as Node3D)
@@ -68,7 +71,7 @@ func _physics_process(_delta: float) -> void:
 		_ghost_block.show()
 
 
-func _allow_block_placement(collider: Node) -> void:
+func _allow_block_placement(collider: Object) -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		spawned_block.name = _ghost_block.name
@@ -91,7 +94,7 @@ func _allow_block_placement(collider: Node) -> void:
 		for child in spawned_block.get_children():
 			if child is CollisionShape3D:
 				var collision_shape := child as CollisionShape3D
-				var grid_collision_shape := collision_shape.duplicate()
+				var grid_collision_shape := collision_shape.duplicate() as CollisionShape3D
 				grid.add_child(grid_collision_shape)
 				grid_collision_shape.global_transform = collision_shape.global_transform
 
