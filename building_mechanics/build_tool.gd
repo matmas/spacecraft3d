@@ -36,9 +36,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
-	var camera_global_transform := camera_parent.global_transform
-	var raycast_offset := -(get_parent() as Player).linear_velocity * get_physics_process_delta_time()
-	var raycast := Utils.raycast(camera_global_transform.translated(raycast_offset), Vector3.FORWARD * 10, collision_mask)
+	var raycast := Utils.raycast(camera_parent.global_transform, Vector3.FORWARD * 10, collision_mask)
 
 	var collider: Node3D
 	if raycast:
@@ -60,12 +58,7 @@ func _physics_process(_delta: float) -> void:
 		_ghost_block.global_basis = global_basis
 		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 
-	var offset := Vector3()
-	if collider is Block:
-		offset = -collider.get_parent().linear_velocity * get_physics_process_delta_time()
-	else:
-		offset = -(get_parent() as Player).linear_velocity * get_physics_process_delta_time()
-	if Utils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02, offset):
+	if Utils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02):
 		_ghost_material.set_shader_parameter(&"color", Color.RED)
 	else:
 		_ghost_material.set_shader_parameter(&"color", Color.GREEN)
