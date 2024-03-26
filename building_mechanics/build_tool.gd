@@ -1,7 +1,7 @@
 extends Node3D
 class_name BuildTool
 
-@export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000010_00000000
+@export_flags_3d_physics var collision_mask := 0b00000000_00000000_00000010_00000000
 
 var _ghost_block: Block
 var _ghost_material := preload("ghost_shader_material.tres")
@@ -38,13 +38,13 @@ func _physics_process(_delta: float) -> void:
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
 	var camera_global_transform := camera_parent.global_transform
 	var raycast_offset := -(get_parent() as Player).linear_velocity * get_physics_process_delta_time()
-	var raycast := Utils.raycast(camera_global_transform.translated(raycast_offset), Vector3.FORWARD * 10, raycast_collision_mask)
+	var raycast := Utils.raycast(camera_global_transform.translated(raycast_offset), Vector3.FORWARD * 10, collision_mask)
 
+	var collider: Node3D
 	if raycast:
 		var point := raycast.position as Vector3
 		var normal := raycast.normal as Vector3
-		var collider := raycast.collider as Node3D
-
+		collider = raycast.collider
 		if collider is Block:
 			var block := collider as Block
 			var block_aabb := Utils.calculate_spatial_bounds(block.get_node("PhysicsInterpolation") as Node3D)
@@ -56,17 +56,20 @@ func _physics_process(_delta: float) -> void:
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
 			_ghost_block.global_position = point + normal * 0.001
-
-		if _is_body_colliding(_ghost_block):
-			_ghost_material.set_shader_parameter(&"color", Color.RED)
-		else:
-			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-			_allow_block_placement(raycast.collider)
 	else:
 		_ghost_block.global_basis = global_basis
 		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
+
+	var offset := Vector3()
+	if collider is Block:
+		offset = -collider.get_parent().linear_velocity * get_physics_process_delta_time()
+	else:
+		offset = -(get_parent() as Player).linear_velocity * get_physics_process_delta_time()
+	if Utils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02, offset):
+		_ghost_material.set_shader_parameter(&"color", Color.RED)
+	else:
 		_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-		_allow_block_placement(null)
+		_allow_block_placement(collider)
 
 	if not _ghost_block.visible:
 		_ghost_block.show()
@@ -107,23 +110,6 @@ func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: V
 		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +
 		ghost_aabb.size * 0.5 + ghost_aabb.get_center() * -local_normal
 	)
-
-
-func _is_body_colliding(body: PhysicsBody3D, offset: Vector3 = Vector3.ZERO) -> bool:
-	for child in body.get_children():
-		if child is CollisionShape3D:
-			if _is_collision_shape_colliding(child as CollisionShape3D, offset):
-				return true
-	return false
-
-
-func _is_collision_shape_colliding(collision_shape: CollisionShape3D, offset: Vector3 = Vector3.ZERO, margin: float = -0.01) -> bool:
-	var params := PhysicsShapeQueryParameters3D.new()
-	params.shape = collision_shape.shape
-	params.transform = collision_shape.global_transform.translated(offset)
-	params.margin = margin  # Ignore touching objects
-	var contact_points := get_world_3d().direct_space_state.collide_shape(params, 1)
-	return contact_points.size() != 0
 
 
 ## Calculates Basis from y and z vectors.
