@@ -13,7 +13,7 @@ func get_display_name() -> String:
 
 func set_value(value: bool) -> void:
 	var camera := get_viewport().get_camera_3d()
-	if camera:
+	if camera and camera.get_world_3d().environment:
 		camera.get_world_3d().environment.ssao_enabled = value
 	else:
 		current_value = value
@@ -22,7 +22,7 @@ func set_value(value: bool) -> void:
 
 func get_value() -> bool:
 	var camera := get_viewport().get_camera_3d()
-	if camera:
+	if camera and camera.get_world_3d().environment:
 		return camera.get_world_3d().environment.ssao_enabled
 	else:
 		return current_value
