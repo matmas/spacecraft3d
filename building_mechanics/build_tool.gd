@@ -13,11 +13,11 @@ func _ready() -> void:
 	_raycast.target_position = Vector3.FORWARD * 10.0
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
 	camera_parent.add_child(_raycast)
-	_refresh()
-	BlockLibrary.selection_changed.connect(_refresh)
+	_on_block_selection_changed()
+	BlockLibrary.selection_changed.connect(_on_block_selection_changed)
 
 
-func _refresh() -> void:
+func _on_block_selection_changed() -> void:
 	if _ghost_block:
 		remove_child(_ghost_block)
 		_ghost_block.queue_free()
@@ -61,14 +61,14 @@ func _physics_process(_delta: float) -> void:
 		_ghost_block.global_basis = global_basis
 		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 
+	if not _ghost_block.visible:
+		_ghost_block.show()
+
 	if Utils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02):
 		_ghost_material.set_shader_parameter(&"color", Color.RED)
 	else:
 		_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 		_allow_block_placement(collider)
-
-	if not _ghost_block.visible:
-		_ghost_block.show()
 
 
 func _allow_block_placement(collider: Object) -> void:

@@ -16,8 +16,8 @@ func _notification(what: int) -> void:
 		NOTIFICATION_ENTER_TREE:
 			if get_parent() is Grid:
 				grid = get_parent() as Grid
-				grid.mass += mass
+				grid.on_block_enter(self)
 		NOTIFICATION_EXIT_TREE:
 			if grid:
-				grid.mass -= mass
+				grid.on_block_exit(self)
 				grid = null
