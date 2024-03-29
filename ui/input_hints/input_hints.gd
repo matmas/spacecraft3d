@@ -67,7 +67,9 @@ func _refresh() -> void:
 func _update_visibility_recursively(node: Node) -> void:
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
-			node.visible = _actions_used[node.name] \
+			var visible := _actions_used[node.name] as bool \
 				or get_parent() == get_tree().root  # Show everything when running only this scene
+			if node.visible != visible:
+				node.visible = visible
 	for child in node.get_children():
 		_update_visibility_recursively(child)
