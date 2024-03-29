@@ -255,6 +255,11 @@ display_name = "Place block"
 script = ExtResource("8_eyxuy")
 display_name = "Other"
 
+[node name="SelectObject" type="Node" parent="Controls/Other"]
+script = ExtResource("25_q8vr3")
+action_name = &"select_object"
+display_name = "Select object"
+
 [node name="PauseMenu" type="Node" parent="Controls/Other"]
 script = ExtResource("25_q8vr3")
 action_name = &"pause_menu"

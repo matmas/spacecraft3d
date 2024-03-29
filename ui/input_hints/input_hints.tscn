@@ -176,6 +176,22 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
+[node name="select_object" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/select_object"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "select object"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/select_object"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"select_object"
+
 [node name="place_block" type="HBoxContainer" parent="RightControls"]
 layout_mode = 2
 size_flags_horizontal = 8
