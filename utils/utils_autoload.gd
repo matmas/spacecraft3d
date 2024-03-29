@@ -31,7 +31,7 @@ func calculate_spatial_bounds(node: Node3D, include_top_level_transform: bool = 
 			if bounds.size == Vector3() and node:
 				bounds = child_bounds
 			else:
-				bounds.merge(child_bounds)
+				bounds = bounds.merge(child_bounds)
 
 	if not bounds.size and not node:
 		bounds = AABB(Vector3(-0.2, -0.2, -0.2), Vector3(0.4, 0.4, 0.4));
