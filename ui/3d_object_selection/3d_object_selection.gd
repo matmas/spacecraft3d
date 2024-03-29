@@ -43,21 +43,21 @@ func _process(_delta: float) -> void:
 	if not selected_visual_node:
 		selected_visual_node = _selected_collider
 
-	widget.visible = not camera.is_position_behind(selected_visual_node.global_position)
+	widget.visible = not camera.is_position_behind(_selected_collider.global_position)
 	if widget.visible:
-		var rect := Utils.unproject_aabb_to_screen_space_rect(Utils.calculate_spatial_bounds(selected_visual_node), selected_visual_node.global_transform, camera)
+		var rect := Utils.unproject_aabb_to_screen_space_rect(Utils.calculate_spatial_bounds(_selected_collider), selected_visual_node.global_transform, camera)
 		if rect:
 			rect = Utils.make_square(rect, MIN_SIZE)
 			widget.position = rect.position
 			widget.size = rect.size
 
-			var distance := "%.0f m" % camera.global_position.distance_to(selected_visual_node.global_position)
+			var distance := "%.0f m" % camera.global_position.distance_to(_selected_collider.global_position)
 			var velocity := ""
 			if _selected_collider is RigidBody3D:
 				var selected_rigid_body := _selected_collider as RigidBody3D
 				var camera_rigid_body := _get_camera_rigid_body_ancestor()
 				if camera_rigid_body:
-					var relative_velocity := roundi(camera.global_position.direction_to(selected_visual_node.global_position).dot(selected_rigid_body.linear_velocity - camera_rigid_body.linear_velocity))
+					var relative_velocity := roundi(camera.global_position.direction_to(_selected_collider.global_position).dot(selected_rigid_body.linear_velocity - camera_rigid_body.linear_velocity))
 					velocity = "%d m/s" % relative_velocity
 			label.text = "%s\n%s\n%s" % [_selected_collider.name, distance, velocity]
 		else:

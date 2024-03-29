@@ -48,8 +48,8 @@ func _physics_process(_delta: float) -> void:
 		var normal := _raycast.get_collision_normal()
 		if collider is Block:
 			var block := collider as Block
-			var block_aabb := Utils.calculate_spatial_bounds(block.get_node("PhysicsInterpolation") as Node3D)
-			var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block.get_node("PhysicsInterpolation") as Node3D)
+			var block_aabb := Utils.calculate_spatial_bounds(block)
+			var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block)
 			var local_normal := block.global_basis.inverse() * normal
 			var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
 			_ghost_block.global_basis = block.global_basis
@@ -83,6 +83,7 @@ func _allow_block_placement(collider: Object) -> void:
 			grid = Grid.new()
 			add_child(grid)
 			grid.global_transform = _ghost_block.global_transform
+			PhysicsInterpolation.apply(grid)  # Useful for 3d_object_selection
 			grid.add_child(spawned_block)
 			if collider is RigidBody3D:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
