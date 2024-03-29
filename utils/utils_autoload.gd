@@ -97,6 +97,35 @@ func is_collision_shape_colliding(collision_shape: CollisionShape3D, collision_m
 	return contact_points.size() != 0
 
 
+func unproject_aabb_to_screen_space_rect(aabb: AABB, transform: Transform3D, camera: Camera3D) -> Rect2:
+	var vertex_positions := PackedVector2Array()
+	vertex_positions.resize(8)
+	for i in range(8):
+		@warning_ignore("integer_division")
+		var local_vertex := aabb.position + aabb.size * Vector3(i / 4, (i % 4) / 2, i % 2)
+		var vertex := transform * local_vertex
+		if camera.is_position_behind(vertex):
+			return Rect2()
+		vertex_positions[i] = camera.unproject_position(vertex)
+	var rect := Rect2(vertex_positions[0], Vector2.ZERO)
+	for i in range(1, 8):
+		if not vertex_positions[i].is_zero_approx():
+			rect = rect.expand(vertex_positions[i])
+	var viewport_rect := camera.get_viewport().get_visible_rect()
+	return rect if rect.intersects(viewport_rect) else Rect2()
+
+
+func make_square(rect: Rect2, min_size: float = 0) -> Rect2:
+	var center := rect.get_center()
+	var square_size := maxf(maxf(rect.size.x, rect.size.y), min_size)
+	return Rect2(
+		center.x - square_size * 0.5,
+		center.y - square_size * 0.5,
+		square_size,
+		square_size,
+	)
+
+
 func error_message(error: Error) -> String:
 	match error:
 		FAILED:
