@@ -53,12 +53,13 @@ func _process(_delta: float) -> void:
 
 			var distance := "%.0f m" % camera.global_position.distance_to(_selected_collider.global_position)
 			var velocity := ""
-			if _selected_collider is RigidBody3D:
-				var selected_rigid_body := _selected_collider as RigidBody3D
-				var camera_rigid_body := _get_camera_rigid_body_ancestor()
-				if camera_rigid_body:
-					var relative_velocity := roundi(camera.global_position.direction_to(_selected_collider.global_position).dot(selected_rigid_body.linear_velocity - camera_rigid_body.linear_velocity))
-					velocity = "%d m/s" % relative_velocity
+			var camera_rigid_body := _get_camera_rigid_body_ancestor()
+			if camera_rigid_body:
+				var selected_collider_velocity := Vector3()
+				if _selected_collider is RigidBody3D:
+					selected_collider_velocity = (_selected_collider as RigidBody3D).linear_velocity
+				var relative_velocity := roundi(camera.global_position.direction_to(_selected_collider.global_position).dot(selected_collider_velocity - camera_rigid_body.linear_velocity))
+				velocity = "%d m/s" % relative_velocity
 			label.text = "%s\n%s\n%s" % [_selected_collider.name, distance, velocity]
 		else:
 			widget.visible = false
