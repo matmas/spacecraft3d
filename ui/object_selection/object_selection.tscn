@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://uyias2vsvsdc"]
 
-[ext_resource type="Script" path="res://ui/3d_object_selection/3d_object_selection.gd" id="1_73m22"]
-[ext_resource type="Texture2D" uid="uid://76ujgg7217va" path="res://ui/3d_object_selection/selection.png" id="2_y3jn5"]
+[ext_resource type="Script" path="res://ui/object_selection/object_selection.gd" id="1_73m22"]
+[ext_resource type="Texture2D" uid="uid://76ujgg7217va" path="res://ui/object_selection/selection.png" id="2_y3jn5"]
 
-[node name="3DObjectSelection" type="CanvasLayer"]
+[node name="ObjectSelection" type="CanvasLayer"]
 layer = 0
 script = ExtResource("1_73m22")
 

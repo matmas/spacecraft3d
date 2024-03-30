@@ -56,13 +56,19 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, head_rotation_transfer_diff).basis
 
 		_set_collision_shape(upright_collision_shape)
-		var linear_acceleration_direction := Vector3(
-			InputHints.get_axis(&"move_left", &"move_right"),
-			InputHints.get_axis(&"move_down", &"move_up"),
-			InputHints.get_axis(&"move_forward", &"move_backward"),
-		).normalized()
-		var linear_acceleration := linear_acceleration_direction * 1000.0
-		state.apply_central_force(state.transform.basis * linear_acceleration)
+
+		var linear_acceleration := Vector3()
+		if ObjectSelection.selected_collider and InputHints.is_action_pressed(&"match_velocity"):
+			var velocity_to_match := Utils.get_velocity(ObjectSelection.selected_collider)
+			linear_acceleration = Utils.clamp_vector_length(velocity_to_match - state.linear_velocity) * 1000.0
+		else:
+			var linear_acceleration_direction := state.transform.basis * Vector3(
+				InputHints.get_axis(&"move_left", &"move_right"),
+				InputHints.get_axis(&"move_down", &"move_up"),
+				InputHints.get_axis(&"move_forward", &"move_backward"),
+			).normalized()
+			linear_acceleration = linear_acceleration_direction * 1000.0
+		state.apply_central_force(linear_acceleration)
 		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, -look_direction_change.y).basis
 		state.transform.basis = state.transform.rotated_local(Vector3.FORWARD, InputHints.get_axis(&"roll_left", &"roll_right") * delta).basis
 

@@ -176,6 +176,22 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
+[node name="match_velocity" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/match_velocity"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "match velocity"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/match_velocity"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"match_velocity"
+
 [node name="select_object" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -226,6 +242,7 @@ action_name = &"roll_right"
 
 [node name="build_menu" type="HBoxContainer" parent="RightControls"]
 layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="Label" type="Label" parent="RightControls/build_menu"]
 layout_mode = 2

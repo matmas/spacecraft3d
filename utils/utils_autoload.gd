@@ -126,6 +126,18 @@ func make_square(rect: Rect2, min_size: float = 0) -> Rect2:
 	)
 
 
+func get_velocity(node: Node3D) -> Vector3:
+	if node is RigidBody3D:
+		return (node as RigidBody3D).linear_velocity
+	return Vector3.ZERO
+
+
+func clamp_vector_length(vector: Vector3, max_length: float = 1.0) -> Vector3:
+	if vector.length() > max_length:
+		return vector.normalized() * max_length
+	return vector
+
+
 func error_message(error: Error) -> String:
 	match error:
 		FAILED:

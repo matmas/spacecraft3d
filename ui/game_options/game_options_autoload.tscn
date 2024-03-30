@@ -237,6 +237,11 @@ script = ExtResource("25_q8vr3")
 action_name = &"roll_right"
 display_name = "Roll right"
 
+[node name="MatchVelocity" type="Node" parent="Controls/Flying"]
+script = ExtResource("25_q8vr3")
+action_name = &"match_velocity"
+display_name = "Match velocity"
+
 [node name="Building" type="Node" parent="Controls"]
 script = ExtResource("8_eyxuy")
 display_name = "Building"
