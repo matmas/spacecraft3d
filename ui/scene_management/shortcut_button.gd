@@ -5,14 +5,7 @@ class_name ShortcutButton
 ## Works with InputEventAction type events only.
 
 
-func get_shortcut_action_name() -> StringName:
-	return &""
-
-
 func _ready() -> void:
-	if get_shortcut_action_name() and not Engine.is_editor_hint():
-		_ensure_shortcut_event(get_shortcut_action_name())
-
 	if shortcut:
 		action_name = _shortcut_to_action_name(shortcut)
 
@@ -35,17 +28,3 @@ func _validate_property(property: Dictionary) -> void:
 	if property.name == "action_name":
 		# Don't persist or show property in the editor
 		property.usage = PROPERTY_USAGE_NONE
-
-
-func _ensure_shortcut_event(action: StringName) -> void:
-	if not shortcut:
-		shortcut = Shortcut.new()
-
-	for event in shortcut.events:
-		if event is InputEventAction:
-			if (event as InputEventAction).action == action:
-				return
-
-	var event := InputEventAction.new()
-	event.action = action
-	shortcut.events.append(event)
