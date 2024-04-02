@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy007m0fd7yhe"]
+
+[ext_resource type="Script" path="res://ui/virtual_keyboard/open_virtual_keyboard_button.gd" id="1_hv62d"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8ifjo"]
+action = &"virtual_keyboard_open"
+
+[sub_resource type="Shortcut" id="Shortcut_udi84"]
+events = [SubResource("InputEventAction_8ifjo")]
+
+[node name="OpenVirtualKeyboardButton" type="Button"]
+shortcut = SubResource("Shortcut_udi84")
+text = "Change"
+script = ExtResource("1_hv62d")

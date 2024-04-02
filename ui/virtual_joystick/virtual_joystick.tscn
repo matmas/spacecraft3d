@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv5p05tu6tssn"]
 
-[ext_resource type="Script" path="res://ui/touchscreen_controls/virtual_joystick/virtual_joystick.gd" id="1_bqojw"]
-[ext_resource type="Shader" path="res://ui/touchscreen_controls/virtual_joystick/disc.gdshader" id="4_07rug"]
-[ext_resource type="Texture2D" uid="uid://k5g4ps525kly" path="res://ui/touchscreen_controls/virtual_joystick/transparent1x1.png" id="5_vb2dw"]
+[ext_resource type="Script" path="res://ui/virtual_joystick/virtual_joystick.gd" id="1_bqojw"]
+[ext_resource type="Shader" path="res://ui/virtual_joystick/disc.gdshader" id="4_07rug"]
+[ext_resource type="Texture2D" uid="uid://k5g4ps525kly" path="res://ui/virtual_joystick/transparent1x1.png" id="5_vb2dw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kggmo"]
 radius = 75.0

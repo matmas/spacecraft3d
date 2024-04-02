@@ -1,0 +1,528 @@
+[gd_scene load_steps=18 format=3 uid="uid://dto7psw5rwu67"]
+
+[ext_resource type="Script" path="res://ui/virtual_keyboard/virtual_keyboard.gd" id="1_gktpk"]
+[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="3_cj4hg"]
+[ext_resource type="Script" path="res://ui/virtual_keyboard/key.gd" id="3_lpvp4"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_u7qih"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r3cd"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+
+[sub_resource type="InputEventAction" id="InputEventAction_lk0hi"]
+action = &"virtual_keyboard_backspace"
+
+[sub_resource type="Shortcut" id="Shortcut_3n77g"]
+events = [SubResource("InputEventAction_lk0hi")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_2v4yr"]
+action = &"virtual_keyboard_shift"
+
+[sub_resource type="Shortcut" id="Shortcut_rw3eq"]
+events = [SubResource("InputEventAction_2v4yr")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_hnf4t"]
+action = &"virtual_keyboard_shift"
+
+[sub_resource type="Shortcut" id="Shortcut_68t3m"]
+events = [SubResource("InputEventAction_hnf4t")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_8ry8j"]
+action = &"virtual_keyboard_space"
+
+[sub_resource type="Shortcut" id="Shortcut_yqgnn"]
+events = [SubResource("InputEventAction_8ry8j")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_v3o6u"]
+action = &"virtual_keyboard_left"
+
+[sub_resource type="Shortcut" id="Shortcut_sshay"]
+events = [SubResource("InputEventAction_v3o6u")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_iajfg"]
+action = &"virtual_keyboard_right"
+
+[sub_resource type="Shortcut" id="Shortcut_ehjgw"]
+events = [SubResource("InputEventAction_iajfg")]
+
+[node name="VirtualKeyboard" type="VBoxContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gktpk")
+
+[node name="SceneParent" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8r3cd")
+
+[node name="Keyboard" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="FirstRow" type="HBoxContainer" parent="Panel/Keyboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Backquote" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Equals")
+text = "`"
+script = ExtResource("3_lpvp4")
+shift_label = "~"
+
+[node name="1" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+script = ExtResource("3_lpvp4")
+shift_label = "!"
+
+[node name="2" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+script = ExtResource("3_lpvp4")
+shift_label = "@"
+
+[node name="3" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+script = ExtResource("3_lpvp4")
+shift_label = "#"
+
+[node name="4" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4"
+script = ExtResource("3_lpvp4")
+shift_label = "$"
+
+[node name="5" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5"
+script = ExtResource("3_lpvp4")
+shift_label = "%"
+
+[node name="6" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "6"
+script = ExtResource("3_lpvp4")
+shift_label = "^"
+
+[node name="7" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "7"
+script = ExtResource("3_lpvp4")
+shift_label = "&"
+
+[node name="8" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "8"
+script = ExtResource("3_lpvp4")
+shift_label = "*"
+
+[node name="9" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "9"
+script = ExtResource("3_lpvp4")
+shift_label = "("
+
+[node name="0" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+script = ExtResource("3_lpvp4")
+shift_label = ")"
+
+[node name="Minus" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+script = ExtResource("3_lpvp4")
+shift_label = "_"
+
+[node name="Equals" type="Button" parent="Panel/Keyboard/FirstRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Backquote")
+text = "="
+script = ExtResource("3_lpvp4")
+shift_label = "+"
+
+[node name="SecondRow" type="HBoxContainer" parent="Panel/Keyboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Backslash" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../RightBracket")
+text = "\\"
+script = ExtResource("3_lpvp4")
+shift_label = "|"
+
+[node name="Q" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "q"
+script = ExtResource("3_lpvp4")
+shift_label = "Q"
+affected_by_caps_lock = true
+
+[node name="W" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "w"
+script = ExtResource("3_lpvp4")
+shift_label = "W"
+affected_by_caps_lock = true
+
+[node name="E" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "e"
+script = ExtResource("3_lpvp4")
+shift_label = "E"
+affected_by_caps_lock = true
+
+[node name="R" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "r"
+script = ExtResource("3_lpvp4")
+shift_label = "R"
+affected_by_caps_lock = true
+
+[node name="T" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "t"
+script = ExtResource("3_lpvp4")
+shift_label = "T"
+affected_by_caps_lock = true
+
+[node name="Y" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "y"
+script = ExtResource("3_lpvp4")
+shift_label = "Y"
+affected_by_caps_lock = true
+
+[node name="U" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "u"
+script = ExtResource("3_lpvp4")
+shift_label = "U"
+affected_by_caps_lock = true
+
+[node name="I" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "i"
+script = ExtResource("3_lpvp4")
+shift_label = "I"
+affected_by_caps_lock = true
+
+[node name="O" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "o"
+script = ExtResource("3_lpvp4")
+shift_label = "O"
+affected_by_caps_lock = true
+
+[node name="P" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "p"
+script = ExtResource("3_lpvp4")
+shift_label = "P"
+affected_by_caps_lock = true
+
+[node name="LeftBracket" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "["
+script = ExtResource("3_lpvp4")
+shift_label = "{"
+
+[node name="RightBracket" type="Button" parent="Panel/Keyboard/SecondRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Backslash")
+text = "]"
+script = ExtResource("3_lpvp4")
+shift_label = "}"
+
+[node name="ThirdRow" type="HBoxContainer" parent="Panel/Keyboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CapsLock" type="Button" parent="Panel/Keyboard/ThirdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Backspace")
+toggle_mode = true
+text = "Caps lock"
+
+[node name="A" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "a"
+script = ExtResource("3_lpvp4")
+shift_label = "A"
+affected_by_caps_lock = true
+
+[node name="S" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "s"
+script = ExtResource("3_lpvp4")
+shift_label = "S"
+affected_by_caps_lock = true
+
+[node name="D" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "d"
+script = ExtResource("3_lpvp4")
+shift_label = "D"
+affected_by_caps_lock = true
+
+[node name="F" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "f"
+script = ExtResource("3_lpvp4")
+shift_label = "F"
+affected_by_caps_lock = true
+
+[node name="G" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "g"
+script = ExtResource("3_lpvp4")
+shift_label = "G"
+affected_by_caps_lock = true
+
+[node name="H" type="Button" parent="Panel/Keyboard/ThirdRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "h"
+script = ExtResource("3_lpvp4")
+shift_label = "H"
+affected_by_caps_lock = true
+
+[node name="J" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "j"
+script = ExtResource("3_lpvp4")
+shift_label = "J"
+affected_by_caps_lock = true
+
+[node name="K" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "k"
+script = ExtResource("3_lpvp4")
+shift_label = "K"
+affected_by_caps_lock = true
+
+[node name="L" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "l"
+script = ExtResource("3_lpvp4")
+shift_label = "L"
+affected_by_caps_lock = true
+
+[node name="Semicolon" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ";"
+script = ExtResource("3_lpvp4")
+shift_label = ":"
+
+[node name="Apostrophe" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "'"
+script = ExtResource("3_lpvp4")
+shift_label = "\""
+
+[node name="Backspace" type="Button" parent="Panel/Keyboard/ThirdRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../CapsLock")
+shortcut = SubResource("Shortcut_3n77g")
+text = "⌫"
+script = ExtResource("3_cj4hg")
+
+[node name="FourthRow" type="HBoxContainer" parent="Panel/Keyboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftShift" type="Button" parent="Panel/Keyboard/FourthRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../RightShift")
+toggle_mode = true
+action_mode = 0
+shortcut = SubResource("Shortcut_rw3eq")
+text = "Shift"
+script = ExtResource("3_cj4hg")
+
+[node name="Z" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "z"
+script = ExtResource("3_lpvp4")
+shift_label = "Z"
+affected_by_caps_lock = true
+
+[node name="X" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "x"
+script = ExtResource("3_lpvp4")
+shift_label = "X"
+affected_by_caps_lock = true
+
+[node name="C" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "c"
+script = ExtResource("3_lpvp4")
+shift_label = "C"
+affected_by_caps_lock = true
+
+[node name="V" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "v"
+script = ExtResource("3_lpvp4")
+shift_label = "V"
+affected_by_caps_lock = true
+
+[node name="B" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "b"
+script = ExtResource("3_lpvp4")
+shift_label = "B"
+affected_by_caps_lock = true
+
+[node name="N" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "n"
+script = ExtResource("3_lpvp4")
+shift_label = "N"
+affected_by_caps_lock = true
+
+[node name="M" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "m"
+script = ExtResource("3_lpvp4")
+shift_label = "M"
+affected_by_caps_lock = true
+
+[node name="Comma" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ","
+script = ExtResource("3_lpvp4")
+shift_label = "<"
+
+[node name="Period" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "."
+script = ExtResource("3_lpvp4")
+shift_label = ">"
+
+[node name="Slash" type="Button" parent="Panel/Keyboard/FourthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "/"
+script = ExtResource("3_lpvp4")
+shift_label = "?"
+
+[node name="RightShift" type="Button" parent="Panel/Keyboard/FourthRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.03
+focus_neighbor_right = NodePath("../LeftShift")
+toggle_mode = true
+action_mode = 0
+shortcut = SubResource("Shortcut_68t3m")
+text = "Shift"
+script = ExtResource("3_cj4hg")
+
+[node name="FifthRow" type="HBoxContainer" parent="Panel/Keyboard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Back" parent="Panel/Keyboard/FifthRow" instance=ExtResource("3_u7qih")]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Right")
+
+[node name="Space" type="Button" parent="Panel/Keyboard/FifthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.3
+shortcut = SubResource("Shortcut_yqgnn")
+text = "Space"
+script = ExtResource("3_cj4hg")
+
+[node name="Left" type="Button" parent="Panel/Keyboard/FifthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = SubResource("Shortcut_sshay")
+text = "◀"
+script = ExtResource("3_cj4hg")
+
+[node name="Right" type="Button" parent="Panel/Keyboard/FifthRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Back")
+shortcut = SubResource("Shortcut_ehjgw")
+text = "▶"
+script = ExtResource("3_cj4hg")
+
+[connection signal="toggled" from="Panel/Keyboard/ThirdRow/CapsLock" to="." method="_on_caps_lock_toggled"]
+[connection signal="pressed" from="Panel/Keyboard/ThirdRow/Backspace" to="." method="_on_backspace_pressed"]
+[connection signal="pressed" from="Panel/Keyboard/FourthRow/LeftShift" to="." method="_on_shift_pressed"]
+[connection signal="pressed" from="Panel/Keyboard/FourthRow/RightShift" to="." method="_on_shift_pressed"]
+[connection signal="pressed" from="Panel/Keyboard/FifthRow/Space" to="." method="_on_space_pressed"]
+[connection signal="pressed" from="Panel/Keyboard/FifthRow/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="Panel/Keyboard/FifthRow/Right" to="." method="_on_right_pressed"]

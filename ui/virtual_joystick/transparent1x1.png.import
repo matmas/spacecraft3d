@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://k5g4ps525kly"
-path="res://.godot/imported/transparent1x1.png-bd6a7fb24082d509b7f074821143f118.ctex"
+path="res://.godot/imported/transparent1x1.png-0cd933ed05714835233f90bc39b34daf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/touchscreen_controls/virtual_joystick/transparent1x1.png"
-dest_files=["res://.godot/imported/transparent1x1.png-bd6a7fb24082d509b7f074821143f118.ctex"]
+source_file="res://ui/virtual_joystick/transparent1x1.png"
+dest_files=["res://.godot/imported/transparent1x1.png-0cd933ed05714835233f90bc39b34daf.ctex"]
 
 [params]
 

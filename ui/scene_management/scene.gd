@@ -4,6 +4,7 @@ class_name Scene
 @export var close_scene_action := &""
 @export var open_scene_actions: Array[ActionSceneMapping] = []
 
+
 func _ready() -> void:
 	_refresh()
 	SceneManagement.current_scene_changed.connect(_on_current_scene_changed)

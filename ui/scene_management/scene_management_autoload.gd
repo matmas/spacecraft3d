@@ -6,8 +6,9 @@ var _scene_stack := []
 var _original_shortcuts := {}
 
 
-func open_scene(scene: PackedScene) -> Node:
-	current_scene().hide()
+func open_scene(scene: PackedScene, hide_previous: bool = true) -> Node:
+	if hide_previous:
+		current_scene().hide()
 	# Shortcuts are handled even when the buttons are not visible
 	# so we clear them now and restore later
 	_clear_shortcuts_recursively(current_scene())

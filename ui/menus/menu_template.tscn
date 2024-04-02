@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://btca0c325c1vj"]
+[gd_scene load_steps=2 format=3 uid="uid://btca0c325c1vj"]
+
+[ext_resource type="PackedScene" uid="uid://dy007m0fd7yhe" path="res://ui/virtual_keyboard/open_virtual_keyboard_button.tscn" id="1_olx27"]
 
 [node name="MenuTemplate" type="VBoxContainer"]
 process_mode = 3
@@ -29,3 +31,6 @@ theme_type_variation = &"BigMarginContainer"
 [node name="Buttons" type="HBoxContainer" parent="Footer"]
 layout_mode = 2
 alignment = 1
+
+[node name="OpenVirtualKeyboardButton" parent="Footer/Buttons" instance=ExtResource("1_olx27")]
+layout_mode = 2
