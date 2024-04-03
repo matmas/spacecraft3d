@@ -1,6 +1,6 @@
 extends RangeOption
 
-@onready var current_value = 2.0
+@onready var current_value := 2.0
 
 
 func key() -> String:

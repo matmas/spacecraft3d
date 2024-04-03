@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwdgkuos243k3"]
+[gd_scene load_steps=31 format=3 uid="uid://cwdgkuos243k3"]
 
 [ext_resource type="Script" path="res://ui/game_options/game_options_autoload.gd" id="1_daw0r"]
 [ext_resource type="Script" path="res://ui/game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://ui/game_options/options/audio/master_volume.gd" id="22_6xkgs"]
 [ext_resource type="Script" path="res://ui/game_options/options/graphics/ui/touchscreen_controls.gd" id="23_rxb8a"]
 [ext_resource type="Script" path="res://ui/game_options/option_types/input_action_option.gd" id="25_q8vr3"]
+[ext_resource type="Script" path="res://ui/game_options/options/input/joypad_deadzone.gd" id="27_r4ieq"]
 [ext_resource type="Script" path="res://ui/game_options/option_types/godot_license_bundle.gd" id="28_a43fo"]
 [ext_resource type="Script" path="res://ui/game_options/option_types/license_option.gd" id="28_jaw2c"]
 
@@ -144,6 +145,17 @@ script = ExtResource("20_wtelj")
 
 [node name="Joypad" type="Node" parent="Input/Sensitivity"]
 script = ExtResource("21_bkwbe")
+
+[node name="Deadzone" type="Node" parent="Input"]
+script = ExtResource("8_eyxuy")
+display_name = "Controller deadzone"
+
+[node name="LeftStick" type="Node" parent="Input/Deadzone"]
+script = ExtResource("27_r4ieq")
+
+[node name="RightStick" type="Node" parent="Input/Deadzone"]
+script = ExtResource("27_r4ieq")
+stick = 1
 
 [node name="Controls" type="Node" parent="."]
 script = ExtResource("2_7j3vk")
