@@ -13,6 +13,8 @@ func _ready() -> void:
 	# Process interpolation before camera
 	process_priority = -2
 
+	Engine.set_physics_jitter_fix(0.0)
+
 	top_level = true
 	_reset()
 	target.visibility_changed.connect(_reset)
