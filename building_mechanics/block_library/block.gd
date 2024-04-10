@@ -21,3 +21,7 @@ func _notification(what: int) -> void:
 			if grid:
 				grid.on_block_exit(self)
 				grid = null
+
+
+func _exit_tree() -> void:
+	mass = 0.0  # Not contributing to Grid.center_of_mass calculation
