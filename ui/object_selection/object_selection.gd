@@ -55,11 +55,11 @@ func _process(_delta: float) -> void:
 
 			var camera_rigid_body := _get_camera_rigid_body_ancestor()
 			var selected_collider_velocity := Utils.get_velocity(selected_collider)
-			var relative_velocity := roundi(
+			var relative_velocity := (
 				camera.global_position.direction_to(selected_collider.global_position)
 				.dot(selected_collider_velocity - camera_rigid_body.linear_velocity)
 			)
-			label.text = "%s\n%s\n%d m/s" % [selected_collider.name, distance, relative_velocity]
+			label.text = "%s\n%s\n%d m/s" % [selected_collider.name, distance, roundi(relative_velocity)]
 		else:
 			widget.visible = false
 
