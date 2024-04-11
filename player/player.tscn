@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bc7sh3g7mh7vs"]
+[gd_scene load_steps=8 format=3 uid="uid://bc7sh3g7mh7vs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ca748"]
+[ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="2_1m1lt"]
 [ext_resource type="Script" path="res://player/camera.gd" id="3_4foqd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y21s"]
@@ -46,5 +47,8 @@ disabled = true
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="PhysicsInterpolation" type="Node3D" parent="Head"]
+script = ExtResource("2_1m1lt")
+
+[node name="Camera3D" type="Camera3D" parent="Head/PhysicsInterpolation"]
 script = ExtResource("3_4foqd")

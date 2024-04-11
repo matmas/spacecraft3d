@@ -11,8 +11,8 @@ var _ghost_material := preload("ghost_shader_material.tres")
 func _ready() -> void:
 	_raycast.collision_mask = collision_mask
 	_raycast.target_position = Vector3.FORWARD * 10.0
-	var camera := get_viewport().get_camera_3d()
-	camera.add_child.call_deferred(_raycast)
+	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+	camera_parent.add_child(_raycast)
 	_on_block_selection_changed()
 	BlockLibrary.selection_changed.connect(_on_block_selection_changed)
 
@@ -33,6 +33,7 @@ func _on_block_selection_changed() -> void:
 				(child as MeshInstance3D).material_override = _ghost_material
 		_ghost_block.hide()  # correct position is set later in _process()
 		add_child(_ghost_block)
+		PhysicsInterpolation.apply(_ghost_block)
 
 
 func _physics_process(_delta: float) -> void:
@@ -82,6 +83,7 @@ func _allow_block_placement(collider: Object) -> void:
 			grid = Grid.new()
 			add_child(grid)
 			grid.global_transform = _ghost_block.global_transform
+			PhysicsInterpolation.apply(grid)  # Useful for 3d_object_selection
 			grid.add_child(spawned_block)
 			if collider is RigidBody3D:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
@@ -96,6 +98,8 @@ func _allow_block_placement(collider: Object) -> void:
 				var grid_collision_shape := collision_shape.duplicate() as CollisionShape3D
 				grid.add_child(grid_collision_shape)
 				grid_collision_shape.global_transform = collision_shape.global_transform
+
+		PhysicsInterpolation.apply(spawned_block)
 
 
 func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:

@@ -28,7 +28,6 @@ SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
 BlockLibrary="*res://building_mechanics/block_library/block_library_autoload.tscn"
 SceneTextures="*res://ui/scene_texture/scene_textures_autoload.gd"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
-PhysicsInterpolationAutoload="*res://physics_interpolation/physics_interpolation_autoload.gd"
 
 [display]
 

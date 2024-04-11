@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=30 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Script" path="res://game/world_environment.gd" id="1_axnvw"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_rsu7a"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://vfx/motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://ui/scene_management/action_scene_mapping.gd" id="3_h1t7t"]
+[ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://dmsoxac68w1q8" path="res://building_mechanics/build_menu/build_menu.tscn" id="4_4cdr3"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://ui/input_hints/input_hints.tscn" id="6_84uns"]
@@ -123,6 +124,14 @@ angular_velocity = Vector3(0.174533, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_eogwy")
 
+[node name="PhysicsInterpolation" type="Node3D" parent="Platform"]
+script = ExtResource("3_urk0v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Platform/PhysicsInterpolation"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+size = Vector3(10, 0.1, 10)
+material = SubResource("StandardMaterial3D_f4hqk")
+
 [node name="Area3D" type="Area3D" parent="Platform"]
 collision_mask = 511
 gravity_space_override = 1
@@ -131,11 +140,6 @@ script = ExtResource("6_nceua")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platform/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 0)
 shape = SubResource("BoxShape3D_add4j")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Platform"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-size = Vector3(10, 0.1, 10)
-material = SubResource("StandardMaterial3D_f4hqk")
 
 [node name="Box" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -11)
@@ -147,8 +151,12 @@ physics_material_override = SubResource("PhysicsMaterial_72if5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
 shape = SubResource("BoxShape3D_dp8mf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+[node name="PhysicsInterpolation" type="Node3D" parent="Box"]
+script = ExtResource("3_urk0v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box/PhysicsInterpolation"]
 mesh = SubResource("BoxMesh_sjdch")
+skeleton = NodePath("../..")
 
 [node name="Obstacle" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.462343, 3.24253)
