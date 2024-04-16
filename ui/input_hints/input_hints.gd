@@ -8,6 +8,7 @@ var _process_frame_passed := false
 
 func _ready() -> void:
 	process_priority = 1  # run after scripts using input functions
+	process_physics_priority = 1
 
 	_refresh()
 
