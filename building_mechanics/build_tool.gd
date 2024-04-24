@@ -41,6 +41,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
+	var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block)
 
 	var collider := _raycast.get_collider()
 	if _raycast.is_colliding():
@@ -49,14 +50,13 @@ func _physics_process(_delta: float) -> void:
 		if collider is Block:
 			var block := collider as Block
 			var block_aabb := Utils.calculate_spatial_bounds(block)
-			var ghost_aabb := Utils.calculate_spatial_bounds(_ghost_block)
 			var local_normal := block.global_basis.inverse() * normal
 			var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
 			_ghost_block.global_basis = block.global_basis
 			_ghost_block.global_position = block.global_position + block_offset
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y)
-			_ghost_block.global_position = point + normal * 0.001
+			_ghost_block.global_position = point + normal * ((ghost_aabb.size * 0.5 - ghost_aabb.get_center()).y + 0.001)
 	else:
 		_ghost_block.global_basis = global_basis
 		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
