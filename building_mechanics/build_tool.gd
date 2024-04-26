@@ -68,6 +68,7 @@ func _physics_process(_delta: float) -> void:
 			var ghost_aabb := Transform3D(block.global_basis.inverse() * _ghost_block.global_basis) * Utils.calculate_spatial_bounds(_ghost_block)
 			var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
 			_ghost_block.global_position = block.global_position + block_offset
+			_allow_block_removal(block)
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y) * _ghost_basis
 			var ghost_aabb := Transform3D(_ghost_basis) * Utils.calculate_spatial_bounds(_ghost_block)
@@ -90,9 +91,11 @@ func _allow_block_placement(collider: Object) -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block"):
 		var spawned_block := BlockLibrary.selected_block.instantiate() as Block
 		spawned_block.name = _ghost_block.name
+
 		var grid: Grid
 		if collider is Block:
 			grid = (collider as Block).grid
+			spawned_block.transform = grid.global_transform.inverse() * _ghost_block.global_transform
 			grid.add_child(spawned_block)
 		else:
 			grid = Grid.new()
@@ -104,17 +107,26 @@ func _allow_block_placement(collider: Object) -> void:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
 			else:
 				grid.linear_velocity = (get_parent() as Player).linear_velocity
+			grid.child_exiting_tree.connect(func(_node): if grid.get_child_count() == 2: grid.queue_free())  # node being removed and PhysicsInterpolation
 
-		spawned_block.global_transform = _ghost_block.global_transform
-
-		for child in spawned_block.get_children():
-			if child is CollisionShape3D:
-				var collision_shape := child as CollisionShape3D
-				var grid_collision_shape := collision_shape.duplicate() as CollisionShape3D
-				grid.add_child(grid_collision_shape)
-				grid_collision_shape.global_transform = collision_shape.global_transform
+		_add_grid_collision_shapes(spawned_block, grid)
 
 		PhysicsInterpolation.apply(spawned_block)
+
+
+func _add_grid_collision_shapes(block: Block, grid: Grid) -> void:
+	for child in block.get_children():
+		if child is CollisionShape3D:
+			var collision_shape := child as CollisionShape3D
+			var grid_collision_shape := collision_shape.duplicate() as CollisionShape3D
+			grid.add_child(grid_collision_shape)
+			grid_collision_shape.global_transform = collision_shape.global_transform
+			block.tree_exiting.connect(func(): grid_collision_shape.queue_free())
+
+
+func _allow_block_removal(block: Block) -> void:
+	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"remove_block"):
+		block.queue_free()
 
 
 func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:

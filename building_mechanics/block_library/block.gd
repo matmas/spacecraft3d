@@ -24,4 +24,4 @@ func _notification(what: int) -> void:
 
 
 func _exit_tree() -> void:
-	mass = 0.0  # Not contributing to Grid.center_of_mass calculation
+	mass = 0.0  # Grid.center_of_mass loops through all blocks, even those who are about to leave tree

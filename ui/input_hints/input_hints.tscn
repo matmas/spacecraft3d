@@ -272,6 +272,22 @@ layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"rotate_z+"
 
+[node name="remove_block" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/remove_block"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "remove block"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/remove_block"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"remove_block"
+
 [node name="place_block" type="HBoxContainer" parent="RightControls"]
 layout_mode = 2
 size_flags_horizontal = 8
