@@ -268,6 +268,36 @@ script = ExtResource("25_q8vr3")
 action_name = &"place_block"
 display_name = "Place block"
 
+[node name="RotateX+" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_x+"
+display_name = "Rotate X+"
+
+[node name="RotateX-" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_x-"
+display_name = "Rotate X-"
+
+[node name="RotateY+" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_y+"
+display_name = "Rotate Y+"
+
+[node name="RotateY-" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_y-"
+display_name = "Rotate Y-"
+
+[node name="RotateZ+" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_z+"
+display_name = "Rotate Z+"
+
+[node name="RotateZ-" type="Node" parent="Controls/Building"]
+script = ExtResource("25_q8vr3")
+action_name = &"rotate_z-"
+display_name = "Rotate Z-"
+
 [node name="Other" type="Node" parent="Controls"]
 script = ExtResource("8_eyxuy")
 display_name = "Other"

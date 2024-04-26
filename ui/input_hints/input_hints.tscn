@@ -176,21 +176,115 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="match_velocity" type="HBoxContainer" parent="RightControls"]
+[node name="rotate_x-" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="RightControls/match_velocity"]
+[node name="Label" type="Label" parent="RightControls/rotate_x-"]
 auto_translate_mode = 1
 layout_mode = 2
-text = "match velocity"
+text = "rotate block X-"
 
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/match_velocity"]
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x-"]
 auto_translate_mode = 1
 layout_mode = 2
 script = ExtResource("6_kuhb4")
-action_name = &"match_velocity"
+action_name = &"rotate_x-"
+
+[node name="rotate_x+" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_x+"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block X+"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x+"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_x+"
+
+[node name="rotate_y-" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_y-"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block Y-"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y-"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_y-"
+
+[node name="rotate_y+" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_y+"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block Y+"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y+"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_y+"
+
+[node name="rotate_z-" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_z-"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block Z-"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z-"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_z-"
+
+[node name="rotate_z+" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_z+"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block Z+"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z+"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_z+"
+
+[node name="place_block" type="HBoxContainer" parent="RightControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/place_block"]
+layout_mode = 2
+text = "place block
+"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"place_block"
 
 [node name="select_object" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
@@ -208,19 +302,21 @@ layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"select_object"
 
-[node name="place_block" type="HBoxContainer" parent="RightControls"]
+[node name="match_velocity" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="RightControls/place_block"]
+[node name="Label" type="Label" parent="RightControls/match_velocity"]
+auto_translate_mode = 1
 layout_mode = 2
-text = "place block
-"
+text = "match velocity"
 
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/match_velocity"]
+auto_translate_mode = 1
 layout_mode = 2
 script = ExtResource("6_kuhb4")
-action_name = &"place_block"
+action_name = &"match_velocity"
 
 [node name="roll_left" type="HBoxContainer" parent="RightControls"]
 layout_mode = 2

@@ -138,6 +138,32 @@ func clamp_vector_length(vector: Vector3, max_length: float = 1.0) -> Vector3:
 	return vector
 
 
+func print_0(what: Variant) -> void:
+	if what is Transform3D:
+		var t := what as Transform3D
+		print(Transform3D(
+			Vector3(_0(t.basis.x.x), _0(t.basis.x.y), _0(t.basis.x.z)),
+			Vector3(_0(t.basis.y.x), _0(t.basis.y.y), _0(t.basis.y.z)),
+			Vector3(_0(t.basis.z.x), _0(t.basis.z.y), _0(t.basis.z.z)),
+			Vector3(_0(t.origin.x), _0(t.origin.y), _0(t.origin.z)),
+		))
+	elif what is Basis:
+		var basis := what as Basis
+		print(Basis(
+			Vector3(_0(basis.x.x), _0(basis.x.y), _0(basis.x.z)),
+			Vector3(_0(basis.y.x), _0(basis.y.y), _0(basis.y.z)),
+			Vector3(_0(basis.z.x), _0(basis.z.y), _0(basis.z.z)),
+		))
+	else:
+		print(what)
+
+
+func _0(f: float) -> float:
+	if is_zero_approx(f):
+		return 0
+	return f
+
+
 func error_message(error: Error) -> String:
 	match error:
 		FAILED:
