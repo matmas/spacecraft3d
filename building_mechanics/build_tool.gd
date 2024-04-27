@@ -6,7 +6,11 @@ class_name BuildTool
 var _raycast := RayCast3D.new()
 var _ghost_block: Block
 var _ghost_material := preload("ghost_shader_material.tres")
+var _remove_block_material := preload("ghost_shader_material.tres").duplicate() as ShaderMaterial
 var _ghost_basis := Basis.IDENTITY
+var _block_under_raycast: Block
+signal _block_under_raycast_changed
+var _block_to_remove: Block
 
 
 func _ready() -> void:
@@ -29,9 +33,7 @@ func _on_block_selection_changed() -> void:
 		_ghost_block = selected_block.instantiate() as Block
 		_ghost_block.collision_layer = 0
 		_ghost_block.collision_mask = 0
-		for child in _ghost_block.get_children():
-			if child is MeshInstance3D:
-				(child as MeshInstance3D).material_override = _ghost_material
+		_override_children_material_recursively(_ghost_block, _ghost_material)
 		_ghost_block.hide()  # correct position is set later in _process()
 		add_child(_ghost_block)
 		PhysicsInterpolation.apply(_ghost_block)
@@ -68,7 +70,6 @@ func _physics_process(_delta: float) -> void:
 			var ghost_aabb := Transform3D(block.global_basis.inverse() * _ghost_block.global_basis) * Utils.calculate_spatial_bounds(_ghost_block)
 			var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
 			_ghost_block.global_position = block.global_position + block_offset
-			_allow_block_removal(block)
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y) * _ghost_basis
 			var ghost_aabb := Transform3D(_ghost_basis) * Utils.calculate_spatial_bounds(_ghost_block)
@@ -85,6 +86,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 		_allow_block_placement(collider)
+
+	_allow_block_removal()
 
 
 func _allow_block_placement(collider: Object) -> void:
@@ -124,9 +127,36 @@ func _add_grid_collision_shapes(block: Block, grid: Grid) -> void:
 			block.tree_exiting.connect(func(): grid_collision_shape.queue_free())
 
 
-func _allow_block_removal(block: Block) -> void:
-	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"remove_block"):
-		block.queue_free()
+func _allow_block_removal() -> void:
+	var collider := _raycast.get_collider()
+	if collider is Block:
+		var block := collider as Block
+		if _block_under_raycast != block:
+			_block_under_raycast = block
+			_block_under_raycast_changed.emit()
+	else:
+		if _block_under_raycast:
+			_block_under_raycast = null
+			_block_under_raycast_changed.emit()
+
+	if _block_under_raycast:
+		if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"remove_block"):
+			_block_to_remove = _block_under_raycast
+			_override_children_material_recursively(_block_to_remove, _remove_block_material)
+
+			if not _block_under_raycast_changed.is_connected(_update_block_to_remove_material):
+				_remove_block_material.set_shader_parameter(&"color", Color.RED)
+				_block_under_raycast_changed.connect(_update_block_to_remove_material)
+
+		if SceneManagement.current_scene() is Game and InputHints.is_action_just_released(&"remove_block"):
+			if _block_to_remove == _block_under_raycast:
+				_block_to_remove.queue_free()
+			_block_to_remove = null
+
+
+func _update_block_to_remove_material() -> void:
+	if _block_to_remove:
+		_override_children_material_recursively(_block_to_remove, _remove_block_material if _block_under_raycast == _block_to_remove else null)
 
 
 func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:
@@ -182,3 +212,10 @@ func _basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Basis:
 			alternative_z,
 		).orthonormalized()
 	return b
+
+
+func _override_children_material_recursively(node: Node, material: Material) -> void:
+	for child in node.get_children():
+		if child is MeshInstance3D:
+			(child as MeshInstance3D).material_override = material
+		_override_children_material_recursively(child, material)
