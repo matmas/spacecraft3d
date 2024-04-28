@@ -2,7 +2,7 @@ extends StaticBody3D
 class_name Block
 
 @export var display_name := ""
-@export_range(0.001, 1000, 0.001, "or_greater", "exp", "suffix:kg") var mass = 1.0
+@export_range(0.001, 1000, 0.001, "or_greater", "exp", "suffix:kg") var mass := 1.0
 
 var grid: Grid
 
@@ -16,12 +16,6 @@ func _notification(what: int) -> void:
 		NOTIFICATION_ENTER_TREE:
 			if get_parent() is Grid:
 				grid = get_parent() as Grid
-				grid.on_block_enter(self)
 		NOTIFICATION_EXIT_TREE:
 			if grid:
-				grid.on_block_exit(self)
 				grid = null
-
-
-func _exit_tree() -> void:
-	mass = 0.0  # Grid.center_of_mass loops through all blocks, even those who are about to leave tree
