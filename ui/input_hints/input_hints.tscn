@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://ui/input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_w37bw"]
 [ext_resource type="Script" path="res://ui/input_hints/input_hint_label.gd" id="3_jsrqt"]
-[ext_resource type="Script" path="res://ui/input_icons/visibility_helper.gd" id="4_07c5p"]
 [ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
 [node name="InputHints" type="CanvasLayer"]
@@ -170,10 +169,8 @@ ignore_joypad_direction = true
 layout_mode = 2
 text = "look
 "
-
-[node name="InputTypeVisibilityHelper" type="Node" parent="LeftControls/MovementAndLook/look_up/look"]
-script = ExtResource("4_07c5p")
-parent_visibility_condition = 2
+script = ExtResource("3_jsrqt")
+input_action = &"look_up"
 
 [node name="RightControls" type="VBoxContainer" parent="."]
 anchors_preset = 3
