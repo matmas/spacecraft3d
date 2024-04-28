@@ -41,6 +41,10 @@ func _calculate_center_of_mass() -> Vector3:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	_move_origin_to_center_of_mass(state)
+
+
+func _move_origin_to_center_of_mass(state: PhysicsDirectBodyState3D) -> void:
 	var offset := state.center_of_mass_local
 	if not offset.is_zero_approx():
 		for child in get_children():
