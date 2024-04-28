@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
+[gd_scene load_steps=6 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://ui/input_hints/input_hints.gd" id="1_isslh"]
 [ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_w37bw"]
+[ext_resource type="Script" path="res://ui/input_hints/input_hint_label.gd" id="3_jsrqt"]
 [ext_resource type="Script" path="res://ui/input_icons/visibility_helper.gd" id="4_07c5p"]
 [ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 
@@ -34,6 +35,8 @@ action_name = &"move_up"
 [node name="Label" type="Label" parent="LeftControls/move_up"]
 layout_mode = 2
 text = "move up"
+script = ExtResource("3_jsrqt")
+input_action = &"move_up"
 
 [node name="move_down" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
@@ -46,6 +49,8 @@ action_name = &"move_down"
 [node name="Label" type="Label" parent="LeftControls/move_down"]
 layout_mode = 2
 text = "move down"
+script = ExtResource("3_jsrqt")
+input_action = &"move_down"
 
 [node name="jump" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
@@ -58,6 +63,8 @@ action_name = &"jump"
 [node name="Label" type="Label" parent="LeftControls/jump"]
 layout_mode = 2
 text = "jump"
+script = ExtResource("3_jsrqt")
+input_action = &"jump"
 
 [node name="crouch" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
@@ -70,6 +77,8 @@ action_name = &"crouch"
 [node name="Label" type="Label" parent="LeftControls/crouch"]
 layout_mode = 2
 text = "crouch"
+script = ExtResource("3_jsrqt")
+input_action = &"crouch"
 
 [node name="sprint" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
@@ -82,6 +91,8 @@ action_name = &"sprint"
 [node name="Label" type="Label" parent="LeftControls/sprint"]
 layout_mode = 2
 text = "sprint"
+script = ExtResource("3_jsrqt")
+input_action = &"sprint"
 
 [node name="MovementAndLook" type="HBoxContainer" parent="LeftControls"]
 layout_mode = 2
@@ -185,6 +196,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block X-"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_x-"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x-"]
 auto_translate_mode = 1
@@ -201,6 +214,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block X+"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_x+"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x+"]
 auto_translate_mode = 1
@@ -217,6 +232,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block Y-"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_y-"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y-"]
 auto_translate_mode = 1
@@ -233,6 +250,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block Y+"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_y+"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y+"]
 auto_translate_mode = 1
@@ -249,6 +268,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block Z-"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_z-"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z-"]
 auto_translate_mode = 1
@@ -265,6 +286,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "rotate block Z+"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_z+"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z+"]
 auto_translate_mode = 1
@@ -281,6 +304,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "remove block"
+script = ExtResource("3_jsrqt")
+input_action = &"remove_block"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/remove_block"]
 auto_translate_mode = 1
@@ -296,6 +321,8 @@ size_flags_horizontal = 8
 layout_mode = 2
 text = "place block
 "
+script = ExtResource("3_jsrqt")
+input_action = &"place_block"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
 layout_mode = 2
@@ -311,6 +338,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "select object"
+script = ExtResource("3_jsrqt")
+input_action = &"select_object"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/select_object"]
 auto_translate_mode = 1
@@ -327,6 +356,8 @@ size_flags_horizontal = 8
 auto_translate_mode = 1
 layout_mode = 2
 text = "match velocity"
+script = ExtResource("3_jsrqt")
+input_action = &"match_velocity"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/match_velocity"]
 auto_translate_mode = 1
@@ -359,6 +390,8 @@ size_flags_horizontal = 8
 [node name="Label" type="Label" parent="RightControls/build_menu"]
 layout_mode = 2
 text = "build menu"
+script = ExtResource("3_jsrqt")
+input_action = &"build_menu"
 
 [node name="InputActionTextureRect" type="TextureRect" parent="RightControls/build_menu"]
 layout_mode = 2
