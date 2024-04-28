@@ -187,6 +187,22 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
+[node name="place_block" type="HBoxContainer" parent="RightControls"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/place_block"]
+layout_mode = 2
+text = "place block
+"
+script = ExtResource("3_jsrqt")
+input_action = &"place_block"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"place_block"
+
 [node name="rotate_x-" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -312,22 +328,6 @@ auto_translate_mode = 1
 layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"remove_block"
-
-[node name="place_block" type="HBoxContainer" parent="RightControls"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/place_block"]
-layout_mode = 2
-text = "place block
-"
-script = ExtResource("3_jsrqt")
-input_action = &"place_block"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/place_block"]
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"place_block"
 
 [node name="select_object" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
