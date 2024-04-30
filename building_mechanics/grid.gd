@@ -2,6 +2,9 @@ extends RigidBody3D
 class_name Grid
 
 
+var _freeze_reset: bool
+
+
 func _init() -> void:
 	name = "Grid"
 	mass = 0.001
@@ -25,6 +28,7 @@ func _on_child_exiting_tree(node: Node) -> void:
 		mass -= block.mass
 		block.mass = 0.0  # _calculate_center_of_mass loops through all blocks, even those who are about to leave tree
 		center_of_mass = _calculate_center_of_mass()
+		_freeze_reset = true
 
 
 func _calculate_center_of_mass() -> Vector3:
@@ -41,6 +45,11 @@ func _calculate_center_of_mass() -> Vector3:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if _freeze_reset:
+		freeze = true  # Avoid RigidBody3D jumping in gravity when removing blocks
+		freeze = false
+		_freeze_reset = false
+
 	_move_origin_to_center_of_mass(state)
 
 
