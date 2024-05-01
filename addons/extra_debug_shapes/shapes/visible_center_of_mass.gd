@@ -1,5 +1,5 @@
 @tool
-extends BaseShape
+extends BaseDebugShape
 class_name VisibleCenterOfMass
 
 

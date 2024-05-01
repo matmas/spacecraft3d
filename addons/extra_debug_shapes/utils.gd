@@ -6,7 +6,7 @@ static func get_shape_classes() -> Array[Script]:
 	var result: Array[Script] = []
 
 	for class_info in ProjectSettings.get_global_class_list():
-		if class_info.base == &"BaseShape":
+		if class_info.base == &"BaseDebugShape":
 			result.append(load(class_info.path))
 
 	return result

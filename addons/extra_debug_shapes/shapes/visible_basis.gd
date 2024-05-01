@@ -1,5 +1,5 @@
 @tool
-extends BaseShape
+extends BaseDebugShape
 class_name VisibleBasis
 
 var _x_endpoint_2d: Vector2

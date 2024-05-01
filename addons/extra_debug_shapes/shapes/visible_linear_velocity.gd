@@ -1,5 +1,5 @@
 @tool
-extends BaseShape
+extends BaseDebugShape
 class_name VisibleLinearVelocity
 
 var _endpoint_2d: Vector2

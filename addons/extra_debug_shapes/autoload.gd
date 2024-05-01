@@ -21,6 +21,6 @@ func _on_node_added(node: Node) -> void:
 func _on_node_removed(node: Node) -> void:
 	if node is RigidBody3D:
 		for child in node.get_children():
-			if child is BaseShape:
+			if child is BaseDebugShape:
 				node.remove_child(child)
 				child.queue_free()

@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-class_name BaseShape
+class_name BaseDebugShape
 
 const PROPERTY_PREFIX = "debug/shapes/extra/"
 
