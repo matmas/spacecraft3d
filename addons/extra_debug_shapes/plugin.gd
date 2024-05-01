@@ -12,6 +12,7 @@ func _enter_tree() -> void:
 
 	VisibleCenterOfMass.register_settings()
 	VisibleBasis.register_settings()
+	VisibleLinearVelocity.register_settings()
 
 
 func _exit_tree() -> void:
