@@ -4,13 +4,15 @@ extends Node
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
+		CenterOfMass.register_settings()
+
 		get_tree().node_added.connect(_on_node_added)
 		get_tree().node_removed.connect(_on_node_removed)
 
 
 func _on_node_added(node: Node) -> void:
 	if node is RigidBody3D:
-		if ProjectSettings.get_setting(CenterOfMass.get_project_settings_property_name()):
+		if CenterOfMass.is_enabled():
 			node.add_child(CenterOfMass.new())
 
 

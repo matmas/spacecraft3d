@@ -30,10 +30,6 @@ SceneTextures="*res://ui/scene_texture/scene_textures_autoload.gd"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
 ExtraDebugShapes="*res://addons/extra_debug_shapes/autoload.gd"
 
-[debug]
-
-shapes/extra/centers_of_masses=true
-
 [display]
 
 window/size/viewport_width=1600

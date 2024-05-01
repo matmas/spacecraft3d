@@ -2,20 +2,34 @@
 extends Node2D
 class_name CenterOfMass
 
-const CIRCLE_RADIUS = 3.0
+const PROPERTY_PREFIX = "debug/shapes/extra/"
+
+static func is_enabled() -> bool:
+	return ProjectSettings.get_setting(PROPERTY_PREFIX + "show_centers_of_masses")
 
 
-static func get_project_settings_property_name() -> String:
-	return "debug/shapes/extra/centers_of_masses"
+static func register_settings() -> void:
+	_register_setting(PROPERTY_PREFIX + "show_centers_of_masses", TYPE_BOOL, false)
+	_register_setting(PROPERTY_PREFIX + "center_of_mass_color", TYPE_COLOR, Color(0, 0.6, 0.7, 0.42))
+	_register_setting(PROPERTY_PREFIX + "center_of_mass_outline_color", TYPE_COLOR, Color(0.5, 1, 1, 1))
+	_register_setting(PROPERTY_PREFIX + "center_of_mass_circle_radius", TYPE_FLOAT, 3.0)
 
 
-static func get_project_settings_property_description() -> String:
-	return "Visible centers of masses of each RigidBody3D"
+static func _register_setting(property_name: String, type: int, default_value: Variant) -> void:
+	if not ProjectSettings.has_setting(property_name):
+		ProjectSettings.set(property_name, default_value)
+		ProjectSettings.add_property_info({
+			"name": property_name,
+			"type": type,
+		})
+	ProjectSettings.set_initial_value(property_name, default_value)
+	ProjectSettings.set_as_basic(property_name, true)
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, CIRCLE_RADIUS, ProjectSettings.get_setting("debug/shapes/collision/shape_color"))
-	draw_arc(Vector2.ZERO, CIRCLE_RADIUS, 0, TAU, 16, ProjectSettings.get_setting("debug/shapes/navigation/geometry_edge_color"))
+	var circle_radius := ProjectSettings.get_setting(PROPERTY_PREFIX + "center_of_mass_circle_radius")
+	draw_circle(Vector2.ZERO, circle_radius, ProjectSettings.get_setting(PROPERTY_PREFIX + "center_of_mass_color"))
+	draw_arc(Vector2.ZERO, circle_radius, 0, TAU, 16, ProjectSettings.get_setting(PROPERTY_PREFIX + "center_of_mass_outline_color"))
 
 
 func get_global_position_3d() -> Vector3:
