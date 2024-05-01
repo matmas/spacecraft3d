@@ -10,9 +10,8 @@ func _enter_tree() -> void:
 	if not get_node_or_null("/root/%s" % AUTOLOAD_SINGLETON_NAME):  # Avoid project modification indicator in the Godot window title (*) everytime project loads
 		add_autoload_singleton(AUTOLOAD_SINGLETON_NAME, "autoload.gd")
 
-	VisibleCenterOfMass.register_settings()
-	VisibleBasis.register_settings()
-	VisibleLinearVelocity.register_settings()
+	for shape_class in ExtraDebugShapesUtils.get_shape_classes():
+		shape_class.register_settings()
 
 
 func _exit_tree() -> void:

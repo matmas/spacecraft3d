@@ -10,9 +10,9 @@ static func is_enabled() -> bool:
 
 
 static func register_settings() -> void:
-	_register_setting(PROPERTY_PREFIX + "visible_linear_velocities", TYPE_BOOL, false)
-	_register_setting(PROPERTY_PREFIX + "linear_velocity_color", TYPE_COLOR, Color.MAGENTA)
-	_register_setting(PROPERTY_PREFIX + "linear_velocity_scale", TYPE_FLOAT, 1.0)
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "visible_linear_velocities", TYPE_BOOL, false)
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "linear_velocity_color", TYPE_COLOR, Color.MAGENTA)
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "linear_velocity_scale", TYPE_FLOAT, 1.0)
 
 
 func _draw() -> void:

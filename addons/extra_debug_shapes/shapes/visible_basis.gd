@@ -12,11 +12,11 @@ static func is_enabled() -> bool:
 
 
 static func register_settings() -> void:
-	_register_setting(PROPERTY_PREFIX + "visible_bases", TYPE_BOOL, false)
-	_register_setting(PROPERTY_PREFIX + "basis_x_color", TYPE_COLOR, Color("#F63652"))
-	_register_setting(PROPERTY_PREFIX + "basis_y_color", TYPE_COLOR, Color("#8ED31C"))
-	_register_setting(PROPERTY_PREFIX + "basis_z_color", TYPE_COLOR, Color("#328FF2"))
-	_register_setting(PROPERTY_PREFIX + "basis_scale", TYPE_FLOAT, 1.0)
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "visible_bases", TYPE_BOOL, false)
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "basis_x_color", TYPE_COLOR, Color("#F63652"))
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "basis_y_color", TYPE_COLOR, Color("#8ED31C"))
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "basis_z_color", TYPE_COLOR, Color("#328FF2"))
+	ExtraDebugShapesUtils.register_setting(PROPERTY_PREFIX + "basis_scale", TYPE_FLOAT, 1.0)
 
 
 func _draw() -> void:
