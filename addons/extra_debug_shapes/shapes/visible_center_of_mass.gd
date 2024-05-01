@@ -1,14 +1,14 @@
 @tool
 extends BaseShape
-class_name CenterOfMass
+class_name VisibleCenterOfMass
 
 
 static func is_enabled() -> bool:
-	return ProjectSettings.get_setting(PROPERTY_PREFIX + "show_centers_of_masses")
+	return ProjectSettings.get_setting(PROPERTY_PREFIX + "visible_centers_of_masses")
 
 
 static func register_settings() -> void:
-	_register_setting(PROPERTY_PREFIX + "show_centers_of_masses", TYPE_BOOL, false)
+	_register_setting(PROPERTY_PREFIX + "visible_centers_of_masses", TYPE_BOOL, false)
 	_register_setting(PROPERTY_PREFIX + "center_of_mass_color", TYPE_COLOR, Color(0, 0.6, 0.7, 0.42))
 	_register_setting(PROPERTY_PREFIX + "center_of_mass_outline_color", TYPE_COLOR, Color(0.5, 1, 1, 1))
 	_register_setting(PROPERTY_PREFIX + "center_of_mass_circle_radius", TYPE_FLOAT, 3.0)
