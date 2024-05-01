@@ -20,9 +20,12 @@ static func register_settings() -> void:
 
 
 func _draw() -> void:
-	draw_line(Vector2.ZERO, to_local(_x_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_x_color"))
-	draw_line(Vector2.ZERO, to_local(_y_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_y_color"))
-	draw_line(Vector2.ZERO, to_local(_z_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_z_color"))
+	if _x_endpoint_2d != Vector2.INF:
+		draw_line(Vector2.ZERO, to_local(_x_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_x_color"))
+	if _y_endpoint_2d != Vector2.INF:
+		draw_line(Vector2.ZERO, to_local(_y_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_y_color"))
+	if _z_endpoint_2d != Vector2.INF:
+		draw_line(Vector2.ZERO, to_local(_z_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_z_color"))
 
 
 func _process(delta: float) -> void:
@@ -34,9 +37,8 @@ func _process(delta: float) -> void:
 	if not visual_node:
 		visual_node = rigid_body
 
-	var camera := get_viewport().get_camera_3d()
-	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale")
-	_x_endpoint_2d = camera.unproject_position(visual_node.global_position + visual_node.global_basis.x * scale_)
-	_y_endpoint_2d = camera.unproject_position(visual_node.global_position + visual_node.global_basis.y * scale_)
-	_z_endpoint_2d = camera.unproject_position(visual_node.global_position + visual_node.global_basis.z * scale_)
+	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale") as float
+	_x_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.x * scale_)
+	_y_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.y * scale_)
+	_z_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.z * scale_)
 	queue_redraw()

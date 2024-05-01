@@ -16,7 +16,8 @@ static func register_settings() -> void:
 
 
 func _draw() -> void:
-	draw_line(Vector2.ZERO, to_local(_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_color"))
+	if _endpoint_2d != Vector2.INF:
+		draw_line(Vector2.ZERO, to_local(_endpoint_2d), ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_color"))
 
 
 func _process(delta: float) -> void:
@@ -28,7 +29,6 @@ func _process(delta: float) -> void:
 	if not visual_node:
 		visual_node = rigid_body
 
-	var camera := get_viewport().get_camera_3d()
-	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_scale")
-	_endpoint_2d = camera.unproject_position(visual_node.global_position + rigid_body.linear_velocity * scale_)
+	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_scale") as float
+	_endpoint_2d = _unproject(visual_node.global_position + rigid_body.linear_velocity * scale_)
 	queue_redraw()

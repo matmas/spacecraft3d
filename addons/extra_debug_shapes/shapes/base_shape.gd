@@ -27,9 +27,13 @@ func get_global_position_3d() -> Vector3:
 
 
 func _process(_delta: float) -> void:
-	var global_position_3d := get_global_position_3d()
+	global_position = _unproject(get_global_position_3d())
+	visible = global_position != Vector2.INF
 
+
+func _unproject(global_position_3d: Vector3) -> Vector2:
 	var camera := get_viewport().get_camera_3d()
-	visible = not camera.is_position_behind(global_position_3d)
-	if visible:
-		global_position = camera.unproject_position(global_position_3d)
+	if not camera.is_position_behind(global_position_3d):
+		return camera.unproject_position(global_position_3d)
+	else:
+		return Vector2.INF
