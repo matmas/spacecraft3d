@@ -28,7 +28,11 @@ SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
 BlockLibrary="*res://building_mechanics/block_library/block_library_autoload.tscn"
 SceneTextures="*res://ui/scene_texture/scene_textures_autoload.gd"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
-CentersOfMasses="*res://addons/debug_shapes/shapes/centers_of_masses_autoload.gd"
+ExtraDebugShapes="*res://addons/extra_debug_shapes/autoload.gd"
+
+[debug]
+
+shapes/extra/centers_of_masses=true
 
 [display]
 
@@ -41,7 +45,7 @@ movie_writer/movie_file="export/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_shapes/plugin.cfg")
+enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg")
 
 [file_customization]
 

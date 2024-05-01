@@ -10,7 +10,8 @@ func _ready() -> void:
 
 func _on_node_added(node: Node) -> void:
 	if node is RigidBody3D:
-		node.add_child(CenterOfMass.new())
+		if ProjectSettings.get_setting(CenterOfMass.get_project_settings_property_name()):
+			node.add_child(CenterOfMass.new())
 
 
 func _on_node_removed(node: Node) -> void:

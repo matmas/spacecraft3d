@@ -5,6 +5,14 @@ class_name CenterOfMass
 const CIRCLE_RADIUS = 3.0
 
 
+static func get_project_settings_property_name() -> String:
+	return "debug/shapes/extra/centers_of_masses"
+
+
+static func get_project_settings_property_description() -> String:
+	return "Visible centers of masses of each RigidBody3D"
+
+
 func _draw() -> void:
 	draw_circle(Vector2.ZERO, CIRCLE_RADIUS, ProjectSettings.get_setting("debug/shapes/collision/shape_color"))
 	draw_arc(Vector2.ZERO, CIRCLE_RADIUS, 0, TAU, 16, ProjectSettings.get_setting("debug/shapes/navigation/geometry_edge_color"))
