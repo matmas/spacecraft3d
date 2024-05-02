@@ -19,7 +19,6 @@ config/icon="res://icon.png"
 
 GameOptions="*res://ui/game_options/game_options_autoload.tscn"
 ScreenshotCaptureAutoload="res://ui/screenshot_capture/screenshot_capture_autoload.gd"
-JoypadInputEchoAutoload="res://ui/joypad_input_echo/joypad_input_echo_autoload.gd"
 FpsCounterAutoload="res://ui/fps_counter/fps_counter_autoload.tscn"
 Utils="*res://utils/utils_autoload.gd"
 InputMonitor="*res://ui/input_icons/input_monitor_autoload.gd"
@@ -29,6 +28,7 @@ BlockLibrary="*res://building_mechanics/block_library/block_library_autoload.tsc
 SceneTextures="*res://ui/scene_texture/scene_textures_autoload.gd"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
 ExtraDebugShapes="*res://addons/extra_debug_shapes/autoload.gd"
+JoypadInputEcho="*res://addons/joypad_input_echo/autoload.gd"
 
 [display]
 
@@ -41,7 +41,7 @@ movie_writer/movie_file="export/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg")
+enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg")
 
 [file_customization]
 
