@@ -14,13 +14,13 @@ func _input(event: InputEvent) -> void:
 		var error := DirAccess.make_dir_recursive_absolute(directory)
 		if error:
 			printerr("Error while making directory %s: %s" % [
-				ProjectSettings.globalize_path(path), Utils.error_message(error)
+				ProjectSettings.globalize_path(path), ScreenshotCaptureUtils.error_message(error)
 			])
 			return
 		error = image.save_png(path)
 		if error:
 			printerr("Error while saving file %s: %s" % [
-				ProjectSettings.globalize_path(path), Utils.error_message(error)
+				ProjectSettings.globalize_path(path), ScreenshotCaptureUtils.error_message(error)
 			])
 			return
 		print("Screenshot saved to ", ProjectSettings.globalize_path(path))
