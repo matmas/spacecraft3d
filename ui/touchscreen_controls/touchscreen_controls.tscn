@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/touchscreen_controls/touchscreen_controls.gd" id="1_numpv"]
 [ext_resource type="Script" path="res://ui/touchscreen_controls/input_event_touch_button.gd" id="2_rhrv2"]
-[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_rmod4"]
+[ext_resource type="Script" path="res://addons/game_options/feature.gd" id="2_rmod4"]
 [ext_resource type="PackedScene" uid="uid://cv5p05tu6tssn" path="res://ui/virtual_joystick/virtual_joystick.tscn" id="3_txs5w"]
 
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_lcfso"]

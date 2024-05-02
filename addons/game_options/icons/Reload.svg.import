@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o6xx82efrngw"
-path="res://.godot/imported/GuiToggleOn.svg-f6b368599b0cf87a6996e5b8b35e0586.ctex"
+uid="uid://b8viw1rwmd5ys"
+path="res://.godot/imported/Reload.svg-1f0454b9fdca736bec5cc47b8449dd38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/game_options/icons/GuiToggleOn.svg"
-dest_files=["res://.godot/imported/GuiToggleOn.svg-f6b368599b0cf87a6996e5b8b35e0586.ctex"]
+source_file="res://addons/game_options/icons/Reload.svg"
+dest_files=["res://.godot/imported/Reload.svg-1f0454b9fdca736bec5cc47b8449dd38.ctex"]
 
 [params]
 

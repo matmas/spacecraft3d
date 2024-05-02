@@ -17,8 +17,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameOptions="*res://ui/game_options/game_options_autoload.tscn"
-FpsCounterAutoload="res://ui/fps_counter/fps_counter_autoload.tscn"
 Utils="*res://utils/utils_autoload.gd"
 InputMonitor="*res://ui/input_icons/input_monitor_autoload.gd"
 EmulateMouseFromTouch="*res://ui/emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
@@ -29,6 +27,8 @@ ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
 ExtraDebugShapes="*res://addons/extra_debug_shapes/autoload.gd"
 JoypadInputEcho="*res://addons/joypad_input_echo/autoload.gd"
 ScreenshotCapture="*res://addons/screenshot_capture/autoload.gd"
+GameOptions="*res://addons/game_options/autoload.gd"
+FpsCounterAutoload="*res://ui/fps_counter/fps_counter_autoload.tscn"
 
 [display]
 
@@ -41,7 +41,7 @@ movie_writer/movie_file="export/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
+enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg", "res://addons/game_options/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
 
 [file_customization]
 
@@ -49,7 +49,6 @@ folder_colors={
 "res://building_mechanics/build_menu/": "green",
 "res://game/": "red",
 "res://player/": "red",
-"res://ui/game_options/": "gray",
 "res://ui/input_hints/": "green",
 "res://ui/menus/": "green"
 }

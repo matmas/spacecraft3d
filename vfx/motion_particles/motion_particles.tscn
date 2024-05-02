@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://mic25bshahx8"]
 
 [ext_resource type="Shader" path="res://vfx/motion_particles/motion_particles.gdshader" id="1_5y605"]
-[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="1_xwt4v"]
+[ext_resource type="Script" path="res://addons/game_options/feature.gd" id="1_xwt4v"]
 [ext_resource type="Script" path="res://vfx/motion_particles/motion_particles.gd" id="2_dryvb"]
 [ext_resource type="Texture2D" uid="uid://btt5rihg15jeh" path="res://vfx/motion_particles/particle.png" id="2_o3mn0"]
 

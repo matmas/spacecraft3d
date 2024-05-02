@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 const PATH = "user://options.cfg"
@@ -6,9 +7,20 @@ var _options: Array[Option] = []  # For internal use, load(), save(), etc.
 var _options_dict := {}  # For various game features to decide their settings
 var config := ConfigFile.new()
 
+@onready var game_options_root: Node
+
 
 func _ready() -> void:
-	_walk_tree(self, null, null)
+	var game_options_scene_property := "game_options/game_options_scene"
+	GameOptionsUtils.register_setting(game_options_scene_property, TYPE_STRING, "res://addons/game_options/game_options.tscn", PROPERTY_HINT_FILE, "*.tscn,*.scn,*.res")
+
+	if Engine.is_editor_hint():
+		return
+
+	game_options_root = load(ProjectSettings.get_setting(game_options_scene_property)).instantiate()
+	add_child(game_options_root)  # Some options rely on get_tree(), get_window() etc.
+
+	_walk_tree(game_options_root, null, null)
 	for option in _options:
 		option.initial_value = option.get_value()
 	_load()
@@ -42,13 +54,13 @@ func get_enum_option(section: String, key: String) -> EnumOption:
 
 func get_sections() -> Array[GameOptionSection]:  # For generating UI section by section
 	var sections: Array[GameOptionSection] = []
-	for child in get_children():
+	for child in game_options_root.get_children():
 		if child is GameOptionSection:
 			sections.append(child)
 	return sections
 
 
-func get_options(section: GameOptionSection, node: Node = self) -> Array[Option]:  # For generating UI section by section
+func get_options(section: GameOptionSection, node: Node = game_options_root) -> Array[Option]:  # For generating UI section by section
 	var options: Array[Option] = []
 	for child in node.get_children():
 		if child is GameOptionSection and child == section:
@@ -73,7 +85,7 @@ func _load() -> void:
 	var error := config.load(PATH)
 	if error:
 		printerr("Error while loading file %s: %s" % [
-			ProjectSettings.globalize_path(PATH), Utils.error_message(error)
+			ProjectSettings.globalize_path(PATH), GameOptionsUtils.error_message(error)
 		])
 		return
 
@@ -93,7 +105,7 @@ func save() -> void:
 	var error := config.save(PATH)
 	if error:
 		printerr("Error while saving file %s: %s" % [
-			ProjectSettings.globalize_path(PATH), Utils.error_message(error)
+			ProjectSettings.globalize_path(PATH), GameOptionsUtils.error_message(error)
 		])
 
 
@@ -106,5 +118,5 @@ func reset_to_defaults() -> void:
 		var error := DirAccess.remove_absolute(PATH)
 		if error:
 			printerr("Error while removing file %s: %s" % [
-				ProjectSettings.globalize_path(PATH), Utils.error_message(error)
+				ProjectSettings.globalize_path(PATH), GameOptionsUtils.error_message(error)
 			])

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bod36iqi27qpk"
-path="res://.godot/imported/HSlider.svg-86264a1bb4cb032935002673b0a77f11.ctex"
+uid="uid://copjje5jc32jv"
+path="res://.godot/imported/X509Certificate.svg-b849027c6394c233e8fc47ae3071d155.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/game_options/icons/HSlider.svg"
-dest_files=["res://.godot/imported/HSlider.svg-86264a1bb4cb032935002673b0a77f11.ctex"]
+source_file="res://addons/game_options/icons/X509Certificate.svg"
+dest_files=["res://.godot/imported/X509Certificate.svg-b849027c6394c233e8fc47ae3071d155.ctex"]
 
 [params]
 

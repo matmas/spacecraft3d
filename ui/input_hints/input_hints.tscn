@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1lhiinaixtyf"]
 
 [ext_resource type="Script" path="res://ui/input_hints/input_hints.gd" id="1_isslh"]
-[ext_resource type="Script" path="res://ui/game_options/feature.gd" id="2_w37bw"]
+[ext_resource type="Script" path="res://addons/game_options/feature.gd" id="2_w37bw"]
 [ext_resource type="Script" path="res://ui/input_hints/input_hint_label.gd" id="3_jsrqt"]
 [ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="6_kuhb4"]
 

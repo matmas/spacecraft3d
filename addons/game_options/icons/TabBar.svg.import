@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5ufwotf372y2"
-path="res://.godot/imported/InputEventAction.svg-de5ffb5e12b5198ef96a2c13a0087968.ctex"
+uid="uid://bw0mewhrnwasd"
+path="res://.godot/imported/TabBar.svg-372b88380a0a2de383112c7373bbf0c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/game_options/icons/InputEventAction.svg"
-dest_files=["res://.godot/imported/InputEventAction.svg-de5ffb5e12b5198ef96a2c13a0087968.ctex"]
+source_file="res://addons/game_options/icons/TabBar.svg"
+dest_files=["res://.godot/imported/TabBar.svg-372b88380a0a2de383112c7373bbf0c7.ctex"]
 
 [params]
 

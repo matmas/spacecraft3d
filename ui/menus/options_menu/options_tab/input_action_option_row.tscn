@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/input_action_option_row.gd" id="1_pta6x"]
 [ext_resource type="PackedScene" uid="uid://qrnonn8qahio" path="res://ui/menus/options_menu/options_tab/name_with_reset_button.tscn" id="2_i2dg4"]
-[ext_resource type="Script" path="res://ui/game_options/ui_components/input_remap_button.gd" id="2_u7b1k"]
+[ext_resource type="Script" path="res://addons/game_options/ui_components/input_remap_button.gd" id="2_u7b1k"]
 
 [node name="InputActionOptionRow" type="HBoxContainer"]
 anchors_preset = 15

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qrnonn8qahio"]
 
-[ext_resource type="Script" path="res://ui/game_options/ui_components/reset_button.gd" id="1_8ecul"]
+[ext_resource type="Script" path="res://addons/game_options/ui_components/reset_button.gd" id="1_8ecul"]
 [ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/name_with_reset_button.gd" id="1_gww31"]
 
 [node name="NameWithResetButton" type="HBoxContainer"]

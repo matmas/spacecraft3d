@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const AUTOLOAD_SINGLETON_NAME = "ExtraDebugShapes"
+const AUTOLOAD_SINGLETON_NAME = "GameOptions"
 
 
 func _enter_tree() -> void:

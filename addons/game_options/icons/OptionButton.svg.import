@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba3frl022pv38"
-path="res://.godot/imported/OptionButton.svg-13e68b08e3b8f06066198977b0bae41e.ctex"
+path="res://.godot/imported/OptionButton.svg-805b18329fe3ba3598b2164bf3af15d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/game_options/icons/OptionButton.svg"
-dest_files=["res://.godot/imported/OptionButton.svg-13e68b08e3b8f06066198977b0bae41e.ctex"]
+source_file="res://addons/game_options/icons/OptionButton.svg"
+dest_files=["res://.godot/imported/OptionButton.svg-805b18329fe3ba3598b2164bf3af15d7.ctex"]
 
 [params]
 
