@@ -18,17 +18,17 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://utils/utils_autoload.gd"
-EmulateMouseFromTouch="*res://ui/emulate_mouse_from_touch/emulate_mouse_from_touch_autoload.gd"
 SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
 BlockLibrary="*res://building_mechanics/block_library/block_library_autoload.tscn"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
+FpsCounterAutoload="*res://ui/fps_counter/fps_counter_autoload.tscn"
 ExtraDebugShapes="*res://addons/extra_debug_shapes/autoload.gd"
 JoypadInputEcho="*res://addons/joypad_input_echo/autoload.gd"
 ScreenshotCapture="*res://addons/screenshot_capture/autoload.gd"
 GameOptions="*res://addons/game_options/autoload.gd"
-FpsCounterAutoload="*res://ui/fps_counter/fps_counter_autoload.tscn"
 InputMonitor="*res://addons/input_icons/autoload.gd"
 SceneTextures="*res://addons/scene_texture/autoload.gd"
+EmulateMouseFromTouch="*res://addons/emulate_mouse_from_touch/autoload.gd"
 
 [display]
 
@@ -41,7 +41,7 @@ movie_writer/movie_file="export/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/extra_debug_shapes/plugin.cfg", "res://addons/game_options/plugin.cfg", "res://addons/input_icons/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/scene_texture/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
+enabled=PackedStringArray("res://addons/emulate_mouse_from_touch/plugin.cfg", "res://addons/extra_debug_shapes/plugin.cfg", "res://addons/game_options/plugin.cfg", "res://addons/input_icons/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/scene_texture/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
 
 [file_customization]
 
