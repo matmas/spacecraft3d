@@ -4,12 +4,9 @@ extends EditorPlugin
 const AUTOLOAD_SINGLETON_NAME = "JoypadInputEcho"
 
 
-func _enter_tree() -> void:
-	await get_tree().process_frame  # Wait for @tool autoloads to load
-
-	if not get_node_or_null("/root/%s" % AUTOLOAD_SINGLETON_NAME):  # Avoid project modification indicator in the Godot window title (*) everytime project loads
-		add_autoload_singleton(AUTOLOAD_SINGLETON_NAME, "autoload.gd")
+func _enable_plugin() -> void:
+	add_autoload_singleton(AUTOLOAD_SINGLETON_NAME, "autoload.gd")
 
 
-func _exit_tree() -> void:
+func _disable_plugin() -> void:
 	remove_autoload_singleton(AUTOLOAD_SINGLETON_NAME)

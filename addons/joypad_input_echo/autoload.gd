@@ -1,4 +1,3 @@
-@tool
 extends Node
 # https://docs.godotengine.org/en/stable/tutorials/inputs/controllers_gamepads_joysticks.html#echo-events
 
@@ -12,9 +11,6 @@ var repeating_event: InputEventAction = null
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-
 	process_mode = Node.PROCESS_MODE_ALWAYS  # For use in menus when game is paused
 
 	delay_timer.wait_time = DELAY_SEC
@@ -27,9 +23,6 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Engine.is_editor_hint():
-		return
-
 	for action in REPEATABLE_ACTIONS:
 		if event.is_action(action, true):
 			if event.is_pressed():

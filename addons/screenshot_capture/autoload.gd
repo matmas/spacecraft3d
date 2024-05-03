@@ -1,18 +1,11 @@
-@tool
 extends Node
 
 
 func _ready() -> void:
-	if Engine.is_editor_hint():
-		return
-
 	process_mode = Node.PROCESS_MODE_ALWAYS  # Allow screenshots also when game is paused
 
 
 func _input(event: InputEvent) -> void:
-	if Engine.is_editor_hint():
-		return
-
 	if event.is_action_pressed(&"capture_screenshot") and OS.is_userfs_persistent():
 		var image := get_viewport().get_texture().get_image()
 		var timestamp := Time.get_datetime_string_from_system(true)
