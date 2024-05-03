@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bc7sh3g7mh7vs"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ca748"]
-[ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="2_1m1lt"]
+[ext_resource type="Script" path="res://addons/physics_interpolation/node_3d.gd" id="2_1m1lt"]
 [ext_resource type="Script" path="res://player/camera.gd" id="3_4foqd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y21s"]

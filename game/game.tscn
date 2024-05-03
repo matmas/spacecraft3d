@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://vfx/motion_particles/motion_particles.tscn" id="2_apmyu"]
 [ext_resource type="Script" path="res://ui/scene_management/action_scene_mapping.gd" id="3_h1t7t"]
-[ext_resource type="Script" path="res://physics_interpolation/node_3d.gd" id="3_urk0v"]
+[ext_resource type="Script" path="res://addons/physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://dmsoxac68w1q8" path="res://building_mechanics/build_menu/build_menu.tscn" id="4_4cdr3"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://ui/input_hints/input_hints.tscn" id="6_84uns"]
