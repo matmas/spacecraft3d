@@ -23,7 +23,9 @@ func set_value(value: Array[InputEvent]) -> void:
 	for event in value:
 		InputMap.action_add_event(action_name, event)
 	value_changed.emit()
-	InputMonitor.input_map_changed.emit()
+	var _InputMonitor := get_node_or_null("/root/InputMonitor")
+	if _InputMonitor:
+		_InputMonitor.input_map_changed.emit()
 
 
 func _to_string() -> String:

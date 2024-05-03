@@ -53,6 +53,10 @@ folder_colors={
 "res://ui/menus/": "green"
 }
 
+[game_options]
+
+game_options_scene="res://game_options.tscn"
+
 [gui]
 
 theme/custom="res://theme.tres"

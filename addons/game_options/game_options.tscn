@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cwdgkuos243k3"]
+[gd_scene load_steps=23 format=3 uid="uid://cwdgkuos243k3"]
 
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/display/ui_scale.gd" id="2_0cifp"]
 [ext_resource type="Script" path="res://addons/game_options/section.gd" id="2_7j3vk"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/display/screen.gd" id="4_4v7lj"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/display/vsync.gd" id="5_b6ofn"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/display/max_fps.gd" id="6_jjx0q"]
-[ext_resource type="Script" path="res://addons/game_options/options/graphics/display/fps_counter.gd" id="7_qytg8"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/res_upscaling_aa/3d_scale.gd" id="8_c5kmu"]
 [ext_resource type="Script" path="res://addons/game_options/category.gd" id="8_eyxuy"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/res_upscaling_aa/upscaling_mode.gd" id="9_408ih"]
@@ -16,19 +15,13 @@
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/glow.gd" id="13_62vlf"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/ssao.gd" id="14_d46ab"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/ssil.gd" id="15_4e3ce"]
-[ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/lens_flare.gd" id="16_5c5rd"]
-[ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/motion_particles.gd" id="17_njksq"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/effects/ssr.gd" id="18_8dxpk"]
 [ext_resource type="Script" path="res://addons/game_options/options/graphics/camera/camera_fov.gd" id="18_dvdfb"]
-[ext_resource type="Script" path="res://addons/game_options/options/graphics/ui/input_hints.gd" id="19_gfb4p"]
 [ext_resource type="Script" path="res://addons/game_options/options/input/mouse_sensitivity.gd" id="20_wtelj"]
 [ext_resource type="Script" path="res://addons/game_options/options/input/joypad_sensitivity.gd" id="21_bkwbe"]
 [ext_resource type="Script" path="res://addons/game_options/options/audio/master_volume.gd" id="22_6xkgs"]
-[ext_resource type="Script" path="res://addons/game_options/options/graphics/ui/touchscreen_controls.gd" id="23_rxb8a"]
-[ext_resource type="Script" path="res://addons/game_options/option_types/input_action_option.gd" id="25_q8vr3"]
 [ext_resource type="Script" path="res://addons/game_options/options/input/joypad_deadzone.gd" id="27_r4ieq"]
 [ext_resource type="Script" path="res://addons/game_options/option_types/godot_license_bundle.gd" id="28_a43fo"]
-[ext_resource type="Script" path="res://addons/game_options/option_types/license_option.gd" id="28_jaw2c"]
 
 [node name="GameOptions" type="Node"]
 
@@ -55,9 +48,6 @@ script = ExtResource("5_b6ofn")
 
 [node name="MaxFPS" type="Node" parent="Graphics/Display"]
 script = ExtResource("6_jjx0q")
-
-[node name="FPSCounter" type="Node" parent="Graphics/Display"]
-script = ExtResource("7_qytg8")
 
 [node name="ResUpscalingAA" type="Node" parent="Graphics"]
 script = ExtResource("8_eyxuy")
@@ -94,28 +84,12 @@ script = ExtResource("15_4e3ce")
 [node name="SSR" type="Node" parent="Graphics/Effects"]
 script = ExtResource("18_8dxpk")
 
-[node name="LensFlare" type="Node" parent="Graphics/Effects"]
-script = ExtResource("16_5c5rd")
-
-[node name="MotionParticles" type="Node" parent="Graphics/Effects"]
-script = ExtResource("17_njksq")
-
 [node name="Camera" type="Node" parent="Graphics"]
 script = ExtResource("8_eyxuy")
 display_name = "Camera"
 
 [node name="CameraFOV" type="Node" parent="Graphics/Camera"]
 script = ExtResource("18_dvdfb")
-
-[node name="UserInterface" type="Node" parent="Graphics"]
-script = ExtResource("8_eyxuy")
-display_name = "User interface"
-
-[node name="InputHints" type="Node" parent="Graphics/UserInterface"]
-script = ExtResource("19_gfb4p")
-
-[node name="TouchscreenControls" type="Node" parent="Graphics/UserInterface"]
-script = ExtResource("23_rxb8a")
 
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("2_7j3vk")
@@ -155,187 +129,10 @@ script = ExtResource("27_r4ieq")
 script = ExtResource("27_r4ieq")
 stick = 1
 
-[node name="Controls" type="Node" parent="."]
-script = ExtResource("2_7j3vk")
-display_name = "Controls"
-config_name = "controls"
-
-[node name="General" type="Node" parent="Controls"]
-script = ExtResource("8_eyxuy")
-display_name = "General"
-
-[node name="LookUp" type="Node" parent="Controls/General"]
-script = ExtResource("25_q8vr3")
-action_name = &"look_up"
-display_name = "Look up"
-
-[node name="LookDown" type="Node" parent="Controls/General"]
-script = ExtResource("25_q8vr3")
-action_name = &"look_down"
-display_name = "Look down"
-
-[node name="LookLeft" type="Node" parent="Controls/General"]
-script = ExtResource("25_q8vr3")
-action_name = &"look_left"
-display_name = "Look left"
-
-[node name="LookRight" type="Node" parent="Controls/General"]
-script = ExtResource("25_q8vr3")
-action_name = &"look_right"
-display_name = "Look right"
-
-[node name="Walking" type="Node" parent="Controls"]
-script = ExtResource("8_eyxuy")
-display_name = "Walking"
-
-[node name="MoveForward" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_forward"
-display_name = "Move forward"
-
-[node name="MoveBackward" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_backward"
-display_name = "Move backward"
-
-[node name="MoveLeft" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_left"
-display_name = "Move left"
-
-[node name="MoveRight" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_right"
-display_name = "Move right"
-
-[node name="Jump" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"jump"
-display_name = "Jump"
-
-[node name="Sprint" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"sprint"
-display_name = "Sprint"
-
-[node name="Crouch" type="Node" parent="Controls/Walking"]
-script = ExtResource("25_q8vr3")
-action_name = &"crouch"
-display_name = "Crouch"
-
-[node name="Flying" type="Node" parent="Controls"]
-script = ExtResource("8_eyxuy")
-display_name = "Flying"
-
-[node name="MoveUp" type="Node" parent="Controls/Flying"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_up"
-display_name = "Move up"
-
-[node name="MoveDown" type="Node" parent="Controls/Flying"]
-script = ExtResource("25_q8vr3")
-action_name = &"move_down"
-display_name = "Move down"
-
-[node name="RollLeft" type="Node" parent="Controls/Flying"]
-script = ExtResource("25_q8vr3")
-action_name = &"roll_left"
-display_name = "Roll left"
-
-[node name="RollRight" type="Node" parent="Controls/Flying"]
-script = ExtResource("25_q8vr3")
-action_name = &"roll_right"
-display_name = "Roll right"
-
-[node name="MatchVelocity" type="Node" parent="Controls/Flying"]
-script = ExtResource("25_q8vr3")
-action_name = &"match_velocity"
-display_name = "Match velocity"
-
-[node name="Building" type="Node" parent="Controls"]
-script = ExtResource("8_eyxuy")
-display_name = "Building"
-
-[node name="BuildMenu" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"build_menu"
-display_name = "Build menu"
-
-[node name="PlaceBlock" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"place_block"
-display_name = "Place block"
-
-[node name="RemoveBlock" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"remove_block"
-display_name = "Remove block"
-
-[node name="RotateX+" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_x+"
-display_name = "Rotate X+"
-
-[node name="RotateX-" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_x-"
-display_name = "Rotate X-"
-
-[node name="RotateY+" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_y+"
-display_name = "Rotate Y+"
-
-[node name="RotateY-" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_y-"
-display_name = "Rotate Y-"
-
-[node name="RotateZ+" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_z+"
-display_name = "Rotate Z+"
-
-[node name="RotateZ-" type="Node" parent="Controls/Building"]
-script = ExtResource("25_q8vr3")
-action_name = &"rotate_z-"
-display_name = "Rotate Z-"
-
-[node name="Other" type="Node" parent="Controls"]
-script = ExtResource("8_eyxuy")
-display_name = "Other"
-
-[node name="SelectObject" type="Node" parent="Controls/Other"]
-script = ExtResource("25_q8vr3")
-action_name = &"select_object"
-display_name = "Select object"
-
-[node name="PauseMenu" type="Node" parent="Controls/Other"]
-script = ExtResource("25_q8vr3")
-action_name = &"pause_menu"
-display_name = "Pause menu"
-
-[node name="CaptureScreenshot" type="Node" parent="Controls/Other"]
-script = ExtResource("25_q8vr3")
-action_name = &"capture_screenshot"
-display_name = "Capture Screenshot"
-
 [node name="Licenses" type="Node" parent="."]
 script = ExtResource("2_7j3vk")
 display_name = "Licenses"
 config_name = "licenses"
-
-[node name="VisualEffects" type="Node" parent="Licenses"]
-script = ExtResource("8_eyxuy")
-display_name = "Visual effects"
-
-[node name="LensFlare" type="Node" parent="Licenses/VisualEffects"]
-script = ExtResource("28_jaw2c")
-software_name = "Lens Flare Shader"
-source_url = "https://godotshaders.com/shader/lens-flare-shader/"
-copyright = "2022, malhotraprateek
-2013-2020, mu6k"
-license = "Expat"
 
 [node name="GameEngine" type="Node" parent="Licenses"]
 script = ExtResource("8_eyxuy")

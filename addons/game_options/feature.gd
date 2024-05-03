@@ -1,5 +1,4 @@
 extends Node
-class_name Feature
 
 @export var section := ""
 @export var key := ""
@@ -12,6 +11,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	if _GameOptions:
+		await _GameOptions.ready  # Autoload singleton using this might be before GameOptions
 		_GameOptions.get_bool_option(section, key).value_changed.connect(func(): _update())
 		_update()
 
