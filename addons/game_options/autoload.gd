@@ -37,7 +37,7 @@ func _walk_tree(node: Node, section: GameOptionSection, category: GameOptionCate
 			option.section = section
 			option.category = category
 			_options.append(option)
-			Utils.get_or_add(_options_dict, section.config_name, {})[option.key()] = option
+			GameOptionsUtils.get_or_add(_options_dict, section.config_name, {})[option.key()] = option
 
 
 func get_bool_option(section: String, key: String) -> BoolOption:

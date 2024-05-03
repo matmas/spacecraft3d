@@ -2,14 +2,6 @@
 extends Node
 
 
-func get_or_add(dict: Dictionary, key: Variant, default: Variant) -> Variant:  # TODO: Use Dictionary.get_or_add() with Godot 4.3
-	var result = dict.get(key)
-	if not result:
-		dict[key] = default
-		return default
-	return result
-
-
 func remove_all_children(node: Node) -> void:
 	for child in node.get_children():
 		node.remove_child(child)
