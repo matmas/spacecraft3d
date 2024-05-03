@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpko8s0wyyp8h"]
 
 [ext_resource type="Script" path="res://ui/joypad_tab_container/joypad_tab_container.gd" id="1_wwfak"]
-[ext_resource type="Script" path="res://ui/input_icons/input_action_texture_rect.gd" id="2_icyoc"]
+[ext_resource type="Script" path="res://addons/input_icons/input_action_texture_rect.gd" id="2_icyoc"]
 
 [node name="JoypadTabContainer" type="VBoxContainer"]
 anchors_preset = 15
