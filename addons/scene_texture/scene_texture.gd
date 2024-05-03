@@ -112,7 +112,7 @@ func _refresh() -> void:
 		_scene_root.name = &"SceneRoot"
 		_sub_viewport.add_child(_scene_root)
 
-	Utils.remove_all_children(_scene_root)
+	SceneTextureUtils.remove_all_children(_scene_root)
 	if scene:
 		_scene_root.add_child(scene.instantiate())
 	_update_camera_and_light()
@@ -127,7 +127,7 @@ func _update_camera_and_light() -> void:
 
 
 func _update_camera_position() -> void:
-	var aabb := Utils.calculate_spatial_bounds(_scene_root)
+	var aabb := SceneTextureUtils.calculate_spatial_bounds(_scene_root)
 	var endpoints: Array[Vector3] = []
 	for endpoint_idx in range(8):
 		endpoints.push_back(aabb.get_endpoint(endpoint_idx))
@@ -140,11 +140,11 @@ func _update_camera_position() -> void:
 				return endpoint if plane.distance_to(endpoint) > plane.distance_to(closest) else closest,
 			endpoints[0]
 		)))
-	var horizontal_intersection := Utils.get_planes_intersection(new_planes[0], new_planes[2])
-	var vertical_intersection := Utils.get_planes_intersection(new_planes[1], new_planes[3])
+	var horizontal_intersection := SceneTextureUtils.get_planes_intersection(new_planes[0], new_planes[2])
+	var vertical_intersection := SceneTextureUtils.get_planes_intersection(new_planes[1], new_planes[3])
 
 	if horizontal_intersection and vertical_intersection:
-		var closest_points := Utils.closest_points_on_two_lines(
+		var closest_points := SceneTextureUtils.closest_points_on_two_lines(
 			horizontal_intersection[0], horizontal_intersection[1],
 			vertical_intersection[0], vertical_intersection[1],
 		)

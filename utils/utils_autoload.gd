@@ -2,12 +2,6 @@
 extends Node
 
 
-func remove_all_children(node: Node) -> void:
-	for child in node.get_children():
-		node.remove_child(child)
-		child.queue_free()
-
-
 func calculate_spatial_bounds(node: Node3D, include_top_level_transform: bool = false) -> AABB:
 	# Similar to Node3DEditorViewport::_calculate_spatial_bounds from Godot Engine
 	var bounds: AABB
@@ -32,33 +26,6 @@ func calculate_spatial_bounds(node: Node3D, include_top_level_transform: bool = 
 		bounds = node.transform * bounds
 
 	return bounds
-
-
-func get_planes_intersection(p1: Plane, p2: Plane) -> PackedVector3Array:
-	# https://stackoverflow.com/a/32410473
-	var direction := p2.normal.cross(p1.normal)
-	if direction.is_zero_approx():
-		return []
-	var origin := (direction.cross(p2.normal) * p1.d + p1.normal.cross(direction) * p2.d) / direction.length_squared()
-	return [origin, direction]
-
-
-func closest_points_on_two_lines(line1_origin: Vector3, line1_direction: Vector3, line2_origin: Vector3, line2_direction: Vector3) -> PackedVector3Array:
-	# https://web.archive.org/web/20200629172501/http://wiki.unity3d.com/index.php/3d_Math_functions
-	var a := line1_direction.dot(line1_direction)
-	var b := line1_direction.dot(line2_direction)
-	var e := line2_direction.dot(line2_direction)
-	var d := a * e - b * b
-
-	if is_zero_approx(d):
-		return []  # Lines are parallel
-
-	var origin_diff := line1_origin - line2_origin
-	var c := line1_direction.dot(origin_diff)
-	var f := line2_direction.dot(origin_diff)
-	var closest_point_on_line1 := line1_origin + line1_direction * (b * f - e * c) / d
-	var closest_point_on_line2 := line2_origin + line2_direction * (a * f - b * c) / d
-	return [closest_point_on_line1, closest_point_on_line2]
 
 
 func raycast(parent_global_transform: Transform3D, relative_target: Vector3, collision_mask: int) -> Dictionary:
