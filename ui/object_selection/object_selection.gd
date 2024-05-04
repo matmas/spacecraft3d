@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if InputHints.is_action_just_pressed(&"select_object"):
+	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"select_object"):
 		var camera := get_viewport().get_camera_3d()
 		var params := PhysicsRayQueryParameters3D.new()
 		params.from = camera.project_ray_origin(get_viewport().get_mouse_position())
