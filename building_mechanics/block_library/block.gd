@@ -17,5 +17,4 @@ func _notification(what: int) -> void:
 			if get_parent() is Grid:
 				grid = get_parent() as Grid
 		NOTIFICATION_EXIT_TREE:
-			if grid:
-				grid = null
+			grid = null
