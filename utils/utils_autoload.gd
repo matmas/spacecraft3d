@@ -38,6 +38,27 @@ func raycast(parent_global_transform: Transform3D, relative_target: Vector3, col
 	)
 
 
+func get_collider_of_physics_body(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> Node3D:
+	for child in body.get_children():
+		if child is CollisionShape3D:
+			var collider := get_collider_of_collision_shape(child as CollisionShape3D, collision_mask, margin, offset)
+			if collider:
+				return collider
+	return null
+
+
+func get_collider_of_collision_shape(collision_shape: CollisionShape3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> Node3D:
+	var params := PhysicsShapeQueryParameters3D.new()
+	params.shape = collision_shape.shape
+	params.transform = collision_shape.global_transform.translated(offset)
+	params.margin = margin
+	params.collision_mask = collision_mask
+	var result := get_viewport().get_camera_3d().get_world_3d().direct_space_state.intersect_shape(params, 1)
+	if result.size() != 0:
+		return result[0].collider
+	return null
+
+
 func is_physics_body_colliding(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> bool:
 	for child in body.get_children():
 		if child is CollisionShape3D:
