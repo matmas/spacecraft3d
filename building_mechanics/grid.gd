@@ -1,6 +1,8 @@
 extends RigidBody3D
 class_name Grid
 
+var cell_size := Vector3(0.5, 0.5, 0.5)
+
 
 func _init() -> void:
 	name = "Grid"

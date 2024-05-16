@@ -65,10 +65,7 @@ func _physics_process(_delta: float) -> void:
 		if collider is Block:
 			var block := collider as Block
 			_ghost_block.global_basis = _grid_aligned_basis(global_basis * _ghost_basis, block.global_basis)
-			var block_aabb := Utils.calculate_spatial_bounds(block)
-			var local_normal := block.global_basis.inverse() * normal
-			var ghost_aabb := Transform3D(block.global_basis.inverse() * _ghost_block.global_basis) * Utils.calculate_spatial_bounds(_ghost_block)
-			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
+			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block, _ghost_block, point, normal)
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y) * _ghost_basis
 			var ghost_aabb := Transform3D(_ghost_basis) * Utils.calculate_spatial_bounds(_ghost_block)
@@ -97,7 +94,7 @@ func _allow_block_placement(collider: Object) -> void:
 		var grid: Grid
 		if collider is Block:
 			grid = (collider as Block).grid
-			spawned_block.transform = grid.global_transform.inverse() * _ghost_block.global_transform
+			spawned_block.transform = grid.global_transform.inverse() * _ghost_block.global_transform  # Precalculate local transform as an alternative to setting global_transform on spawned_block after grid.add_child
 			grid.add_child(spawned_block)
 		else:
 			grid = Grid.new()
@@ -158,11 +155,21 @@ func _update_block_to_remove_material() -> void:
 		_override_children_material_recursively(_block_to_remove, _remove_block_material if _block_under_raycast == _block_to_remove else null)
 
 
-func _calculate_local_offset(block_aabb: AABB, ghost_aabb: AABB, local_normal: Vector3) -> Vector3:
-	return local_normal * (
+func _calculate_local_offset(block: Block, ghost_block: Block, point: Vector3, normal: Vector3) -> Vector3:
+	var local_point := block.global_transform.inverse() * point
+	var local_normal := block.global_basis.inverse() * normal
+	var block_aabb := Utils.calculate_spatial_bounds(block)
+	var ghost_aabb := Transform3D(block.global_basis.inverse() * ghost_block.global_basis) * Utils.calculate_spatial_bounds(ghost_block)
+	var block_span := (block_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
+	var ghost_span := (ghost_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
+	var span_oddness_by_axis := (ghost_span - block_span).abs().posmod(2)  # Each component is 0 or 1
+	var span_oddness := span_oddness_by_axis * local_point.sign() * block.grid.cell_size * 0.5
+	var span_oddness_correction := span_oddness - span_oddness * local_normal.abs()  # Set axis aligned with local_normal to zero
+	var local_offset := local_normal * (
 		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +
 		ghost_aabb.size * 0.5 + ghost_aabb.get_center() * -local_normal
-	)
+	) + span_oddness_correction
+	return local_offset
 
 
 func _grid_aligned_basis(basis_: Basis, grid_basis: Basis) -> Basis:
