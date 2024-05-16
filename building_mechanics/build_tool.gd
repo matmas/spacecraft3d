@@ -68,8 +68,7 @@ func _physics_process(_delta: float) -> void:
 			var block_aabb := Utils.calculate_spatial_bounds(block)
 			var local_normal := block.global_basis.inverse() * normal
 			var ghost_aabb := Transform3D(block.global_basis.inverse() * _ghost_block.global_basis) * Utils.calculate_spatial_bounds(_ghost_block)
-			var block_offset := block.global_basis * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
-			_ghost_block.global_position = block.global_position + block_offset
+			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block_aabb, ghost_aabb, local_normal)
 		else:
 			_ghost_block.global_basis = _basis_from_y_z(normal, global_basis.z, global_basis.y) * _ghost_basis
 			var ghost_aabb := Transform3D(_ghost_basis) * Utils.calculate_spatial_bounds(_ghost_block)
