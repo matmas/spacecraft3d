@@ -171,7 +171,7 @@ func _calculate_local_offset(block: Block, ghost_block: Block, point: Vector3, n
 	var span_oddness := span_oddness_by_axis * local_point.sign() * block.grid.cell_size * 0.5
 	var span_oddness_correction := span_oddness - span_oddness * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var freedom_by_axis := _max(block_span, ghost_span)
-	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.5 * block.grid.cell_size * local_point_normalized).snapped(block.grid.cell_size)
+	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.5 * block.grid.cell_size * local_point_normalized).snapped(block.grid.cell_size) + block_aabb.get_center() - ghost_aabb.get_center()
 	var freedom_correction := freedom - freedom * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var local_offset := local_normal * (
 		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +
