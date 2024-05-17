@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b786dks5oq5tw"]
+[gd_scene load_steps=7 format=3 uid="uid://b786dks5oq5tw"]
 
 [ext_resource type="Script" path="res://building_mechanics/block_library/block_library_autoload.gd" id="1_urft5"]
 [ext_resource type="PackedScene" uid="uid://dt6anlgriwrxp" path="res://building_mechanics/block_library/blocks/block.tscn" id="2_rya1b"]
 [ext_resource type="PackedScene" uid="uid://b3nv8vb62xwr3" path="res://building_mechanics/block_library/blocks/halfblock.tscn" id="3_wbhah"]
 [ext_resource type="PackedScene" uid="uid://doyvh1adddyhg" path="res://building_mechanics/block_library/blocks/double_block.tscn" id="4_87nld"]
 [ext_resource type="PackedScene" uid="uid://bqoptufilmxjf" path="res://building_mechanics/block_library/blocks/ramp.tscn" id="4_wag2o"]
+[ext_resource type="PackedScene" uid="uid://chyr1ewsb24ga" path="res://building_mechanics/block_library/blocks/triple.tscn" id="6_60t5v"]
 
 [node name="PieceLibraryAutoload" type="Node"]
 script = ExtResource("1_urft5")
-blocks = Array[PackedScene]([ExtResource("2_rya1b"), ExtResource("3_wbhah"), ExtResource("4_wag2o"), ExtResource("4_87nld")])
+blocks = Array[PackedScene]([ExtResource("2_rya1b"), ExtResource("3_wbhah"), ExtResource("4_wag2o"), ExtResource("4_87nld"), ExtResource("6_60t5v")])
