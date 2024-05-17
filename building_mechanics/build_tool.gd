@@ -59,11 +59,12 @@ func _physics_process(_delta: float) -> void:
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
 
 	var collider := _raycast.get_collider()
+	var block: Block
 	if _raycast.is_colliding():
 		var point := _raycast.get_collision_point()
 		var normal := _raycast.get_collision_normal()
 		if collider is Block:
-			var block := collider as Block
+			block = collider as Block
 			_ghost_block.global_basis = _grid_aligned_basis(global_basis * _ghost_basis, block.global_basis)
 			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block, _ghost_block, point, normal)
 		else:
@@ -80,8 +81,11 @@ func _physics_process(_delta: float) -> void:
 	if Utils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02):
 		_ghost_material.set_shader_parameter(&"color", Color.RED)
 	else:
-		_ghost_material.set_shader_parameter(&"color", Color.GREEN)
-		_allow_block_placement(collider)
+		if not block or Utils.get_colliders_of_physics_body(_ghost_block, collision_mask, 0.02).has(block):  # Is ghost_block touching block?
+			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
+			_allow_block_placement(collider)
+		else:
+			_ghost_material.set_shader_parameter(&"color", Color.RED)
 
 	_allow_block_removal()
 
