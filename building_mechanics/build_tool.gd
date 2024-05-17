@@ -155,20 +155,32 @@ func _update_block_to_remove_material() -> void:
 		_override_children_material_recursively(_block_to_remove, _remove_block_material if _block_under_raycast == _block_to_remove else null)
 
 
+func _max(a: Vector3, b: Vector3) -> Vector3:  # TODO: Change to Vector3.max() in Godot 4.3
+	return Vector3(maxf(a.x, b.x), maxf(a.y, b.y), maxf(a.z, b.z))
+
+
+func _min(a: Vector3, b: Vector3) -> Vector3:  # TODO: Change to Vector3.max() in Godot 4.3
+	return Vector3(minf(a.x, b.x), minf(a.y, b.y), minf(a.z, b.z))
+
+
 func _calculate_local_offset(block: Block, ghost_block: Block, point: Vector3, normal: Vector3) -> Vector3:
-	var local_point := block.global_transform.inverse() * point
-	var local_normal := block.global_basis.inverse() * normal
 	var block_aabb := Utils.calculate_spatial_bounds(block)
 	var ghost_aabb := Transform3D(block.global_basis.inverse() * ghost_block.global_basis) * Utils.calculate_spatial_bounds(ghost_block)
+	var local_point := block.global_transform.inverse() * point
+	var local_point_normalized := (local_point - block_aabb.get_center()) / (block_aabb.size * 0.5)  # Each component is in the range -1.0..1.0
+	var local_normal := block.global_basis.inverse() * normal
 	var block_span := (block_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
 	var ghost_span := (ghost_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
 	var span_oddness_by_axis := (ghost_span - block_span).abs().posmod(2)  # Each component is 0 or 1
 	var span_oddness := span_oddness_by_axis * local_point.sign() * block.grid.cell_size * 0.5
 	var span_oddness_correction := span_oddness - span_oddness * local_normal.abs()  # Set axis aligned with local_normal to zero
+	var freedom_by_axis := _max(block_span, ghost_span) - _min(block_span, ghost_span)
+	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.25 * local_point_normalized).snapped(block.grid.cell_size)
+	var freedom_correction := freedom - freedom * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var local_offset := local_normal * (
 		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +
 		ghost_aabb.size * 0.5 + ghost_aabb.get_center() * -local_normal
-	) + span_oddness_correction
+	) + freedom_correction + span_oddness_correction
 	return local_offset
 
 
