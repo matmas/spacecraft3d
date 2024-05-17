@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://8lrq3m7m2a8g"]
+
+[ext_resource type="Script" path="res://building_mechanics/block_library/block.gd" id="1_2e2fa"]
+[ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="2_8l0lc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pjq8"]
+albedo_texture = ExtResource("2_8l0lc")
+
+[sub_resource type="BoxMesh" id="BoxMesh_d3xcy"]
+material = SubResource("StandardMaterial3D_4pjq8")
+size = Vector3(0.5, 2.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8dq1"]
+size = Vector3(0.5, 2.5, 0.5)
+
+[node name="Penta" type="StaticBody3D"]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("1_2e2fa")
+display_name = "Penta"
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_d3xcy")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_p8dq1")
