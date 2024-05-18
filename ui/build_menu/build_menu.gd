@@ -12,7 +12,7 @@ func _ready() -> void:
 		var display_name := _get_property_value(block.get_state(), &"display_name") as String
 		var index := item_list.add_item(display_name, scene_texture)
 
-		if block == BlockLibrary.selected_block:
+		if block == BuildingMechanics.selected_block:
 			item_list.select(index)
 	super._ready()
 
@@ -29,4 +29,4 @@ func _get_property_value(state: SceneState, property_name: StringName, node_idx:
 
 
 func _on_item_list_item_selected(index: int) -> void:
-	BlockLibrary.selected_block = BlockLibrary.blocks[index]
+	BuildingMechanics.selected_block = BlockLibrary.blocks[index]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqoptufilmxjf"]
 
-[ext_resource type="PackedScene" uid="uid://b6nst37jbjnr3" path="res://building_mechanics/block_library/blocks/ramp.blend" id="1_rmbw6"]
-[ext_resource type="Script" path="res://building_mechanics/block_library/block.gd" id="1_utllo"]
+[ext_resource type="PackedScene" uid="uid://b6nst37jbjnr3" path="res://block_library/blocks/ramp.blend" id="1_rmbw6"]
+[ext_resource type="Script" path="res://addons/building_mechanics/block.gd" id="1_utllo"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yjq3e"]
 points = PackedVector3Array(0.999979, -1, 1, -1, -1, 1, 0.999979, -1, -1, 0.999979, 0.999979, -1, -1, 0.999979, -1, -1, -1, -1)

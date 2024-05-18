@@ -38,62 +38,6 @@ func raycast(parent_global_transform: Transform3D, relative_target: Vector3, col
 	)
 
 
-func get_colliders_of_physics_body(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO, max_results: int = 32) -> Array[CollisionObject3D]:
-	var colliders: Array[CollisionObject3D] = []
-	var exclude: Array[RID] = []
-	for i in max_results:
-		var collider := get_collider_of_physics_body(body, collision_mask, margin, offset, exclude)
-		if collider:
-			colliders.append(collider)
-			exclude.append(collider.get_rid())
-		else:
-			break
-	return colliders
-
-
-func get_collider_of_physics_body(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO, exclude: Array[RID] = []) -> CollisionObject3D:
-	for child in body.get_children():
-		if child is CollisionShape3D:
-			var collider := get_collider_of_collision_shape(child as CollisionShape3D, collision_mask, margin, offset, exclude)
-			if collider:
-				return collider
-	return null
-
-
-func get_collider_of_collision_shape(collision_shape: CollisionShape3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO, exclude: Array[RID] = []) -> CollisionObject3D:
-	var params := PhysicsShapeQueryParameters3D.new()
-	params.shape = collision_shape.shape
-	params.transform = collision_shape.global_transform.translated(offset)
-	params.margin = margin
-	params.collision_mask = collision_mask
-	params.exclude = exclude
-	var result := get_viewport().get_camera_3d().get_world_3d().direct_space_state.intersect_shape(params, 1)
-	if result.size() != 0:
-		if result[0].collider is CollisionObject3D:
-			return result[0].collider
-		else:
-			printerr("intersect_shape collider is not CollisionObject3D")
-	return null
-
-
-func is_physics_body_colliding(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> bool:
-	for child in body.get_children():
-		if child is CollisionShape3D:
-			if is_collision_shape_colliding(child as CollisionShape3D, collision_mask, margin, offset):
-				return true
-	return false
-
-
-func is_collision_shape_colliding(collision_shape: CollisionShape3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> bool:
-	var params := PhysicsShapeQueryParameters3D.new()
-	params.shape = collision_shape.shape
-	params.transform = collision_shape.global_transform.translated(offset)
-	params.margin = margin
-	params.collision_mask = collision_mask
-	var contact_points := get_viewport().get_camera_3d().get_world_3d().direct_space_state.collide_shape(params, 1)
-	return contact_points.size() != 0
-
-
 func unproject_aabb_to_screen_space_rect(aabb: AABB, transform: Transform3D, camera: Camera3D) -> Rect2:
 	var vertex_positions := PackedVector2Array()
 	vertex_positions.resize(8)
