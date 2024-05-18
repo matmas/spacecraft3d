@@ -30,7 +30,7 @@ static func calculate_spatial_bounds(node: Node3D, include_top_level_transform: 
 
 static func get_colliders_of_physics_body(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO, max_results: int = 32) -> Array[CollisionObject3D]:
 	var colliders: Array[CollisionObject3D] = []
-	var exclude: Array[RID] = []
+	var exclude: Array[RID] = [body.get_rid()]
 	for i in max_results:
 		var collider := _get_collider_of_physics_body(body, collision_mask, margin, offset, exclude)
 		if collider:
@@ -69,17 +69,18 @@ static func _get_collider_of_collision_shape(collision_shape: CollisionShape3D, 
 static func is_physics_body_colliding(body: PhysicsBody3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> bool:
 	for child in body.get_children():
 		if child is CollisionShape3D:
-			if _is_collision_shape_colliding(child as CollisionShape3D, collision_mask, margin, offset):
+			if _is_collision_shape_colliding(child as CollisionShape3D, collision_mask, margin, offset, [body.get_rid()]):
 				return true
 	return false
 
 
-static func _is_collision_shape_colliding(collision_shape: CollisionShape3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO) -> bool:
+static func _is_collision_shape_colliding(collision_shape: CollisionShape3D, collision_mask: int, margin: float = 0.0, offset: Vector3 = Vector3.ZERO, exclude: Array[RID] = []) -> bool:
 	var params := PhysicsShapeQueryParameters3D.new()
 	params.shape = collision_shape.shape
 	params.transform = collision_shape.global_transform.translated(offset)
 	params.margin = margin
 	params.collision_mask = collision_mask
+	params.exclude = exclude
 	var contact_points := BuildingMechanics.get_viewport().get_camera_3d().get_world_3d().direct_space_state.collide_shape(params, 1)
 	return contact_points.size() != 0
 
