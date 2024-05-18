@@ -16,4 +16,5 @@ static func register_settings() -> void:
 
 
 func _draw() -> void:
+	draw_string_outline(ThemeDB.fallback_font, Vector2.ZERO, get_parent().name, HORIZONTAL_ALIGNMENT_CENTER, -1, 16, 3, Color.BLACK)
 	draw_string(ThemeDB.fallback_font, Vector2.ZERO, get_parent().name, HORIZONTAL_ALIGNMENT_CENTER)
