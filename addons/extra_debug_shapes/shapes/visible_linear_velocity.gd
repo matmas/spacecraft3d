@@ -5,6 +5,10 @@ class_name VisibleLinearVelocity
 var _endpoint_2d: Vector2
 
 
+static func is_node_supported(node: Node) -> bool:
+	return node is RigidBody3D
+
+
 static func is_enabled() -> bool:
 	return ProjectSettings.get_setting(PROPERTY_PREFIX + "visible_linear_velocities")
 

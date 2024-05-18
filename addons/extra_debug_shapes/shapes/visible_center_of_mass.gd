@@ -3,6 +3,10 @@ extends BaseDebugShape
 class_name VisibleCenterOfMass
 
 
+static func is_node_supported(node: Node) -> bool:
+	return node is RigidBody3D
+
+
 static func is_enabled() -> bool:
 	return ProjectSettings.get_setting(PROPERTY_PREFIX + "visible_centers_of_masses")
 

@@ -7,6 +7,10 @@ var _y_endpoint_2d: Vector2
 var _z_endpoint_2d: Vector2
 
 
+static func is_node_supported(node: Node) -> bool:
+	return node is CollisionObject3D
+
+
 static func is_enabled() -> bool:
 	return ProjectSettings.get_setting(PROPERTY_PREFIX + "visible_bases")
 
@@ -31,11 +35,11 @@ func _draw() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 
-	var rigid_body := get_parent() as RigidBody3D
+	var parent := get_parent() as CollisionObject3D
 
-	var visual_node := rigid_body.get_node_or_null("PhysicsInterpolation") as Node3D
+	var visual_node := parent.get_node_or_null("PhysicsInterpolation") as Node3D
 	if not visual_node:
-		visual_node = rigid_body
+		visual_node = parent
 
 	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale") as float
 	_x_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.x * scale_)

@@ -5,12 +5,16 @@ class_name BaseDebugShape
 const PROPERTY_PREFIX = "debug/shapes/extra/"
 
 
-func get_global_position_3d() -> Vector3:
-	var rigid_body := get_parent() as RigidBody3D
+static func is_node_supported(node: Node) -> bool:
+	return true  # To be overridden in subclasses
 
-	var visual_node := rigid_body.get_node_or_null("PhysicsInterpolation") as Node3D
+
+func get_global_position_3d() -> Vector3:
+	var collision_object := get_parent() as CollisionObject3D
+
+	var visual_node := collision_object.get_node_or_null("PhysicsInterpolation") as Node3D
 	if not visual_node:
-		visual_node = rigid_body
+		visual_node = collision_object
 
 	return visual_node.global_position
 
