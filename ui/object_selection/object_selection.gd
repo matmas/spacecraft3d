@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
+@export_flags_3d_physics var raycast_collision_mask := 0b00000000_00000000_00000000_11111111
+
 const MIN_SIZE = 64
 
 @onready var widget := $Widget as Control

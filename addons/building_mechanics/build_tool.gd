@@ -1,7 +1,10 @@
 extends Node3D
 class_name BuildTool
 
-@export_flags_3d_physics var collision_mask := 0b00000000_00000000_00000010_00000000
+@export var cell_size := Vector3(0.5, 0.5, 0.5)
+@export_flags_3d_physics var block_collision_mask := 0b00000000_00000000_00000010_00000000
+@export_flags_3d_physics var grid_collision_layer := 0b00000000_00000000_00000000_00000001
+@export_flags_3d_physics var grid_collision_mask := 0b00000000_00000000_00000001_11111111
 
 var raycast := RayCast3D.new()
 var _ghost_block: Block
@@ -14,7 +17,7 @@ var _block_to_remove: Block
 
 
 func _ready() -> void:
-	raycast.collision_mask = collision_mask
+	raycast.collision_mask = block_collision_mask
 	raycast.target_position = Vector3.FORWARD * 10.0
 	_on_block_selection_changed()
 	BuildingMechanics.selection_changed.connect(_on_block_selection_changed)
@@ -76,10 +79,10 @@ func _physics_process(_delta: float) -> void:
 	if not _ghost_block.visible:
 		_ghost_block.show()
 
-	if BuildingMechanicsUtils.is_physics_body_colliding(_ghost_block, collision_mask, -0.02):
+	if BuildingMechanicsUtils.is_physics_body_colliding(_ghost_block, block_collision_mask, -0.02):
 		_ghost_material.set_shader_parameter(&"color", Color.RED)
 	else:
-		if not block or BuildingMechanicsUtils.get_colliders_of_physics_body(_ghost_block, collision_mask, 0.02).has(block):  # Is ghost_block touching block?
+		if not block or BuildingMechanicsUtils.get_colliders_of_physics_body(_ghost_block, block_collision_mask, 0.02).has(block):  # Is ghost_block touching block?
 			_ghost_material.set_shader_parameter(&"color", Color.GREEN)
 			_allow_block_placement(collider)
 		else:
@@ -100,6 +103,9 @@ func _allow_block_placement(collider: Object) -> void:
 			grid.add_child(spawned_block)
 		else:
 			grid = Grid.new()
+			grid.collision_layer = grid_collision_layer
+			grid.collision_mask = grid_collision_mask
+			grid.block_collision_mask = block_collision_mask
 			add_child(grid)
 			grid.global_transform = _ghost_block.global_transform
 			add_physics_interpolation(grid)  # Useful for 3d_object_selection
@@ -163,13 +169,13 @@ func _calculate_local_offset(block: Block, ghost_block: Block, point: Vector3, n
 	var local_point := block.global_transform.inverse() * point
 	var local_point_normalized := (local_point - block_aabb.get_center()) / (block_aabb.size * 0.5)  # Each component is in the range -1.0..1.0
 	var local_normal := block.global_basis.inverse() * normal
-	var block_span := (block_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
-	var ghost_span := (ghost_aabb.size / block.grid.cell_size).snapped(Vector3.ONE)
+	var block_span := (block_aabb.size / cell_size).snapped(Vector3.ONE)
+	var ghost_span := (ghost_aabb.size / cell_size).snapped(Vector3.ONE)
 	var span_oddness_by_axis := (ghost_span - block_span).abs().posmod(2)  # Each component is 0 or 1
-	var span_oddness := span_oddness_by_axis * local_point.sign() * block.grid.cell_size * 0.5
+	var span_oddness := span_oddness_by_axis * local_point.sign() * cell_size * 0.5
 	var span_oddness_correction := span_oddness - span_oddness * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var freedom_by_axis := BuildingMechanicsUtils.max_vector3(block_span, ghost_span)
-	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.5 * block.grid.cell_size * local_point_normalized).snapped(block.grid.cell_size) + block_aabb.get_center() - ghost_aabb.get_center()
+	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.5 * cell_size * local_point_normalized).snapped(cell_size) + block_aabb.get_center() - ghost_aabb.get_center()
 	var freedom_correction := freedom - freedom * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var local_offset := local_normal * (
 		block_aabb.size * 0.5 + block_aabb.get_center() * local_normal +

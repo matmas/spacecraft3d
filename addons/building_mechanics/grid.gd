@@ -1,8 +1,8 @@
 extends RigidBody3D
 class_name Grid
 
-var cell_size := Vector3(0.5, 0.5, 0.5)
 var _block_count := 0
+var block_collision_mask: int  # Set by the build_tool when creating new Grid
 
 
 func get_block_count() -> int:
@@ -12,8 +12,6 @@ func get_block_count() -> int:
 func _init() -> void:
 	name = "Grid"
 	mass = 0.001
-	collision_layer = 0b00000000_00000000_00000000_00000001
-	collision_mask = 0b00000000_00000000_00000001_11111111
 	center_of_mass_mode = CENTER_OF_MASS_MODE_CUSTOM
 	child_entered_tree.connect(_on_child_entered_tree)
 	child_exiting_tree.connect(_on_child_exiting_tree)
