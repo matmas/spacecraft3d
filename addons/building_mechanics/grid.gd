@@ -9,7 +9,10 @@ func get_block_count() -> int:
 	return _block_count
 
 
-func _init() -> void:
+func _init(collision_layer_: int = 1, collision_mask_: int = 1, block_collision_mask_: int = 1) -> void:
+	collision_layer = collision_layer_
+	collision_mask = collision_mask_
+	block_collision_mask = block_collision_mask_
 	name = "Grid"
 	mass = 0.001
 	center_of_mass_mode = CENTER_OF_MASS_MODE_CUSTOM

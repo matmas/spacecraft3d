@@ -102,10 +102,7 @@ func _allow_block_placement(collider: Object) -> void:
 			spawned_block.transform = grid.global_transform.inverse() * _ghost_block.global_transform  # Precalculate local transform as an alternative to setting global_transform on spawned_block after grid.add_child
 			grid.add_child(spawned_block)
 		else:
-			grid = Grid.new()
-			grid.collision_layer = grid_collision_layer
-			grid.collision_mask = grid_collision_mask
-			grid.block_collision_mask = block_collision_mask
+			grid = Grid.new(grid_collision_layer, grid_collision_mask, block_collision_mask)
 			add_child(grid)
 			grid.global_transform = _ghost_block.global_transform
 			add_physics_interpolation(grid)  # Useful for 3d_object_selection
