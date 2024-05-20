@@ -42,10 +42,11 @@ func _process(_delta: float) -> void:
 ## Make sure to apply any desired transform to the node before calling this function
 ## to prevent it being visible in the old transform for a brief moment between physics frames
 ## node must be in the scene tree before calling this function
-static func apply(node: Node3D) -> void:
+static func apply(node: Node3D) -> PhysicsInterpolation:
 	var physics_interpolation := PhysicsInterpolation.new()
 	physics_interpolation.name = &"PhysicsInterpolation"
 	node.add_child(physics_interpolation)
 	for child in node.get_children():
 		if child is VisualInstance3D:
 			child.reparent(physics_interpolation)
+	return physics_interpolation
