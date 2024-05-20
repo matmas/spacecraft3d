@@ -69,6 +69,9 @@ func _check_connectivity() -> void:
 			new_grid.linear_velocity = grid.linear_velocity
 			new_grid.angular_velocity = grid.angular_velocity
 			grid.get_parent().add_child(new_grid)
+			var physics_interpolation := grid.get_node_or_null("PhysicsInterpolation")
+			if physics_interpolation:
+				new_grid.add_child(physics_interpolation.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS))
 			neighbor._depth_first_search(visited, new_grid)
 
 
