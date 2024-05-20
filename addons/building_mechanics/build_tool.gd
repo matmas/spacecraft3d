@@ -111,21 +111,8 @@ func _allow_block_placement(collider: Object) -> void:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
 			else:
 				grid.linear_velocity = (get_parent() as Player).linear_velocity
-			grid.child_exiting_tree.connect(func(_node): if grid.get_block_count() == 0: grid.queue_free())
-
-		_add_grid_collision_shapes(spawned_block, grid)
 
 		add_physics_interpolation(spawned_block)
-
-
-func _add_grid_collision_shapes(block: Block, grid: Grid) -> void:
-	for child in block.get_children():
-		if child is CollisionShape3D:
-			var collision_shape := child as CollisionShape3D
-			var grid_collision_shape := collision_shape.duplicate() as CollisionShape3D
-			grid.add_child(grid_collision_shape)
-			grid_collision_shape.global_transform = collision_shape.global_transform
-			block.tree_exiting.connect(func(): grid_collision_shape.queue_free())
 
 
 func _allow_block_removal() -> void:

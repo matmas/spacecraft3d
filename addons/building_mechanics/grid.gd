@@ -35,6 +35,8 @@ func _on_child_exiting_tree(node: Node) -> void:
 		block.mass = 0.0  # _calculate_center_of_mass loops through all blocks, even those who are about to leave tree
 		center_of_mass = _calculate_center_of_mass()
 		_block_count -= 1
+		if _block_count == 0:
+			queue_free()
 
 
 func _calculate_center_of_mass() -> Vector3:
