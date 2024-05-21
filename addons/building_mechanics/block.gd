@@ -24,7 +24,8 @@ func _notification(what: int) -> void:
 			for shape in _grid_collision_shapes:
 				if is_instance_valid(shape):  # Can be already freed e.g. when freeing whole scene
 					shape.queue_free()
-			_check_connectivity()
+			if grid:
+				grid.neighbors_of_just_deleted_blocks.append_array(neighbors)
 		NOTIFICATION_EXIT_TREE:
 			grid = null
 
@@ -56,35 +57,3 @@ func _find_neighbors_in_grid() -> Array[Block]:
 					if neighbor.grid == grid:
 						result.append(neighbor)
 	return result
-
-
-func _check_connectivity() -> void:
-	var visited := {}
-	for neighbor in neighbors:  # Main branches to test
-		if visited.is_empty():
-			neighbor._depth_first_search(visited)
-		elif neighbor not in visited:
-			var new_grid := Grid.new(grid.collision_layer, grid.collision_mask, grid.block_collision_mask)
-			new_grid.transform = grid.transform
-			new_grid.linear_velocity = grid.linear_velocity
-			new_grid.angular_velocity = grid.angular_velocity
-			grid.get_parent().add_child(new_grid)
-			var physics_interpolation := grid.get_node_or_null("PhysicsInterpolation")
-			if physics_interpolation:
-				new_grid.add_child(physics_interpolation.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS))
-			neighbor._depth_first_search(visited, new_grid)
-
-
-func _depth_first_search(visited: Dictionary, new_grid: Grid = null) -> void:
-	if self not in visited:
-		visited[self] = true
-		if new_grid:
-			_move_to_grid(new_grid)
-		for neighbor in neighbors:
-			neighbor._depth_first_search(visited, new_grid)
-
-
-func _move_to_grid(grid_: Grid) -> void:
-	reparent(grid_)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
-	for shape in _grid_collision_shapes:
-		shape.reparent(grid_)

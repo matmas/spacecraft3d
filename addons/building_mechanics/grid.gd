@@ -3,6 +3,7 @@ class_name Grid
 
 var _block_count := 0
 var block_collision_mask: int  # Set by the build_tool when creating new Grid
+var neighbors_of_just_deleted_blocks: Array[Block] = []
 
 
 func get_block_count() -> int:
@@ -54,6 +55,7 @@ func _calculate_center_of_mass(exclude: Block = null) -> Vector3:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	_move_origin_to_center_of_mass(state)
+	_split_disjointed_blocks()
 
 
 func _move_origin_to_center_of_mass(state: PhysicsDirectBodyState3D) -> void:
@@ -64,3 +66,37 @@ func _move_origin_to_center_of_mass(state: PhysicsDirectBodyState3D) -> void:
 				(child as Node3D).position -= offset
 		state.transform = state.transform.translated_local(offset)
 		center_of_mass -= offset
+
+
+func _split_disjointed_blocks() -> void:
+	if neighbors_of_just_deleted_blocks:
+		var visited := {}
+		for neighbor in neighbors_of_just_deleted_blocks:
+			if visited.is_empty():
+				_depth_first_search(neighbor, visited)
+			elif neighbor not in visited:
+				var new_grid := Grid.new(collision_layer, collision_mask, block_collision_mask)
+				new_grid.transform = transform
+				new_grid.linear_velocity = linear_velocity
+				new_grid.angular_velocity = angular_velocity
+				get_parent().add_child(new_grid)
+				var physics_interpolation := get_node_or_null("PhysicsInterpolation")
+				if physics_interpolation:
+					new_grid.add_child(physics_interpolation.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS))
+				_depth_first_search(neighbor, visited, new_grid)
+		neighbors_of_just_deleted_blocks.clear()
+
+
+func _depth_first_search(block: Block, visited: Dictionary, new_grid: Grid = null) -> void:
+	if block not in visited:
+		visited[block] = true
+		if new_grid:
+			_move_to_grid(block, new_grid)
+		for neighbor in block.neighbors:
+			_depth_first_search(neighbor, visited, new_grid)
+
+
+func _move_to_grid(block: Block, new_grid: Grid) -> void:
+	block.reparent(new_grid)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
+	for shape in block._grid_collision_shapes:
+		shape.reparent(new_grid)
