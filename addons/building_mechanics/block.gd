@@ -85,8 +85,6 @@ func _depth_first_search(visited: Dictionary, new_grid: Grid = null) -> void:
 
 
 func _move_to_grid(grid_: Grid) -> void:
-	#reparent.call_deferred(grid_, false)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
-	#for shape in _grid_collision_shapes:
-		#shape.reparent(grid_)
-	grid_.add_child(self.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS + DuplicateFlags.DUPLICATE_GROUPS))
-	self.queue_free()
+	reparent(grid_)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
+	for shape in _grid_collision_shapes:
+		shape.reparent(grid_)

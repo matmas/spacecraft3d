@@ -32,19 +32,19 @@ func _on_child_exiting_tree(node: Node) -> void:
 	if node is Block:
 		var block := node as Block
 		mass -= block.mass
-		block.mass = 0.0  # _calculate_center_of_mass loops through all blocks, even those who are about to leave tree
-		center_of_mass = _calculate_center_of_mass()
+		var exclude := block
+		center_of_mass = _calculate_center_of_mass(exclude)
 		_block_count -= 1
 		if _block_count == 0:
 			queue_free()
 
 
-func _calculate_center_of_mass() -> Vector3:
+func _calculate_center_of_mass(exclude: Block = null) -> Vector3:
 	var result := Vector3()
 	var total_mass := 0.0
 
 	for child in get_children():
-		if child is Block:
+		if child is Block and child != exclude:
 			var block := child as Block
 			result += block.mass * (block.position + Utils.calculate_spatial_bounds(block).get_center())
 			total_mass += block.mass
