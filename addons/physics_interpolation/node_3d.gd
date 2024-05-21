@@ -10,6 +10,11 @@ var current_global_transform := Transform3D()
 
 
 func _ready() -> void:
+	if not enabled:
+		set_process(false)
+		set_physics_process(false)
+		return
+
 	# Process interpolation before camera
 	process_priority = -2
 
