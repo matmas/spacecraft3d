@@ -7,6 +7,8 @@ const MIN_SIZE = 64
 @onready var widget := $Widget as Control
 @onready var label: Label = $Widget/Label
 
+var _uninterpolated_camera: Camera3D
+
 
 func _init() -> void:
 	process_mode = PROCESS_MODE_ALWAYS  # Update when changing content scale factor and game is paused
@@ -14,16 +16,19 @@ func _init() -> void:
 
 func _ready() -> void:
 	widget.hide()
+	var camera := get_viewport().get_camera_3d()
+	_uninterpolated_camera = camera.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS)
+	_uninterpolated_camera.current = false
+	camera.get_parent().get_parent().add_child(_uninterpolated_camera)
 
 
 func _physics_process(_delta: float) -> void:
 	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"select_object"):
-		var camera := get_viewport().get_camera_3d()
 		var params := PhysicsRayQueryParameters3D.new()
-		params.from = camera.project_ray_origin(get_viewport().get_mouse_position())
-		params.to = params.from + camera.project_ray_normal(get_viewport().get_mouse_position()) * camera.far
+		params.from = _uninterpolated_camera.project_ray_origin(get_viewport().get_mouse_position())  # Using physics-interpolated camera makes it hard to select objects that have significant velocities
+		params.to = params.from + _uninterpolated_camera.project_ray_normal(get_viewport().get_mouse_position()) * _uninterpolated_camera.far
 		params.collision_mask = raycast_collision_mask
-		var result := camera.get_world_3d().direct_space_state.intersect_ray(params)
+		var result := _uninterpolated_camera.get_world_3d().direct_space_state.intersect_ray(params)
 		if result:
 			if result.collider != ObjectSelection.selected_collider:
 				ObjectSelection.selected_collider = result.collider
@@ -44,7 +49,7 @@ func _process(_delta: float) -> void:
 	if not selected_visual_node:
 		selected_visual_node = selected_collider
 
-	widget.visible = not camera.is_position_behind(selected_collider.global_position)
+	widget.visible = not _uninterpolated_camera.is_position_behind(selected_collider.global_position)
 	if widget.visible:
 		var rect := Utils.unproject_aabb_to_screen_space_rect(Utils.calculate_spatial_bounds(selected_collider), selected_visual_node.global_transform, camera)
 		if rect:
@@ -52,12 +57,12 @@ func _process(_delta: float) -> void:
 			widget.position = rect.position
 			widget.size = rect.size
 
-			var distance := "%.0f m" % camera.global_position.distance_to(selected_collider.global_position)
+			var distance := "%.0f m" % _uninterpolated_camera.global_position.distance_to(selected_collider.global_position)
 
 			var camera_rigid_body := _get_camera_rigid_body_ancestor()
 			var selected_collider_velocity := Utils.get_velocity(selected_collider)
 			var relative_velocity := (
-				camera.global_position.direction_to(selected_collider.global_position)
+				_uninterpolated_camera.global_position.direction_to(selected_collider.global_position)
 				.dot(selected_collider_velocity - camera_rigid_body.linear_velocity)
 			)
 			label.text = "%s\n%s\n%d m/s" % [selected_collider.name, distance, roundi(relative_velocity)]
