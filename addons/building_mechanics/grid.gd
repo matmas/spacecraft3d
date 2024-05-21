@@ -54,8 +54,8 @@ func _calculate_center_of_mass(exclude: Block = null) -> Vector3:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	_split_disjointed_blocks()  # Before _move_origin_to_center_of_mass to prevent moving split grids
 	_move_origin_to_center_of_mass(state)
-	_split_disjointed_blocks()
 
 
 func _move_origin_to_center_of_mass(state: PhysicsDirectBodyState3D) -> void:
