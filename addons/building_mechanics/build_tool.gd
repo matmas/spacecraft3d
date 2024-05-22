@@ -2,6 +2,7 @@ extends Node3D
 class_name BuildTool
 
 @export var cell_size := Vector3(0.5, 0.5, 0.5)
+@export var place_block_max_distance := 10.0
 @export_flags_3d_physics var block_collision_mask := 0b00000000_00000000_00000010_00000000
 @export_flags_3d_physics var grid_collision_layer := 0b00000000_00000000_00000000_00000001
 @export_flags_3d_physics var grid_collision_mask := 0b00000000_00000000_00000001_11111111
@@ -18,7 +19,7 @@ var _block_to_remove: Block
 
 func _ready() -> void:
 	raycast.collision_mask = block_collision_mask
-	raycast.target_position = Vector3.FORWARD * 10.0
+	raycast.target_position = Vector3.FORWARD * place_block_max_distance
 	_on_block_selection_changed()
 	BuildingMechanics.selection_changed.connect(_on_block_selection_changed)
 
