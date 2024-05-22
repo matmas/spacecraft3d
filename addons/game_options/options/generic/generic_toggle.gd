@@ -1,14 +1,18 @@
 extends BoolOption
+class_name GenericBoolOption
+
+@export var key_name := ""
+@export var display_name := ""
 
 var current_value := true
 
 
 func key() -> String:
-	return "input_hints"
+	return key_name
 
 
 func get_display_name() -> String:
-	return tr("Input hints")
+	return display_name
 
 
 func set_value(value: bool) -> void:

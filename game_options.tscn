@@ -1,12 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://0rtre2s0lwjw"]
+[gd_scene load_steps=8 format=3 uid="uid://0rtre2s0lwjw"]
 
 [ext_resource type="PackedScene" uid="uid://cwdgkuos243k3" path="res://addons/game_options/game_options.tscn" id="1_3omty"]
-[ext_resource type="Script" path="res://addons/game_options/options/examples/fps_counter.gd" id="2_sftwo"]
-[ext_resource type="Script" path="res://addons/game_options/options/examples/lens_flare.gd" id="3_mvh7a"]
-[ext_resource type="Script" path="res://addons/game_options/options/examples/motion_particles.gd" id="4_j5vb2"]
+[ext_resource type="Script" path="res://addons/game_options/options/generic/generic_toggle.gd" id="2_f0jly"]
+[ext_resource type="Script" path="res://addons/game_options/options/generic/generic_toggle_touchscreen_only.gd" id="4_mrtnd"]
 [ext_resource type="Script" path="res://addons/game_options/category.gd" id="5_gws87"]
-[ext_resource type="Script" path="res://addons/game_options/options/examples/input_hints.gd" id="6_7dr3j"]
-[ext_resource type="Script" path="res://addons/game_options/options/examples/touchscreen_controls.gd" id="7_sjgly"]
 [ext_resource type="Script" path="res://addons/game_options/section.gd" id="8_e8ggc"]
 [ext_resource type="Script" path="res://addons/game_options/option_types/input_action_option.gd" id="9_3u6nq"]
 [ext_resource type="Script" path="res://addons/game_options/option_types/license_option.gd" id="10_bfx5l"]
@@ -14,23 +11,33 @@
 [node name="GameOptions" instance=ExtResource("1_3omty")]
 
 [node name="FPSCounter" type="Node" parent="Graphics/Display" index="5"]
-script = ExtResource("2_sftwo")
+script = ExtResource("2_f0jly")
+key_name = "fps_counter"
+display_name = "Show FPS"
 
 [node name="LensFlare" type="Node" parent="Graphics/Effects" index="4"]
-script = ExtResource("3_mvh7a")
+script = ExtResource("2_f0jly")
+key_name = "lens_flare"
+display_name = "Lens flare"
 
 [node name="MotionParticles" type="Node" parent="Graphics/Effects" index="5"]
-script = ExtResource("4_j5vb2")
+script = ExtResource("2_f0jly")
+key_name = "motion_particles"
+display_name = "Motion particles"
 
 [node name="UserInterface" type="Node" parent="Graphics" index="4"]
 script = ExtResource("5_gws87")
 display_name = "User interface"
 
 [node name="InputHints" type="Node" parent="Graphics/UserInterface" index="0"]
-script = ExtResource("6_7dr3j")
+script = ExtResource("2_f0jly")
+key_name = "input_hints"
+display_name = "Input hints"
 
 [node name="TouchscreenControls" type="Node" parent="Graphics/UserInterface" index="1"]
-script = ExtResource("7_sjgly")
+script = ExtResource("4_mrtnd")
+key_name = "touchscreen_controls"
+display_name = "Touchscreen controls"
 
 [node name="Controls" type="Node" parent="." index="3"]
 script = ExtResource("8_e8ggc")
