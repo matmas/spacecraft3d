@@ -26,7 +26,6 @@ var target_head_position_y := upright_head_position_y
 
 func _ready() -> void:
 	max_contacts_reported = 1
-	can_sleep = false
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
