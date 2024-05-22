@@ -110,7 +110,7 @@ func _allow_block_placement(collider: Object) -> void:
 			if collider is RigidBody3D:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
 			else:
-				grid.linear_velocity = (get_parent() as Player).linear_velocity
+				grid.linear_velocity = (get_player_rigid_body() as RigidBody3D).linear_velocity
 
 		add_physics_interpolation(spawned_block)
 
@@ -206,6 +206,10 @@ func is_input_rotate_z_pos() -> bool:
 
 func is_input_rotate_z_neg() -> bool:
 	return Input.is_action_just_pressed(&"rotate_z-")
+
+
+func get_player_rigid_body() -> RigidBody3D:
+	return get_parent()
 
 
 func add_physics_interpolation(node: Node3D) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cobs5t5krrlfs"]
+[gd_scene load_steps=32 format=3 uid="uid://cobs5t5krrlfs"]
 
 [ext_resource type="Script" path="res://game/world_environment.gd" id="1_axnvw"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_rsu7a"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://ui/scene_management/action_scene_mapping.gd" id="3_h1t7t"]
 [ext_resource type="Script" path="res://addons/physics_interpolation/node_3d.gd" id="3_urk0v"]
 [ext_resource type="PackedScene" uid="uid://dmsoxac68w1q8" path="res://ui/build_menu/build_menu.tscn" id="4_4cdr3"]
-[ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://player/player.tscn" id="5_u4j58"]
+[ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://addons/player_controller/player_controller.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://ui/input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://ui/crosshair/crosshair.tscn" id="6_e7f5j"]
 [ext_resource type="Script" path="res://game/area_gravity.gd" id="6_nceua"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://ui/touchscreen_controls/touchscreen_controls.tscn" id="8_2lra2"]
 [ext_resource type="Script" path="res://game/custom_build_tool.gd" id="8_4jucc"]
 [ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://ui/menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
+[ext_resource type="Script" path="res://game/custom_player_controller.gd" id="8_p6sqn"]
+[ext_resource type="Script" path="res://game/camera.gd" id="9_x5pdf"]
 [ext_resource type="PackedScene" uid="uid://uyias2vsvsdc" path="res://ui/object_selection/object_selection.tscn" id="13_3xjp8"]
 
 [sub_resource type="Resource" id="Resource_fnx4w"]
@@ -78,6 +80,13 @@ shadow_enabled = true
 [node name="MotionParticles" parent="." instance=ExtResource("2_apmyu")]
 
 [node name="Player" parent="." instance=ExtResource("5_u4j58")]
+script = ExtResource("8_p6sqn")
+
+[node name="PhysicsInterpolation" type="Node3D" parent="Player/Head" index="0"]
+script = ExtResource("3_urk0v")
+
+[node name="Camera" type="Camera3D" parent="Player/Head/PhysicsInterpolation"]
+script = ExtResource("9_x5pdf")
 
 [node name="BuildTool" type="Node3D" parent="Player"]
 script = ExtResource("8_4jucc")
@@ -167,3 +176,5 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Obstacle"]
 shape = SubResource("BoxShape3D_ho7vk")
+
+[editable path="Player"]

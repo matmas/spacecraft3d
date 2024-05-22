@@ -73,12 +73,6 @@ func get_velocity(node: Node3D) -> Vector3:
 	return Vector3.ZERO
 
 
-func clamp_vector_length(vector: Vector3, max_length: float = 1.0) -> Vector3:
-	if vector.length() > max_length:
-		return vector.normalized() * max_length
-	return vector
-
-
 func print_0(what: Variant) -> void:
 	if what is Transform3D:
 		var t := what as Transform3D

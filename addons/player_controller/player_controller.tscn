@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bc7sh3g7mh7vs"]
+[gd_scene load_steps=6 format=3 uid="uid://bc7sh3g7mh7vs"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_ca748"]
-[ext_resource type="Script" path="res://addons/physics_interpolation/node_3d.gd" id="2_1m1lt"]
-[ext_resource type="Script" path="res://player/camera.gd" id="3_4foqd"]
+[ext_resource type="Script" path="res://addons/player_controller/player_controller.gd" id="1_277nx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y21s"]
 radius = 0.25
@@ -25,7 +23,7 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 80.0
-script = ExtResource("1_ca748")
+script = ExtResource("1_277nx")
 
 [node name="UprightCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
@@ -46,9 +44,3 @@ disabled = true
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-
-[node name="PhysicsInterpolation" type="Node3D" parent="Head"]
-script = ExtResource("2_1m1lt")
-
-[node name="Camera3D" type="Camera3D" parent="Head/PhysicsInterpolation"]
-script = ExtResource("3_4foqd")

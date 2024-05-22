@@ -1,5 +1,4 @@
 extends BuildTool
-class_name CustomBuildTool
 
 
 func _ready() -> void:
