@@ -1,7 +1,7 @@
 extends Scene
 class_name BuildMenu
 
-@onready var item_list: ItemList = $Body/ItemList
+@onready var item_list: ItemList = %ItemList
 
 
 func _ready() -> void:

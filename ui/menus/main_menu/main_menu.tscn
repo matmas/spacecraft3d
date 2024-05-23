@@ -1,44 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8jva2n0bnxjn"]
+[gd_scene load_steps=9 format=3 uid="uid://cvybg6ooldvp7"]
 
-[ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_i62cn"]
-[ext_resource type="Script" path="res://ui/menus/main_menu/title_label.gd" id="2_k36iy"]
+[ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_lu7rc"]
+[ext_resource type="Script" path="res://ui/scene_management/open_scene_button.gd" id="2_lcmeb"]
+[ext_resource type="Script" path="res://ui/menus/main_menu/title_label.gd" id="2_mal5w"]
 [ext_resource type="Script" path="res://ui/scene_management/scene.gd" id="2_qdx1m"]
-[ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="4_c713w"]
-[ext_resource type="PackedScene" uid="uid://bg60kamn8ivh0" path="res://ui/menus/options_menu/options_menu.tscn" id="5_fx4r5"]
-[ext_resource type="PackedScene" uid="uid://5evkaouka3rr" path="res://ui/menus/information/information.tscn" id="7_7hf08"]
-[ext_resource type="Script" path="res://ui/scene_management/open_scene_button.gd" id="7_vcmw5"]
-[ext_resource type="Script" path="res://ui/menus/main_menu/quit_button.gd" id="8_dg2n0"]
+[ext_resource type="PackedScene" uid="uid://cobs5t5krrlfs" path="res://game/game.tscn" id="3_peqey"]
+[ext_resource type="PackedScene" uid="uid://ccadavjtl54vg" path="res://ui/menus/options_menu/options_menu.tscn" id="4_2b0gk"]
+[ext_resource type="Script" path="res://ui/menus/main_menu/quit_button.gd" id="6_tusev"]
+[ext_resource type="PackedScene" uid="uid://c7bx2q8xqc7vr" path="res://ui/menus/information/information.tscn" id="7_rt8rp"]
 
-[node name="MainMenu" instance=ExtResource("1_i62cn")]
+[node name="MainMenu" instance=ExtResource("1_lu7rc")]
 script = ExtResource("2_qdx1m")
 
-[node name="Body" parent="." index="0"]
+[node name="Body" parent="VBoxContainer" index="0"]
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="TitleLabel" parent="Body/Header" index="0"]
+[node name="TitleLabel" parent="VBoxContainer/Body/Header" index="0"]
 text = "Application title"
-script = ExtResource("2_k36iy")
+script = ExtResource("2_mal5w")
 
-[node name="NewGame" type="Button" parent="Body" index="1"]
+[node name="NewGame" type="Button" parent="VBoxContainer/Body" index="1"]
 layout_mode = 2
 text = "New game"
-script = ExtResource("7_vcmw5")
-scene = ExtResource("4_c713w")
+script = ExtResource("2_lcmeb")
+scene = ExtResource("3_peqey")
 
-[node name="Options" type="Button" parent="Body" index="2"]
+[node name="Options" type="Button" parent="VBoxContainer/Body" index="2"]
 layout_mode = 2
 text = "Options"
-script = ExtResource("7_vcmw5")
-scene = ExtResource("5_fx4r5")
+script = ExtResource("2_lcmeb")
+scene = ExtResource("4_2b0gk")
 
-[node name="Information" type="Button" parent="Body" index="3"]
+[node name="Information" type="Button" parent="VBoxContainer/Body" index="3"]
 layout_mode = 2
 text = "Information"
-script = ExtResource("7_vcmw5")
-scene = ExtResource("7_7hf08")
+script = ExtResource("2_lcmeb")
+scene = ExtResource("7_rt8rp")
 
-[node name="Quit" type="Button" parent="Body" index="4"]
+[node name="Quit" type="Button" parent="VBoxContainer/Body" index="4"]
 layout_mode = 2
 text = "Quit"
-script = ExtResource("8_dg2n0")
+script = ExtResource("6_tusev")

@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://game/game.gd" id="1_rsu7a"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_vwdv0"]
 [ext_resource type="PackedScene" uid="uid://mic25bshahx8" path="res://vfx/motion_particles/motion_particles.tscn" id="2_apmyu"]
+[ext_resource type="PackedScene" uid="uid://drk6c2360idmp" path="res://ui/menus/pause_menu/pause_menu.tscn" id="2_wckhl"]
 [ext_resource type="Script" path="res://ui/scene_management/action_scene_mapping.gd" id="3_h1t7t"]
 [ext_resource type="Script" path="res://addons/physics_interpolation/node_3d.gd" id="3_urk0v"]
-[ext_resource type="PackedScene" uid="uid://dmsoxac68w1q8" path="res://ui/build_menu/build_menu.tscn" id="4_4cdr3"]
+[ext_resource type="PackedScene" uid="uid://b67vpjluvrfj4" path="res://ui/build_menu/build_menu.tscn" id="4_w6biy"]
 [ext_resource type="PackedScene" uid="uid://bc7sh3g7mh7vs" path="res://addons/player_controller/player_controller.tscn" id="5_u4j58"]
 [ext_resource type="PackedScene" uid="uid://c1lhiinaixtyf" path="res://ui/input_hints/input_hints.tscn" id="6_84uns"]
 [ext_resource type="PackedScene" uid="uid://bi6ndujwqpytb" path="res://ui/crosshair/crosshair.tscn" id="6_e7f5j"]
@@ -14,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cpu5koohrrphw" path="res://vfx/lens_flare/lens_flare.tscn" id="7_k38yw"]
 [ext_resource type="PackedScene" uid="uid://bc275k4543pyd" path="res://ui/touchscreen_controls/touchscreen_controls.tscn" id="8_2lra2"]
 [ext_resource type="Script" path="res://game/custom_build_tool.gd" id="8_4jucc"]
-[ext_resource type="PackedScene" uid="uid://mbq7m437qpbm" path="res://ui/menus/pause_menu/pause_menu.tscn" id="8_18bxx"]
 [ext_resource type="Script" path="res://game/custom_player_controller.gd" id="8_p6sqn"]
 [ext_resource type="Script" path="res://game/camera.gd" id="9_x5pdf"]
 [ext_resource type="PackedScene" uid="uid://uyias2vsvsdc" path="res://ui/object_selection/object_selection.tscn" id="13_3xjp8"]
@@ -22,12 +22,12 @@
 [sub_resource type="Resource" id="Resource_fnx4w"]
 script = ExtResource("3_h1t7t")
 action_name = &"pause_menu"
-scene = ExtResource("8_18bxx")
+scene = ExtResource("2_wckhl")
 
 [sub_resource type="Resource" id="Resource_s0tto"]
 script = ExtResource("3_h1t7t")
 action_name = &"build_menu"
-scene = ExtResource("4_4cdr3")
+scene = ExtResource("4_w6biy")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rcdh7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -66,7 +66,7 @@ rough = true
 [node name="Game" type="CanvasLayer"]
 layer = 0
 script = ExtResource("1_rsu7a")
-pause_menu_scene = ExtResource("8_18bxx")
+pause_menu_scene = ExtResource("2_wckhl")
 open_scene_actions = Array[ExtResource("3_h1t7t")]([SubResource("Resource_fnx4w"), SubResource("Resource_s0tto")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg60kamn8ivh0"]
+[gd_scene load_steps=8 format=3 uid="uid://ccadavjtl54vg"]
 
-[ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_f7kga"]
-[ext_resource type="Script" path="res://ui/menus/options_menu/options_menu.gd" id="2_8kihv"]
-[ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://ui/joypad_tab_container/joypad_tab_container.tscn" id="3_kbu31"]
-[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="4_7smst"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="4_n1bqb"]
+[ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_xxq2r"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="2_2s7wm"]
+[ext_resource type="Script" path="res://ui/menus/options_menu/options_menu.gd" id="2_7jg1e"]
+[ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://ui/joypad_tab_container/joypad_tab_container.tscn" id="3_b4t7j"]
+[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="3_ghgy1"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_xmh7t"]
 action = &"reset_all"
@@ -12,26 +12,26 @@ action = &"reset_all"
 [sub_resource type="Shortcut" id="Shortcut_x6mg8"]
 events = [SubResource("InputEventAction_xmh7t")]
 
-[node name="OptionsMenu" instance=ExtResource("1_f7kga")]
-script = ExtResource("2_8kihv")
+[node name="OptionsMenu" instance=ExtResource("1_xxq2r")]
+script = ExtResource("2_7jg1e")
 
-[node name="TitleLabel" parent="Body/Header" index="0"]
+[node name="TitleLabel" parent="VBoxContainer/Body/Header" index="0"]
 text = "Options"
 
-[node name="JoypadTabContainer" parent="Body" index="1" instance=ExtResource("3_kbu31")]
+[node name="JoypadTabContainer" parent="VBoxContainer/Body" index="1" instance=ExtResource("3_b4t7j")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("4_n1bqb")]
+[node name="Back" parent="VBoxContainer/Footer/Buttons" index="0" instance=ExtResource("2_2s7wm")]
 layout_mode = 2
 
-[node name="ResetAll" type="Button" parent="Footer/Buttons" index="1"]
+[node name="ResetAll" type="Button" parent="VBoxContainer/Footer/Buttons" index="1"]
 layout_mode = 2
 size_flags_horizontal = 8
 shortcut = SubResource("Shortcut_x6mg8")
 text = "Reset all"
-script = ExtResource("4_7smst")
+script = ExtResource("3_ghgy1")
 
-[connection signal="pressed" from="Footer/Buttons/ResetAll" to="." method="_on_reset_all_pressed"]
+[connection signal="pressed" from="VBoxContainer/Footer/Buttons/ResetAll" to="." method="_on_reset_all_pressed"]

@@ -1,36 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://btca0c325c1vj"]
+[gd_scene load_steps=3 format=3 uid="uid://bgxohydstk7pg"]
 
 [ext_resource type="PackedScene" uid="uid://dy007m0fd7yhe" path="res://ui/virtual_keyboard/open_virtual_keyboard_button.tscn" id="1_olx27"]
+[ext_resource type="Script" path="res://ui/menus/version_label.gd" id="2_oma4q"]
 
-[node name="MenuTemplate" type="VBoxContainer"]
-process_mode = 3
+[node name="MenuTemplate" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Body" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Body" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Header" type="MarginContainer" parent="Body"]
+[node name="Header" type="MarginContainer" parent="VBoxContainer/Body"]
 layout_mode = 2
 theme_type_variation = &"BigMarginContainer"
 
-[node name="TitleLabel" type="Label" parent="Body/Header"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Body/Header"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Title"
 horizontal_alignment = 1
 
-[node name="Footer" type="MarginContainer" parent="."]
+[node name="Footer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"BigMarginContainer"
 
-[node name="Buttons" type="HBoxContainer" parent="Footer"]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/Footer"]
 layout_mode = 2
 alignment = 1
 
-[node name="OpenVirtualKeyboardButton" parent="Footer/Buttons" instance=ExtResource("1_olx27")]
+[node name="OpenVirtualKeyboardButton" parent="VBoxContainer/Footer/Buttons" instance=ExtResource("1_olx27")]
 layout_mode = 2
+
+[node name="VersionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -57.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "version"
+horizontal_alignment = 2
+script = ExtResource("2_oma4q")

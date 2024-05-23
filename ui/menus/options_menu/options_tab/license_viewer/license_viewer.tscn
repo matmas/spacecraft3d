@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://djrbjglwd8rbj"]
+[gd_scene load_steps=6 format=3 uid="uid://cuya6g7k17f7d"]
 
-[ext_resource type="PackedScene" uid="uid://btca0c325c1vj" path="res://ui/menus/menu_template.tscn" id="1_agidi"]
-[ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/license_viewer/license_viewer.gd" id="2_gbg4l"]
-[ext_resource type="Script" path="res://ui/joypad_scroll_container/joypad_scroll_container.gd" id="3_yt13p"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="4_j8l76"]
+[ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_3jw0o"]
+[ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/license_viewer/license_viewer.gd" id="2_0esn4"]
+[ext_resource type="Script" path="res://ui/joypad_scroll_container/joypad_scroll_container.gd" id="3_kacfd"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_tyeqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aoyn"]
 content_margin_left = 10.0
@@ -16,21 +16,21 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="LicenseViewer" instance=ExtResource("1_agidi")]
-script = ExtResource("2_gbg4l")
+[node name="LicenseViewer" instance=ExtResource("1_3jw0o")]
+script = ExtResource("2_0esn4")
 
-[node name="TitleLabel" parent="Body/Header" index="0"]
+[node name="TitleLabel" parent="VBoxContainer/Body/Header" index="0"]
 unique_name_in_owner = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Body" index="1"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Body" index="1"]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
-script = ExtResource("3_yt13p")
+script = ExtResource("3_kacfd")
 
-[node name="Label" type="Label" parent="Body/ScrollContainer" index="0"]
+[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer" index="0"]
 unique_name_in_owner = true
 auto_translate_mode = 1
 layout_mode = 2
@@ -38,5 +38,5 @@ size_flags_horizontal = 6
 theme_override_styles/normal = SubResource("StyleBoxFlat_4aoyn")
 text = "License text"
 
-[node name="Back" parent="Footer/Buttons" index="0" instance=ExtResource("4_j8l76")]
+[node name="Back" parent="VBoxContainer/Footer/Buttons" index="0" instance=ExtResource("3_tyeqw")]
 layout_mode = 2
