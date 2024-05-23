@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_2ac3d"]
 [ext_resource type="Script" path="res://ui/menus/pause_menu/pause_menu.gd" id="2_eaduh"]
 [ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_stack/back_button.tscn" id="3_h1by2"]
-[ext_resource type="Script" path="res://ui/scene_stack/open_scene_button.gd" id="4_rxknf"]
+[ext_resource type="Script" path="res://addons/scene_stack/open_scene_button.gd" id="4_rxknf"]
 [ext_resource type="PackedScene" uid="uid://ccadavjtl54vg" path="res://ui/menus/options_menu/options_menu.tscn" id="5_ht1oo"]
 
 [node name="PauseMenu" instance=ExtResource("1_2ac3d")]

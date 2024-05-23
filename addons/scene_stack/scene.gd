@@ -18,12 +18,17 @@ func _on_current_scene_changed(scene_instance: Node) -> void:
 func _refresh() -> void:
 	if should_focus_first_visible_button():
 		_grab_focus_first_visible_button(self)
-	EmulateMouseFromTouch.enabled = should_emulate_mouse_from_touch()
+
 	get_tree().paused = should_pause_game()
+
 	if should_hide_mouse_cursor():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	var EmulateMouseFromTouch_ := get_node_or_null("/root/EmulateMouseFromTouch")
+	if EmulateMouseFromTouch_:
+		EmulateMouseFromTouch_.enabled = should_emulate_mouse_from_touch()
 
 
 func should_focus_first_visible_button() -> bool:
