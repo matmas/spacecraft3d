@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccadavjtl54vg"]
 
 [ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_xxq2r"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="2_2s7wm"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_stack/back_button.tscn" id="2_2s7wm"]
 [ext_resource type="Script" path="res://ui/menus/options_menu/options_menu.gd" id="2_7jg1e"]
 [ext_resource type="PackedScene" uid="uid://dpko8s0wyyp8h" path="res://ui/joypad_tab_container/joypad_tab_container.tscn" id="3_b4t7j"]
-[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="3_ghgy1"]
+[ext_resource type="Script" path="res://ui/scene_stack/shortcut_button.gd" id="3_ghgy1"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_xmh7t"]
 action = &"reset_all"

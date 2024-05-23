@@ -19,7 +19,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Utils="*res://utils/utils_autoload.gd"
-SceneManagement="*res://ui/scene_management/scene_management_autoload.gd"
+SceneStack="*res://ui/scene_stack/scene_stack_autoload.gd"
 BlockLibrary="*res://block_library/block_library_autoload.tscn"
 ObjectSelection="*res://ui/object_selection/object_selection_autoload.gd"
 FpsCounterAutoload="*res://ui/fps_counter/fps_counter_autoload.tscn"

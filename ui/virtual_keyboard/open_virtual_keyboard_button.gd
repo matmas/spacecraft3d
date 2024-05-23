@@ -34,7 +34,7 @@ func _on_pressed() -> void:
 	var line_edit := focused_control as LineEdit
 	var _original_caret_force_displayed := line_edit.caret_force_displayed
 	line_edit.caret_force_displayed = true
-	var scene_instance := SceneManagement.open_scene(SCENE, false) as VirtualKeyboard
+	var scene_instance := SceneStack.open_scene(SCENE, false) as VirtualKeyboard
 	scene_instance.line_edit = line_edit
 	scene_instance.tree_exiting.connect(func(): _on_keyboard_closing(line_edit, _original_caret_force_displayed))
 

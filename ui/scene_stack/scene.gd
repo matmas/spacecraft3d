@@ -7,7 +7,7 @@ class_name Scene
 
 func _ready() -> void:
 	_refresh()
-	SceneManagement.current_scene_changed.connect(_on_current_scene_changed)
+	SceneStack.current_scene_changed.connect(_on_current_scene_changed)
 
 
 func _on_current_scene_changed(scene_instance: Node) -> void:
@@ -43,23 +43,23 @@ func should_hide_mouse_cursor() -> bool:
 
 
 func on_go_back_requested() -> void:
-	SceneManagement.close_current_scene()
+	SceneStack.close_current_scene()
 
 
 func _input(event: InputEvent) -> void:
 	if close_scene_action:
-		if SceneManagement.current_scene() == self and event.is_action_pressed(close_scene_action):
+		if SceneStack.current_scene() == self and event.is_action_pressed(close_scene_action):
 			get_viewport().set_input_as_handled()
-			SceneManagement.close_current_scene()
+			SceneStack.close_current_scene()
 	for mapping in open_scene_actions:
-		if SceneManagement.current_scene() == self and event.is_action_pressed(mapping.action_name):
+		if SceneStack.current_scene() == self and event.is_action_pressed(mapping.action_name):
 			get_viewport().set_input_as_handled()
-			SceneManagement.open_scene(mapping.scene)
+			SceneStack.open_scene(mapping.scene)
 
 
 func _process(_delta: float) -> void:
 	for mapping in open_scene_actions:
-		if SceneManagement.current_scene() == self:
+		if SceneStack.current_scene() == self:
 			InputHints.is_action_just_pressed(mapping.action_name)
 
 

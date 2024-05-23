@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_gjfrf"]
 [ext_resource type="Script" path="res://ui/build_menu/build_menu.gd" id="2_4r72m"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_iewm0"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_stack/back_button.tscn" id="3_iewm0"]
 
 [node name="BuildMenu" instance=ExtResource("1_gjfrf")]
 script = ExtResource("2_4r72m")

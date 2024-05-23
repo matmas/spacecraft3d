@@ -8,39 +8,39 @@ func _ready() -> void:
 
 
 func is_input_place_block() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"place_block")
 
 
 func is_input_remove_block_pressed() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"remove_block")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"remove_block")
 
 
 func is_input_remove_block_released() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_released(&"remove_block")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_released(&"remove_block")
 
 
 func is_input_rotate_x_pos() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_x+")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_x+")
 
 
 func is_input_rotate_x_neg() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_x-")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_x-")
 
 
 func is_input_rotate_y_pos() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_y+")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_y+")
 
 
 func is_input_rotate_y_neg() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_y-")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_y-")
 
 
 func is_input_rotate_z_pos() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_z+")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_z+")
 
 
 func is_input_rotate_z_neg() -> bool:
-	return SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_z-")
+	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_z-")
 
 
 func add_physics_interpolation(node: Node3D) -> void:

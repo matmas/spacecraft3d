@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _on_pressed() -> void:
-	var scene_instance := SceneManagement.open_scene(scene)
+	var scene_instance := SceneStack.open_scene(scene)
 	scene_opened.emit(scene_instance)
 	scene_instance.tree_exiting.connect(_on_tree_exiting)
 

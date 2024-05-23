@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bgxohydstk7pg" path="res://ui/menus/menu_template.tscn" id="1_3jw0o"]
 [ext_resource type="Script" path="res://ui/menus/options_menu/options_tab/license_viewer/license_viewer.gd" id="2_0esn4"]
 [ext_resource type="Script" path="res://ui/joypad_scroll_container/joypad_scroll_container.gd" id="3_kacfd"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_tyeqw"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_stack/back_button.tscn" id="3_tyeqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4aoyn"]
 content_margin_left = 10.0

@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://dto7psw5rwu67"]
 
 [ext_resource type="Script" path="res://ui/virtual_keyboard/virtual_keyboard.gd" id="1_gktpk"]
-[ext_resource type="Script" path="res://ui/scene_management/shortcut_button.gd" id="3_cj4hg"]
+[ext_resource type="Script" path="res://ui/scene_stack/shortcut_button.gd" id="3_cj4hg"]
 [ext_resource type="Script" path="res://ui/virtual_keyboard/key.gd" id="3_lpvp4"]
-[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_management/back_button.tscn" id="3_u7qih"]
+[ext_resource type="PackedScene" uid="uid://cpsfb6uh0kwx5" path="res://ui/scene_stack/back_button.tscn" id="3_u7qih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r3cd"]
 bg_color = Color(0.3, 0.3, 0.3, 1)

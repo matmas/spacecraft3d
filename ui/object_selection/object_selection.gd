@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if SceneManagement.current_scene() is Game and InputHints.is_action_just_pressed(&"select_object"):
+	if SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"select_object"):
 		var params := PhysicsRayQueryParameters3D.new()
 		params.from = _uninterpolated_camera.project_ray_origin(get_viewport().get_mouse_position())  # Using physics-interpolated camera makes it hard to select objects that have significant velocities
 		params.to = params.from + _uninterpolated_camera.project_ray_normal(get_viewport().get_mouse_position()) * _uninterpolated_camera.far

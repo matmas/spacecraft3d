@@ -17,4 +17,4 @@ func should_hide_mouse_cursor() -> bool:
 
 
 func on_go_back_requested() -> void:
-	SceneManagement.open_scene(pause_menu_scene)
+	SceneStack.open_scene(pause_menu_scene)
