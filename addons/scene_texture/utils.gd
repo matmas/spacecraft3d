@@ -45,6 +45,7 @@ static func get_planes_intersection(p1: Plane, p2: Plane) -> PackedVector3Array:
 
 static func closest_points_on_two_lines(line1_origin: Vector3, line1_direction: Vector3, line2_origin: Vector3, line2_direction: Vector3) -> PackedVector3Array:
 	# https://web.archive.org/web/20200629172501/http://wiki.unity3d.com/index.php/3d_Math_functions
+	# Alternative: https://stackoverflow.com/a/10554546/682025
 	var a := line1_direction.dot(line1_direction)
 	var b := line1_direction.dot(line2_direction)
 	var e := line2_direction.dot(line2_direction)
