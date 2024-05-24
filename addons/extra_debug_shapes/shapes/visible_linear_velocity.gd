@@ -34,5 +34,5 @@ func _process(delta: float) -> void:
 		visual_node = rigid_body
 
 	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_scale") as float
-	_endpoint_2d = _unproject(visual_node.global_position + rigid_body.linear_velocity * scale_)
+	_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.global_position + rigid_body.linear_velocity * scale_)
 	queue_redraw()

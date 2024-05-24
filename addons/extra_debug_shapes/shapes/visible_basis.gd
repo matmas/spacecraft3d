@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		visual_node = parent
 
 	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale") as float
-	_x_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.x * scale_)
-	_y_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.y * scale_)
-	_z_endpoint_2d = _unproject(visual_node.global_position + visual_node.global_basis.z * scale_)
+	_x_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.global_position + visual_node.global_basis.x * scale_)
+	_y_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.global_position + visual_node.global_basis.y * scale_)
+	_z_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.global_position + visual_node.global_basis.z * scale_)
 	queue_redraw()
