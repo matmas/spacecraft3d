@@ -67,14 +67,14 @@ func _physics_process(_delta: float) -> void:
 		var normal := raycast.get_collision_normal()
 		if collider is Block:
 			block = collider as Block
-			_ghost_block.global_basis = _grid_aligned_basis(global_basis * _ghost_basis, block.global_basis)
+			_ghost_block.global_basis = _grid_aligned_basis(_ghost_basis, block.global_basis)
 			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block, _ghost_block, point, normal)
 		else:
-			_ghost_block.global_basis = BuildingMechanicsUtils.basis_from_y_z(normal, global_basis.z, global_basis.y) * _ghost_basis
+			_ghost_block.global_basis = BuildingMechanicsUtils.change_basis_y(_ghost_basis, normal)
 			var ghost_aabb := Transform3D(_ghost_basis) * BuildingMechanicsUtils.calculate_spatial_bounds(_ghost_block)
 			_ghost_block.global_position = point + normal * ((ghost_aabb.size * 0.5 - ghost_aabb.get_center()).y + 0.001)
 	else:
-		_ghost_block.global_basis = global_basis * _ghost_basis
+		_ghost_block.global_basis = _ghost_basis
 		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
 
 	if not _ghost_block.visible:

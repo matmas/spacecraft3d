@@ -119,20 +119,14 @@ static func override_children_material_recursively(node: Node, material: Materia
 		override_children_material_recursively(child, material)
 
 
-## Calculates Basis from y and z vectors.
-## If y and z are parallel then alternative_z is used instead of z.
-static func basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Basis:
+static func change_basis_y(basis: Basis, y: Vector3) -> Basis:
 	var b := Basis(
-		y.cross(z),
+		y.cross(basis.x.cross(y)),
 		y,
-		z,
+		y.cross(signf(basis.y.dot(y)) * basis.z.cross(y)),
 	).orthonormalized()
 	if not b.is_conformal():
-		b = Basis(
-			y.cross(alternative_z),
-			y,
-			alternative_z,
-		).orthonormalized()
+		return basis
 	return b
 
 
