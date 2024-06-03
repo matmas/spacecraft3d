@@ -30,6 +30,12 @@ func _reset() -> void:
 	previous_global_transform = target.global_transform
 	current_global_transform = target.global_transform
 
+	# Prevent spawned scenes to appear moving in the corrent place from their velocity direction
+	# which is most noticeable when the spawned scene is not moving relative to the camera movement
+	var camera_physics_interpolation := get_viewport().get_camera_3d().get_parent() as PhysicsInterpolation
+	if camera_physics_interpolation:
+		previous_global_transform.origin -= camera_physics_interpolation.current_global_transform.origin - camera_physics_interpolation.previous_global_transform.origin
+
 
 func _physics_process(_delta: float) -> void:
 	previous_global_transform = current_global_transform
