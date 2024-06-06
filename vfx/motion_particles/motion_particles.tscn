@@ -22,8 +22,8 @@ color_ramp = SubResource("GradientTexture1D_3gi08")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7h4sg"]
 render_priority = 0
 shader = ExtResource("1_5y605")
-shader_parameter/camera_velocity = Vector3(0, 0, 40)
 shader_parameter/texture_albedo = ExtResource("2_o3mn0")
+shader_parameter/camera_velocity = Vector3(0, 0, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_gjrs2"]
 material = SubResource("ShaderMaterial_7h4sg")

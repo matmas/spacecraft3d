@@ -80,9 +80,7 @@ func _split_disjointed_blocks() -> void:
 				new_grid.linear_velocity = linear_velocity
 				new_grid.angular_velocity = angular_velocity
 				get_parent().add_child(new_grid)
-				var physics_interpolation := get_node_or_null("PhysicsInterpolation")
-				if physics_interpolation:
-					new_grid.add_child(physics_interpolation.duplicate(DuplicateFlags.DUPLICATE_SCRIPTS + DuplicateFlags.DUPLICATE_SIGNALS))
+
 				_depth_first_search(neighbor, visited, new_grid)
 		neighbors_of_just_deleted_blocks.clear()
 
@@ -98,5 +96,6 @@ func _depth_first_search(block: Block, visited: Dictionary[Block, bool], new_gri
 
 func _move_to_grid(block: Block, new_grid: Grid) -> void:
 	block.reparent(new_grid)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
+	BuildingMechanicsUtils.fix_physics_interpolation(block)
 	for shape in block._grid_collision_shapes:
 		shape.reparent(new_grid)

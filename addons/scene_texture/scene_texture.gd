@@ -102,6 +102,7 @@ func _refresh() -> void:
 
 		_camera = Camera3D.new()
 		_camera.name = &"Camera"
+		_camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 		_sub_viewport.add_child(_camera)
 
 		_directional_light = DirectionalLight3D.new()

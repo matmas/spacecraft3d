@@ -44,7 +44,7 @@ movie_writer/movie_file="export/movie.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bad_data_monitor/plugin.cfg", "res://addons/building_mechanics/plugin.cfg", "res://addons/emulate_mouse_from_touch/plugin.cfg", "res://addons/extra_debug_shapes/plugin.cfg", "res://addons/game_options/plugin.cfg", "res://addons/input_icons/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/physics_interpolation/plugin.cfg", "res://addons/player_controller/plugin.cfg", "res://addons/scene_stack/plugin.cfg", "res://addons/scene_texture/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
+enabled=PackedStringArray("res://addons/bad_data_monitor/plugin.cfg", "res://addons/building_mechanics/plugin.cfg", "res://addons/emulate_mouse_from_touch/plugin.cfg", "res://addons/extra_debug_shapes/plugin.cfg", "res://addons/game_options/plugin.cfg", "res://addons/input_icons/plugin.cfg", "res://addons/joypad_input_echo/plugin.cfg", "res://addons/player_controller/plugin.cfg", "res://addons/scene_stack/plugin.cfg", "res://addons/scene_texture/plugin.cfg", "res://addons/screenshot_capture/plugin.cfg")
 
 [file_customization]
 
@@ -369,6 +369,7 @@ pointing/emulate_mouse_from_touch=false
 3d/default_gravity_vector=Vector3(0, 0, 0)
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
+common/physics_interpolation=true
 
 [rendering]
 

@@ -16,7 +16,7 @@ func get_global_position_3d() -> Vector3:
 	if not visual_node:
 		visual_node = collision_object
 
-	return visual_node.global_position
+	return visual_node.get_global_transform_interpolated().origin
 
 
 func _process(_delta: float) -> void:

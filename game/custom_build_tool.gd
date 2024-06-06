@@ -3,8 +3,8 @@ extends BuildTool
 
 func _ready() -> void:
 	super._ready()
-	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
-	camera_parent.add_child(raycast)
+	var camera := get_viewport().get_camera_3d()
+	camera.add_child(raycast)
 
 
 func is_input_place_block() -> bool:
@@ -41,7 +41,3 @@ func is_input_rotate_z_pos() -> bool:
 
 func is_input_rotate_z_neg() -> bool:
 	return SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"rotate_z-")
-
-
-func add_physics_interpolation(node: Node3D) -> void:
-	PhysicsInterpolation.apply(node)

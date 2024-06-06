@@ -82,6 +82,8 @@ func _process(delta: float) -> void:
 	var joypad_sensitivity := get_joypad_sensitivity()
 	look_direction_change += look_dir * delta * joypad_sensitivity
 
+
+func _physics_process(delta: float) -> void:
 	# Animate head position
 	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, head_position_animation_speed * delta))
 
