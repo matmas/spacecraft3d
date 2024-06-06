@@ -1,7 +1,7 @@
 extends Node3D
 class_name PhysicsInterpolation
 
-@export var enabled := true
+@export var enabled := false
 
 @onready var target := get_parent() as Node3D  # assumes parent movement is controlled by physics
 

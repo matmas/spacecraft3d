@@ -38,7 +38,6 @@ func _on_block_selection_changed() -> void:
 		BuildingMechanicsUtils.override_children_material_recursively(_ghost_block, _ghost_material)
 		_ghost_block.hide()  # Correct position is set later in _process()
 		add_child(_ghost_block)
-		add_physics_interpolation(_ghost_block)
 
 
 func _physics_process(_delta: float) -> void:
@@ -58,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 	if is_input_rotate_z_neg():
 		_ghost_basis = _ghost_basis.rotated(Vector3.FORWARD, TAU * -0.25)
 
-	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
+	var camera := get_viewport().get_camera_3d()
 
 	var collider := raycast.get_collider()
 	var block: Block
@@ -75,7 +74,7 @@ func _physics_process(_delta: float) -> void:
 			_ghost_block.global_position = point + normal * ((ghost_aabb.size * 0.5 - ghost_aabb.get_center()).y + 0.001)
 	else:
 		_ghost_block.global_basis = global_basis * _ghost_basis
-		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
+		_ghost_block.global_position = camera.global_position - camera.global_basis.z * 3.0
 
 	if not _ghost_block.visible:
 		_ghost_block.show()
@@ -106,14 +105,11 @@ func _allow_block_placement(collider: Object) -> void:
 			grid = Grid.new(grid_collision_layer, grid_collision_mask, block_collision_mask)
 			add_child(grid)
 			grid.global_transform = _ghost_block.global_transform
-			add_physics_interpolation(grid)  # Useful for 3d_object_selection
 			grid.add_child(spawned_block)
 			if collider is RigidBody3D:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
 			else:
 				grid.linear_velocity = (get_player_rigid_body() as RigidBody3D).linear_velocity
-
-		add_physics_interpolation(spawned_block)
 
 
 func _allow_block_removal() -> void:
@@ -211,7 +207,3 @@ func is_input_rotate_z_neg() -> bool:
 
 func get_player_rigid_body() -> RigidBody3D:
 	return get_parent()
-
-
-func add_physics_interpolation(node: Node3D) -> void:
-	pass  # To be overridden in subclass
