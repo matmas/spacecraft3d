@@ -7,7 +7,13 @@ class_name BuildTool
 @export_flags_3d_physics var grid_collision_layer := 0b00000000_00000000_00000000_00000001
 @export_flags_3d_physics var grid_collision_mask := 0b00000000_00000000_00000001_11111111
 
+
 var raycast := RayCast3D.new()
+var _raycast_lock := false
+var _raycast_lock_collider: Node3D
+var _raycast_lock_local_point: Vector3
+var _raycast_lock_global_basis: Basis
+var _ghost_parent := Node3D.new()  # Parent of _ghost_block and _rotate_gizmo
 var _ghost_block: Block
 var _ghost_material := preload("ghost_material/ghost_shader_material.tres")
 var _remove_block_material := preload("ghost_material/ghost_shader_material.tres").duplicate() as ShaderMaterial
@@ -15,6 +21,7 @@ var _ghost_basis := Basis.IDENTITY
 var _block_under_raycast: Block
 signal _block_under_raycast_changed
 var _block_to_remove: Block
+var _rotate_gizmo := preload("rotation_gizmo/rotate_gizmo.tscn").instantiate() as Node3D
 
 
 func _ready() -> void:
@@ -22,11 +29,17 @@ func _ready() -> void:
 	raycast.target_position = Vector3.FORWARD * place_block_max_distance
 	_on_block_selection_changed()
 	BuildingMechanics.selection_changed.connect(_on_block_selection_changed)
+	add_child(_ghost_parent)
+	_ghost_parent.add_child(_rotate_gizmo)
+	_rotate_gizmo.hide()
+	add_physics_interpolation(_rotate_gizmo)
+	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent()  # Need physics uninterpolated position
+	camera_parent.add_child(raycast)
 
 
 func _on_block_selection_changed() -> void:
 	if _ghost_block:
-		remove_child(_ghost_block)
+		_ghost_parent.remove_child(_ghost_block)
 		_ghost_block.queue_free()
 		_ghost_block = null
 
@@ -37,7 +50,7 @@ func _on_block_selection_changed() -> void:
 		_ghost_block.collision_mask = 0
 		BuildingMechanicsUtils.override_children_material_recursively(_ghost_block, _ghost_material)
 		_ghost_block.hide()  # Correct position is set later in _process()
-		add_child(_ghost_block)
+		_ghost_parent.add_child(_ghost_block)
 		add_physics_interpolation(_ghost_block)
 
 
@@ -45,20 +58,42 @@ func _physics_process(_delta: float) -> void:
 	if not _ghost_block:
 		return
 
-	if is_input_rotate_x_pos():
-		_ghost_basis = _ghost_basis.rotated(Vector3.RIGHT, TAU * 0.25)
-	if is_input_rotate_x_neg():
-		_ghost_basis = _ghost_basis.rotated(Vector3.RIGHT, TAU * -0.25)
-	if is_input_rotate_y_pos():
-		_ghost_basis = _ghost_basis.rotated(Vector3.UP, TAU * 0.25)
-	if is_input_rotate_y_neg():
-		_ghost_basis = _ghost_basis.rotated(Vector3.UP, TAU * -0.25)
-	if is_input_rotate_z_pos():
-		_ghost_basis = _ghost_basis.rotated(Vector3.FORWARD, TAU * 0.25)
-	if is_input_rotate_z_neg():
-		_ghost_basis = _ghost_basis.rotated(Vector3.FORWARD, TAU * -0.25)
+	if is_input_rotate_block():
+		if not _rotate_gizmo.visible:
+			_rotate_gizmo.show()
+			_raycast_lock = true
+			_raycast_lock_collider = raycast.get_collider() as Node3D
+			if _raycast_lock_collider:
+				_raycast_lock_local_point = _raycast_lock_collider.to_local(raycast.get_collision_point())
+			else:
+				_raycast_lock_global_basis = raycast.global_basis
+	else:
+		_rotate_gizmo.hide()
+		_raycast_lock = false
 
 	var camera_parent := get_viewport().get_camera_3d().get_parent().get_parent() as Node3D  # Need physics uninterpolated position
+
+	if _raycast_lock:
+		if _raycast_lock_collider:
+			raycast.look_at(_raycast_lock_collider.to_global(_raycast_lock_local_point), camera_parent.global_basis.y)
+		else:
+			raycast.global_basis = _raycast_lock_global_basis
+	else:
+		raycast.basis = Basis.IDENTITY
+	raycast.force_raycast_update()
+
+	#if is_input_rotate_x_pos():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.RIGHT, TAU * 0.25)
+	#if is_input_rotate_x_neg():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.RIGHT, TAU * -0.25)
+	#if is_input_rotate_y_pos():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.UP, TAU * 0.25)
+	#if is_input_rotate_y_neg():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.UP, TAU * -0.25)
+	#if is_input_rotate_z_pos():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.FORWARD, TAU * 0.25)
+	#if is_input_rotate_z_neg():
+		#_ghost_basis = _ghost_basis.rotated(Vector3.FORWARD, TAU * -0.25)
 
 	var collider := raycast.get_collider()
 	var block: Block
@@ -67,15 +102,15 @@ func _physics_process(_delta: float) -> void:
 		var normal := raycast.get_collision_normal()
 		if collider is Block:
 			block = collider as Block
-			_ghost_block.global_basis = _grid_aligned_basis(_ghost_basis, block.global_basis)
-			_ghost_block.global_position = block.global_transform * _calculate_local_offset(block, _ghost_block, point, normal)
+			_ghost_parent.global_basis = _grid_aligned_basis(_ghost_basis, block.global_basis)
+			_ghost_parent.global_position = block.global_transform * _calculate_local_offset(block, _ghost_block, point, normal)
 		else:
-			_ghost_block.global_basis = BuildingMechanicsUtils.change_basis_y(_ghost_basis, normal)
+			_ghost_parent.global_basis = BuildingMechanicsUtils.change_basis_y(_ghost_basis, normal)
 			var ghost_aabb := Transform3D(_ghost_basis) * BuildingMechanicsUtils.calculate_spatial_bounds(_ghost_block)
-			_ghost_block.global_position = point + normal * ((ghost_aabb.size * 0.5 - ghost_aabb.get_center()).y + 0.001)
+			_ghost_parent.global_position = point + normal * ((ghost_aabb.size * 0.5 - ghost_aabb.get_center()).y + 0.001)
 	else:
-		_ghost_block.global_basis = _ghost_basis
-		_ghost_block.global_position = camera_parent.global_position - camera_parent.global_basis.z * 3.0
+		_ghost_parent.global_basis = _ghost_basis
+		_ghost_parent.global_position = camera_parent.global_position - raycast.global_basis.z * 3.0
 
 	if not _ghost_block.visible:
 		_ghost_block.show()
@@ -185,28 +220,8 @@ func is_input_remove_block_released() -> bool:
 	return Input.is_action_just_released(&"remove_block")
 
 
-func is_input_rotate_x_pos() -> bool:
-	return Input.is_action_just_pressed(&"rotate_x+")
-
-
-func is_input_rotate_x_neg() -> bool:
-	return Input.is_action_just_pressed(&"rotate_x-")
-
-
-func is_input_rotate_y_pos() -> bool:
-	return Input.is_action_just_pressed(&"rotate_y+")
-
-
-func is_input_rotate_y_neg() -> bool:
-	return Input.is_action_just_pressed(&"rotate_y-")
-
-
-func is_input_rotate_z_pos() -> bool:
-	return Input.is_action_just_pressed(&"rotate_z+")
-
-
-func is_input_rotate_z_neg() -> bool:
-	return Input.is_action_just_pressed(&"rotate_z-")
+func is_input_rotate_block() -> bool:
+	return Input.is_action_pressed(&"rotate_block")
 
 
 func get_player_rigid_body() -> RigidBody3D:

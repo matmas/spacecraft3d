@@ -200,114 +200,6 @@ layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"place_block"
 
-[node name="rotate_x-" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_x-"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block X-"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_x-"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x-"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_x-"
-
-[node name="rotate_x+" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_x+"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block X+"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_x+"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_x+"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_x+"
-
-[node name="rotate_y-" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_y-"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block Y-"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_y-"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y-"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_y-"
-
-[node name="rotate_y+" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_y+"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block Y+"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_y+"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_y+"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_y+"
-
-[node name="rotate_z-" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_z-"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block Z-"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_z-"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z-"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_z-"
-
-[node name="rotate_z+" type="HBoxContainer" parent="RightControls"]
-auto_translate_mode = 1
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="RightControls/rotate_z+"]
-auto_translate_mode = 1
-layout_mode = 2
-text = "rotate block Z+"
-script = ExtResource("3_jsrqt")
-input_action = &"rotate_z+"
-
-[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_z+"]
-auto_translate_mode = 1
-layout_mode = 2
-script = ExtResource("6_kuhb4")
-action_name = &"rotate_z+"
-
 [node name="remove_block" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1
 layout_mode = 2
@@ -325,6 +217,24 @@ auto_translate_mode = 1
 layout_mode = 2
 script = ExtResource("6_kuhb4")
 action_name = &"remove_block"
+
+[node name="rotate_block" type="HBoxContainer" parent="RightControls"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="RightControls/rotate_block"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "rotate block"
+script = ExtResource("3_jsrqt")
+input_action = &"rotate_x-"
+
+[node name="InputActionTextureRect" type="TextureRect" parent="RightControls/rotate_block"]
+auto_translate_mode = 1
+layout_mode = 2
+script = ExtResource("6_kuhb4")
+action_name = &"rotate_block"
 
 [node name="select_object" type="HBoxContainer" parent="RightControls"]
 auto_translate_mode = 1

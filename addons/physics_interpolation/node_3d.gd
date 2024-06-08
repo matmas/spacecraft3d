@@ -21,11 +21,11 @@ func _ready() -> void:
 	Engine.set_physics_jitter_fix(0.0)
 
 	top_level = true
-	_reset()
-	target.visibility_changed.connect(_reset)
+	reset()
+	#target.visibility_changed.connect(_reset)  # Wait for Godot 4.4?
 
 
-func _reset() -> void:
+func reset() -> void:
 	global_transform = target.global_transform
 	previous_global_transform = target.global_transform
 	current_global_transform = target.global_transform

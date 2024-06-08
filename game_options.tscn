@@ -155,35 +155,10 @@ script = ExtResource("9_3u6nq")
 action_name = &"remove_block"
 display_name = "Remove block"
 
-[node name="RotateX+" type="Node" parent="Controls/Building" index="3"]
+[node name="RotateBlock" type="Node" parent="Controls/Building" index="3"]
 script = ExtResource("9_3u6nq")
-action_name = &"rotate_x+"
-display_name = "Rotate X+"
-
-[node name="RotateX-" type="Node" parent="Controls/Building" index="4"]
-script = ExtResource("9_3u6nq")
-action_name = &"rotate_x-"
-display_name = "Rotate X-"
-
-[node name="RotateY+" type="Node" parent="Controls/Building" index="5"]
-script = ExtResource("9_3u6nq")
-action_name = &"rotate_y+"
-display_name = "Rotate Y+"
-
-[node name="RotateY-" type="Node" parent="Controls/Building" index="6"]
-script = ExtResource("9_3u6nq")
-action_name = &"rotate_y-"
-display_name = "Rotate Y-"
-
-[node name="RotateZ+" type="Node" parent="Controls/Building" index="7"]
-script = ExtResource("9_3u6nq")
-action_name = &"rotate_z+"
-display_name = "Rotate Z+"
-
-[node name="RotateZ-" type="Node" parent="Controls/Building" index="8"]
-script = ExtResource("9_3u6nq")
-action_name = &"rotate_z-"
-display_name = "Rotate Z-"
+action_name = &"rotate_block"
+display_name = "Rotate block"
 
 [node name="Other" type="Node" parent="Controls" index="4"]
 script = ExtResource("5_gws87")
