@@ -96,5 +96,6 @@ func _depth_first_search(block: Block, visited: Dictionary, new_grid: Grid = nul
 
 func _move_to_grid(block: Block, new_grid: Grid) -> void:
 	block.reparent(new_grid)  # Also triggers child_exiting_tree, child_entered_tree, NOTIFICATION_EXIT_TREE, NOTIFICATION_ENTER_TREE
+	BuildingMechanicsUtils.fix_physics_interpolation(block)
 	for shape in block._grid_collision_shapes:
 		shape.reparent(new_grid)

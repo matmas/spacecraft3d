@@ -110,6 +110,7 @@ func _allow_block_placement(collider: Object) -> void:
 				grid.linear_velocity = (collider as RigidBody3D).linear_velocity
 			else:
 				grid.linear_velocity = (get_player_rigid_body() as RigidBody3D).linear_velocity
+		BuildingMechanicsUtils.fix_physics_interpolation(spawned_block)
 
 
 func _allow_block_removal() -> void:

@@ -138,3 +138,21 @@ static func basis_from_y_z(y: Vector3, z: Vector3, alternative_z: Vector3) -> Ba
 
 static func max_vector3(a: Vector3, b: Vector3) -> Vector3:  # TODO: Use Vector3.max() in Godot 4.3
 	return Vector3(maxf(a.x, b.x), maxf(a.y, b.y), maxf(a.z, b.z))
+
+
+static func get_rigid_body_ancestor(node: Node) -> RigidBody3D:
+	var parent := node.get_parent()
+	while parent:
+		if parent is RigidBody3D:
+			return parent as RigidBody3D
+		parent = parent.get_parent()
+	return null
+
+
+static func fix_physics_interpolation(node: Node3D) -> void:
+	var camera := node.get_viewport().get_camera_3d()
+	var camera_body := get_rigid_body_ancestor(camera)
+	if camera_body:
+		node.global_position -= camera_body.linear_velocity * node.get_physics_process_delta_time()
+		node.reset_physics_interpolation()
+		node.global_position += camera_body.linear_velocity * node.get_physics_process_delta_time()
