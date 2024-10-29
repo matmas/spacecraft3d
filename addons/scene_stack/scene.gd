@@ -40,7 +40,7 @@ func should_emulate_mouse_from_touch() -> bool:
 
 
 func should_pause_game() -> bool:
-	return true
+	return false
 
 
 func should_hide_mouse_cursor() -> bool:

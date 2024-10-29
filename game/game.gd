@@ -4,10 +4,6 @@ class_name Game
 @export var pause_menu_scene: PackedScene
 
 
-func should_pause_game() -> bool:
-	return false
-
-
 func should_emulate_mouse_from_touch() -> bool:
 	return false
 

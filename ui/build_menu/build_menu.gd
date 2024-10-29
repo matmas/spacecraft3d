@@ -17,10 +17,6 @@ func _ready() -> void:
 	super._ready()
 
 
-func should_pause_game() -> bool:
-	return false
-
-
 func _get_property_value(state: SceneState, property_name: StringName, node_idx: int = 0) -> Variant:
 	for property_idx in state.get_node_property_count(node_idx):
 		if state.get_node_property_name(node_idx, property_idx) == property_name:
