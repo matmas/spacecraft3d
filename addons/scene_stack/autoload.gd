@@ -3,7 +3,7 @@ extends Node
 signal current_scene_changed(scene_instance)
 
 var _scene_stack := []
-var _original_shortcuts := {}
+var _original_shortcuts: Dictionary[BaseButton, Shortcut]
 
 
 func open_scene(scene: PackedScene, hide_previous: bool = true) -> Node:
@@ -62,7 +62,7 @@ func _clear_shortcuts_recursively(node: Node) -> void:
 	for child in node.get_children():
 		if child is BaseButton:
 			var button := child as BaseButton
-			_original_shortcuts[child] = button.shortcut
+			_original_shortcuts[button] = button.shortcut
 			button.shortcut = null
 		_clear_shortcuts_recursively(child)
 

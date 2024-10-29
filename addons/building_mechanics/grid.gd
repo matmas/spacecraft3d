@@ -70,7 +70,7 @@ func _move_origin_to_center_of_mass(state: PhysicsDirectBodyState3D) -> void:
 
 func _split_disjointed_blocks() -> void:
 	if neighbors_of_just_deleted_blocks:
-		var visited := {}
+		var visited: Dictionary[Block, bool]
 		for neighbor in neighbors_of_just_deleted_blocks:
 			if visited.is_empty():
 				_depth_first_search(neighbor, visited)
@@ -87,7 +87,7 @@ func _split_disjointed_blocks() -> void:
 		neighbors_of_just_deleted_blocks.clear()
 
 
-func _depth_first_search(block: Block, visited: Dictionary, new_grid: Grid = null) -> void:
+func _depth_first_search(block: Block, visited: Dictionary[Block, bool], new_grid: Grid = null) -> void:
 	if block not in visited:
 		visited[block] = true
 		if new_grid:

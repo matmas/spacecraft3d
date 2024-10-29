@@ -1,7 +1,7 @@
 extends Node
 class_name InputHints
 
-static var _actions_used := {}
+static var _actions_used: Dictionary[StringName, bool]
 var _physics_frame_passed := false
 var _process_frame_passed := false
 
@@ -68,7 +68,7 @@ func _refresh() -> void:
 func _update_visibility_recursively(node: Node) -> void:
 	if _actions_used.has(node.name):
 		if node is BoxContainer:
-			var visible := _actions_used[node.name] as bool \
+			var visible := _actions_used[node.name] \
 				or get_parent() == get_tree().root  # Show everything when running only this scene
 			if node.visible != visible:
 				node.visible = visible

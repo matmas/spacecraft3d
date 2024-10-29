@@ -31,14 +31,14 @@ func get_licenses() -> Array[LicenseOption]:
 
 
 func _get_license(component: Dictionary) -> String:
-	var license_set := {}
+	var license_set: Dictionary[String, bool]
 	for part in component["parts"]:
 		license_set[part["license"]] = true
 	return ", ".join(license_set.keys())
 
 
 func _get_copyright(component: Dictionary) -> String:
-	var copyright_set := {}
+	var copyright_set: Dictionary[String, bool]
 	for part in component["parts"]:
 		for copyright in part["copyright"]:
 			copyright_set[copyright] = true

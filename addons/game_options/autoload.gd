@@ -4,7 +4,7 @@ extends Node
 const PATH = "user://options.cfg"
 
 var _options: Array[Option] = []  # For internal use, load(), save(), etc.
-var _options_dict := {}  # For various game features to decide their settings
+var _options_dict: Dictionary[String, Dictionary]  # For various game features to decide their settings
 var config := ConfigFile.new()
 
 @onready var game_options_root: Node
