@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc7sh3g7mh7vs"]
+[gd_scene load_steps=7 format=3 uid="uid://bc7sh3g7mh7vs"]
 
 [ext_resource type="Script" path="res://addons/player_controller/player_controller.gd" id="1_277nx"]
+[ext_resource type="Script" path="res://addons/player_controller/position_interpolation.gd" id="2_x246e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y21s"]
 radius = 0.25
@@ -13,7 +14,7 @@ height = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_yflxk"]
 radius = 0.25
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_0j365"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_rw0gb"]
 radius = 0.2
 
 [node name="Player" type="RigidBody3D"]
@@ -39,10 +40,22 @@ disabled = true
 [node name="BallCollisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_yflxk")
 
-[node name="FeetCollisionShape" type="CollisionShape3D" parent="."]
+[node name="FeetShapeCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.085, 0)
-shape = SubResource("SphereShape3D_0j365")
-disabled = true
+shape = SubResource("SphereShape3D_rw0gb")
+target_position = Vector3(0, 0, 0)
+max_results = 1
+collision_mask = 4294967295
 
-[node name="Head" type="Node3D" parent="."]
+[node name="RotYSpring" type="Node3D" parent="."]
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+
+[node name="RotXSpring" type="Node3D" parent="RotYSpring"]
+
+[node name="RotXAccum" type="Node3D" parent="RotYSpring/RotXSpring"]
+
+[node name="RotZSpring" type="Node3D" parent="RotYSpring/RotXSpring/RotXAccum"]
+
+[node name="PositionInterpolation" type="Node3D" parent="RotYSpring/RotXSpring/RotXAccum/RotZSpring"]
+script = ExtResource("2_x246e")

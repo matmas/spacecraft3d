@@ -81,7 +81,7 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("5_u4j58")]
 script = ExtResource("8_p6sqn")
 
-[node name="Camera" type="Camera3D" parent="Player/Head" index="0"]
+[node name="Camera" type="Camera3D" parent="Player/RotYSpring/RotXSpring/RotXAccum/RotZSpring/PositionInterpolation" index="0"]
 script = ExtResource("9_x5pdf")
 
 [node name="BuildTool" type="Node3D" parent="Player"]

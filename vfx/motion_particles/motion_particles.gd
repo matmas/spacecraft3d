@@ -7,8 +7,7 @@ var previous_camera_position: Vector3
 func _physics_process(delta: float) -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera:
-		if get_parent_node_3d() != camera:
-			reparent(camera)
+		global_transform = camera.global_transform
 
 		var camera_velocity := (camera.global_position - previous_camera_position) / delta
 		particles_material.set_shader_parameter(&"camera_velocity", camera_velocity)

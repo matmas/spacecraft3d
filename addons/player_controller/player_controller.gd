@@ -3,25 +3,27 @@ class_name PlayerController
 
 @onready var upright_collision_shape := $UprightCollisionShape as CollisionShape3D
 @onready var crouched_collision_shape := $CrouchedCollisionShape as CollisionShape3D
-@onready var ball_collision_shape: CollisionShape3D = $BallCollisionShape as CollisionShape3D
-@onready var feet_collision_shape := $FeetCollisionShape as CollisionShape3D
-@onready var head := $Head as Node3D
+@onready var ball_collision_shape := $BallCollisionShape as CollisionShape3D
+@onready var feet_shape_cast := $FeetShapeCast as ShapeCast3D
+@onready var rot_y_spring := $RotYSpring as Node3D  # Temporary rotation buffer for smooth camera control
+@onready var rot_x_spring := $RotYSpring/RotXSpring as Node3D  # Temporary rotation buffer for adjusting rotation with gravity vector changes
+@onready var rot_x_accum := $RotYSpring/RotXSpring/RotXAccum as Node3D  # Rotation buffer for keeping rotation while on the ground
+@onready var rot_z_spring := $RotYSpring/RotXSpring/RotXAccum/RotZSpring as Node3D  # Temporary rotation buffer for smooth roll while in zero-g
 
 @export var walk_speed := 2.5
 @export var sprint_speed := 6.0
 @export var crouched_speed := 1.5
 @export var jump_speed := 4.5
-@export var align_speed := 2.0
-@export var head_rotation_transfer_speed := 1.0
-@export var head_position_animation_speed := 5.0
+@export var rotation_transfer_speed := 2.0
+@export var camera_position_animation_speed := 5.0
 @export var acceleration_in_zero_g := 1000.0
-@export var upright_head_position_y := 1.2
-@export var crouched_head_position_y := 0.4
-@export var ball_head_position_y := 0.2
+@export var upright_camera_position_y := 1.2
+@export var crouched_camera_position_y := 0.4
+@export var ball_camera_position_y := 0.2
 
 var look_direction_change := Vector2()
 var previous_total_gravity := Vector3()
-var target_head_position_y := upright_head_position_y
+var target_camera_position_y := upright_camera_position_y
 
 
 func _ready() -> void:
@@ -32,6 +34,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# Ignore one physics frame of zero gravity caused by disabling collision shape
 	var total_gravity := state.total_gravity if state.total_gravity else previous_total_gravity
 	var delta := get_physics_process_delta_time()
+
+	# Transfer rot_y_spring.basis into player basis
+	state.transform.basis *= rot_y_spring.basis
+	rot_y_spring.basis = Basis.IDENTITY
 
 	if total_gravity:
 		var floor_info := _get_floor_info()
@@ -48,12 +54,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var movement_velocity := transform.basis * Vector3(move_direction.x * horizontal_speed, upward_speed, move_direction.y * horizontal_speed)
 			if movement_velocity or is_input_move_left_released() or is_input_move_right_released() or is_input_move_forward_released() or is_input_move_backward_released():
 				state.linear_velocity = floor_info["linear_velocity"] + movement_velocity
-		head.rotate_x(-look_direction_change.y)
-		head.rotation.x = clampf(head.rotation.x, TAU * -0.25, TAU * 0.25)
 	else:
-		var head_rotation_transfer_diff := head.rotation.x - lerpf(head.rotation.x, 0.0, 1 - pow(0.1, head_rotation_transfer_speed * delta))
-		head.rotation.x -= head_rotation_transfer_diff
-		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, head_rotation_transfer_diff).basis
+		PlayerControllerUtils.transfer_basis_by_fraction(rot_x_accum, state, 1 - pow(0.1, rotation_transfer_speed * delta))
+		PlayerControllerUtils.transfer_basis_by_fraction(rot_z_spring, state, 1 - pow(0.1, rotation_transfer_speed * delta))
 
 		_set_collision_shape(upright_collision_shape)
 
@@ -65,11 +68,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var linear_acceleration_direction := state.transform.basis * get_input_move_acceleration_direction()
 			linear_acceleration = linear_acceleration_direction * acceleration_in_zero_g
 		state.apply_central_force(linear_acceleration)
-		state.transform.basis = state.transform.rotated_local(Vector3.RIGHT, -look_direction_change.y).basis
-		state.transform.basis = state.transform.rotated_local(Vector3.FORWARD, get_input_roll_axis() * delta).basis
-
-	state.transform.basis = state.transform.rotated_local(Vector3.UP, -look_direction_change.x).basis
-	look_direction_change = Vector2.ZERO
 
 	if state.get_contact_count() > 0:
 		_align_with_gravity(state)
@@ -82,10 +80,19 @@ func _process(delta: float) -> void:
 	var joypad_sensitivity := get_joypad_sensitivity()
 	look_direction_change += look_dir * delta * joypad_sensitivity
 
+	rot_y_spring.rotate_y(-look_direction_change.x)
+	rot_x_accum.rotate_x(-look_direction_change.y)
+	rot_x_accum.rotation.x = clampf(rot_x_accum.rotation.x, TAU * -0.25, TAU * 0.25)
+	look_direction_change = Vector2.ZERO
 
-func _physics_process(delta: float) -> void:
-	# Animate head position
-	head.position.y = lerpf(head.position.y, target_head_position_y, 1 - pow(0.1, head_position_animation_speed * delta))
+	if get_gravity():
+		PlayerControllerUtils.reset_basis_by_fraction(rot_x_spring, 1 - pow(0.1, rotation_transfer_speed * delta))
+		PlayerControllerUtils.reset_basis_by_fraction(rot_z_spring, 1 - pow(0.1, rotation_transfer_speed * delta))
+	else:
+		rot_z_spring.rotate_z(-get_input_roll_axis() * delta)
+
+	# Animate camera position
+	rot_y_spring.position.y = lerpf(rot_y_spring.position.y, target_camera_position_y, 1 - pow(0.1, camera_position_animation_speed * delta))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -96,6 +103,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 	if state.total_gravity:
+		var delta := get_physics_process_delta_time()
 		var upright_vector := -state.total_gravity.normalized()
 		var target_basis := Basis(
 			upright_vector.cross(state.transform.basis.z),
@@ -103,8 +111,8 @@ func _align_with_gravity(state: PhysicsDirectBodyState3D) -> void:
 			state.transform.basis.z
 		).orthonormalized()
 
-		var delta := get_physics_process_delta_time()
-		state.transform.basis = state.transform.basis.slerp(target_basis, 1 - pow(0.1, align_speed * delta)).orthonormalized()
+		PlayerControllerUtils.transfer_basis_to_euler_xz_by_fraction(state, rot_x_spring, rot_z_spring, target_basis, 1 - pow(0.1, rotation_transfer_speed * delta))
+
 		if upright_vector.dot(state.transform.basis.y) < 0.0:
 			_set_collision_shape(ball_collision_shape)
 
@@ -119,11 +127,11 @@ func _set_collision_shape(collision_shape: CollisionShape3D) -> void:
 		upright_collision_shape:
 			if not _can_stand_up():
 				return
-			target_head_position_y = upright_head_position_y
+			target_camera_position_y = upright_camera_position_y
 		crouched_collision_shape:
-			target_head_position_y = crouched_head_position_y
+			target_camera_position_y = crouched_camera_position_y
 		ball_collision_shape:
-			target_head_position_y = ball_head_position_y
+			target_camera_position_y = ball_camera_position_y
 
 	for col_shape in collision_shapes:
 		if col_shape == collision_shape:
@@ -145,11 +153,11 @@ func _can_stand_up() -> bool:
 
 
 func _get_floor_info() -> Dictionary:
-	var params := PhysicsShapeQueryParameters3D.new()
-	params.shape = feet_collision_shape.shape
-	params.transform = feet_collision_shape.global_transform
-	params.exclude = [self]
-	return get_world_3d().direct_space_state.get_rest_info(params)
+	var result := feet_shape_cast.collision_result
+	if result:
+		return result[0]
+	else:
+		return {}
 
 
 func get_input_look_direction() -> Vector2:
