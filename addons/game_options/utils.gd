@@ -2,14 +2,6 @@ extends Node
 class_name GameOptionsUtils
 
 
-static func get_or_add(dict: Dictionary, key: Variant, default: Variant) -> Variant:  # TODO: Use Dictionary.get_or_add() with Godot 4.3
-	var result = dict.get(key)
-	if not result:
-		dict[key] = default
-		return default
-	return result
-
-
 static func register_setting(property_name: String, type: int, default_value: Variant, hint: int = 0, hint_string: String = "") -> void:
 	if not ProjectSettings.has_setting(property_name):
 		ProjectSettings.set(property_name, default_value)

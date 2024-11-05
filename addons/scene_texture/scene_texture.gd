@@ -8,9 +8,9 @@ class_name SceneTexture
 	set(value):
 		scene = value
 		emit_changed()
-#
-#@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees")  # TODO: Use this with Godot 4.3
-@export var camera_rotation := Vector3(-TAU / 14.4, TAU / 12, 0):
+
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees")
+var camera_rotation := Vector3(TAU / -14.4, TAU / 12, 0):
 	set(value):
 		camera_rotation = value
 		emit_changed()
@@ -20,8 +20,8 @@ class_name SceneTexture
 		camera_fov = value
 		emit_changed()
 
-#@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees")  # TODO: Use this with Godot 4.3
-@export var directional_light_rotation := Vector3(-TAU / 20, TAU / 180, 0):
+@export_custom(PROPERTY_HINT_RANGE, "-360,360,0.1,radians_as_degrees")
+var directional_light_rotation := Vector3(TAU / -20, TAU / 180, 0):
 	set(value):
 		directional_light_rotation = value
 		emit_changed()

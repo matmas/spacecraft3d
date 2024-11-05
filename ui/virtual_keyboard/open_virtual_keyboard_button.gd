@@ -28,7 +28,7 @@ func _update_visibility() -> void:
 
 func _on_pressed() -> void:
 	var focused_control := get_viewport().gui_get_focus_owner()
-	if not focused_control is LineEdit:  # TODO: Change into "if focused_control is not LineEdit:" in Godot 4.3
+	if focused_control is not LineEdit:
 		printerr("Unsupported control for virtual keyboard: ", focused_control)
 		return
 	var line_edit := focused_control as LineEdit

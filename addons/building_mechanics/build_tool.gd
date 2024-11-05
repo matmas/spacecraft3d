@@ -156,7 +156,7 @@ func _calculate_local_offset(block: Block, ghost_block: Block, point: Vector3, n
 	var span_oddness_by_axis := (ghost_span - block_span).abs().posmod(2)  # Each component is 0 or 1
 	var span_oddness := span_oddness_by_axis * local_point.sign() * cell_size * 0.5
 	var span_oddness_correction := span_oddness - span_oddness * local_normal.abs()  # Set axis aligned with local_normal to zero
-	var freedom_by_axis := BuildingMechanicsUtils.max_vector3(block_span, ghost_span)
+	var freedom_by_axis := block_span.max(ghost_span)
 	var freedom := ((freedom_by_axis - span_oddness_by_axis) * 0.5 * cell_size * local_point_normalized).snapped(cell_size) + block_aabb.get_center() - ghost_aabb.get_center()
 	var freedom_correction := freedom - freedom * local_normal.abs()  # Set axis aligned with local_normal to zero
 	var local_offset := local_normal * (
