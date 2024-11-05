@@ -37,12 +37,10 @@ func _process(delta: float) -> void:
 
 	var parent := get_parent() as CollisionObject3D
 
-	var visual_node := parent.get_node_or_null("PhysicsInterpolation") as Node3D
-	if not visual_node:
-		visual_node = parent
-
-	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale") as float
-	_x_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.get_global_transform_interpolated().origin + visual_node.get_global_transform_interpolated().basis.x * scale_)
-	_y_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.get_global_transform_interpolated().origin + visual_node.get_global_transform_interpolated().basis.y * scale_)
-	_z_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.get_global_transform_interpolated().origin + visual_node.get_global_transform_interpolated().basis.z * scale_)
+	var basis_scale := ProjectSettings.get_setting(PROPERTY_PREFIX + "basis_scale") as float
+	var parent_origin := parent.get_global_transform_interpolated().origin
+	var parent_basis := parent.get_global_transform_interpolated().basis
+	_x_endpoint_2d = ExtraDebugShapesUtils.unproject(parent_origin + parent_basis.x * basis_scale)
+	_y_endpoint_2d = ExtraDebugShapesUtils.unproject(parent_origin + parent_basis.y * basis_scale)
+	_z_endpoint_2d = ExtraDebugShapesUtils.unproject(parent_origin + parent_basis.z * basis_scale)
 	queue_redraw()

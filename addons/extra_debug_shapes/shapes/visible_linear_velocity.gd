@@ -28,11 +28,7 @@ func _process(delta: float) -> void:
 	super._process(delta)
 
 	var rigid_body := get_parent() as RigidBody3D
-
-	var visual_node := rigid_body.get_node_or_null("PhysicsInterpolation") as Node3D
-	if not visual_node:
-		visual_node = rigid_body
-
+	var rigid_body_origin := rigid_body.get_global_transform_interpolated().origin
 	var scale_ := ProjectSettings.get_setting(PROPERTY_PREFIX + "linear_velocity_scale") as float
-	_endpoint_2d = ExtraDebugShapesUtils.unproject(visual_node.get_global_transform_interpolated().origin + rigid_body.linear_velocity * scale_)
+	_endpoint_2d = ExtraDebugShapesUtils.unproject(rigid_body_origin + rigid_body.linear_velocity * scale_)
 	queue_redraw()
