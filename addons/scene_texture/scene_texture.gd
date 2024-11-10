@@ -2,7 +2,7 @@
 extends Texture2D
 class_name SceneTexture
 
-@export var size := Vector2i(256, 256)
+@export var size := Vector2i(100, 100)
 
 @export var scene: PackedScene:
 	set(value):
