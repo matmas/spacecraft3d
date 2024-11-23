@@ -19,9 +19,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if SceneStack.current_scene() is Game and InputHints.is_action_just_pressed(&"select_object"):
 		var camera := get_viewport().get_camera_3d()
+		var viewport_center := get_viewport().get_visible_rect().size * 0.5
 		var params := PhysicsRayQueryParameters3D.new()
 		params.from = camera.project_ray_origin(get_viewport().get_mouse_position())
-		params.to = params.from + camera.project_ray_normal(get_viewport().get_mouse_position()) * camera.far
+		params.to = params.from + camera.project_ray_normal(viewport_center) * camera.far
 		params.collision_mask = raycast_collision_mask
 		var result := camera.get_world_3d().direct_space_state.intersect_ray(params)
 		if result:
