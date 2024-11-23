@@ -40,6 +40,7 @@ func close_current_scene(num_scenes_to_close: int = 1) -> void:
 			scene.queue_free()
 		else:
 			get_tree().quit()
+	current_scene_changed.emit(current_scene())
 
 
 func _ready() -> void:
@@ -54,7 +55,6 @@ func _on_tree_exiting(scene_instance: Node) -> void:
 		printerr("current_scene() != scene_instance")
 	_scene_stack.pop_front()
 	current_scene().show()
-	current_scene_changed.emit(current_scene())
 	_restore_shortcuts_recursively(current_scene())
 
 
