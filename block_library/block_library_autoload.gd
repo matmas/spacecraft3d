@@ -5,16 +5,15 @@ var block_types: Array[BlockType] = []
 
 func _ready() -> void:
 	var scenes: Array[PackedScene]
-	scenes = _get_block_scenes()
+	scenes = _get_packed_scenes_in_directory("res://block_library/blocks")
 	for scene in scenes:
-		var block_type := _get_property_value(scene.get_state(), &"block_type") as BlockType
+		var block_type := _get_packed_scene_property_value(scene, &"block_type") as BlockType
 		block_type.scene = scene
 		block_types.append(block_type)
 
 
-func _get_block_scenes() -> Array[PackedScene]:
+func _get_packed_scenes_in_directory(dir_path: String) -> Array[PackedScene]:
 	var result: Array[PackedScene] = []
-	var dir_path := "res://block_library/blocks"
 	var dir := DirAccess.open(dir_path)
 	if not dir:
 		printerr("Failed opening directory ", dir_path)
@@ -31,7 +30,8 @@ func _get_block_scenes() -> Array[PackedScene]:
 	return result
 
 
-func _get_property_value(state: SceneState, property_name: StringName, node_idx: int = 0) -> Variant:
+func _get_packed_scene_property_value(scene: PackedScene, property_name: StringName, node_idx: int = 0) -> Variant:
+	var state := scene.get_state()
 	for property_idx in state.get_node_property_count(node_idx):
 		if state.get_node_property_name(node_idx, property_idx) == property_name:
 			return state.get_node_property_value(node_idx, property_idx)
