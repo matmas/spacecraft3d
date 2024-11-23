@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://8lrq3m7m2a8g"]
+[gd_scene load_steps=8 format=3 uid="uid://8lrq3m7m2a8g"]
 
 [ext_resource type="Script" path="res://addons/building_mechanics/block.gd" id="1_2e2fa"]
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="2_8l0lc"]
+[ext_resource type="Script" path="res://addons/building_mechanics/block_type.gd" id="2_ilnyy"]
+
+[sub_resource type="Resource" id="Resource_qolah"]
+script = ExtResource("2_ilnyy")
+display_name = "Penta"
+mass = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pjq8"]
 albedo_texture = ExtResource("2_8l0lc")
@@ -17,7 +23,7 @@ size = Vector3(0.5, 2.5, 0.5)
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_2e2fa")
-display_name = "Penta"
+block_type = SubResource("Resource_qolah")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_d3xcy")

@@ -1,8 +1,7 @@
 extends StaticBody3D
 class_name Block
 
-@export var display_name := ""
-@export_range(0.001, 1000, 0.001, "or_greater", "exp", "suffix:kg") var mass := 1.0
+@export var block_type: BlockType
 
 var grid: Grid
 var neighbors: Array[Block] = []  # Touching blocks

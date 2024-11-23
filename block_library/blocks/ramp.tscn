@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqoptufilmxjf"]
+[gd_scene load_steps=6 format=3 uid="uid://bqoptufilmxjf"]
 
 [ext_resource type="PackedScene" uid="uid://b6nst37jbjnr3" path="res://block_library/blocks/ramp.blend" id="1_rmbw6"]
 [ext_resource type="Script" path="res://addons/building_mechanics/block.gd" id="1_utllo"]
+[ext_resource type="Script" path="res://addons/building_mechanics/block_type.gd" id="3_ctr4e"]
+
+[sub_resource type="Resource" id="Resource_0kx1w"]
+script = ExtResource("3_ctr4e")
+display_name = "Ramp"
+mass = 5.0
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yjq3e"]
 points = PackedVector3Array(0.999979, -1, 1, -1, -1, 1, 0.999979, -1, -1, 0.999979, 0.999979, -1, -1, 0.999979, -1, -1, -1, -1)
@@ -10,8 +16,7 @@ points = PackedVector3Array(0.999979, -1, 1, -1, -1, 1, 0.999979, -1, -1, 0.9999
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_utllo")
-display_name = "Ramp"
-mass = 5.0
+block_type = SubResource("Resource_0kx1w")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("ConvexPolygonShape3D_yjq3e")

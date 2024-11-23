@@ -30,9 +30,9 @@ func _on_block_selection_changed() -> void:
 		_ghost_block.queue_free()
 		_ghost_block = null
 
-	var selected_block := BuildingMechanics.selected_block
-	if selected_block:
-		_ghost_block = selected_block.instantiate() as Block
+	var selected_block_type := BuildingMechanics.selected_block_type
+	if selected_block_type:
+		_ghost_block = selected_block_type.scene.instantiate() as Block
 		_ghost_block.collision_layer = 0
 		_ghost_block.collision_mask = 0
 		BuildingMechanicsUtils.override_children_material_recursively(_ghost_block, _ghost_material)
@@ -93,7 +93,7 @@ func _physics_process(_delta: float) -> void:
 
 func _allow_block_placement(collider: Object) -> void:
 	if is_input_place_block():
-		var spawned_block := BuildingMechanics.selected_block.instantiate() as Block
+		var spawned_block := BuildingMechanics.selected_block_type.scene.instantiate() as Block
 		spawned_block.name = _ghost_block.name
 
 		var grid: Grid

@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://chyr1ewsb24ga"]
+[gd_scene load_steps=8 format=3 uid="uid://chyr1ewsb24ga"]
 
 [ext_resource type="Texture2D" uid="uid://dyiq8maipat2i" path="res://icon.svg" id="1_3qlk5"]
 [ext_resource type="Script" path="res://addons/building_mechanics/block.gd" id="1_mybmp"]
+[ext_resource type="Script" path="res://addons/building_mechanics/block_type.gd" id="2_5684b"]
+
+[sub_resource type="Resource" id="Resource_hdybv"]
+script = ExtResource("2_5684b")
+display_name = "Triple"
+mass = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b4f0"]
 albedo_texture = ExtResource("1_3qlk5")
@@ -17,7 +23,7 @@ size = Vector3(0.5, 1.5, 0.5)
 collision_layer = 512
 collision_mask = 0
 script = ExtResource("1_mybmp")
-display_name = "Triple"
+block_type = SubResource("Resource_hdybv")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ni8fx")

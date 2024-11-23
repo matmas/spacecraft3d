@@ -25,14 +25,14 @@ func _on_child_entered_tree(node: Node) -> void:
 	if node is Block:
 		_block_count += 1
 		var block := node as Block
-		mass += block.mass
+		mass += block.block_type.mass
 		center_of_mass = _calculate_center_of_mass()
 
 
 func _on_child_exiting_tree(node: Node) -> void:
 	if node is Block:
 		var block := node as Block
-		mass -= block.mass
+		mass -= block.block_type.mass
 		var exclude := block
 		center_of_mass = _calculate_center_of_mass(exclude)
 		_block_count -= 1
@@ -47,8 +47,8 @@ func _calculate_center_of_mass(exclude: Block = null) -> Vector3:
 	for child in get_children():
 		if child is Block and child != exclude:
 			var block := child as Block
-			result += block.mass * (block.position + Utils.calculate_spatial_bounds(block).get_center())
-			total_mass += block.mass
+			result += block.block_type.mass * (block.position + Utils.calculate_spatial_bounds(block).get_center())
+			total_mass += block.block_type.mass
 
 	return result / total_mass
 

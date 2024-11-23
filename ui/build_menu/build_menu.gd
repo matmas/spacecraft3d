@@ -6,23 +6,16 @@ class_name BuildMenu
 
 func _ready() -> void:
 	item_list.clear()
-	for block in BlockLibrary.blocks:
+	for block_type in BlockLibrary.block_types:
+		var block := block_type.scene
 		var scene_texture := SceneTexture.new()
 		scene_texture.scene = block
-		var display_name := _get_property_value(block.get_state(), &"display_name") as String
-		var index := item_list.add_item(display_name, scene_texture)
+		var index := item_list.add_item(block_type.display_name, scene_texture)
 
-		if block == BuildingMechanics.selected_block:
+		if block_type == BuildingMechanics.selected_block_type:
 			item_list.select(index)
 	super._ready()
 
 
-func _get_property_value(state: SceneState, property_name: StringName, node_idx: int = 0) -> Variant:
-	for property_idx in state.get_node_property_count(node_idx):
-		if state.get_node_property_name(node_idx, property_idx) == property_name:
-			return state.get_node_property_value(node_idx, property_idx)
-	return null
-
-
 func _on_item_list_item_selected(index: int) -> void:
-	BuildingMechanics.selected_block = BlockLibrary.blocks[index]
+	BuildingMechanics.selected_block_type = BlockLibrary.block_types[index]
