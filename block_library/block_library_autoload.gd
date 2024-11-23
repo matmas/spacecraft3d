@@ -9,6 +9,9 @@ func _ready() -> void:
 	for scene in scenes:
 		var block_type := _get_packed_scene_property_value(scene, &"block_type") as BlockType
 		block_type.scene = scene
+		var scene_texture = SceneTexture.new()
+		scene_texture.scene = scene
+		block_type.scene_texture = scene_texture
 		block_types.append(block_type)
 
 

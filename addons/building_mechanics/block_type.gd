@@ -6,3 +6,6 @@ class_name BlockType
 
 # Runtime reference back to the scene that contains it
 var scene: PackedScene
+
+# Cached scene texture
+var scene_texture: Texture2D
