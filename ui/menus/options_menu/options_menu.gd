@@ -5,6 +5,7 @@ const OPTIONS_TAB = preload("options_tab/options_tab.tscn")
 
 
 func _ready() -> void:
+	super._ready()
 	for section in GameOptions.get_sections():
 		var tab := OPTIONS_TAB.instantiate()
 		tab.name = section.display_name
@@ -12,6 +13,10 @@ func _ready() -> void:
 		tab.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		tab.visible = false
 		joypad_tab_container.add_child(tab)
+
+
+func should_pause_game() -> bool:
+	return true
 
 
 func should_focus_first_visible_button() -> bool:

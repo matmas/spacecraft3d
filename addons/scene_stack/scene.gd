@@ -6,7 +6,6 @@ class_name Scene
 
 
 func _ready() -> void:
-	_refresh()
 	SceneStack.current_scene_changed.connect(_on_current_scene_changed)
 
 
